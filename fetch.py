@@ -2,7 +2,7 @@ import requests
 import sys
 
 FLARESOLVERR_URL = "http://localhost:8191/v1"
-TARGET_URL = "https://samakal.com/opinion"
+TARGET_URL = "https://www.reuters.com/world/"
 
 payload = {
     "cmd": "request.get",
