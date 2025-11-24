@@ -11,7 +11,7 @@ from datetime import datetime
 FLARESOLVERR_URL = "http://localhost:8191/v1"
 TARGET_URL = "https://www.reuters.com/world/"
 HTML_FILE = "opinion.html"
-XML_FILE = "article.xml"
+XML_FILE = "pau.xml"
 MAX_ITEMS = 500
 BASE = "https://www.reuters.com"
 
