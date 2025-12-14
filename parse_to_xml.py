@@ -1,5 +1,7 @@
 import sys
 import os
+import json
+import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -8,7 +10,53 @@ HTML_FILE = "opinion.html"
 XML_FILE = "article.xml"
 MAX_ITEMS = 500
 
-# Load HTML
+FLARESOLVER_URL = "http://localhost:8191/v1"
+BASE = "https://www.reuters.com"
+
+# ------------------------------------------------------------
+# FlareSolver fetch
+# ------------------------------------------------------------
+
+def fetch_with_flaresolver(url):
+    payload = {
+        "cmd": "request.get",
+        "url": url,
+        "maxTimeout": 60000
+    }
+
+    try:
+        r = requests.post(FLARESOLVER_URL, json=payload, timeout=70)
+        r.raise_for_status()
+        data = r.json()
+        return data["solution"]["response"]
+    except Exception:
+        return None
+
+
+# ------------------------------------------------------------
+# Extract full article text
+# ------------------------------------------------------------
+
+def extract_full_article(html):
+    soup = BeautifulSoup(html, "html.parser")
+
+    body = soup.find("div", attrs={"data-testid": "article-body"})
+    if not body:
+        return ""
+
+    paragraphs = []
+    for p in body.find_all("p"):
+        text = p.get_text(strip=True)
+        if text:
+            paragraphs.append(text)
+
+    return "\n\n".join(paragraphs)
+
+
+# ------------------------------------------------------------
+# Load listing HTML
+# ------------------------------------------------------------
+
 if not os.path.exists(HTML_FILE):
     print("HTML not found")
     sys.exit(1)
@@ -21,8 +69,6 @@ articles = []
 # ------------------------------------------------------------
 # Reuters-style blocks
 # ------------------------------------------------------------
-
-BASE = "https://www.reuters.com"
 
 for blk in soup.select('div[data-testid="Title"] a[data-testid="TitleLink"]'):
     href = blk.get("href", "").strip()
@@ -44,10 +90,17 @@ for blk in soup.select('div[data-testid="Title"] a[data-testid="TitleLink"]'):
     if not title:
         continue
 
+    # -------- fetch full article --------
+    html = fetch_with_flaresolver(url)
+    if not html:
+        continue
+
+    full_text = extract_full_article(html)
+
     articles.append({
         "url": url,
         "title": title,
-        "desc": "",
+        "desc": full_text,
         "pub": datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000"),
         "img": ""
     })
@@ -65,7 +118,6 @@ if os.path.exists(XML_FILE):
 else:
     root = ET.Element("rss", version="2.0")
 
-# Ensure channel exists
 channel = root.find("channel")
 if channel is None:
     channel = ET.SubElement(root, "channel")
@@ -73,14 +125,20 @@ if channel is None:
     ET.SubElement(channel, "link").text = "https://evilgodfahim.github.io/reur/"
     ET.SubElement(channel, "description").text = "Custom scraped articles"
 
-# Deduplicate existing URLs
+# ------------------------------------------------------------
+# Deduplication
+# ------------------------------------------------------------
+
 existing = set()
 for item in channel.findall("item"):
     link_tag = item.find("link")
-    if link_tag is not None:
+    if link_tag is not None and link_tag.text:
         existing.add(link_tag.text.strip())
 
-# Append new unique articles
+# ------------------------------------------------------------
+# Append new items
+# ------------------------------------------------------------
+
 for art in articles:
     if art["url"] in existing:
         continue
@@ -94,12 +152,18 @@ for art in articles:
     if art["img"]:
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
 
-# Trim to last MAX_ITEMS
+# ------------------------------------------------------------
+# Trim items
+# ------------------------------------------------------------
+
 all_items = channel.findall("item")
 if len(all_items) > MAX_ITEMS:
-    for old_item in all_items[:-MAX_ITEMS]:
-        channel.remove(old_item)
+    for old in all_items[:-MAX_ITEMS]:
+        channel.remove(old)
 
+# ------------------------------------------------------------
 # Save XML
+# ------------------------------------------------------------
+
 tree = ET.ElementTree(root)
 tree.write(XML_FILE, encoding="utf-8", xml_declaration=True)
