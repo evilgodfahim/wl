@@ -2,7 +2,6 @@ name: Update Reuters RSS
 
 on:
   schedule:
-    # Runs every 30 minutes
     - cron: "*/30 * * * *"
   workflow_dispatch:
 
@@ -13,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,7 +35,9 @@ jobs:
       - name: Wait for FlareSolverr
         run: |
           for i in {1..30}; do
-            curl -s http://localhost:8191 >/dev/null && break
+            if curl -s http://localhost:8191 >/dev/null; then
+              break
+            fi
             sleep 2
           done
 
@@ -46,6 +49,11 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+
           git add pau.xml opinin.html
+
           git commit -m "Auto update RSS" || exit 0
-          git push
+
+          git pull --rebase origin main
+
+          git push origin main
