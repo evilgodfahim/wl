@@ -1,0 +1,51 @@
+name: Update Reuters RSS
+
+on:
+  schedule:
+    # Runs every 30 minutes
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Start FlareSolverr
+        run: |
+          docker run -d \
+            --name flaresolverr \
+            -p 8191:8191 \
+            ghcr.io/flaresolverr/flaresolverr:latest
+
+      - name: Wait for FlareSolverr
+        run: |
+          for i in {1..30}; do
+            curl -s http://localhost:8191 >/dev/null && break
+            sleep 2
+          done
+
+      - name: Run scraper
+        run: |
+          python your_script_name.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add pau.xml opinin.html
+          git commit -m "Auto update RSS" || exit 0
+          git push
