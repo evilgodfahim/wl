@@ -259,7 +259,7 @@ if rss_html is None:
     print("Failed to fetch France24 RSS")
     france24_articles = []
 else:
-    rss_soup = BeautifulSoup(rss_html, "xml")
+    rss_soup = BeautifulSoup(rss_html, "html.parser")
     
     france24_articles = []
     for item in rss_soup.find_all("item"):
