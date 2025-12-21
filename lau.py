@@ -256,9 +256,14 @@ else:
 print("Fetching France24 RSS feed...")
 # RSS feeds don't need JavaScript rendering, so fetch directly
 try:
-    rss_response = requests.get(FRANCE24_RSS, timeout=30)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+    rss_response = requests.get(FRANCE24_RSS, headers=headers, timeout=30)
     rss_html = rss_response.text
     print(f"RSS fetched directly: {len(rss_html)} characters")
+    print(f"Status code: {rss_response.status_code}")
+    print(f"First 500 chars:\n{rss_html[:500]}")
 except Exception as e:
     print(f"Direct fetch failed: {e}, trying FlareSolverr...")
     rss_html = flare_get(FRANCE24_RSS)
