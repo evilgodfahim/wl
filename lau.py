@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Scrape Reuters listing page via FlareSolverr, extract full article text using the
-'[...]article-body-module__content__bnXL1' selector (and a sensible fallback),
-and write/update a simple RSS XML file.
+Scrape Reuters listing page + France24 RSS feed via FlareSolverr, 
+extract full article text, and write/update a simple RSS XML file.
 
 Save as a single file and run with a local FlareSolverr instance available at FLARESOLVERR_URL.
 """
@@ -19,12 +18,16 @@ from bs4 import BeautifulSoup
 # CONFIGURATION
 # ------------------------------
 FLARESOLVERR_URL = "http://localhost:8191/v1"
-TARGET_URL = "https://www.reuters.com/world/"
+REUTERS_URL = "https://www.reuters.com/world/"
+FRANCE24_RSS = "https://www.france24.com/en/rss"
 HTML_FILE = "opinin.html"
 XML_FILE = "pau.xml"
 MAX_ITEMS = 500
-BASE = "https://www.reuters.com"
+REUTERS_BASE = "https://www.reuters.com"
 TIMEOUT_MS = 60000
+
+# France24 exclusion patterns
+FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/"]
 
 
 # ------------------------------
@@ -90,16 +93,14 @@ def flare_get(url):
 
 
 # ------------------------------
-# Extract full article text
+# Extract full text - Reuters
 # ------------------------------
-def extract_full_text(article_html):
+def extract_full_text_reuters(article_html):
     """
-    Primary extraction: use the selector the user requested:
+    Primary extraction: use the selector for Reuters:
       <div class="article-body-module__content__bnXL1"> ... <div data-testid="paragraph-..."> ... </div>
 
-    If that selector isn't present, fall back to common approaches:
-     - 'div[data-testid="Body"] p'
-     - 'article p'
+    If that selector isn't present, fall back to common approaches.
     """
     s = BeautifulSoup(article_html, "html.parser")
 
@@ -124,6 +125,45 @@ def extract_full_text(article_html):
     if not blocks:
         blocks = s.select("article p")
 
+    parts = []
+    for p in blocks:
+        txt = p.get_text(" ", strip=True)
+        if txt:
+            parts.append(txt)
+
+    return "\n\n".join(parts)
+
+
+# ------------------------------
+# Extract full text - France24
+# ------------------------------
+def extract_full_text_france24(article_html):
+    """
+    Extract article text from France24 using the specific div:
+      <div class="t-content__body u-clearfix">
+    """
+    s = BeautifulSoup(article_html, "html.parser")
+
+    # Find the main content div
+    container = s.find("div", class_="t-content__body")
+    if not container:
+        # Try alternative selector
+        container = s.find("div", class_=lambda c: c and "t-content__body" in c)
+    
+    if container:
+        # Extract all paragraphs from this container
+        paragraphs = container.find_all("p")
+        parts = []
+        for p in paragraphs:
+            text = p.get_text(" ", strip=True)
+            # Filter out "Read more" and other non-content paragraphs
+            if text and not text.startswith("Read more") and not text.startswith("(FRANCE 24"):
+                parts.append(text)
+        if parts:
+            return "\n\n".join(parts)
+
+    # Fallback: try to find article content by common selectors
+    blocks = s.select("article p")
     parts = []
     for p in blocks:
         txt = p.get_text(" ", strip=True)
@@ -165,56 +205,99 @@ def extract_image_url(soup_page):
 
 
 # ------------------------------
-# 1. FETCH LIST PAGE
+# 1. FETCH REUTERS LIST PAGE
 # ------------------------------
-html = flare_get(TARGET_URL)
+print("Fetching Reuters articles...")
+html = flare_get(REUTERS_URL)
 if html is None:
-    sys.exit(1)
+    print("Failed to fetch Reuters page")
+    reuters_articles = []
+else:
+    with open(HTML_FILE, "w", encoding="utf-8") as f:
+        f.write(html)
 
-with open(HTML_FILE, "w", encoding="utf-8") as f:
-    f.write(html)
+    soup = BeautifulSoup(html, "html.parser")
 
-soup = BeautifulSoup(html, "html.parser")
+    # Parse links from Reuters listing
+    reuters_articles = []
+    for blk in soup.select('div[data-testid="Title"] a[data-testid="TitleLink"]'):
+        href = blk.get("href", "").strip()
+        if not href:
+            continue
 
+        if href.startswith("http"):
+            url = href
+        elif href.startswith("/"):
+            url = REUTERS_BASE + href
+        else:
+            continue
 
-# ------------------------------
-# 2. PARSE LINKS FROM LISTING
-# ------------------------------
-articles = []
+        span = blk.select_one('span[data-testid="TitleHeading"]')
+        if not span:
+            title = blk.get_text(" ", strip=True)
+        else:
+            title = span.get_text(strip=True)
 
-# Keep the original selector the user used earlier for Reuters listing
-for blk in soup.select('div[data-testid="Title"] a[data-testid="TitleLink"]'):
-    href = blk.get("href", "").strip()
-    if not href:
-        continue
+        if not title:
+            continue
 
-    if href.startswith("http"):
-        url = href
-    elif href.startswith("/"):
-        url = BASE + href
-    else:
-        continue
+        reuters_articles.append({
+            "url": url,
+            "title": title,
+            "source": "Reuters"
+        })
 
-    span = blk.select_one('span[data-testid="TitleHeading"]')
-    if not span:
-        # fallback: use link text
-        title = blk.get_text(" ", strip=True)
-    else:
-        title = span.get_text(strip=True)
-
-    if not title:
-        continue
-
-    articles.append({
-        "url": url,
-        "title": title
-    })
+    print(f"Found {len(reuters_articles)} Reuters articles")
 
 
 # ------------------------------
-# 3. FETCH FULL TEXT FOR EACH ARTICLE
+# 2. FETCH FRANCE24 RSS FEED
 # ------------------------------
-for a in articles:
+print("Fetching France24 RSS feed...")
+rss_html = flare_get(FRANCE24_RSS)
+if rss_html is None:
+    print("Failed to fetch France24 RSS")
+    france24_articles = []
+else:
+    rss_soup = BeautifulSoup(rss_html, "xml")
+    
+    france24_articles = []
+    for item in rss_soup.find_all("item"):
+        link_tag = item.find("link")
+        title_tag = item.find("title")
+        
+        if not link_tag or not title_tag:
+            continue
+        
+        url = link_tag.get_text(strip=True)
+        title = title_tag.get_text(strip=True)
+        
+        # Filter out excluded categories
+        if any(exclude in url for exclude in FRANCE24_EXCLUDE):
+            continue
+        
+        france24_articles.append({
+            "url": url,
+            "title": title,
+            "source": "France24"
+        })
+    
+    print(f"Found {len(france24_articles)} France24 articles (after filtering)")
+
+
+# ------------------------------
+# 3. COMBINE ALL ARTICLES
+# ------------------------------
+all_articles = reuters_articles + france24_articles
+print(f"\nTotal articles to process: {len(all_articles)}")
+
+
+# ------------------------------
+# 4. FETCH FULL TEXT FOR EACH ARTICLE
+# ------------------------------
+for i, a in enumerate(all_articles, 1):
+    print(f"Processing {i}/{len(all_articles)}: {a['title'][:50]}...")
+    
     page = flare_get(a["url"])
     if page is None:
         a["desc"] = ""
@@ -222,7 +305,12 @@ for a in articles:
         a["pub"] = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
         continue
 
-    full_text = extract_full_text(page)
+    # Extract text based on source
+    if a["source"] == "Reuters":
+        full_text = extract_full_text_reuters(page)
+    else:  # France24
+        full_text = extract_full_text_france24(page)
+    
     a["desc"] = full_text
 
     soup_page = BeautifulSoup(page, "html.parser")
@@ -231,7 +319,7 @@ for a in articles:
 
 
 # ------------------------------
-# 4. LOAD OR CREATE XML
+# 5. LOAD OR CREATE XML
 # ------------------------------
 if os.path.exists(XML_FILE):
     try:
@@ -247,13 +335,13 @@ else:
 channel = root.find("channel")
 if channel is None:
     channel = ET.SubElement(root, "channel")
-    ET.SubElement(channel, "title").text = "Custom Feed"
+    ET.SubElement(channel, "title").text = "Reuters + France24 Combined Feed"
     ET.SubElement(channel, "link").text = "https://evilgodfahim.github.io/reur/"
-    ET.SubElement(channel, "description").text = "Custom scraped articles"
+    ET.SubElement(channel, "description").text = "Combined scraped articles from Reuters and France24"
 
 
 # ------------------------------
-# 5. DEDUPLICATE EXISTING ITEMS
+# 6. DEDUPLICATE EXISTING ITEMS
 # ------------------------------
 existing = set()
 for item in channel.findall("item"):
@@ -263,40 +351,40 @@ for item in channel.findall("item"):
 
 
 # ------------------------------
-# 6. ADD NEW ARTICLES
+# 7. ADD NEW ARTICLES
 # ------------------------------
-for art in articles:
+new_count = 0
+for art in all_articles:
     if art["url"] in existing:
         continue
 
     item = ET.SubElement(channel, "item")
     ET.SubElement(item, "title").text = art["title"]
     ET.SubElement(item, "link").text = art["url"]
-
-    # Description: keep as plain text (newlines will be escaped)
     ET.SubElement(item, "description").text = art["desc"] or ""
-
     ET.SubElement(item, "pubDate").text = art["pub"]
 
     if art.get("img"):
-        # Use enclosure element for image
-        # type left generic; many images are jpeg/png
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
+    
+    new_count += 1
+
+print(f"\nAdded {new_count} new articles to feed")
 
 
 # ------------------------------
-# 7. TRIM OLD ITEMS
+# 8. TRIM OLD ITEMS
 # ------------------------------
 all_items = channel.findall("item")
 if len(all_items) > MAX_ITEMS:
-    # remove oldest items first (assumes older items are earlier in the list)
     for old in all_items[:-MAX_ITEMS]:
         channel.remove(old)
+    print(f"Trimmed to {MAX_ITEMS} items")
 
 
 # ------------------------------
-# 8. SAVE XML
+# 9. SAVE XML
 # ------------------------------
 tree.write(XML_FILE, encoding="utf-8", xml_declaration=True)
 
-print("Done.")
+print(f"\nDone! Feed saved to {XML_FILE}")
