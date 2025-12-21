@@ -284,6 +284,7 @@ else:
         title_tag = item.find("title")
         
         if not link_tag or not title_tag:
+            print("  Skipped: missing link or title")
             continue
         
         url = link_tag.get_text(strip=True)
@@ -291,18 +292,21 @@ else:
         
         # Skip channel-level title if accidentally picked up
         if not url.startswith("http"):
+            print(f"  Skipped: '{title}' - URL doesn't start with http")
             continue
         
         # Filter out excluded categories
         excluded = False
         for exclude in FRANCE24_EXCLUDE:
             if exclude in url:
+                print(f"  Excluded: '{title[:60]}' - contains '{exclude}'")
                 excluded = True
                 break
         
         if excluded:
             continue
         
+        print(f"  ✓ Added: '{title[:60]}'")
         france24_articles.append({
             "url": url,
             "title": title,
