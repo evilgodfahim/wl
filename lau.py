@@ -272,7 +272,11 @@ if rss_html is None:
     print("Failed to fetch France24 RSS")
     france24_articles = []
 else:
-    # Parse as XML
+    # Parse as XML - suppress the warning about using html.parser for XML
+    from bs4 import XMLParsedAsHTMLWarning
+    import warnings
+    warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
+    
     rss_soup = BeautifulSoup(rss_html, "html.parser")
     
     france24_articles = []
@@ -287,12 +291,21 @@ else:
             print("  Skipped: missing link or title")
             continue
         
+        # Get URL - try text content first, then href attribute
         url = link_tag.get_text(strip=True)
+        if not url or not url.startswith("http"):
+            url = link_tag.get("href", "")
+        
         title = title_tag.get_text(strip=True)
         
-        # Skip channel-level title if accidentally picked up
+        # Debug: print what we're seeing
         if not url.startswith("http"):
-            print(f"  Skipped: '{title}' - URL doesn't start with http")
+            print(f"  DEBUG: link_tag = {link_tag}")
+            print(f"  DEBUG: url extracted = '{url}'")
+        
+        # Skip if still no valid URL
+        if not url or not url.startswith("http"):
+            print(f"  Skipped: '{title[:60]}' - URL doesn't start with http (url='{url[:50]}')")
             continue
         
         # Filter out excluded categories
