@@ -251,18 +251,30 @@ else:
 
 
 # ------------------------------
-# 2. FETCH FRANCE24 RSS FEED
+# 2. FETCH FRANCE24 RSS FEED (directly, not via FlareSolverr)
 # ------------------------------
 print("Fetching France24 RSS feed...")
-rss_html = flare_get(FRANCE24_RSS)
+# RSS feeds don't need JavaScript rendering, so fetch directly
+try:
+    rss_response = requests.get(FRANCE24_RSS, timeout=30)
+    rss_html = rss_response.text
+    print(f"RSS fetched directly: {len(rss_html)} characters")
+except Exception as e:
+    print(f"Direct fetch failed: {e}, trying FlareSolverr...")
+    rss_html = flare_get(FRANCE24_RSS)
+
 if rss_html is None:
     print("Failed to fetch France24 RSS")
     france24_articles = []
 else:
+    # Parse as XML
     rss_soup = BeautifulSoup(rss_html, "html.parser")
     
     france24_articles = []
-    for item in rss_soup.find_all("item"):
+    items = rss_soup.find_all("item")
+    print(f"Found {len(items)} total items in France24 RSS")
+    
+    for item in items:
         link_tag = item.find("link")
         title_tag = item.find("title")
         
@@ -272,8 +284,18 @@ else:
         url = link_tag.get_text(strip=True)
         title = title_tag.get_text(strip=True)
         
+        # Skip channel-level title if accidentally picked up
+        if not url.startswith("http"):
+            continue
+        
         # Filter out excluded categories
-        if any(exclude in url for exclude in FRANCE24_EXCLUDE):
+        excluded = False
+        for exclude in FRANCE24_EXCLUDE:
+            if exclude in url:
+                excluded = True
+                break
+        
+        if excluded:
             continue
         
         france24_articles.append({
