@@ -272,40 +272,33 @@ if rss_html is None:
     print("Failed to fetch France24 RSS")
     france24_articles = []
 else:
-    # Parse as XML - suppress the warning about using html.parser for XML
-    from bs4 import XMLParsedAsHTMLWarning
-    import warnings
-    warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
-    
-    rss_soup = BeautifulSoup(rss_html, "html.parser")
+    # Parse RSS feed - use regex to extract items since BeautifulSoup's html.parser
+    # treats <link> as self-closing HTML tags
+    import re
     
     france24_articles = []
-    items = rss_soup.find_all("item")
+    
+    # Find all <item>...</item> blocks
+    item_pattern = re.compile(r'<item>(.*?)</item>', re.DOTALL)
+    items = item_pattern.findall(rss_html)
     print(f"Found {len(items)} total items in France24 RSS")
     
-    for item in items:
-        link_tag = item.find("link")
-        title_tag = item.find("title")
+    for item_content in items:
+        # Extract title
+        title_match = re.search(r'<title>(.*?)</title>', item_content)
+        # Extract link
+        link_match = re.search(r'<link>(.*?)</link>', item_content)
         
-        if not link_tag or not title_tag:
+        if not title_match or not link_match:
             print("  Skipped: missing link or title")
             continue
         
-        # Get URL - try text content first, then href attribute
-        url = link_tag.get_text(strip=True)
+        title = title_match.group(1).strip()
+        url = link_match.group(1).strip()
+        
+        # Skip if no valid URL
         if not url or not url.startswith("http"):
-            url = link_tag.get("href", "")
-        
-        title = title_tag.get_text(strip=True)
-        
-        # Debug: print what we're seeing
-        if not url.startswith("http"):
-            print(f"  DEBUG: link_tag = {link_tag}")
-            print(f"  DEBUG: url extracted = '{url}'")
-        
-        # Skip if still no valid URL
-        if not url or not url.startswith("http"):
-            print(f"  Skipped: '{title[:60]}' - URL doesn't start with http (url='{url[:50]}')")
+            print(f"  Skipped: '{title[:60]}' - invalid URL")
             continue
         
         # Filter out excluded categories
