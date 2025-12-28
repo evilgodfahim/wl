@@ -27,7 +27,7 @@ REUTERS_BASE = "https://www.reuters.com"
 TIMEOUT_MS = 60000
 
 # France24 exclusion patterns
-FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/"]
+FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/"]
 
 
 # ------------------------------
