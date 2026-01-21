@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 """
-Scrape Reuters listing page + France24 RSS feed via FlareSolverr, 
+Scrape Reuters listing page + France24 RSS feed via FlareSolverr,
 extract full article text, and write/update a simple RSS XML file.
 
-Save as a single file and run with a local FlareSolverr instance available at FLARESOLVERR_URL.
+Save as a single file and run with a local FlareSolverr instance
+available at FLARESOLVERR_URL.
+
+Modification: skip adding articles that have no description after scraping.
 """
 
 import requests
@@ -17,6 +21,7 @@ from bs4 import BeautifulSoup
 # ------------------------------
 # CONFIGURATION
 # ------------------------------
+
 FLARESOLVERR_URL = "http://localhost:8191/v1"
 REUTERS_URL = "https://www.reuters.com/world/"
 FRANCE24_RSS = "https://www.france24.com/en/rss"
@@ -29,10 +34,10 @@ TIMEOUT_MS = 60000
 # France24 exclusion patterns
 FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
 
-
 # ------------------------------
 # FlareSolverr helper
 # ------------------------------
+
 def flare_get(url):
     """
     Call FlareSolverr to fetch rendered HTML.
@@ -91,14 +96,18 @@ def flare_get(url):
 
     return html
 
-
 # ------------------------------
 # Extract full text - Reuters
 # ------------------------------
+
 def extract_full_text_reuters(article_html):
     """
     Primary extraction: use the selector for Reuters:
-      <div class="article-body-module__content__bnXL1"> ... <div data-testid="paragraph-..."> ... </div>
+    <div class="article-body-module__content__bnXL1">
+        ...
+        <div data-testid="paragraph-...">
+            ...
+        </div>
 
     If that selector isn't present, fall back to common approaches.
     """
@@ -133,14 +142,14 @@ def extract_full_text_reuters(article_html):
 
     return "\n\n".join(parts)
 
-
 # ------------------------------
 # Extract full text - France24
 # ------------------------------
+
 def extract_full_text_france24(article_html):
     """
     Extract article text from France24 using the specific div:
-      <div class="t-content__body u-clearfix">
+    <div class="t-content__body u-clearfix">
     """
     s = BeautifulSoup(article_html, "html.parser")
 
@@ -149,7 +158,7 @@ def extract_full_text_france24(article_html):
     if not container:
         # Try alternative selector
         container = s.find("div", class_=lambda c: c and "t-content__body" in c)
-    
+
     if container:
         # Extract all paragraphs from this container
         paragraphs = container.find_all("p")
@@ -172,10 +181,10 @@ def extract_full_text_france24(article_html):
 
     return "\n\n".join(parts)
 
-
 # ------------------------------
 # Helper: get best image from article page
 # ------------------------------
+
 def extract_image_url(soup_page):
     """
     Try to find a representative image for the article.
@@ -203,10 +212,10 @@ def extract_image_url(soup_page):
 
     return ""
 
-
 # ------------------------------
 # 1. FETCH REUTERS LIST PAGE
 # ------------------------------
+
 print("Fetching Reuters articles...")
 html = flare_get(REUTERS_URL)
 if html is None:
@@ -249,11 +258,12 @@ else:
 
     print(f"Found {len(reuters_articles)} Reuters articles")
 
-
 # ------------------------------
 # 2. FETCH FRANCE24 RSS FEED (directly, not via FlareSolverr)
 # ------------------------------
+
 print("Fetching France24 RSS feed...")
+
 # RSS feeds don't need JavaScript rendering, so fetch directly
 try:
     headers = {
@@ -275,32 +285,32 @@ else:
     # Parse RSS feed - use regex to extract items since BeautifulSoup's html.parser
     # treats <link> as self-closing HTML tags
     import re
-    
+
     france24_articles = []
-    
+
     # Find all <item>...</item> blocks
     item_pattern = re.compile(r'<item>(.*?)</item>', re.DOTALL)
     items = item_pattern.findall(rss_html)
     print(f"Found {len(items)} total items in France24 RSS")
-    
+
     for item_content in items:
         # Extract title
         title_match = re.search(r'<title>(.*?)</title>', item_content)
         # Extract link
         link_match = re.search(r'<link>(.*?)</link>', item_content)
-        
+
         if not title_match or not link_match:
             print("  Skipped: missing link or title")
             continue
-        
+
         title = title_match.group(1).strip()
         url = link_match.group(1).strip()
-        
+
         # Skip if no valid URL
         if not url or not url.startswith("http"):
             print(f"  Skipped: '{title[:60]}' - invalid URL")
             continue
-        
+
         # Filter out excluded categories
         excluded = False
         for exclude in FRANCE24_EXCLUDE:
@@ -308,33 +318,33 @@ else:
                 print(f"  Excluded: '{title[:60]}' - contains '{exclude}'")
                 excluded = True
                 break
-        
+
         if excluded:
             continue
-        
+
         print(f"  ✓ Added: '{title[:60]}'")
         france24_articles.append({
             "url": url,
             "title": title,
             "source": "France24"
         })
-    
-    print(f"Found {len(france24_articles)} France24 articles (after filtering)")
 
+    print(f"Found {len(france24_articles)} France24 articles (after filtering)")
 
 # ------------------------------
 # 3. COMBINE ALL ARTICLES
 # ------------------------------
+
 all_articles = reuters_articles + france24_articles
 print(f"\nTotal articles to process: {len(all_articles)}")
-
 
 # ------------------------------
 # 4. FETCH FULL TEXT FOR EACH ARTICLE
 # ------------------------------
+
 for i, a in enumerate(all_articles, 1):
     print(f"Processing {i}/{len(all_articles)}: {a['title'][:50]}...")
-    
+
     page = flare_get(a["url"])
     if page is None:
         a["desc"] = ""
@@ -347,17 +357,17 @@ for i, a in enumerate(all_articles, 1):
         full_text = extract_full_text_reuters(page)
     else:  # France24
         full_text = extract_full_text_france24(page)
-    
+
     a["desc"] = full_text
 
     soup_page = BeautifulSoup(page, "html.parser")
     a["img"] = extract_image_url(soup_page)
     a["pub"] = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
 
-
 # ------------------------------
 # 5. LOAD OR CREATE XML
 # ------------------------------
+
 if os.path.exists(XML_FILE):
     try:
         tree = ET.parse(XML_FILE)
@@ -376,23 +386,29 @@ if channel is None:
     ET.SubElement(channel, "link").text = "https://evilgodfahim.github.io/reur/"
     ET.SubElement(channel, "description").text = "Combined scraped articles from Reuters and France24"
 
-
 # ------------------------------
 # 6. DEDUPLICATE EXISTING ITEMS
 # ------------------------------
+
 existing = set()
 for item in channel.findall("item"):
     link_tag = item.find("link")
     if link_tag is not None and link_tag.text:
         existing.add(link_tag.text.strip())
 
-
 # ------------------------------
 # 7. ADD NEW ARTICLES
 # ------------------------------
+
 new_count = 0
 for art in all_articles:
+    # Skip if already present
     if art["url"] in existing:
+        continue
+
+    # Skip if scraping produced no description
+    if not art.get("desc") or not art["desc"].strip():
+        print(f"Skipping (no description): {art['title'][:60]} - {art['url']}")
         continue
 
     item = ET.SubElement(channel, "item")
@@ -403,25 +419,28 @@ for art in all_articles:
 
     if art.get("img"):
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
-    
+
     new_count += 1
 
 print(f"\nAdded {new_count} new articles to feed")
 
-
 # ------------------------------
 # 8. TRIM OLD ITEMS
 # ------------------------------
+
 all_items = channel.findall("item")
 if len(all_items) > MAX_ITEMS:
     for old in all_items[:-MAX_ITEMS]:
         channel.remove(old)
     print(f"Trimmed to {MAX_ITEMS} items")
 
-
 # ------------------------------
 # 9. SAVE XML
 # ------------------------------
+
+# Ensure parent dirs exist
+os.makedirs(os.path.dirname(XML_FILE) or '.', exist_ok=True)
+
 tree.write(XML_FILE, encoding="utf-8", xml_declaration=True)
 
 print(f"\nDone! Feed saved to {XML_FILE}")
