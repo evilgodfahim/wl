@@ -18,6 +18,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Cache BotBrowser user profile
+        uses: actions/cache@v4
+        with:
+          path: ./botbrowser-profile
+          key: botbrowser-profile-v1
+          restore-keys: botbrowser-profile-
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
