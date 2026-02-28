@@ -1,23 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Scrape Reuters listing page + Reuters commentary page + France24 RSS feed via Playwright,
-extract full article text, and write/update a simple RSS XML file.
-
-Replaces FlareSolverr with Playwright (headless Chromium) for JS-rendered pages.
-"""
-
 import sys
 import os
 import re
 import logging
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timezone
 
 import requests
 from bs4 import BeautifulSoup
-from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
 # ------------------------------
 # DEBUG / CONFIG
@@ -42,6 +34,7 @@ log = logging.getLogger("scraper")
 # CONFIGURATION
 # ------------------------------
 
+FLARESOLVERR_URL        = "http://localhost:8191/v1"
 REUTERS_URL             = "https://www.reuters.com/world/"
 REUTERS_COMMENTARY_URL  = "https://www.reuters.com/commentary/"
 FRANCE24_RSS            = "https://www.france24.com/en/rss"
@@ -50,17 +43,9 @@ COMMENTARY_HTML_FILE    = "commentary.html"
 XML_FILE                = "pau.xml"
 MAX_ITEMS               = 500
 REUTERS_BASE            = "https://www.reuters.com"
-PAGE_TIMEOUT_MS         = 60_000   # navigation timeout
-WAIT_AFTER_LOAD_MS      = 3_000    # extra wait for JS hydration
+TIMEOUT_MS              = 120000   # 2 min — give FlareSolverr time to solve CAPTCHA
 
 FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
-
-# User-agent that looks like a regular browser
-UA = (
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/124.0.0.0 Safari/537.36"
-)
 
 # ------------------------------
 # Helpers
@@ -75,6 +60,9 @@ def info(msg, *args):
 
 def warn(msg, *args):
     log.warning(msg, *args)
+
+def now_utc():
+    return datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 def save_debug_html(path, html):
     try:
@@ -93,98 +81,68 @@ def build_full_url(href):
     return None
 
 # ------------------------------
-# Playwright context (singleton)
+# FlareSolverr
 # ------------------------------
 
-_pw        = None
-_browser   = None
-_context   = None
+# Reuse the same session cookie across requests so DataDome sees
+# a consistent browser fingerprint and is less likely to re-challenge.
+_flare_session_id = "scraper_session_1"
 
-def get_browser_context():
-    """Lazy-init a persistent Playwright browser context."""
-    global _pw, _browser, _context
-    if _context is not None:
-        return _context
-
-    info("Launching Playwright Chromium (headless)…")
-    _pw      = sync_playwright().start()
-    _browser = _pw.chromium.launch(
-        headless=True,
-        args=[
-            "--no-sandbox",
-            "--disable-blink-features=AutomationControlled",
-            "--disable-dev-shm-usage",
-        ],
-    )
-    _context = _browser.new_context(
-        user_agent=UA,
-        locale="en-US",
-        viewport={"width": 1280, "height": 900},
-        # Pretend to be a real browser
-        extra_http_headers={
-            "Accept-Language": "en-US,en;q=0.9",
-        },
-    )
-    # Hide navigator.webdriver
-    _context.add_init_script(
-        "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
-    )
-    return _context
-
-
-def close_browser():
-    global _pw, _browser, _context
+def flare_get(url):
+    payload = {
+        "cmd": "request.get",
+        "url": url,
+        "maxTimeout": TIMEOUT_MS,
+        "session": _flare_session_id,
+    }
+    debug("FlareSolverr GET: %s", url)
     try:
-        if _context:
-            _context.close()
-        if _browser:
-            _browser.close()
-        if _pw:
-            _pw.stop()
+        r = requests.post(FLARESOLVERR_URL, json=payload, timeout=TIMEOUT_MS // 1000 + 30)
+    except Exception as e:
+        warn("FlareSolverr request error: %s", e)
+        return None
+
+    debug("FlareSolverr HTTP %s", r.status_code)
+    if r.status_code != 200:
+        warn("FlareSolverr returned HTTP %s for %s", r.status_code, url)
+        return None
+
+    try:
+        data = r.json()
+    except Exception as e:
+        warn("Invalid JSON from FlareSolverr: %s", e)
+        return None
+
+    status = data.get("status", "")
+    if status != "ok":
+        warn("FlareSolverr status=%s for %s | message: %s", status, url, data.get("message", ""))
+        return None
+
+    sol = data.get("solution", {})
+    html = sol.get("response") or ""
+
+    if isinstance(html, dict):
+        html = html.get("data") or html.get("body") or html.get("html") or ""
+
+    if not html:
+        warn("Empty HTML from FlareSolverr for %s", url)
+        return None
+
+    # Detect if we still got a CAPTCHA/challenge page
+    if len(html) < 5000 and any(x in html for x in ["captcha-delivery.com", "DataDome", "geo.captcha"]):
+        warn("FlareSolverr returned a CAPTCHA challenge page for %s (%d bytes)", url, len(html))
+        debug("Challenge snippet: %s", html[:400].replace("\n", " "))
+        return None
+
+    debug("FlareSolverr received %d bytes for %s", len(html), url)
+    return html
+
+
+def flare_session_destroy():
+    try:
+        requests.post(FLARESOLVERR_URL, json={"cmd": "sessions.destroy", "session": _flare_session_id}, timeout=10)
     except Exception:
         pass
-    _pw = _browser = _context = None
-
-
-def pw_get(url: str) -> str | None:
-    """
-    Fetch a URL using Playwright and return the fully-rendered HTML.
-    Returns None on error.
-    """
-    debug("Playwright fetch: %s", url)
-    ctx = get_browser_context()
-    page = None
-    try:
-        page = ctx.new_page()
-        # Block images/fonts/media to speed things up
-        page.route(
-            "**/*",
-            lambda route: route.abort()
-            if route.request.resource_type in ("image", "media", "font", "stylesheet")
-            else route.continue_(),
-        )
-        page.goto(url, timeout=PAGE_TIMEOUT_MS, wait_until="domcontentloaded")
-        # Let JS hydrate
-        page.wait_for_timeout(WAIT_AFTER_LOAD_MS)
-        html = page.content()
-        debug("Playwright received %d bytes from %s", len(html), url)
-        return html
-    except PWTimeout:
-        warn("Playwright timeout fetching %s", url)
-        return None
-    except Exception as e:
-        warn("Playwright error fetching %s: %s", url, e)
-        return None
-    finally:
-        if page:
-            try:
-                page.close()
-            except Exception:
-                pass
-
-
-# Keep the same public name the rest of the script used
-flare_get = pw_get
 
 # ------------------------------
 # Extractors
@@ -195,22 +153,17 @@ def extract_full_text_reuters(article_html):
 
     container = s.find("div", class_="article-body-module__content__bnXL1")
     if container:
-        paragraphs = container.find_all(attrs={"data-testid": True})
         parts = []
-        for p in paragraphs:
-            dt = p.get("data-testid", "") or ""
-            if "paragraph-" in dt:
+        for p in container.find_all(attrs={"data-testid": True}):
+            if "paragraph-" in (p.get("data-testid") or ""):
                 text = p.get_text(" ", strip=True)
                 if text:
                     parts.append(text)
         if parts:
             return "\n\n".join(parts)
 
-    blocks = s.select('div[data-testid="Body"] p')
-    if not blocks:
-        blocks = s.select("article p")
-
-    parts = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
+    blocks = s.select('div[data-testid="Body"] p') or s.select("article p")
+    parts  = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
     return "\n\n".join(parts)
 
 
@@ -230,7 +183,7 @@ def extract_full_text_france24(article_html):
             return "\n\n".join(parts)
 
     blocks = s.select("article p")
-    parts = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
+    parts  = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
     return "\n\n".join(parts)
 
 
@@ -266,8 +219,8 @@ else:
         nodes = soup.select('div[data-testid="Title"] a[data-testid="TitleLink"]')
         debug("Primary selector nodes found: %d", len(nodes))
         for blk in nodes:
-            href = blk.get("href", "").strip()
-            url  = build_full_url(href)
+            href  = blk.get("href", "").strip()
+            url   = build_full_url(href)
             if not url:
                 continue
             span  = blk.select_one('span[data-testid="TitleHeading"]')
@@ -284,7 +237,6 @@ else:
         for url, title in primary_items:
             reuters_articles.append({"url": url, "title": title, "source": "Reuters"})
     else:
-        # Fallback anchor scan
         seen, fallback_items = set(), []
         for a in soup.find_all("a", href=True):
             href = a["href"].strip()
@@ -292,9 +244,10 @@ else:
                 r'^/(world|article|business|markets|breakingviews|technology|investigations|commentary)/',
                 href
             ) or '/article/' in href:
-                title_text = a.get_text(" ", strip=True) or (
-                    a.find_parent().get_text(" ", strip=True) if a.find_parent() else ""
-                )
+                title_text = a.get_text(" ", strip=True)
+                if not title_text:
+                    parent = a.find_parent()
+                    title_text = parent.get_text(" ", strip=True) if parent else ""
                 if not title_text:
                     continue
                 full = build_full_url(href)
@@ -361,9 +314,10 @@ else:
             if re.search(
                 r'^/(commentary|breakingviews|article|business|world|opinions)/', href
             ) or '/article/' in href:
-                title_text = a.get_text(" ", strip=True) or (
-                    a.find_parent().get_text(" ", strip=True) if a.find_parent() else ""
-                )
+                title_text = a.get_text(" ", strip=True)
+                if not title_text:
+                    parent = a.find_parent()
+                    title_text = parent.get_text(" ", strip=True) if parent else ""
                 if not title_text:
                     continue
                 full = build_full_url(href)
@@ -392,20 +346,9 @@ else:
 # ------------------------------
 
 info("Fetching France24 RSS: %s", FRANCE24_RSS)
-rss_html = None
-try:
-    rss_response = requests.get(
-        FRANCE24_RSS,
-        headers={"User-Agent": UA},
-        timeout=30,
-    )
-    rss_html = rss_response.text
-    debug("France24 RSS HTTP status: %s, length: %d", rss_response.status_code, len(rss_html))
-except Exception as e:
-    warn("Direct fetch of France24 RSS failed: %s; falling back to Playwright", e)
-    rss_html = flare_get(FRANCE24_RSS)
-
+rss_html = flare_get(FRANCE24_RSS)
 france24_articles = []
+
 if rss_html:
     items = re.findall(r'<item>(.*?)</item>', rss_html, re.DOTALL)
     info("Found %d total items in France24 RSS", len(items))
@@ -431,7 +374,7 @@ if rss_html:
         added += 1
     info("France24: kept %d items, excluded %d", added, excluded)
 else:
-    warn("Failed to fetch France24 RSS content")
+    warn("Failed to fetch France24 RSS")
 
 # ------------------------------
 # 3. COMBINE & DEDUPE
@@ -447,6 +390,8 @@ for item in reuters_articles + france24_articles:
 
 all_articles = combined
 info("Total unique articles to process: %d", len(all_articles))
+for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
+    debug("  sample %d: [%s] %s", i, a.get("source"), a.get("url"))
 
 # ------------------------------
 # 4. FETCH FULL TEXT
@@ -456,10 +401,10 @@ for i, a in enumerate(all_articles, 1):
     info("Processing %d/%d: %s", i, len(all_articles), a.get("title", "")[:80])
     page = flare_get(a["url"])
     if page is None:
-        warn("Failed to fetch article page: %s", a.get("url"))
+        warn("Failed to fetch: %s", a.get("url"))
         a["desc"] = ""
         a["img"]  = a.get("thumb", "") or ""
-        a["pub"]  = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
+        a["pub"]  = now_utc()
         continue
 
     a["desc"] = (
@@ -470,17 +415,16 @@ for i, a in enumerate(all_articles, 1):
 
     soup_page = BeautifulSoup(page, "html.parser")
     a["img"] = extract_image_url(soup_page) or a.get("thumb", "") or ""
-    a["pub"] = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
+    a["pub"] = now_utc()
 
-    if DEBUG:
-        desc_len = len(a["desc"])
-        debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
-        if desc_len == 0:
-            warn("  Empty description. Page snippet:\n%s",
-                 page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+    desc_len = len(a["desc"])
+    debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
+    if desc_len == 0:
+        warn("  Empty description for: %s\n  Page snippet: %s",
+             a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
 
-# Cleanly close Playwright when done fetching
-close_browser()
+# Cleanup FlareSolverr session
+flare_session_destroy()
 
 # ------------------------------
 # 5. LOAD OR CREATE XML
@@ -492,7 +436,7 @@ if os.path.exists(XML_FILE):
         root = tree.getroot()
         info("Loaded existing XML: %s", XML_FILE)
     except ET.ParseError as e:
-        warn("XML parse error (%s) – creating new root", e)
+        warn("XML parse error (%s) — creating new", e)
         root = ET.Element("rss", version="2.0")
         tree = ET.ElementTree(root)
 else:
@@ -525,6 +469,7 @@ info("Existing items in feed: %d", len(existing))
 new_count = 0
 for art in all_articles:
     if art["url"] in existing:
+        debug("Already exists, skipping: %s", art["url"])
         continue
     if not (art.get("desc") or "").strip():
         warn("Skipping (no description): %s", art.get("title", "")[:60])
