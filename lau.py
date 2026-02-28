@@ -2,17 +2,14 @@
 # -*- coding: utf-8 -*-
 
 """
-Scrape Reuters listing page + France24 RSS feed via FlareSolverr,
+Scrape Reuters World + Commentary listing pages via FlareSolverr,
 extract full article text, and write/update a simple RSS XML file.
 
-Save as a single file and run with a local FlareSolverr instance
-available at FLARESOLVERR_URL.
-
-Modification: skip adding articles that have no description after scraping.
+Requires a local FlareSolverr instance at FLARESOLVERR_URL.
+Skips articles that have no description after scraping.
 """
 
 import requests
-import sys
 import os
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -22,33 +19,26 @@ from bs4 import BeautifulSoup
 # CONFIGURATION
 # ------------------------------
 
-FLARESOLVERR_URL = "http://localhost:8191/v1"
-REUTERS_URL = "https://www.reuters.com/world/"
-FRANCE24_RSS = "https://www.france24.com/en/rss"
-HTML_FILE = "opinin.html"
-XML_FILE = "pau.xml"
-MAX_ITEMS = 500
-REUTERS_BASE = "https://www.reuters.com"
-TIMEOUT_MS = 60000
-
-# France24 exclusion patterns
-FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
+FLARESOLVERR_URL  = "http://localhost:8191/v1"
+REUTERS_WORLD_URL = "https://www.reuters.com/world/"
+REUTERS_COMM_URL  = "https://www.reuters.com/commentary/"
+REUTERS_BASE      = "https://www.reuters.com"
+HTML_FILE         = "opinin.html"
+XML_FILE          = "pau.xml"
+MAX_ITEMS         = 500
+TIMEOUT_MS        = 60000
 
 # ------------------------------
 # FlareSolverr helper
 # ------------------------------
 
 def flare_get(url):
-    """
-    Call FlareSolverr to fetch rendered HTML.
-    Returns HTML string or None on error.
-    """
+    """Call FlareSolverr to fetch rendered HTML. Returns HTML string or None."""
     payload = {
         "cmd": "request.get",
         "url": url,
         "maxTimeout": TIMEOUT_MS
     }
-
     try:
         r = requests.post(FLARESOLVERR_URL, json=payload, timeout=30)
     except Exception as e:
@@ -69,7 +59,6 @@ def flare_get(url):
         print("Invalid JSON from FlareSolverr:", e)
         return None
 
-    # Basic error checks
     if "error" in data:
         print("FlareSolverr error:", data["error"])
         return None
@@ -84,7 +73,6 @@ def flare_get(url):
         print("No 'response' in FlareSolverr solution.")
         return None
 
-    # FlareSolverr may return response as a dict with 'data' or as the raw HTML string
     if isinstance(resp, dict):
         html = resp.get("data") or resp.get("body") or resp.get("html")
     else:
@@ -102,26 +90,19 @@ def flare_get(url):
 
 def extract_full_text_reuters(article_html):
     """
-    Primary extraction: use the selector for Reuters:
-    <div class="article-body-module__content__bnXL1">
-        ...
-        <div data-testid="paragraph-...">
-            ...
-        </div>
-
-    If that selector isn't present, fall back to common approaches.
+    Primary: find <div class="article-body-module__content__bnXL1">
+    and collect all divs whose data-testid contains 'paragraph-'.
+    Falls back to common Reuters selectors.
     """
     s = BeautifulSoup(article_html, "html.parser")
 
-    # 1) Preferred container and paragraph structure (user-provided selector)
+    # 1) Preferred container
     container = s.find("div", class_="article-body-module__content__bnXL1")
     if container:
-        # find divs with a data-testid attribute, filter those whose data-testid contains 'paragraph-'
         paragraphs = container.find_all(attrs={"data-testid": True})
         parts = []
         for p in paragraphs:
-            dt = p.get("data-testid", "") or p.attrs.get("data_testid", "")
-            # normalize: ensure we look for substring 'paragraph-'
+            dt = p.get("data-testid", "")
             if dt and "paragraph-" in dt:
                 text = p.get_text(" ", strip=True)
                 if text:
@@ -129,7 +110,7 @@ def extract_full_text_reuters(article_html):
         if parts:
             return "\n\n".join(parts)
 
-    # 2) Fallback: Reuters common body selectors
+    # 2) Fallback
     blocks = s.select('div[data-testid="Body"] p')
     if not blocks:
         blocks = s.select("article p")
@@ -143,68 +124,19 @@ def extract_full_text_reuters(article_html):
     return "\n\n".join(parts)
 
 # ------------------------------
-# Extract full text - France24
-# ------------------------------
-
-def extract_full_text_france24(article_html):
-    """
-    Extract article text from France24 using the specific div:
-    <div class="t-content__body u-clearfix">
-    """
-    s = BeautifulSoup(article_html, "html.parser")
-
-    # Find the main content div
-    container = s.find("div", class_="t-content__body")
-    if not container:
-        # Try alternative selector
-        container = s.find("div", class_=lambda c: c and "t-content__body" in c)
-
-    if container:
-        # Extract all paragraphs from this container
-        paragraphs = container.find_all("p")
-        parts = []
-        for p in paragraphs:
-            text = p.get_text(" ", strip=True)
-            # Filter out "Read more" and other non-content paragraphs
-            if text and not text.startswith("Read more") and not text.startswith("(FRANCE 24"):
-                parts.append(text)
-        if parts:
-            return "\n\n".join(parts)
-
-    # Fallback: try to find article content by common selectors
-    blocks = s.select("article p")
-    parts = []
-    for p in blocks:
-        txt = p.get_text(" ", strip=True)
-        if txt:
-            parts.append(txt)
-
-    return "\n\n".join(parts)
-
-# ------------------------------
-# Helper: get best image from article page
+# Helper: best image from article page
 # ------------------------------
 
 def extract_image_url(soup_page):
-    """
-    Try to find a representative image for the article.
-    Strategies:
-      - og:image meta tag
-      - first <img> with a usable src
-      - img from schema or figure tags
-    Returns empty string if none found.
-    """
-    # 1) Open Graph
+    """Return a representative image URL or empty string."""
     meta_og = soup_page.find("meta", property="og:image")
     if meta_og and meta_og.get("content"):
         return meta_og["content"].strip()
 
-    # 2) link rel=image_src
     link_img = soup_page.find("link", rel="image_src")
     if link_img and link_img.get("href"):
         return link_img["href"].strip()
 
-    # 3) first <img> with src or data-src
     for img in soup_page.find_all("img"):
         src = img.get("src") or img.get("data-src") or img.get("data-lazy-src")
         if src and src.strip():
@@ -213,23 +145,15 @@ def extract_image_url(soup_page):
     return ""
 
 # ------------------------------
-# 1. FETCH REUTERS LIST PAGE
+# Parser: Reuters World page
+# (original selector)
 # ------------------------------
 
-print("Fetching Reuters articles...")
-html = flare_get(REUTERS_URL)
-if html is None:
-    print("Failed to fetch Reuters page")
-    reuters_articles = []
-else:
-    with open(HTML_FILE, "w", encoding="utf-8") as f:
-        f.write(html)
-
+def parse_world_page(html):
     soup = BeautifulSoup(html, "html.parser")
+    articles = []
 
-    # Parse links from Reuters listing
-    reuters_articles = []
-    for blk in soup.select('div[data-testid="Title"] a[data-testid="TitleLink"]'):
+    for blk in soup.select('a[data-testid="TitleLink"]'):
         href = blk.get("href", "").strip()
         if not href:
             continue
@@ -242,130 +166,135 @@ else:
             continue
 
         span = blk.select_one('span[data-testid="TitleHeading"]')
-        if not span:
-            title = blk.get_text(" ", strip=True)
-        else:
-            title = span.get_text(strip=True)
-
+        title = span.get_text(strip=True) if span else blk.get_text(" ", strip=True)
         if not title:
             continue
 
-        reuters_articles.append({
-            "url": url,
-            "title": title,
-            "source": "Reuters"
+        articles.append({
+            "url":           url,
+            "title":         title,
+            "listing_thumb": "",
+            "source":        "Reuters World"
         })
 
-    print(f"Found {len(reuters_articles)} Reuters articles")
+    return articles
 
 # ------------------------------
-# 2. FETCH FRANCE24 RSS FEED (directly, not via FlareSolverr)
+# Parser: Reuters Commentary page
+# (new StoryCard selectors)
 # ------------------------------
 
-print("Fetching France24 RSS feed...")
+def parse_commentary_page(html):
+    soup = BeautifulSoup(html, "html.parser")
+    articles = []
 
-# RSS feeds don't need JavaScript rendering, so fetch directly
-try:
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-    }
-    rss_response = requests.get(FRANCE24_RSS, headers=headers, timeout=30)
-    rss_html = rss_response.text
-    print(f"RSS fetched directly: {len(rss_html)} characters")
-    print(f"Status code: {rss_response.status_code}")
-    print(f"First 500 chars:\n{rss_html[:500]}")
-except Exception as e:
-    print(f"Direct fetch failed: {e}, trying FlareSolverr...")
-    rss_html = flare_get(FRANCE24_RSS)
+    for card in soup.select('[data-testid="StoryCard"]'):
 
-if rss_html is None:
-    print("Failed to fetch France24 RSS")
-    france24_articles = []
+        title_link = card.select_one('[data-testid="TitleLink"]')
+        if not title_link:
+            continue
+
+        href = title_link.get("href", "").strip()
+        if not href:
+            continue
+
+        if href.startswith("http"):
+            url = href
+        elif href.startswith("/"):
+            url = REUTERS_BASE + href
+        else:
+            continue
+
+        span = title_link.select_one('[data-testid="TitleHeading"]')
+        title = span.get_text(strip=True) if span else title_link.get_text(" ", strip=True)
+        if not title:
+            continue
+
+        # Thumbnail from listing card
+        thumb_img = card.select_one(
+            '[data-testid="MediaImageLink"] '
+            '[data-testid="EagerImageContainer"] '
+            'img[data-testid="EagerImage"]'
+        )
+        listing_thumb = ""
+        if thumb_img:
+            listing_thumb = (
+                thumb_img.get("src") or
+                thumb_img.get("data-src") or
+                ""
+            ).strip()
+
+        articles.append({
+            "url":           url,
+            "title":         title,
+            "listing_thumb": listing_thumb,
+            "source":        "Reuters Commentary"
+        })
+
+    return articles
+
+# ------------------------------
+# 1. FETCH BOTH LISTING PAGES
+# ------------------------------
+
+all_articles = []
+seen_urls = set()
+
+# — World —
+print("Fetching Reuters World articles...")
+html_world = flare_get(REUTERS_WORLD_URL)
+if html_world is None:
+    print("Failed to fetch Reuters World page. Skipping.")
 else:
-    # Parse RSS feed - use regex to extract items since BeautifulSoup's html.parser
-    # treats <link> as self-closing HTML tags
-    import re
+    with open(HTML_FILE, "w", encoding="utf-8") as f:
+        f.write(html_world)
+    world_articles = parse_world_page(html_world)
+    for a in world_articles:
+        if a["url"] not in seen_urls:
+            seen_urls.add(a["url"])
+            all_articles.append(a)
+    print(f"Found {len(world_articles)} Reuters World articles")
 
-    france24_articles = []
+# — Commentary —
+print("\nFetching Reuters Commentary articles...")
+html_comm = flare_get(REUTERS_COMM_URL)
+if html_comm is None:
+    print("Failed to fetch Reuters Commentary page. Skipping.")
+else:
+    comm_articles = parse_commentary_page(html_comm)
+    for a in comm_articles:
+        if a["url"] not in seen_urls:
+            seen_urls.add(a["url"])
+            all_articles.append(a)
+    print(f"Found {len(comm_articles)} Reuters Commentary articles")
 
-    # Find all <item>...</item> blocks
-    item_pattern = re.compile(r'<item>(.*?)</item>', re.DOTALL)
-    items = item_pattern.findall(rss_html)
-    print(f"Found {len(items)} total items in France24 RSS")
-
-    for item_content in items:
-        # Extract title
-        title_match = re.search(r'<title>(.*?)</title>', item_content)
-        # Extract link
-        link_match = re.search(r'<link>(.*?)</link>', item_content)
-
-        if not title_match or not link_match:
-            print("  Skipped: missing link or title")
-            continue
-
-        title = title_match.group(1).strip()
-        url = link_match.group(1).strip()
-
-        # Skip if no valid URL
-        if not url or not url.startswith("http"):
-            print(f"  Skipped: '{title[:60]}' - invalid URL")
-            continue
-
-        # Filter out excluded categories
-        excluded = False
-        for exclude in FRANCE24_EXCLUDE:
-            if exclude in url:
-                print(f"  Excluded: '{title[:60]}' - contains '{exclude}'")
-                excluded = True
-                break
-
-        if excluded:
-            continue
-
-        print(f"  ✓ Added: '{title[:60]}'")
-        france24_articles.append({
-            "url": url,
-            "title": title,
-            "source": "France24"
-        })
-
-    print(f"Found {len(france24_articles)} France24 articles (after filtering)")
+print(f"\nTotal unique articles: {len(all_articles)}")
 
 # ------------------------------
-# 3. COMBINE ALL ARTICLES
+# 2. FETCH FULL TEXT FOR EACH ARTICLE
 # ------------------------------
 
-all_articles = reuters_articles + france24_articles
-print(f"\nTotal articles to process: {len(all_articles)}")
-
-# ------------------------------
-# 4. FETCH FULL TEXT FOR EACH ARTICLE
-# ------------------------------
+print(f"\nFetching full text for {len(all_articles)} articles...")
 
 for i, a in enumerate(all_articles, 1):
-    print(f"Processing {i}/{len(all_articles)}: {a['title'][:50]}...")
+    print(f"[{a['source']}] Processing {i}/{len(all_articles)}: {a['title'][:60]}...")
 
     page = flare_get(a["url"])
     if page is None:
         a["desc"] = ""
-        a["img"] = ""
-        a["pub"] = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
+        a["img"]  = a.get("listing_thumb", "")
+        a["pub"]  = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
         continue
 
-    # Extract text based on source
-    if a["source"] == "Reuters":
-        full_text = extract_full_text_reuters(page)
-    else:  # France24
-        full_text = extract_full_text_france24(page)
-
-    a["desc"] = full_text
+    a["desc"] = extract_full_text_reuters(page)
 
     soup_page = BeautifulSoup(page, "html.parser")
-    a["img"] = extract_image_url(soup_page)
-    a["pub"] = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
+    img = extract_image_url(soup_page)
+    a["img"]  = img if img else a.get("listing_thumb", "")
+    a["pub"]  = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 # ------------------------------
-# 5. LOAD OR CREATE XML
+# 3. LOAD OR CREATE XML
 # ------------------------------
 
 if os.path.exists(XML_FILE):
@@ -382,12 +311,12 @@ else:
 channel = root.find("channel")
 if channel is None:
     channel = ET.SubElement(root, "channel")
-    ET.SubElement(channel, "title").text = "Reuters + France24 Combined Feed"
-    ET.SubElement(channel, "link").text = "https://evilgodfahim.github.io/reur/"
-    ET.SubElement(channel, "description").text = "Combined scraped articles from Reuters and France24"
+    ET.SubElement(channel, "title").text       = "Reuters World Feed"
+    ET.SubElement(channel, "link").text        = "https://evilgodfahim.github.io/reur/"
+    ET.SubElement(channel, "description").text = "Scraped articles from Reuters World"
 
 # ------------------------------
-# 6. DEDUPLICATE EXISTING ITEMS
+# 4. DEDUPLICATE EXISTING ITEMS
 # ------------------------------
 
 existing = set()
@@ -397,25 +326,23 @@ for item in channel.findall("item"):
         existing.add(link_tag.text.strip())
 
 # ------------------------------
-# 7. ADD NEW ARTICLES
+# 5. ADD NEW ARTICLES
 # ------------------------------
 
 new_count = 0
 for art in all_articles:
-    # Skip if already present
     if art["url"] in existing:
         continue
 
-    # Skip if scraping produced no description
     if not art.get("desc") or not art["desc"].strip():
-        print(f"Skipping (no description): {art['title'][:60]} - {art['url']}")
+        print(f"Skipping (no description): {art['title'][:60]}")
         continue
 
     item = ET.SubElement(channel, "item")
-    ET.SubElement(item, "title").text = art["title"]
-    ET.SubElement(item, "link").text = art["url"]
-    ET.SubElement(item, "description").text = art["desc"] or ""
-    ET.SubElement(item, "pubDate").text = art["pub"]
+    ET.SubElement(item, "title").text       = art["title"]
+    ET.SubElement(item, "link").text        = art["url"]
+    ET.SubElement(item, "description").text = art["desc"]
+    ET.SubElement(item, "pubDate").text     = art["pub"]
 
     if art.get("img"):
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
@@ -425,7 +352,7 @@ for art in all_articles:
 print(f"\nAdded {new_count} new articles to feed")
 
 # ------------------------------
-# 8. TRIM OLD ITEMS
+# 6. TRIM OLD ITEMS
 # ------------------------------
 
 all_items = channel.findall("item")
@@ -435,12 +362,10 @@ if len(all_items) > MAX_ITEMS:
     print(f"Trimmed to {MAX_ITEMS} items")
 
 # ------------------------------
-# 9. SAVE XML
+# 7. SAVE XML
 # ------------------------------
 
-# Ensure parent dirs exist
-os.makedirs(os.path.dirname(XML_FILE) or '.', exist_ok=True)
-
+os.makedirs(os.path.dirname(XML_FILE) or ".", exist_ok=True)
 tree.write(XML_FILE, encoding="utf-8", xml_declaration=True)
 
 print(f"\nDone! Feed saved to {XML_FILE}")
