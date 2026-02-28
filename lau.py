@@ -60,7 +60,7 @@ FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/
 BOTBROWSER_BINARY   = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
 BOTBROWSER_CDP_PORT = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
 # CHANGED: default to a persistent local profile dir instead of empty string
-BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "./botbrowser-profile")
+BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE") or "./botbrowser-profile"
 
 DATADOME_SIGNALS = [
     "captcha-delivery.com",
