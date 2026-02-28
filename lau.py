@@ -57,29 +57,18 @@ FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/
 # https://github.com/MiddleSchoolStudent/BotBrowser
 # ------------------------------
 
-# Path to the BotBrowser binary (set via env var or edit here)
-# e.g. "./BotBrowser/dist/botbrowser-linux" or wherever you extracted the release
 BOTBROWSER_BINARY   = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
 BOTBROWSER_CDP_PORT = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
-BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")  # optional: path to a bot-profile JSON
+BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")
 
-# How long (seconds) to wait after navigating before grabbing page source
 BOTBROWSER_WAIT_SEC = 5
 
 _botbrowser_proc: subprocess.Popen | None = None
 
 
 def _ensure_botbrowser_running() -> bool:
-    """
-    Start BotBrowser in the background if it is not already running.
-    BotBrowser is a patched Chromium — we launch it headlessly and expose
-    its CDP endpoint so Playwright can connect over it.
-
-    Returns True if the browser is (now) available, False on failure.
-    """
     global _botbrowser_proc
 
-    # If we already launched it and it is still alive, reuse it.
     if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
         return True
 
@@ -132,13 +121,6 @@ def _ensure_botbrowser_running() -> bool:
 
 
 def botbrowser_get(url: str) -> str | None:
-    """
-    Fetch *url* using BotBrowser (patched Chromium from
-    https://github.com/MiddleSchoolStudent/BotBrowser) via Playwright CDP.
-
-    Returns the full page HTML as a string, or None on failure.
-    Requires:  pip install playwright  +  playwright install chromium
-    """
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
     except ImportError:
@@ -178,11 +160,9 @@ def botbrowser_get(url: str) -> str | None:
                 browser.close()
                 return None
 
-            # Wait for JS-rendered content
             try:
                 page.wait_for_load_state("networkidle", timeout=15_000)
             except PWTimeout:
-                # networkidle is optional — proceed with whatever rendered
                 debug("networkidle timed out for %s (non-fatal)", url)
 
             html = page.content()
@@ -203,7 +183,6 @@ def botbrowser_get(url: str) -> str | None:
 
 
 def _botbrowser_shutdown():
-    """Terminate the BotBrowser process on exit."""
     global _botbrowser_proc
     if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
         debug("Shutting down BotBrowser (pid %d)", _botbrowser_proc.pid)
@@ -250,16 +229,10 @@ def build_full_url(href, base=REUTERS_BASE):
 
 
 def is_reuters_url(url: str) -> bool:
-    """Return True for any reuters.com URL."""
     return "reuters.com" in (url or "")
 
 
 def fetch_page(url: str) -> str | None:
-    """
-    Route to the correct fetcher:
-      - reuters.com  →  BotBrowser
-      - everything else  →  FlareSolverr
-    """
     if is_reuters_url(url):
         debug("Routing to BotBrowser: %s", url)
         return botbrowser_get(url)
@@ -390,7 +363,7 @@ def extract_image_url(soup_page):
 # ------------------------------
 
 info("Fetching Reuters world page via BotBrowser: %s", REUTERS_URL)
-html = fetch_page(REUTERS_URL)          # ← BotBrowser
+html = fetch_page(REUTERS_URL)
 reuters_articles = []
 
 if html is None:
@@ -457,7 +430,7 @@ else:
 # ------------------------------
 
 info("Fetching Reuters commentary page via BotBrowser: %s", REUTERS_COMMENTARY_URL)
-commentary_html = fetch_page(REUTERS_COMMENTARY_URL)    # ← BotBrowser
+commentary_html = fetch_page(REUTERS_COMMENTARY_URL)
 
 if commentary_html is None:
     warn("Failed to fetch Reuters commentary page")
@@ -531,7 +504,7 @@ else:
 # ------------------------------
 
 info("Fetching AP News world page via FlareSolverr: %s", APNEWS_URL)
-apnews_html = fetch_page(APNEWS_URL)    # ← FlareSolverr
+apnews_html = fetch_page(APNEWS_URL)
 apnews_articles = []
 
 if apnews_html is None:
@@ -634,7 +607,7 @@ else:
 # ------------------------------
 
 info("Fetching France24 RSS via FlareSolverr: %s", FRANCE24_RSS)
-rss_html = fetch_page(FRANCE24_RSS)     # ← FlareSolverr
+rss_html = fetch_page(FRANCE24_RSS)
 france24_articles = []
 
 if rss_html:
@@ -703,7 +676,6 @@ for i, a in enumerate(all_articles, 1):
 
     info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
 
-    # Reuters → BotBrowser | France24 → FlareSolverr  (via fetch_page router)
     page = fetch_page(a["url"])
 
     if page is None:
