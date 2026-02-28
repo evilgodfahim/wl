@@ -37,22 +37,77 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Fetch release info and show raw response for debugging
           curl -s \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest \
             > /tmp/bb_release.json
 
-          LATEST=$(python3 -c "import json; d=json.load(open('/tmp/bb_release.json')); print(d['tag_name'])")
+          echo "=== GitHub API raw response (first 500 chars) ==="
+          head -c 500 /tmp/bb_release.json
+          echo ""
+
+          # Extract tag_name safely, fall back to listing all releases
+          LATEST=$(python3 -c "
+import json, sys
+with open('/tmp/bb_release.json') as f:
+    d = json.load(f)
+if 'tag_name' in d:
+    print(d['tag_name'])
+else:
+    print('API error: ' + str(d.get('message', d)), file=sys.stderr)
+    sys.exit(1)
+")
+
+          # If latest release API failed, try listing all releases and pick first
+          if [ $? -ne 0 ]; then
+            echo "Falling back to /releases list..."
+            curl -s \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases?per_page=5" \
+              > /tmp/bb_releases_list.json
+
+            echo "=== Releases list response (first 500 chars) ==="
+            head -c 500 /tmp/bb_releases_list.json
+            echo ""
+
+            LATEST=$(python3 -c "
+import json, sys
+with open('/tmp/bb_releases_list.json') as f:
+    d = json.load(f)
+if isinstance(d, list) and len(d) > 0 and 'tag_name' in d[0]:
+    print(d[0]['tag_name'])
+    # save first release as bb_release.json for later steps
+    import json
+    with open('/tmp/bb_release.json', 'w') as out:
+        json.dump(d[0], out)
+else:
+    print('Could not determine latest release. Response: ' + str(d)[:200], file=sys.stderr)
+    sys.exit(1)
+")
+          fi
+
           echo "BotBrowser latest release: $LATEST"
+          echo "BOTBROWSER_TAG=$LATEST" >> $GITHUB_ENV
+
+          # Show available assets
+          echo "=== Available assets ==="
+          python3 -c "import json; [print('-', a['name']) for a in json.load(open('/tmp/bb_release.json')).get('assets', [])]"
 
           ASSET_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/botbrowser-linux-x64"
           echo "Downloading: $ASSET_URL"
 
           curl -fL -H "Authorization: Bearer $GH_TOKEN" "$ASSET_URL" -o botbrowser || {
-            echo "Asset not found. Available assets:"
-            python3 -c "import json; [print('-', a['name']) for a in json.load(open('/tmp/bb_release.json')).get('assets', [])]"
-            exit 1
+            echo "botbrowser-linux-x64 not found, trying botbrowser-linux..."
+            ASSET_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/botbrowser-linux"
+            curl -fL -H "Authorization: Bearer $GH_TOKEN" "$ASSET_URL" -o botbrowser || {
+              echo "ERROR: Could not download BotBrowser binary. Check asset names above."
+              exit 1
+            }
           }
 
           chmod +x botbrowser
@@ -63,7 +118,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LATEST=$(python3 -c "import json; d=json.load(open('/tmp/bb_release.json')); print(d['tag_name'])")
+          LATEST="${{ env.BOTBROWSER_TAG }}"
 
           PROFILE_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/chrome_linux.enc.zip"
           echo "Downloading profile: $PROFILE_URL"
