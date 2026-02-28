@@ -382,19 +382,33 @@ else:
             if not url or not title:
                 continue
 
-            # Thumbnail image
-            img_el = card.select_one("div.PagePromo-media img.Image")
-            thumb  = ""
+            # Thumbnail — try every lazy-load variant, srcset, and <picture><source> fallback
+            thumb = ""
+            img_el = card.select_one("div.PagePromo-media img")
             if img_el:
-                thumb = (
-                    img_el.get("src")
-                    or img_el.get("data-src")
-                    or img_el.get("data-lazy-src")
+                raw = (
+                    img_el.get("src", "")
+                    or img_el.get("data-src", "")
+                    or img_el.get("data-lazy-src", "")
+                    or img_el.get("data-original", "")
                     or ""
                 ).strip()
-                # srcset fallback: grab first URL from srcset if src empty
-                if not thumb and img_el.get("srcset"):
-                    thumb = img_el["srcset"].split()[0].strip()
+                # skip 1x1 placeholder blobs / data URIs
+                if raw and not raw.startswith("data:") and len(raw) > 20:
+                    thumb = raw
+                if not thumb:
+                    srcset = img_el.get("srcset", "").strip()
+                    if srcset:
+                        thumb = srcset.split()[0].rstrip(",").strip()
+            # final fallback: first <source> inside <picture>
+            if not thumb:
+                picture = card.select_one("div.PagePromo-media picture")
+                if picture:
+                    for src_el in picture.find_all("source"):
+                        ss = src_el.get("srcset", "").strip()
+                        if ss:
+                            thumb = ss.split()[0].rstrip(",").strip()
+                            break
 
             primary_ap.append((url, title, thumb))
 
@@ -498,12 +512,17 @@ for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
 # 4. FETCH FULL TEXT
 # ------------------------------
 
-# AP News: use title as description, thumbnail from listing — no per-article fetch
+# AP News: build description with embedded thumbnail img tag — no per-article fetch
 for a in all_articles:
     if a.get("source") == "APNews":
-        a["desc"] = a.get("title", "")
-        a["img"]  = a.get("thumb", "") or ""
-        a["pub"]  = now_utc()
+        thumb = a.get("thumb", "") or ""
+        a["img"] = thumb
+        # Embed thumbnail in description so RSS readers render it
+        if thumb:
+            a["desc"] = '<img src="{}" alt="" style="max-width:100%"/><br/>{}'.format(thumb, a.get("title", ""))
+        else:
+            a["desc"] = a.get("title", "")
+        a["pub"] = now_utc()
 
 for i, a in enumerate(all_articles, 1):
     if a.get("source") == "APNews":
