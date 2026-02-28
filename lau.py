@@ -46,6 +46,7 @@ HTML_FILE               = "opinin.html"
 COMMENTARY_HTML_FILE    = "commentary.html"
 APNEWS_HTML_FILE        = "apnews.html"
 XML_FILE                = "pau.xml"
+REUTERS_XML_FILE        = "reuters.xml"
 MAX_ITEMS               = 500
 REUTERS_BASE            = "https://www.reuters.com"
 TIMEOUT_MS              = 120000
@@ -67,7 +68,6 @@ def _start_botbrowser() -> bool:
     """Launch a fresh BotBrowser process and wait for CDP to be ready."""
     global _botbrowser_proc
 
-    # Kill any existing process first
     if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
         debug("Killing existing BotBrowser (pid %d)", _botbrowser_proc.pid)
         _botbrowser_proc.kill()
@@ -104,7 +104,6 @@ def _start_botbrowser() -> bool:
         warn("Failed to launch BotBrowser: %s", e)
         return False
 
-    # Wait until CDP is reachable (up to 15 s)
     cdp_url = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}/json/version"
     for _ in range(30):
         try:
@@ -182,18 +181,12 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
 
 def botbrowser_get(url: str, retries: int = 2) -> str | None:
-    """
-    Fetch url via BotBrowser with automatic restart+retry on cold-start crash.
-    On the first attempt we ensure the browser is running.
-    If it crashes (process dies or Playwright throws), we restart it and try once more.
-    """
     for attempt in range(1, retries + 1):
         if not _ensure_botbrowser_running():
             warn("BotBrowser not available (attempt %d/%d)", attempt, retries)
             time.sleep(2)
             continue
 
-        # If process died since we checked, restart before fetching
         if _botbrowser_proc is None or _botbrowser_proc.poll() is not None:
             warn("BotBrowser died before fetch attempt %d — restarting", attempt)
             if not _start_botbrowser():
@@ -204,7 +197,6 @@ def botbrowser_get(url: str, retries: int = 2) -> str | None:
         if result:
             return result
 
-        # Fetch failed — check if process is still alive
         if _botbrowser_proc is not None and _botbrowser_proc.poll() is not None:
             warn("BotBrowser process exited (code %d) after attempt %d — will restart",
                  _botbrowser_proc.returncode, attempt)
@@ -743,26 +735,44 @@ _botbrowser_shutdown()
 # 5. LOAD OR CREATE XML
 # ------------------------------
 
-if os.path.exists(XML_FILE):
-    try:
-        tree = ET.parse(XML_FILE)
-        root = tree.getroot()
-        info("Loaded existing XML: %s", XML_FILE)
-    except ET.ParseError as e:
-        warn("XML parse error (%s) — creating new", e)
+def load_or_create_xml(path, title, link, description):
+    if os.path.exists(path):
+        try:
+            tree = ET.parse(path)
+            root = tree.getroot()
+            info("Loaded existing XML: %s", path)
+        except ET.ParseError as e:
+            warn("XML parse error (%s) — creating new: %s", e, path)
+            root = ET.Element("rss", version="2.0")
+            tree = ET.ElementTree(root)
+    else:
         root = ET.Element("rss", version="2.0")
         tree = ET.ElementTree(root)
-else:
-    root = ET.Element("rss", version="2.0")
-    tree = ET.ElementTree(root)
-    info("Created new XML root")
+        info("Created new XML root: %s", path)
 
-channel = root.find("channel")
-if channel is None:
-    channel = ET.SubElement(root, "channel")
-    ET.SubElement(channel, "title").text       = "Reuters + AP News + France24 Combined Feed"
-    ET.SubElement(channel, "link").text        = "https://evilgodfahim.github.io/reur/"
-    ET.SubElement(channel, "description").text = "Combined scraped articles from Reuters, AP News, and France24"
+    channel = root.find("channel")
+    if channel is None:
+        channel = ET.SubElement(root, "channel")
+        ET.SubElement(channel, "title").text       = title
+        ET.SubElement(channel, "link").text        = link
+        ET.SubElement(channel, "description").text = description
+
+    return tree, root, channel
+
+
+tree, root, channel = load_or_create_xml(
+    XML_FILE,
+    "AP News + France24 Combined Feed",
+    "https://evilgodfahim.github.io/reur/",
+    "Combined scraped articles from AP News and France24",
+)
+
+reuters_tree, reuters_root, reuters_channel = load_or_create_xml(
+    REUTERS_XML_FILE,
+    "Reuters Feed",
+    "https://evilgodfahim.github.io/reur/reuters",
+    "Scraped articles from Reuters",
+)
 
 # ------------------------------
 # 6. DEDUPLICATE EXISTING
@@ -773,41 +783,58 @@ existing = {
     for item in channel.findall("item")
     if item.find("link") is not None and item.find("link").text
 }
-info("Existing items in feed: %d", len(existing))
+reuters_existing = {
+    item.find("link").text.strip()
+    for item in reuters_channel.findall("item")
+    if item.find("link") is not None and item.find("link").text
+}
+info("Existing items in main feed: %d", len(existing))
+info("Existing items in Reuters feed: %d", len(reuters_existing))
 
 # ------------------------------
 # 7. ADD NEW ARTICLES
 # ------------------------------
 
-new_count = 0
+new_count = reuters_new_count = 0
 for art in all_articles:
-    if art["url"] in existing:
+    is_reuters = art.get("source") == "Reuters"
+    target_channel  = reuters_channel if is_reuters else channel
+    target_existing = reuters_existing if is_reuters else existing
+
+    if art["url"] in target_existing:
         debug("Already exists, skipping: %s", art["url"])
         continue
     if art.get("source") != "APNews" and not (art.get("desc") or "").strip():
         warn("Skipping (no description): %s", art.get("title", "")[:60])
         continue
-    item = ET.SubElement(channel, "item")
+
+    item = ET.SubElement(target_channel, "item")
     ET.SubElement(item, "title").text       = art["title"]
     ET.SubElement(item, "link").text        = art["url"]
     ET.SubElement(item, "description").text = art["desc"]
     ET.SubElement(item, "pubDate").text     = art["pub"]
     if art.get("img"):
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
-    new_count += 1
+
+    if is_reuters:
+        reuters_new_count += 1
+    else:
+        new_count += 1
     debug("Added: %s", art["url"])
 
-info("Added %d new articles", new_count)
+info("Added %d new articles to main feed", new_count)
+info("Added %d new articles to Reuters feed", reuters_new_count)
 
 # ------------------------------
 # 8. TRIM OLD ITEMS
 # ------------------------------
 
-all_items = channel.findall("item")
-if len(all_items) > MAX_ITEMS:
-    for old in all_items[:-MAX_ITEMS]:
-        channel.remove(old)
-    info("Trimmed feed to %d items", MAX_ITEMS)
+for ch in (channel, reuters_channel):
+    all_items = ch.findall("item")
+    if len(all_items) > MAX_ITEMS:
+        for old in all_items[:-MAX_ITEMS]:
+            ch.remove(old)
+        info("Trimmed feed to %d items", MAX_ITEMS)
 
 # ------------------------------
 # 9. SAVE XML
@@ -815,5 +842,7 @@ if len(all_items) > MAX_ITEMS:
 
 os.makedirs(os.path.dirname(XML_FILE) or ".", exist_ok=True)
 tree.write(XML_FILE, encoding="utf-8", xml_declaration=True)
-info("Done! Feed saved to %s", XML_FILE)
+reuters_tree.write(REUTERS_XML_FILE, encoding="utf-8", xml_declaration=True)
+info("Done! Main feed saved to %s", XML_FILE)
+info("Done! Reuters feed saved to %s", REUTERS_XML_FILE)
 info("Debug log saved to %s", LOG_FILENAME)
