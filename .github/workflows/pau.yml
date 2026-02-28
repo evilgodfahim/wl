@@ -41,12 +41,11 @@ jobs:
           echo "BotBrowser latest release: $LATEST"
           echo "BOTBROWSER_TAG=$LATEST" >> $GITHUB_ENV
 
-          # Pick the x64 .deb asset (matches *_x64.deb)
           DEB_ASSET=$(grep "_x64.deb" /tmp/bb_assets.txt | head -1)
           echo "Using deb asset: $DEB_ASSET"
 
           if [ -z "$DEB_ASSET" ]; then
-            echo "ERROR: no x64 .deb asset found. Assets available:"
+            echo "ERROR: no x64 .deb asset found:"
             cat /tmp/bb_assets.txt
             exit 1
           fi
@@ -54,14 +53,23 @@ jobs:
           DEB_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/${DEB_ASSET}"
           echo "Downloading: $DEB_URL"
           curl -fL -H "Authorization: Bearer $GH_TOKEN" "$DEB_URL" -o botbrowser.deb
-
           sudo dpkg -i botbrowser.deb || sudo apt-get install -f -y
 
-          # Find installed binary
-          BB_BIN=$(which botbrowser 2>/dev/null || find /usr /opt -name "botbrowser" -type f 2>/dev/null | head -1 || true)
+          # Try known install locations in order
+          BB_BIN=""
+          for candidate in \
+            /usr/bin/chromium-browser-stable \
+            /usr/bin/chromium-browser \
+            /opt/chromium.org/chromium/chromium \
+            /usr/bin/botbrowser; do
+            if [ -f "$candidate" ] && [ -x "$candidate" ]; then
+              BB_BIN="$candidate"
+              break
+            fi
+          done
+
           if [ -z "$BB_BIN" ]; then
-            echo "ERROR: botbrowser binary not found after install"
-            dpkg -L $(dpkg -I botbrowser.deb | grep Package | awk '{print $2}') || true
+            echo "ERROR: could not find installed browser binary"
             exit 1
           fi
 
@@ -75,7 +83,7 @@ jobs:
         run: |
           LATEST="${{ env.BOTBROWSER_TAG }}"
 
-          PROFILE_ASSET=$(grep "chrome_linux.*enc.zip\|linux.*profile\|linux.*enc" /tmp/bb_assets.txt | head -1 || true)
+          PROFILE_ASSET=$(grep -i "linux.*enc.zip\|linux.*profile" /tmp/bb_assets.txt | head -1 || true)
 
           if [ -z "$PROFILE_ASSET" ]; then
             echo "No linux profile asset found — skipping"
