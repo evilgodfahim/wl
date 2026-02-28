@@ -37,9 +37,12 @@ log = logging.getLogger("scraper")
 FLARESOLVERR_URL        = "http://localhost:8191/v1"
 REUTERS_URL             = "https://www.reuters.com/world/"
 REUTERS_COMMENTARY_URL  = "https://www.reuters.com/commentary/"
+APNEWS_URL              = "https://apnews.com/world-news"
+APNEWS_BASE             = "https://apnews.com"
 FRANCE24_RSS            = "https://www.france24.com/en/rss"
 HTML_FILE               = "opinin.html"
 COMMENTARY_HTML_FILE    = "commentary.html"
+APNEWS_HTML_FILE        = "apnews.html"
 XML_FILE                = "pau.xml"
 MAX_ITEMS               = 500
 REUTERS_BASE            = "https://www.reuters.com"
@@ -72,20 +75,18 @@ def save_debug_html(path, html):
     except Exception as e:
         warn("Failed saving HTML %s: %s", path, e)
 
-def build_full_url(href):
+def build_full_url(href, base=REUTERS_BASE):
     href = (href or "").strip()
     if href.startswith("http"):
         return href
     if href.startswith("/"):
-        return REUTERS_BASE + href
+        return base + href
     return None
 
 # ------------------------------
 # FlareSolverr
 # ------------------------------
 
-# Reuse the same session cookie across requests so DataDome sees
-# a consistent browser fingerprint and is less likely to re-challenge.
 _flare_session_id = "scraper_session_1"
 
 def flare_get(url):
@@ -128,7 +129,6 @@ def flare_get(url):
         warn("Empty HTML from FlareSolverr for %s", url)
         return None
 
-    # Detect if we still got a CAPTCHA/challenge page
     if len(html) < 5000 and any(x in html for x in ["captcha-delivery.com", "DataDome", "geo.captcha"]):
         warn("FlareSolverr returned a CAPTCHA challenge page for %s (%d bytes)", url, len(html))
         debug("Challenge snippet: %s", html[:400].replace("\n", " "))
@@ -182,6 +182,31 @@ def extract_full_text_france24(article_html):
         if parts:
             return "\n\n".join(parts)
 
+    blocks = s.select("article p")
+    parts  = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
+    return "\n\n".join(parts)
+
+
+def extract_full_text_apnews(article_html):
+    s = BeautifulSoup(article_html, "html.parser")
+
+    # Primary: AP article body container
+    container = (
+        s.find("div", class_="RichTextStoryBody")
+        or s.find("div", class_=lambda c: c and "RichTextStoryBody" in c)
+        or s.find("div", class_="Article")
+        or s.find("div", attrs={"data-key": "article-body"})
+    )
+    if container:
+        parts = []
+        for p in container.find_all("p"):
+            text = p.get_text(" ", strip=True)
+            if text:
+                parts.append(text)
+        if parts:
+            return "\n\n".join(parts)
+
+    # Fallback: any <p> inside <article>
     blocks = s.select("article p")
     parts  = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
     return "\n\n".join(parts)
@@ -342,6 +367,107 @@ else:
     info("Total Reuters articles (world + commentary): %d", len(reuters_articles))
 
 # ------------------------------
+# 1C. FETCH AP NEWS WORLD
+# ------------------------------
+
+info("Fetching AP News world page: %s", APNEWS_URL)
+apnews_html = flare_get(APNEWS_URL)
+apnews_articles = []
+
+if apnews_html is None:
+    warn("Failed to fetch AP News world page")
+else:
+    save_debug_html(APNEWS_HTML_FILE, apnews_html)
+    apsoup = BeautifulSoup(apnews_html, "html.parser")
+
+    primary_ap = []
+    try:
+        # Each article card is div.PagePromo
+        # Thumbnail: div.PagePromo-media > a.Link  (href) + img.Image (src)
+        # Title:     h3.PagePromo-title > a.Link
+        for card in apsoup.select("div.PagePromo"):
+            # Title + link
+            title_el = card.select_one("h3.PagePromo-title a.Link")
+            if not title_el:
+                # some cards use h2 for lead articles
+                title_el = card.select_one("h2.PagePromo-title a.Link")
+            if not title_el:
+                continue
+
+            title = title_el.get_text(" ", strip=True)
+            href  = title_el.get("href", "").strip()
+
+            # Thumbnail — prefer the media-wrapper link href (same URL),
+            # then fall back to the img src attribute
+            media_link = card.select_one("div.PagePromo-media > a.Link")
+            if not href and media_link:
+                href = media_link.get("href", "").strip()
+
+            url = build_full_url(href, base=APNEWS_BASE)
+            if not url or not title:
+                continue
+
+            # Thumbnail image
+            img_el = card.select_one("div.PagePromo-media img.Image")
+            thumb  = ""
+            if img_el:
+                thumb = (
+                    img_el.get("src")
+                    or img_el.get("data-src")
+                    or img_el.get("data-lazy-src")
+                    or ""
+                ).strip()
+                # srcset fallback: grab first URL from srcset if src empty
+                if not thumb and img_el.get("srcset"):
+                    thumb = img_el["srcset"].split()[0].strip()
+
+            primary_ap.append((url, title, thumb))
+
+    except Exception as e:
+        warn("Exception in AP News primary selector: %s", e)
+
+    if primary_ap:
+        info("AP News primary selector matched %d cards.", len(primary_ap))
+        for u, t, th in primary_ap[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | thumb=%s | %s", u, th[:80] if th else "", t)
+        for url, title, thumb in primary_ap:
+            apnews_articles.append({
+                "url": url, "title": title, "source": "APNews", "thumb": thumb
+            })
+    else:
+        # Fallback: any link matching /article/
+        warn("AP News primary selector found nothing — falling back to anchor scan")
+        seen_ap = set()
+        for a in apsoup.find_all("a", href=True):
+            href = a["href"].strip()
+            if "/article/" not in href:
+                continue
+            title_text = a.get_text(" ", strip=True)
+            if not title_text:
+                continue
+            full = build_full_url(href, base=APNEWS_BASE)
+            if not full or full in seen_ap:
+                continue
+            seen_ap.add(full)
+            # try to grab a nearby img
+            thumb = ""
+            parent = a.find_parent()
+            if parent:
+                img = parent.find("img")
+                if img:
+                    thumb = (img.get("src") or img.get("data-src") or "").strip()
+            apnews_articles.append({
+                "url": full, "title": title_text, "source": "APNews", "thumb": thumb
+            })
+
+        info("AP News fallback anchor scan found %d candidates.", len(apnews_articles))
+        if not apnews_articles:
+            warn("No AP News candidates found. HTML snippet:\n%s",
+                 apnews_html[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+
+    info("Found %d AP News articles", len(apnews_articles))
+
+# ------------------------------
 # 2. FETCH FRANCE24 RSS
 # ------------------------------
 
@@ -381,7 +507,7 @@ else:
 # ------------------------------
 
 combined, seen_combined = [], set()
-for item in reuters_articles + france24_articles:
+for item in reuters_articles + apnews_articles + france24_articles:
     u = item.get("url")
     if not u or u in seen_combined:
         continue
@@ -407,11 +533,14 @@ for i, a in enumerate(all_articles, 1):
         a["pub"]  = now_utc()
         continue
 
-    a["desc"] = (
-        extract_full_text_reuters(page)
-        if a.get("source") == "Reuters"
-        else extract_full_text_france24(page)
-    ) or ""
+    source = a.get("source")
+    if source == "Reuters":
+        a["desc"] = extract_full_text_reuters(page)
+    elif source == "APNews":
+        a["desc"] = extract_full_text_apnews(page)
+    else:
+        a["desc"] = extract_full_text_france24(page)
+    a["desc"] = a["desc"] or ""
 
     soup_page = BeautifulSoup(page, "html.parser")
     a["img"] = extract_image_url(soup_page) or a.get("thumb", "") or ""
@@ -447,9 +576,9 @@ else:
 channel = root.find("channel")
 if channel is None:
     channel = ET.SubElement(root, "channel")
-    ET.SubElement(channel, "title").text       = "Reuters + France24 Combined Feed"
+    ET.SubElement(channel, "title").text       = "Reuters + AP News + France24 Combined Feed"
     ET.SubElement(channel, "link").text        = "https://evilgodfahim.github.io/reur/"
-    ET.SubElement(channel, "description").text = "Combined scraped articles from Reuters and France24"
+    ET.SubElement(channel, "description").text = "Combined scraped articles from Reuters, AP News, and France24"
 
 # ------------------------------
 # 6. DEDUPLICATE EXISTING
