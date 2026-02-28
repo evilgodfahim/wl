@@ -9,6 +9,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write   # needed to push changes back to the repo
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,28 +34,70 @@ jobs:
           playwright install-deps chromium
 
       - name: Install BotBrowser
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LATEST=$(curl -s https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest \
-            | python3 -c "import sys,json; print(json.load(sys.stdin)['tag_name'])")
+          API_RESPONSE=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest)
+
+          LATEST=$(echo "$API_RESPONSE" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+if 'tag_name' not in data:
+    print('GitHub API error: ' + data.get('message', str(data)), file=sys.stderr)
+    sys.exit(1)
+print(data['tag_name'])
+")
           echo "BotBrowser latest release: $LATEST"
 
           ASSET_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/botbrowser-linux-x64"
           echo "Downloading: $ASSET_URL"
-          curl -L "$ASSET_URL" -o botbrowser
+
+          curl -fL \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "$ASSET_URL" -o botbrowser || {
+              echo "Asset not found at $ASSET_URL"
+              echo "Available assets for $LATEST:"
+              echo "$API_RESPONSE" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+for a in data.get('assets', []):
+    print(' -', a['name'])
+"
+              exit 1
+            }
+
           chmod +x botbrowser
-
           ./botbrowser --version || true
-
           echo "BOTBROWSER_PATH=$PWD/botbrowser" >> $GITHUB_ENV
 
       - name: Download BotBrowser bot-profile
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LATEST=$(curl -s https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest \
-            | python3 -c "import sys,json; print(json.load(sys.stdin)['tag_name'])")
+          LATEST=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest \
+            | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+if 'tag_name' not in data:
+    print('GitHub API error: ' + data.get('message', str(data)), file=sys.stderr)
+    sys.exit(1)
+print(data['tag_name'])
+")
 
           PROFILE_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/chrome_linux.enc.zip"
           echo "Downloading profile: $PROFILE_URL"
-          curl -fL "$PROFILE_URL" -o botprofile.zip && unzip -o botprofile.zip || echo "Profile download skipped (not found for this release)"
+
+          curl -fL \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "$PROFILE_URL" -o botprofile.zip \
+            && unzip -o botprofile.zip \
+            || echo "Profile download skipped (not found for this release)"
 
           PROFILE_FILE=$(ls *.enc 2>/dev/null | head -1 || true)
           if [ -n "$PROFILE_FILE" ]; then
@@ -94,9 +139,11 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add pau.xml opinin.html commentary.html
+          git add pau.xml opinin.html commentary.html apnews.html debug.log || true
 
-          git commit -m "Auto update RSS" || exit 0
+          git diff --cached --quiet && echo "Nothing to commit" && exit 0
+
+          git commit -m "Auto update RSS [$(date -u '+%Y-%m-%d %H:%M UTC')]"
 
           git pull --rebase origin main
 
