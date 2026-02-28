@@ -48,37 +48,37 @@ APNEWS_HTML_FILE        = "apnews.html"
 XML_FILE                = "pau.xml"
 MAX_ITEMS               = 500
 REUTERS_BASE            = "https://www.reuters.com"
-TIMEOUT_MS              = 120000   # 2 min — give FlareSolverr time to solve CAPTCHA
+TIMEOUT_MS              = 120000
 
 FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
 
 # ------------------------------
 # BotBrowser Configuration
-# https://github.com/MiddleSchoolStudent/BotBrowser
 # ------------------------------
 
 BOTBROWSER_BINARY   = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
 BOTBROWSER_CDP_PORT = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
 BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")
 
-BOTBROWSER_WAIT_SEC = 5
-
 _botbrowser_proc: subprocess.Popen | None = None
 
 
-def _ensure_botbrowser_running() -> bool:
+def _start_botbrowser() -> bool:
+    """Launch a fresh BotBrowser process and wait for CDP to be ready."""
     global _botbrowser_proc
 
+    # Kill any existing process first
     if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
-        return True
+        debug("Killing existing BotBrowser (pid %d)", _botbrowser_proc.pid)
+        _botbrowser_proc.kill()
+        try:
+            _botbrowser_proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            pass
+        _botbrowser_proc = None
 
     if not os.path.isfile(BOTBROWSER_BINARY):
-        warn(
-            "BotBrowser binary not found at '%s'. "
-            "Clone https://github.com/MiddleSchoolStudent/BotBrowser and set "
-            "BOTBROWSER_PATH to the executable.",
-            BOTBROWSER_BINARY,
-        )
+        warn("BotBrowser binary not found at '%s'.", BOTBROWSER_BINARY)
         return False
 
     cmd = [
@@ -120,17 +120,20 @@ def _ensure_botbrowser_running() -> bool:
     return False
 
 
-def botbrowser_get(url: str) -> str | None:
+def _ensure_botbrowser_running() -> bool:
+    """Start BotBrowser if not already running."""
+    global _botbrowser_proc
+    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
+        return True
+    return _start_botbrowser()
+
+
+def _botbrowser_fetch_once(url: str) -> str | None:
+    """Single attempt to fetch a URL via BotBrowser + Playwright CDP."""
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
     except ImportError:
-        warn(
-            "playwright is not installed. "
-            "Run: pip install playwright && playwright install chromium"
-        )
-        return None
-
-    if not _ensure_botbrowser_running():
+        warn("playwright is not installed.")
         return None
 
     cdp_endpoint = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}"
@@ -155,9 +158,7 @@ def botbrowser_get(url: str) -> str | None:
                 page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
             except PWTimeout:
                 warn("BotBrowser navigation timed out for %s", url)
-                page.close()
-                context.close()
-                browser.close()
+                page.close(); context.close(); browser.close()
                 return None
 
             try:
@@ -166,9 +167,7 @@ def botbrowser_get(url: str) -> str | None:
                 debug("networkidle timed out for %s (non-fatal)", url)
 
             html = page.content()
-            page.close()
-            context.close()
-            browser.close()
+            page.close(); context.close(); browser.close()
 
     except Exception as e:
         warn("BotBrowser Playwright error for %s: %s", url, e)
@@ -180,6 +179,44 @@ def botbrowser_get(url: str) -> str | None:
 
     debug("BotBrowser received %d bytes for %s", len(html), url)
     return html
+
+
+def botbrowser_get(url: str, retries: int = 2) -> str | None:
+    """
+    Fetch url via BotBrowser with automatic restart+retry on cold-start crash.
+    On the first attempt we ensure the browser is running.
+    If it crashes (process dies or Playwright throws), we restart it and try once more.
+    """
+    for attempt in range(1, retries + 1):
+        if not _ensure_botbrowser_running():
+            warn("BotBrowser not available (attempt %d/%d)", attempt, retries)
+            time.sleep(2)
+            continue
+
+        # If process died since we checked, restart before fetching
+        if _botbrowser_proc is None or _botbrowser_proc.poll() is not None:
+            warn("BotBrowser died before fetch attempt %d — restarting", attempt)
+            if not _start_botbrowser():
+                time.sleep(2)
+                continue
+
+        result = _botbrowser_fetch_once(url)
+        if result:
+            return result
+
+        # Fetch failed — check if process is still alive
+        if _botbrowser_proc is not None and _botbrowser_proc.poll() is not None:
+            warn("BotBrowser process exited (code %d) after attempt %d — will restart",
+                 _botbrowser_proc.returncode, attempt)
+        else:
+            warn("BotBrowser fetch failed on attempt %d — restarting for retry", attempt)
+
+        if attempt < retries:
+            _start_botbrowser()
+            time.sleep(2)
+
+    warn("BotBrowser: all %d attempts failed for %s", retries, url)
+    return None
 
 
 def _botbrowser_shutdown():
@@ -227,10 +264,8 @@ def build_full_url(href, base=REUTERS_BASE):
         return base + href
     return None
 
-
 def is_reuters_url(url: str) -> bool:
     return "reuters.com" in (url or "")
-
 
 def fetch_page(url: str) -> str | None:
     if is_reuters_url(url):
@@ -289,7 +324,6 @@ def flare_get(url):
 
     if len(html) < 5000 and any(x in html for x in ["captcha-delivery.com", "DataDome", "geo.captcha"]):
         warn("FlareSolverr returned a CAPTCHA challenge page for %s (%d bytes)", url, len(html))
-        debug("Challenge snippet: %s", html[:400].replace("\n", " "))
         return None
 
     debug("FlareSolverr received %d bytes for %s", len(html), url)
@@ -658,7 +692,6 @@ for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
 # 4. FETCH FULL TEXT
 # ------------------------------
 
-# AP News: build description with embedded thumbnail — no per-article fetch
 for a in all_articles:
     if a.get("source") == "APNews":
         thumb = a.get("thumb", "") or ""
