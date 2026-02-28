@@ -5,6 +5,8 @@ import sys
 import os
 import re
 import logging
+import subprocess
+import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
@@ -51,6 +53,169 @@ TIMEOUT_MS              = 120000   # 2 min — give FlareSolverr time to solve C
 FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
 
 # ------------------------------
+# BotBrowser Configuration
+# https://github.com/MiddleSchoolStudent/BotBrowser
+# ------------------------------
+
+# Path to the BotBrowser binary (set via env var or edit here)
+# e.g. "./BotBrowser/dist/botbrowser-linux" or wherever you extracted the release
+BOTBROWSER_BINARY   = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
+BOTBROWSER_CDP_PORT = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
+BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")  # optional: path to a bot-profile JSON
+
+# How long (seconds) to wait after navigating before grabbing page source
+BOTBROWSER_WAIT_SEC = 5
+
+_botbrowser_proc: subprocess.Popen | None = None
+
+
+def _ensure_botbrowser_running() -> bool:
+    """
+    Start BotBrowser in the background if it is not already running.
+    BotBrowser is a patched Chromium — we launch it headlessly and expose
+    its CDP endpoint so Playwright can connect over it.
+
+    Returns True if the browser is (now) available, False on failure.
+    """
+    global _botbrowser_proc
+
+    # If we already launched it and it is still alive, reuse it.
+    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
+        return True
+
+    if not os.path.isfile(BOTBROWSER_BINARY):
+        warn(
+            "BotBrowser binary not found at '%s'. "
+            "Clone https://github.com/MiddleSchoolStudent/BotBrowser and set "
+            "BOTBROWSER_PATH to the executable.",
+            BOTBROWSER_BINARY,
+        )
+        return False
+
+    cmd = [
+        BOTBROWSER_BINARY,
+        "--headless=new",
+        "--no-sandbox",
+        "--disable-gpu",
+        f"--remote-debugging-port={BOTBROWSER_CDP_PORT}",
+        "--remote-debugging-address=127.0.0.1",
+        "--disable-blink-features=AutomationControlled",
+    ]
+    if BOTBROWSER_PROFILE:
+        cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
+
+    debug("Launching BotBrowser: %s", " ".join(cmd))
+    try:
+        _botbrowser_proc = subprocess.Popen(
+            cmd,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    except Exception as e:
+        warn("Failed to launch BotBrowser: %s", e)
+        return False
+
+    # Wait until CDP is reachable (up to 15 s)
+    cdp_url = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}/json/version"
+    for _ in range(30):
+        try:
+            r = requests.get(cdp_url, timeout=2)
+            if r.status_code == 200:
+                debug("BotBrowser CDP ready on port %d", BOTBROWSER_CDP_PORT)
+                return True
+        except Exception:
+            pass
+        time.sleep(0.5)
+
+    warn("BotBrowser CDP did not become ready within 15 s")
+    return False
+
+
+def botbrowser_get(url: str) -> str | None:
+    """
+    Fetch *url* using BotBrowser (patched Chromium from
+    https://github.com/MiddleSchoolStudent/BotBrowser) via Playwright CDP.
+
+    Returns the full page HTML as a string, or None on failure.
+    Requires:  pip install playwright  +  playwright install chromium
+    """
+    try:
+        from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
+    except ImportError:
+        warn(
+            "playwright is not installed. "
+            "Run: pip install playwright && playwright install chromium"
+        )
+        return None
+
+    if not _ensure_botbrowser_running():
+        return None
+
+    cdp_endpoint = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}"
+    debug("BotBrowser GET via Playwright CDP: %s", url)
+
+    try:
+        with sync_playwright() as pw:
+            browser = pw.chromium.connect_over_cdp(cdp_endpoint)
+            context = browser.new_context(
+                viewport={"width": 1280, "height": 800},
+                user_agent=(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/124.0.0.0 Safari/537.36"
+                ),
+                locale="en-US",
+                java_script_enabled=True,
+            )
+            page = context.new_page()
+
+            try:
+                page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+            except PWTimeout:
+                warn("BotBrowser navigation timed out for %s", url)
+                page.close()
+                context.close()
+                browser.close()
+                return None
+
+            # Wait for JS-rendered content
+            try:
+                page.wait_for_load_state("networkidle", timeout=15_000)
+            except PWTimeout:
+                # networkidle is optional — proceed with whatever rendered
+                debug("networkidle timed out for %s (non-fatal)", url)
+
+            html = page.content()
+            page.close()
+            context.close()
+            browser.close()
+
+    except Exception as e:
+        warn("BotBrowser Playwright error for %s: %s", url, e)
+        return None
+
+    if not html or len(html) < 500:
+        warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s", len(html), url)
+        return None
+
+    debug("BotBrowser received %d bytes for %s", len(html), url)
+    return html
+
+
+def _botbrowser_shutdown():
+    """Terminate the BotBrowser process on exit."""
+    global _botbrowser_proc
+    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
+        debug("Shutting down BotBrowser (pid %d)", _botbrowser_proc.pid)
+        _botbrowser_proc.terminate()
+        try:
+            _botbrowser_proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            _botbrowser_proc.kill()
+        _botbrowser_proc = None
+
+
+# ------------------------------
 # Helpers
 # ------------------------------
 
@@ -82,6 +247,26 @@ def build_full_url(href, base=REUTERS_BASE):
     if href.startswith("/"):
         return base + href
     return None
+
+
+def is_reuters_url(url: str) -> bool:
+    """Return True for any reuters.com URL."""
+    return "reuters.com" in (url or "")
+
+
+def fetch_page(url: str) -> str | None:
+    """
+    Route to the correct fetcher:
+      - reuters.com  →  BotBrowser
+      - everything else  →  FlareSolverr
+    """
+    if is_reuters_url(url):
+        debug("Routing to BotBrowser: %s", url)
+        return botbrowser_get(url)
+    else:
+        debug("Routing to FlareSolverr: %s", url)
+        return flare_get(url)
+
 
 # ------------------------------
 # FlareSolverr
@@ -201,11 +386,11 @@ def extract_image_url(soup_page):
     return ""
 
 # ------------------------------
-# 1. FETCH REUTERS WORLD
+# 1. FETCH REUTERS WORLD  (BotBrowser)
 # ------------------------------
 
-info("Fetching Reuters world page: %s", REUTERS_URL)
-html = flare_get(REUTERS_URL)
+info("Fetching Reuters world page via BotBrowser: %s", REUTERS_URL)
+html = fetch_page(REUTERS_URL)          # ← BotBrowser
 reuters_articles = []
 
 if html is None:
@@ -268,11 +453,11 @@ else:
     info("Found %d Reuters world articles", len(reuters_articles))
 
 # ------------------------------
-# 1B. FETCH REUTERS COMMENTARY
+# 1B. FETCH REUTERS COMMENTARY  (BotBrowser)
 # ------------------------------
 
-info("Fetching Reuters commentary page: %s", REUTERS_COMMENTARY_URL)
-commentary_html = flare_get(REUTERS_COMMENTARY_URL)
+info("Fetching Reuters commentary page via BotBrowser: %s", REUTERS_COMMENTARY_URL)
+commentary_html = fetch_page(REUTERS_COMMENTARY_URL)    # ← BotBrowser
 
 if commentary_html is None:
     warn("Failed to fetch Reuters commentary page")
@@ -342,11 +527,11 @@ else:
     info("Total Reuters articles (world + commentary): %d", len(reuters_articles))
 
 # ------------------------------
-# 1C. FETCH AP NEWS WORLD
+# 1C. FETCH AP NEWS WORLD  (FlareSolverr)
 # ------------------------------
 
-info("Fetching AP News world page: %s", APNEWS_URL)
-apnews_html = flare_get(APNEWS_URL)
+info("Fetching AP News world page via FlareSolverr: %s", APNEWS_URL)
+apnews_html = fetch_page(APNEWS_URL)    # ← FlareSolverr
 apnews_articles = []
 
 if apnews_html is None:
@@ -357,14 +542,9 @@ else:
 
     primary_ap = []
     try:
-        # Each article card is div.PagePromo
-        # Thumbnail: div.PagePromo-media > a.Link  (href) + img.Image (src)
-        # Title:     h3.PagePromo-title > a.Link
         for card in apsoup.select("div.PagePromo"):
-            # Title + link
             title_el = card.select_one("h3.PagePromo-title a.Link")
             if not title_el:
-                # some cards use h2 for lead articles
                 title_el = card.select_one("h2.PagePromo-title a.Link")
             if not title_el:
                 continue
@@ -372,8 +552,6 @@ else:
             title = title_el.get_text(" ", strip=True)
             href  = title_el.get("href", "").strip()
 
-            # Thumbnail — prefer the media-wrapper link href (same URL),
-            # then fall back to the img src attribute
             media_link = card.select_one("div.PagePromo-media > a.Link")
             if not href and media_link:
                 href = media_link.get("href", "").strip()
@@ -382,7 +560,6 @@ else:
             if not url or not title:
                 continue
 
-            # Thumbnail — try every lazy-load variant, srcset, and <picture><source> fallback
             thumb = ""
             img_el = card.select_one("div.PagePromo-media img")
             if img_el:
@@ -393,14 +570,12 @@ else:
                     or img_el.get("data-original", "")
                     or ""
                 ).strip()
-                # skip 1x1 placeholder blobs / data URIs
                 if raw and not raw.startswith("data:") and len(raw) > 20:
                     thumb = raw
                 if not thumb:
                     srcset = img_el.get("srcset", "").strip()
                     if srcset:
                         thumb = srcset.split()[0].rstrip(",").strip()
-            # final fallback: first <source> inside <picture>
             if not thumb:
                 picture = card.select_one("div.PagePromo-media picture")
                 if picture:
@@ -424,7 +599,6 @@ else:
                 "url": url, "title": title, "source": "APNews", "thumb": thumb
             })
     else:
-        # Fallback: any link matching /article/
         warn("AP News primary selector found nothing — falling back to anchor scan")
         seen_ap = set()
         for a in apsoup.find_all("a", href=True):
@@ -438,7 +612,6 @@ else:
             if not full or full in seen_ap:
                 continue
             seen_ap.add(full)
-            # try to grab a nearby img
             thumb = ""
             parent = a.find_parent()
             if parent:
@@ -457,11 +630,11 @@ else:
     info("Found %d AP News articles", len(apnews_articles))
 
 # ------------------------------
-# 2. FETCH FRANCE24 RSS
+# 2. FETCH FRANCE24 RSS  (FlareSolverr)
 # ------------------------------
 
-info("Fetching France24 RSS: %s", FRANCE24_RSS)
-rss_html = flare_get(FRANCE24_RSS)
+info("Fetching France24 RSS via FlareSolverr: %s", FRANCE24_RSS)
+rss_html = fetch_page(FRANCE24_RSS)     # ← FlareSolverr
 france24_articles = []
 
 if rss_html:
@@ -512,12 +685,11 @@ for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
 # 4. FETCH FULL TEXT
 # ------------------------------
 
-# AP News: build description with embedded thumbnail img tag — no per-article fetch
+# AP News: build description with embedded thumbnail — no per-article fetch
 for a in all_articles:
     if a.get("source") == "APNews":
         thumb = a.get("thumb", "") or ""
         a["img"] = thumb
-        # Embed thumbnail in description so RSS readers render it
         if thumb:
             a["desc"] = '<img src="{}" alt="" style="max-width:100%"/><br/>{}'.format(thumb, a.get("title", ""))
         else:
@@ -529,8 +701,11 @@ for i, a in enumerate(all_articles, 1):
         debug("Skipping full fetch for AP News: %s", a.get("url"))
         continue
 
-    info("Processing %d/%d: %s", i, len(all_articles), a.get("title", "")[:80])
-    page = flare_get(a["url"])
+    info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
+
+    # Reuters → BotBrowser | France24 → FlareSolverr  (via fetch_page router)
+    page = fetch_page(a["url"])
+
     if page is None:
         warn("Failed to fetch: %s", a.get("url"))
         a["desc"] = ""
@@ -555,8 +730,9 @@ for i, a in enumerate(all_articles, 1):
         warn("  Empty description for: %s\n  Page snippet: %s",
              a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
 
-# Cleanup FlareSolverr session
+# Cleanup
 flare_session_destroy()
+_botbrowser_shutdown()
 
 # ------------------------------
 # 5. LOAD OR CREATE XML
