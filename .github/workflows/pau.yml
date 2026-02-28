@@ -135,7 +135,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add pau.xml opinin.html commentary.html apnews.html debug.log || true
+          git add *.xml opinin.html commentary.html apnews.html debug.log || true
 
           if git diff --cached --quiet; then
             echo "Nothing to commit"
