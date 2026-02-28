@@ -20,10 +20,47 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4
+          pip install requests beautifulsoup4 playwright
+
+      - name: Install Playwright Chromium
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Install BotBrowser
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest \
+            | python3 -c "import sys,json; print(json.load(sys.stdin)['tag_name'])")
+          echo "BotBrowser latest release: $LATEST"
+
+          ASSET_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/botbrowser-linux-x64"
+          echo "Downloading: $ASSET_URL"
+          curl -L "$ASSET_URL" -o botbrowser
+          chmod +x botbrowser
+
+          ./botbrowser --version || true
+
+          echo "BOTBROWSER_PATH=$PWD/botbrowser" >> $GITHUB_ENV
+
+      - name: Download BotBrowser bot-profile
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest \
+            | python3 -c "import sys,json; print(json.load(sys.stdin)['tag_name'])")
+
+          PROFILE_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/chrome_linux.enc.zip"
+          echo "Downloading profile: $PROFILE_URL"
+          curl -fL "$PROFILE_URL" -o botprofile.zip && unzip -o botprofile.zip || echo "Profile download skipped (not found for this release)"
+
+          PROFILE_FILE=$(ls *.enc 2>/dev/null | head -1 || true)
+          if [ -n "$PROFILE_FILE" ]; then
+            echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_FILE" >> $GITHUB_ENV
+            echo "Using bot profile: $PROFILE_FILE"
+          else
+            echo "No profile file found — BotBrowser will run without a profile"
+          fi
 
       - name: Start FlareSolverr
         run: |
@@ -45,6 +82,10 @@ jobs:
           done
 
       - name: Run scraper
+        env:
+          BOTBROWSER_PATH: ${{ env.BOTBROWSER_PATH }}
+          BOTBROWSER_PROFILE: ${{ env.BOTBROWSER_PROFILE }}
+          BOTBROWSER_CDP_PORT: "9222"
         run: |
           python lau.py
 
