@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import sys
+import os
 import urllib.request
 
 def fetch(url, token):
@@ -13,10 +14,8 @@ def fetch(url, token):
     with urllib.request.urlopen(req) as resp:
         return json.loads(resp.read())
 
-import os
 token = os.environ.get("GH_TOKEN", "")
 
-# Try the redirect target URL directly (repository ID form)
 urls_to_try = [
     "https://api.github.com/repositories/854084975/releases/latest",
     "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest",
@@ -27,38 +26,51 @@ for url in urls_to_try:
     print(f"Trying: {url}", file=sys.stderr)
     try:
         data = fetch(url, token)
-        print(f"Response keys: {list(data.keys()) if isinstance(data, dict) else type(data)}", file=sys.stderr)
         if isinstance(data, dict) and "tag_name" in data:
             with open("/tmp/bb_release.json", "w") as f:
                 json.dump(data, f)
-            print(data["tag_name"])
-            sys.exit(0)
+            break
         elif isinstance(data, list) and data and "tag_name" in data[0]:
+            data = data[0]
             with open("/tmp/bb_release.json", "w") as f:
-                json.dump(data[0], f)
-            print(data[0]["tag_name"])
-            sys.exit(0)
-        else:
-            print(f"No tag_name in response: {str(data)[:200]}", file=sys.stderr)
+                json.dump(data, f)
+            break
     except Exception as e:
         print(f"Error fetching {url}: {e}", file=sys.stderr)
+        data = None
 
-# Last resort: try list endpoint with redirect target
-list_urls = [
-    "https://api.github.com/repositories/854084975/releases?per_page=5",
-    "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases?per_page=5",
-]
-for url in list_urls:
-    print(f"Trying list: {url}", file=sys.stderr)
-    try:
-        data = fetch(url, token)
-        if isinstance(data, list) and data and "tag_name" in data[0]:
-            with open("/tmp/bb_release.json", "w") as f:
-                json.dump(data[0], f)
-            print(data[0]["tag_name"])
-            sys.exit(0)
-    except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
+if not data or "tag_name" not in data:
+    # fallback: list endpoint
+    for url in [
+        "https://api.github.com/repositories/854084975/releases?per_page=5",
+        "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases?per_page=5",
+    ]:
+        try:
+            lst = fetch(url, token)
+            if isinstance(lst, list) and lst and "tag_name" in lst[0]:
+                data = lst[0]
+                with open("/tmp/bb_release.json", "w") as f:
+                    json.dump(data, f)
+                break
+        except Exception as e:
+            print(f"Error: {e}", file=sys.stderr)
 
-print("ERROR: Could not determine BotBrowser latest release tag.", file=sys.stderr)
-sys.exit(1)
+if not data or "tag_name" not in data:
+    print("ERROR: Could not determine BotBrowser latest release tag.", file=sys.stderr)
+    sys.exit(1)
+
+tag = data["tag_name"]
+assets = data.get("assets", [])
+
+# Write asset names to file for the workflow to use
+with open("/tmp/bb_assets.txt", "w") as f:
+    for a in assets:
+        f.write(a["name"] + "\n")
+
+print(f"Tag: {tag}", file=sys.stderr)
+print("Assets:", file=sys.stderr)
+for a in assets:
+    print(f"  - {a['name']}", file=sys.stderr)
+
+# Print tag to stdout (captured by shell)
+print(tag)
