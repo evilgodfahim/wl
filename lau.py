@@ -59,7 +59,21 @@ FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/
 
 BOTBROWSER_BINARY   = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
 BOTBROWSER_CDP_PORT = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
-BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")
+# CHANGED: default to a persistent local profile dir instead of empty string
+BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "./botbrowser-profile")
+
+DATADOME_SIGNALS = [
+    "captcha-delivery.com",
+    "geo.captcha",
+    "ct.captcha-delivery.com",
+    "'host':'geo.captcha",
+]
+
+def is_datadome_page(html: str) -> bool:
+    if not html or len(html) > 5000:
+        return False
+    return any(sig in html for sig in DATADOME_SIGNALS)
+
 
 _botbrowser_proc: subprocess.Popen | None = None
 
@@ -81,6 +95,9 @@ def _start_botbrowser() -> bool:
         warn("BotBrowser binary not found at '%s'.", BOTBROWSER_BINARY)
         return False
 
+    # CHANGED: always create profile dir and always pass --user-data-dir
+    os.makedirs(BOTBROWSER_PROFILE, exist_ok=True)
+
     cmd = [
         BOTBROWSER_BINARY,
         "--headless=new",
@@ -89,9 +106,8 @@ def _start_botbrowser() -> bool:
         f"--remote-debugging-port={BOTBROWSER_CDP_PORT}",
         "--remote-debugging-address=127.0.0.1",
         "--disable-blink-features=AutomationControlled",
+        f"--user-data-dir={BOTBROWSER_PROFILE}",  # CHANGED: always use profile
     ]
-    if BOTBROWSER_PROFILE:
-        cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
 
     debug("Launching BotBrowser: %s", " ".join(cmd))
     try:
@@ -176,6 +192,11 @@ def _botbrowser_fetch_once(url: str) -> str | None:
         warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s", len(html), url)
         return None
 
+    # CHANGED: detect DataDome before returning, treat as hard failure
+    if is_datadome_page(html):
+        warn("DataDome CAPTCHA detected for %s — skipping retry", url)
+        return "DATADOME"
+
     debug("BotBrowser received %d bytes for %s", len(html), url)
     return html
 
@@ -194,6 +215,11 @@ def botbrowser_get(url: str, retries: int = 2) -> str | None:
                 continue
 
         result = _botbrowser_fetch_once(url)
+
+        # CHANGED: DataDome sentinel — don't retry, don't restart browser
+        if result == "DATADOME":
+            return None
+
         if result:
             return result
 
