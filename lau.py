@@ -187,31 +187,6 @@ def extract_full_text_france24(article_html):
     return "\n\n".join(parts)
 
 
-def extract_full_text_apnews(article_html):
-    s = BeautifulSoup(article_html, "html.parser")
-
-    # Primary: AP article body container
-    container = (
-        s.find("div", class_="RichTextStoryBody")
-        or s.find("div", class_=lambda c: c and "RichTextStoryBody" in c)
-        or s.find("div", class_="Article")
-        or s.find("div", attrs={"data-key": "article-body"})
-    )
-    if container:
-        parts = []
-        for p in container.find_all("p"):
-            text = p.get_text(" ", strip=True)
-            if text:
-                parts.append(text)
-        if parts:
-            return "\n\n".join(parts)
-
-    # Fallback: any <p> inside <article>
-    blocks = s.select("article p")
-    parts  = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
-    return "\n\n".join(parts)
-
-
 def extract_image_url(soup_page):
     meta_og = soup_page.find("meta", property="og:image")
     if meta_og and meta_og.get("content"):
@@ -523,7 +498,18 @@ for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
 # 4. FETCH FULL TEXT
 # ------------------------------
 
+# AP News: use title as description, thumbnail from listing — no per-article fetch
+for a in all_articles:
+    if a.get("source") == "APNews":
+        a["desc"] = a.get("title", "")
+        a["img"]  = a.get("thumb", "") or ""
+        a["pub"]  = now_utc()
+
 for i, a in enumerate(all_articles, 1):
+    if a.get("source") == "APNews":
+        debug("Skipping full fetch for AP News: %s", a.get("url"))
+        continue
+
     info("Processing %d/%d: %s", i, len(all_articles), a.get("title", "")[:80])
     page = flare_get(a["url"])
     if page is None:
@@ -536,8 +522,6 @@ for i, a in enumerate(all_articles, 1):
     source = a.get("source")
     if source == "Reuters":
         a["desc"] = extract_full_text_reuters(page)
-    elif source == "APNews":
-        a["desc"] = extract_full_text_apnews(page)
     else:
         a["desc"] = extract_full_text_france24(page)
     a["desc"] = a["desc"] or ""
@@ -600,7 +584,7 @@ for art in all_articles:
     if art["url"] in existing:
         debug("Already exists, skipping: %s", art["url"])
         continue
-    if not (art.get("desc") or "").strip():
+    if art.get("source") != "APNews" and not (art.get("desc") or "").strip():
         warn("Skipping (no description): %s", art.get("title", "")[:60])
         continue
     item = ET.SubElement(channel, "item")
