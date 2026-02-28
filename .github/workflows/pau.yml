@@ -18,16 +18,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set month for cache key
-        run: echo "MONTH=$(date +%Y-%m)" >> $GITHUB_ENV
-
-      - name: Cache BotBrowser user profile
-        uses: actions/cache@v4
-        with:
-          path: ./botbrowser-profile
-          key: botbrowser-profile-${{ env.MONTH }}
-          restore-keys: botbrowser-profile-
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
