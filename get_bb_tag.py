@@ -1,35 +1,64 @@
 #!/usr/bin/env python3
 import json
 import sys
+import urllib.request
 
-# Try /releases/latest response first
-try:
-    with open("/tmp/bb_release.json") as f:
-        d = json.load(f)
-except Exception as e:
-    print(f"ERROR reading /tmp/bb_release.json: {e}", file=sys.stderr)
-    sys.exit(1)
+def fetch(url, token):
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "github-actions",
+    })
+    with urllib.request.urlopen(req) as resp:
+        return json.loads(resp.read())
 
-print("=== Raw API response (first 300 chars) ===", file=sys.stderr)
-print(str(d)[:300], file=sys.stderr)
+import os
+token = os.environ.get("GH_TOKEN", "")
 
-if isinstance(d, dict) and "tag_name" in d:
-    print(d["tag_name"])
-    sys.exit(0)
+# Try the redirect target URL directly (repository ID form)
+urls_to_try = [
+    "https://api.github.com/repositories/854084975/releases/latest",
+    "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest",
+]
 
-# Fallback: try list response
-try:
-    with open("/tmp/bb_releases_list.json") as f:
-        lst = json.load(f)
-    if isinstance(lst, list) and len(lst) > 0 and "tag_name" in lst[0]:
-        # overwrite bb_release.json with first item for later steps
-        with open("/tmp/bb_release.json", "w") as out:
-            json.dump(lst[0], out)
-        print(lst[0]["tag_name"])
-        sys.exit(0)
-    print(f"ERROR: list response has no usable releases: {str(lst)[:200]}", file=sys.stderr)
-except Exception as e:
-    print(f"ERROR reading list fallback: {e}", file=sys.stderr)
+data = None
+for url in urls_to_try:
+    print(f"Trying: {url}", file=sys.stderr)
+    try:
+        data = fetch(url, token)
+        print(f"Response keys: {list(data.keys()) if isinstance(data, dict) else type(data)}", file=sys.stderr)
+        if isinstance(data, dict) and "tag_name" in data:
+            with open("/tmp/bb_release.json", "w") as f:
+                json.dump(data, f)
+            print(data["tag_name"])
+            sys.exit(0)
+        elif isinstance(data, list) and data and "tag_name" in data[0]:
+            with open("/tmp/bb_release.json", "w") as f:
+                json.dump(data[0], f)
+            print(data[0]["tag_name"])
+            sys.exit(0)
+        else:
+            print(f"No tag_name in response: {str(data)[:200]}", file=sys.stderr)
+    except Exception as e:
+        print(f"Error fetching {url}: {e}", file=sys.stderr)
 
-print(f"ERROR: tag_name not found. API said: {d.get('message', str(d)[:200])}", file=sys.stderr)
+# Last resort: try list endpoint with redirect target
+list_urls = [
+    "https://api.github.com/repositories/854084975/releases?per_page=5",
+    "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases?per_page=5",
+]
+for url in list_urls:
+    print(f"Trying list: {url}", file=sys.stderr)
+    try:
+        data = fetch(url, token)
+        if isinstance(data, list) and data and "tag_name" in data[0]:
+            with open("/tmp/bb_release.json", "w") as f:
+                json.dump(data[0], f)
+            print(data[0]["tag_name"])
+            sys.exit(0)
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+
+print("ERROR: Could not determine BotBrowser latest release tag.", file=sys.stderr)
 sys.exit(1)
