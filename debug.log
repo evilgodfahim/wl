@@ -1,483 +1,488 @@
-2026-03-05 02:29:28,331 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
-2026-03-05 02:29:28,332 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/
-2026-03-05 02:29:28,332 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-05 02:29:28,333 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-05 02:29:28,835 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-05 02:29:29,336 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-05 02:29:29,838 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-05 02:29:29,875 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-05 02:29:29,879 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-05 02:29:30,426 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/
-2026-03-05 02:29:30,427 DEBUG: Using selector: EpollSelector
-2026-03-05 02:29:32,381 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Page.content: Target page, context or browser has been closed
-2026-03-05 02:29:32,381 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-05 02:29:32,381 DEBUG: Killing existing BotBrowser (pid 3702)
-2026-03-05 02:29:32,400 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-05 02:29:32,401 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-05 02:29:32,908 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-05 02:29:32,909 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-05 02:29:32,909 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-05 02:29:34,910 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/
-2026-03-05 02:29:34,910 DEBUG: Using selector: EpollSelector
-2026-03-05 02:29:36,668 DEBUG: BotBrowser received 539517 bytes for https://www.reuters.com/world/
-2026-03-05 02:29:36,669 DEBUG: Saved HTML to opinin.html (539517 bytes)
-2026-03-05 02:29:36,714 DEBUG: Primary selector nodes found: 20
-2026-03-05 02:29:36,715 INFO: Primary world selector matched 20 items.
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/ | US Senate backs Trump on Iran strikes, blocks bid to limit his war powers
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/ | US sinks Iranian warship far from Gulf, NATO downs Iranian missile heading for Turkey
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/ | Nepal goes to the polls; voters seek change after youth-led protests
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/ | Trump weighing US role in Iran after conflict, White House says
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/ | China to build 'birth-friendly society', refine social security system
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/ | Landslide kills over 200 people at Congo's Rubaya mine, mines ministry says
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/ | Iran war breaks UN Charter, strike on school shocking, UN probe says
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/ | Cuba hit by widespread power blackout amid US oil chokehold
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/ | Israel orders Lebanese to leave swathe of the south 'immediately'
-2026-03-05 02:29:36,715 DEBUG:   - https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/ | Gulf shipping crisis deepens as tankers stranded for fifth day, US sinks Iranian warship
-2026-03-05 02:29:36,716 DEBUG:   - https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/ | Swedish fighter jets patrol Iceland in show of force over Arctic
-2026-03-05 02:29:36,716 DEBUG:   - https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/ | Iran conflict may divert US weapons from Ukraine
-2026-03-05 02:29:36,716 INFO: Found 20 Reuters world articles
-2026-03-05 02:29:36,716 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
-2026-03-05 02:29:36,716 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/
-2026-03-05 02:29:36,716 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/
-2026-03-05 02:29:36,716 DEBUG: Using selector: EpollSelector
-2026-03-05 02:29:53,049 DEBUG: networkidle timed out for https://www.reuters.com/commentary/ (non-fatal)
-2026-03-05 02:29:57,715 DEBUG: BotBrowser received 709149 bytes for https://www.reuters.com/commentary/
-2026-03-05 02:29:57,723 DEBUG: Saved HTML to commentary.html (709149 bytes)
-2026-03-05 02:29:57,879 INFO: Primary commentary selector matched 7 cards.
-2026-03-05 02:29:57,879 DEBUG:   - href=/world/middle-east/global-markets-trading-day-graphic-2026-03-04/ | title=Trading Day: Respite, but for how long?
-2026-03-05 02:29:57,879 DEBUG:   - href=/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/ | title=Mideast crisis highlights risk of dollar liquidity shock
-2026-03-05 02:29:57,879 DEBUG:   - href=/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/ | title=Trump's Hormuz shipping plan is too little, too late in race to avert energy shock
-2026-03-05 02:29:57,879 DEBUG:   - href=/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/ | title=Hormuz reopening is not solely in Trump’s gift
-2026-03-05 02:29:57,879 DEBUG:   - href=/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/ | title=Kevin Warsh has a point on AI and inflation
-2026-03-05 02:29:57,879 DEBUG:   - href=/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/ | title=Iran crisis jumbles the Gulf state pecking order
-2026-03-05 02:29:57,879 DEBUG:   - href=/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/ | title=Private credit pioneers see downside of redemption
-2026-03-05 02:29:57,879 INFO: Total Reuters articles (world + commentary): 27
-2026-03-05 02:29:57,879 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
-2026-03-05 02:29:57,879 DEBUG: Routing to FlareSolverr: https://apnews.com/world-news
-2026-03-05 02:29:57,880 DEBUG: FlareSolverr GET: https://apnews.com/world-news
-2026-03-05 02:29:57,881 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-05 02:30:06,634 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1407717
-2026-03-05 02:30:06,639 DEBUG: FlareSolverr HTTP 200
-2026-03-05 02:30:06,645 DEBUG: FlareSolverr received 1336646 bytes for https://apnews.com/world-news
-2026-03-05 02:30:06,648 DEBUG: Saved HTML to apnews.html (1336646 bytes)
-2026-03-05 02:30:07,075 INFO: AP News primary selector matched 87 cards.
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/article/iran-israel-us-march-04-2026-e1c316da4ce809407122590a6872aa85 | thumb=https://dims.apnews.com/dims4/default/99b23c5/2147483647/strip/true/crop/8640x57 | Iran launches missiles at Israel as attacks in Middle East commence for a sixth day
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/article/kurdish-dissident-groups-iran-war-iraq-f76efe372becb7d80d3ed026791e67ba | thumb=https://dims.apnews.com/dims4/default/0c71878/2147483647/strip/true/crop/6390x42 | Kurdish dissident groups say they are preparing to join the fight against Iran with US support
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-ee527a73689fb718be316cc2997694ea | thumb=https://dims.apnews.com/dims4/default/8a262b2/2147483647/strip/true/crop/3948x26 | A son of Iran’s late supreme leader is a possible candidate to replace his father as war rages
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/article/honduras-asfura-trump-china-taiwan-shrimp-farmers-78b00ac7a11b86174a32754de9de75bc | thumb=https://dims.apnews.com/dims4/default/21433d3/2147483647/strip/true/crop/7774x51 | Honduras weighs shift in China-Taiwan ties as Trump pushes for US dominance in Latin America
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/article/stranded-travelers-iran-war-middle-east-38cbb9babed49fad08949bba8aef3d50 | thumb=https://dims.apnews.com/dims4/default/9e2f50f/2147483647/strip/true/crop/5894x39 | Stranded travelers in the Middle East share their accounts of being stuck during the war
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-03-03-2026 | thumb= | Pentagon releases the names of 4 killed troops and says they died in a drone strike in Kuwait
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/article/france-nuclear-weapons-macron-deterrence-ccbcfb03ef4a1e3efe287fb744adb148 | thumb= | Macron says France will allow temporary deployment of nuclear-armed jets to European allies
-2026-03-05 02:30:07,075 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-lebanon-march-04-2026 | thumb= | Senate rejects war powers bill to halt attacks against Iran
-2026-03-05 02:30:07,076 DEBUG:   - https://apnews.com/article/china-position-us-iran-attack-1042fa7295500f90ecd6285d552da349 | thumb= | What China’s response to the US attack on Iran says about its foreign policy
-2026-03-05 02:30:07,076 DEBUG:   - https://apnews.com/article/iran-israel-us-03-02-2026-cb42936de1d8c261be8f30f11c6665fa | thumb= | As Mideast conflict widens, US says attacks on Iran will last weeks and intensify
-2026-03-05 02:30:07,076 DEBUG:   - https://apnews.com/video/citing-tremendous-progress-trump-gives-the-us-a-15-out-of-10-grade-for-iran-war-12df450169364a98846c0eeb712e0ef9 | thumb= | Citing ‘tremendous progress,’ Trump gives the US a 15 out of 10 grade for Iran war
-2026-03-05 02:30:07,076 DEBUG:   - https://apnews.com/video/white-house-says-trumps-feeling-based-on-fact-that-iran-posed-an-imminent-threat-led-to-strikes-afdafd3d3fec4d1ba28babb5b2638ab5 | thumb= | White House says Trump’s ‘feeling based on fact’ that Iran posed an imminent threat led to strikes
-2026-03-05 02:30:07,076 INFO: Found 87 AP News articles
-2026-03-05 02:30:07,076 INFO: Fetching France24 RSS via FlareSolverr: https://www.france24.com/en/rss
-2026-03-05 02:30:07,076 DEBUG: Routing to FlareSolverr: https://www.france24.com/en/rss
-2026-03-05 02:30:07,076 DEBUG: FlareSolverr GET: https://www.france24.com/en/rss
-2026-03-05 02:30:07,077 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-05 02:30:07,802 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 30733
-2026-03-05 02:30:07,803 DEBUG: FlareSolverr HTTP 200
-2026-03-05 02:30:07,803 DEBUG: FlareSolverr received 29703 bytes for https://www.france24.com/en/rss
-2026-03-05 02:30:07,803 INFO: Found 0 total items in France24 RSS
-2026-03-05 02:30:07,803 INFO: France24: kept 0 items, excluded 0
-2026-03-05 02:30:07,803 INFO: Total unique articles to process: 114
-2026-03-05 02:30:07,804 DEBUG:   sample 1: [Reuters] https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 2: [Reuters] https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 3: [Reuters] https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
-2026-03-05 02:30:07,804 DEBUG:   sample 4: [Reuters] https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 5: [Reuters] https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
-2026-03-05 02:30:07,804 DEBUG:   sample 6: [Reuters] https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 7: [Reuters] https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 8: [Reuters] https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 9: [Reuters] https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 10: [Reuters] https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 11: [Reuters] https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
-2026-03-05 02:30:07,804 DEBUG:   sample 12: [Reuters] https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
-2026-03-05 02:30:07,805 INFO: Processing 1/114 [Reuters]: US Senate backs Trump on Iran strikes, blocks bid to limit his war powers
-2026-03-05 02:30:07,805 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
-2026-03-05 02:30:07,805 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
-2026-03-05 02:30:07,805 DEBUG: Using selector: EpollSelector
-2026-03-05 02:30:09,600 DEBUG: BotBrowser received 498054 bytes for https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
-2026-03-05 02:30:09,691 DEBUG:   desc length: 4253, img: https://www.reuters.com/resizer/v2/NNSQNESPCVIN3HDPQPVRD5TLQ4.jpg?auth=73507cb54634eb617e48e008969a24f0472ea6ee19342e031
-2026-03-05 02:30:09,691 INFO: Processing 2/114 [Reuters]: US sinks Iranian warship far from Gulf, NATO downs Iranian missile heading for T
-2026-03-05 02:30:09,691 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
-2026-03-05 02:30:09,691 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
-2026-03-05 02:30:09,691 DEBUG: Using selector: EpollSelector
-2026-03-05 02:30:25,914 DEBUG: networkidle timed out for https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/ (non-fatal)
-2026-03-05 02:30:30,460 DEBUG: BotBrowser received 1157156 bytes for https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
-2026-03-05 02:30:30,640 DEBUG:   desc length: 6625, img: https://www.reuters.com/resizer/v2/LVO2ILELDJKIHGCURHTLKCPLLI.jpg?auth=15958e06dec22a58cdd2ba353e22aa5bbc7ed906ddc2b9ebc
-2026-03-05 02:30:30,640 INFO: Processing 3/114 [Reuters]: Nepal goes to the polls; voters seek change after youth-led protests
-2026-03-05 02:30:30,640 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
-2026-03-05 02:30:30,640 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
-2026-03-05 02:30:30,640 DEBUG: Using selector: EpollSelector
-2026-03-05 02:30:46,931 DEBUG: networkidle timed out for https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/ (non-fatal)
-2026-03-05 02:30:52,516 DEBUG: BotBrowser received 647655 bytes for https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
-2026-03-05 02:30:52,831 DEBUG:   desc length: 3590, img: https://www.reuters.com/resizer/v2/EX5RRNZIBBJKXISIEDNQBTJPMU.jpg?auth=b451e7b9b91447310a52ef8b6c6c20754cab52ec37481afec
-2026-03-05 02:30:52,832 INFO: Processing 4/114 [Reuters]: Trump weighing US role in Iran after conflict, White House says
-2026-03-05 02:30:52,832 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
-2026-03-05 02:30:52,832 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
-2026-03-05 02:30:52,832 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:09,067 DEBUG: networkidle timed out for https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/ (non-fatal)
-2026-03-05 02:31:15,194 DEBUG: BotBrowser received 1094171 bytes for https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
-2026-03-05 02:31:15,382 DEBUG:   desc length: 2226, img: https://www.reuters.com/resizer/v2/XE2JZXT64JONZDJKGPCY26IT7I.jpg?auth=36cc67e646d8cdbcfdbf8c8c70bac59d8165c27fc30918432
-2026-03-05 02:31:15,382 INFO: Processing 5/114 [Reuters]: China to build 'birth-friendly society', refine social security system
-2026-03-05 02:31:15,382 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
-2026-03-05 02:31:15,382 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
-2026-03-05 02:31:15,382 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:17,229 DEBUG: BotBrowser received 453584 bytes for https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
-2026-03-05 02:31:17,315 DEBUG:   desc length: 2213, img: https://www.reuters.com/resizer/v2/VADWNVR2Z5PUTNZD6NUO6WU77U.jpg?auth=09ec581ca7739e1724295156f5dd9d7e37ae02be22691d6f3
-2026-03-05 02:31:17,315 INFO: Processing 6/114 [Reuters]: Landslide kills over 200 people at Congo's Rubaya mine, mines ministry says
-2026-03-05 02:31:17,315 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
-2026-03-05 02:31:17,315 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
-2026-03-05 02:31:17,315 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:33,599 DEBUG: networkidle timed out for https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/ (non-fatal)
-2026-03-05 02:31:38,882 DEBUG: BotBrowser received 607295 bytes for https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
-2026-03-05 02:31:39,246 DEBUG:   desc length: 1461, img: https://www.reuters.com/resizer/v2/466BJJQ7PVGY5O53NZ3KL65MHM.png?auth=b9c3bf166c40a6778eb5672993fde7c30a15f48329026674e
-2026-03-05 02:31:39,246 INFO: Processing 7/114 [Reuters]: Iran war breaks UN Charter, strike on school shocking, UN probe says
-2026-03-05 02:31:39,246 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
-2026-03-05 02:31:39,246 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
-2026-03-05 02:31:39,246 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:41,094 DEBUG: BotBrowser received 453583 bytes for https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
-2026-03-05 02:31:41,179 DEBUG:   desc length: 1912, img: https://www.reuters.com/resizer/v2/KVFM55ZB7RKBRB3KFJ6SUWFCVA.jpg?auth=9bf9d56943877f9b4b86903f0ce2a77a0d7616411b25c9d2c
-2026-03-05 02:31:41,179 INFO: Processing 8/114 [Reuters]: Cuba hit by widespread power blackout amid US oil chokehold
-2026-03-05 02:31:41,180 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
-2026-03-05 02:31:41,180 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
-2026-03-05 02:31:41,180 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:42,983 DEBUG: BotBrowser received 472324 bytes for https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
-2026-03-05 02:31:43,072 DEBUG:   desc length: 2701, img: https://www.reuters.com/resizer/v2/53EE5PURKBMB5CIZC23TGFYULI.jpg?auth=9fb2420ec2b4161afbb8c82153f083a524e509d771eea65ff
-2026-03-05 02:31:43,072 INFO: Processing 9/114 [Reuters]: Israel orders Lebanese to leave swathe of the south 'immediately'
-2026-03-05 02:31:43,072 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
-2026-03-05 02:31:43,072 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
-2026-03-05 02:31:43,072 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:44,894 DEBUG: BotBrowser received 490208 bytes for https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
-2026-03-05 02:31:44,982 DEBUG:   desc length: 5088, img: https://www.reuters.com/resizer/v2/NNIKW5JGONNIFNF6N3FE3BD3BM.jpg?auth=509da2b80df747d15bbe95577e3cd7414da8abeef2bfd7d00
-2026-03-05 02:31:44,982 INFO: Processing 10/114 [Reuters]: Gulf shipping crisis deepens as tankers stranded for fifth day, US sinks Iranian
-2026-03-05 02:31:44,982 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
-2026-03-05 02:31:44,982 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
-2026-03-05 02:31:44,983 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:46,868 DEBUG: BotBrowser received 491805 bytes for https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
-2026-03-05 02:31:46,957 DEBUG:   desc length: 4853, img: https://www.reuters.com/resizer/v2/D3M7D6EYZFOY7APRRYYTQQS5MQ.jpg?auth=7ba876afd9c7f55e2e7c83f3b77d711fb5ad75bccab58588b
-2026-03-05 02:31:46,958 INFO: Processing 11/114 [Reuters]: Swedish fighter jets patrol Iceland in show of force over Arctic
-2026-03-05 02:31:46,958 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
-2026-03-05 02:31:46,958 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
-2026-03-05 02:31:46,958 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:48,764 DEBUG: BotBrowser received 481082 bytes for https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
-2026-03-05 02:31:48,920 DEBUG:   desc length: 3367, img: https://www.reuters.com/resizer/v2/M57SAF7IVZNJFPNFODG65HMAFI.jpg?auth=04c0c4cae41577f22ab72988127051263f3692fe13aef300c
-2026-03-05 02:31:48,920 INFO: Processing 12/114 [Reuters]: Iran conflict may divert US weapons from Ukraine
-2026-03-05 02:31:48,920 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
-2026-03-05 02:31:48,920 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
-2026-03-05 02:31:48,920 DEBUG: Using selector: EpollSelector
-2026-03-05 02:31:50,682 DEBUG: BotBrowser received 477724 bytes for https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
-2026-03-05 02:31:50,769 DEBUG:   desc length: 5973, img: https://www.reuters.com/resizer/v2/GV3DG3FRFJL6LH4TL3HQ3SDGZA.jpg?auth=9596f4f2c91ec9902e3df6e57862a99ae545f57d3369a86c6
-2026-03-05 02:31:50,769 INFO: Processing 13/114 [Reuters]: Iran will target Israeli nuclear site if regime change is sought, Iranian offici
-2026-03-05 02:31:50,769 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
-2026-03-05 02:31:50,769 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
-2026-03-05 02:31:50,769 DEBUG: Using selector: EpollSelector
-2026-03-05 02:32:07,116 DEBUG: networkidle timed out for https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/ (non-fatal)
-2026-03-05 02:32:13,578 DEBUG: BotBrowser received 553750 bytes for https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
-2026-03-05 02:32:13,961 DEBUG:   desc length: 246, img: https://www.reuters.com/resizer/v2/J2OT46IMSVO2LHG3HHCW3T5WGM.jpg?auth=1bb42dc711388997fd45b2f1aac58ca16ebd233c55b315fd7
-2026-03-05 02:32:13,962 INFO: Processing 14/114 [Reuters]: Canada working to repatriate more than 2,000 citizens from Middle East
-2026-03-05 02:32:13,962 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
-2026-03-05 02:32:13,962 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
-2026-03-05 02:32:13,962 DEBUG: Using selector: EpollSelector
-2026-03-05 02:32:15,840 DEBUG: BotBrowser received 464355 bytes for https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
-2026-03-05 02:32:15,925 DEBUG:   desc length: 2758, img: https://www.reuters.com/resizer/v2/ZDWNHZOGGJKOJCVVVXT2BSJOUA.jpg?auth=fbe05e1ded7f27892cd85315216b5042138a5ec17a34340f5
-2026-03-05 02:32:15,925 INFO: Processing 15/114 [Reuters]: Who is contesting Nepal's polls and what is at stake?
-2026-03-05 02:32:15,925 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/china/who-is-contesting-nepals-polls-what-is-stake-2026-03-05/
-2026-03-05 02:32:15,925 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/china/who-is-contesting-nepals-polls-what-is-stake-2026-03-05/
-2026-03-05 02:32:15,925 DEBUG: Using selector: EpollSelector
-2026-03-05 02:32:32,198 DEBUG: networkidle timed out for https://www.reuters.com/world/china/who-is-contesting-nepals-polls-what-is-stake-2026-03-05/ (non-fatal)
-2026-03-05 02:32:37,250 DEBUG: BotBrowser received 621233 bytes for https://www.reuters.com/world/china/who-is-contesting-nepals-polls-what-is-stake-2026-03-05/
-2026-03-05 02:32:37,522 DEBUG:   desc length: 2134, img: https://www.reuters.com/resizer/v2/IFVL4AYWZNJATK3TCQ37MZ3VUA.jpg?auth=8be2bdccd38571c985afbca9c5c5a01c6729353c35c45c452
-2026-03-05 02:32:37,523 INFO: Processing 16/114 [Reuters]: Australia, Canada sign new deals on critical minerals
-2026-03-05 02:32:37,523 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/americas/australia-canada-sign-new-deals-critical-minerals-2026-03-05/
-2026-03-05 02:32:37,523 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/americas/australia-canada-sign-new-deals-critical-minerals-2026-03-05/
-2026-03-05 02:32:37,523 DEBUG: Using selector: EpollSelector
-2026-03-05 02:32:39,292 DEBUG: BotBrowser received 456064 bytes for https://www.reuters.com/world/americas/australia-canada-sign-new-deals-critical-minerals-2026-03-05/
-2026-03-05 02:32:39,439 DEBUG:   desc length: 2611, img: https://www.reuters.com/resizer/v2/XNEYPOROAFN5NORU5XFLTYBLDQ.jpg?auth=fd2393fee346ee6679184356d3033cacdff0465dbfc128f96
-2026-03-05 02:32:39,440 INFO: Processing 17/114 [Reuters]: China's defence spending to rise 7% in 2026 vs 7.2% set for 2025
-2026-03-05 02:32:39,440 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/china/chinas-defence-spending-rise-7-2026-vs-72-set-2025-2026-03-05/
-2026-03-05 02:32:39,440 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/china/chinas-defence-spending-rise-7-2026-vs-72-set-2025-2026-03-05/
-2026-03-05 02:32:39,440 DEBUG: Using selector: EpollSelector
-2026-03-05 02:32:41,442 DEBUG: BotBrowser received 447855 bytes for https://www.reuters.com/world/china/chinas-defence-spending-rise-7-2026-vs-72-set-2025-2026-03-05/
-2026-03-05 02:32:41,526 DEBUG:   desc length: 1436, img: https://www.reuters.com/resizer/v2/7QJATWMUTBNCBM7DRPUGYCGCTU.jpg?auth=fe45b3ab7d7eb8ec0f65eefa0e06594af7a3800949a58f3c6
-2026-03-05 02:32:41,526 INFO: Processing 18/114 [Reuters]: China to support Hong Kong's integration with country's overall development
-2026-03-05 02:32:41,526 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/china/china-support-hong-kongs-integration-with-countrys-overall-development-2026-03-05/
-2026-03-05 02:32:41,526 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/china/china-support-hong-kongs-integration-with-countrys-overall-development-2026-03-05/
-2026-03-05 02:32:41,526 DEBUG: Using selector: EpollSelector
-2026-03-05 02:32:43,344 DEBUG: BotBrowser received 427233 bytes for https://www.reuters.com/world/china/china-support-hong-kongs-integration-with-countrys-overall-development-2026-03-05/
-2026-03-05 02:32:43,425 DEBUG:   desc length: 344, img: https://www.reuters.com/resizer/v2/532YF3X74RNB5CPQTDMATROCZI.jpg?auth=0a4fa3bbfb0c665532b329e4a9a980e65e0e667c1e8d5ce3b
-2026-03-05 02:32:43,425 INFO: Processing 19/114 [Reuters]: Australia to join G7 critical minerals alliance, Canada's Carney says
-2026-03-05 02:32:43,425 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/americas/australia-join-g7-critical-minerals-alliance-canadas-carney-says-2026-03-04/
-2026-03-05 02:32:43,425 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/americas/australia-join-g7-critical-minerals-alliance-canadas-carney-says-2026-03-04/
-2026-03-05 02:32:43,425 DEBUG: Using selector: EpollSelector
-2026-03-05 02:32:45,275 DEBUG: BotBrowser received 441230 bytes for https://www.reuters.com/world/americas/australia-join-g7-critical-minerals-alliance-canadas-carney-says-2026-03-04/
-2026-03-05 02:32:45,360 DEBUG:   desc length: 1845, img: https://www.reuters.com/resizer/v2/XNEYPOROAFN5NORU5XFLTYBLDQ.jpg?auth=fd2393fee346ee6679184356d3033cacdff0465dbfc128f96
-2026-03-05 02:32:45,360 INFO: Processing 20/114 [Reuters]: White House says Trump using preventative skin treatment for neck rash, offers n
-2026-03-05 02:32:45,360 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/healthcare-pharmaceuticals/white-house-says-trump-using-preventative-skin-treatment-neck-rash-offers-no-2026-03-04/
-2026-03-05 02:32:45,360 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/healthcare-pharmaceuticals/white-house-says-trump-using-preventative-skin-treatment-neck-rash-offers-no-2026-03-04/
-2026-03-05 02:32:45,360 DEBUG: Using selector: EpollSelector
-2026-03-05 02:33:01,590 DEBUG: networkidle timed out for https://www.reuters.com/business/healthcare-pharmaceuticals/white-house-says-trump-using-preventative-skin-treatment-neck-rash-offers-no-2026-03-04/ (non-fatal)
-2026-03-05 02:33:09,007 DEBUG: BotBrowser received 614025 bytes for https://www.reuters.com/business/healthcare-pharmaceuticals/white-house-says-trump-using-preventative-skin-treatment-neck-rash-offers-no-2026-03-04/
-2026-03-05 02:33:09,288 DEBUG:   desc length: 1669, img: https://www.reuters.com/resizer/v2/JUT27UVYOZLMHJM6LVQRHMI4XA.jpg?auth=7be9876252ef439957e74f93a05dd8f27801f9faf0d7bf894
-2026-03-05 02:33:09,288 INFO: Processing 21/114 [Reuters]: Trading Day: Respite, but for how long?
-2026-03-05 02:33:09,288 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
-2026-03-05 02:33:09,288 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
-2026-03-05 02:33:09,288 DEBUG: Using selector: EpollSelector
-2026-03-05 02:33:11,170 DEBUG: BotBrowser received 490093 bytes for https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
-2026-03-05 02:33:11,260 DEBUG:   desc length: 2617, img: https://www.reuters.com/resizer/v2/CEG6UDICTBLKDATLI36L5KYOWM.jpg?auth=7c1bfc21f39bf512eef0908af5b31af9eb8bf76299b85e8a1
-2026-03-05 02:33:11,260 INFO: Processing 22/114 [Reuters]: Mideast crisis highlights risk of dollar liquidity shock
-2026-03-05 02:33:11,260 DEBUG: Routing to BotBrowser: https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
-2026-03-05 02:33:11,260 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
-2026-03-05 02:33:11,260 DEBUG: Using selector: EpollSelector
-2026-03-05 02:33:27,447 DEBUG: networkidle timed out for https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/ (non-fatal)
-2026-03-05 02:33:33,078 DEBUG: BotBrowser received 628178 bytes for https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
-2026-03-05 02:33:33,289 DEBUG:   desc length: 5296, img: https://www.reuters.com/resizer/v2/AKG5TQCCI5HRHLFXDGVQTEB6K4.JPG?auth=4f9ac38f3d1ece25458c9e6f481cc3b1c8df5f69b21a40aa2
-2026-03-05 02:33:33,289 INFO: Processing 23/114 [Reuters]: Trump's Hormuz shipping plan is too little, too late in race to avert energy sho
-2026-03-05 02:33:33,289 DEBUG: Routing to BotBrowser: https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
-2026-03-05 02:33:33,289 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
-2026-03-05 02:33:33,289 DEBUG: Using selector: EpollSelector
-2026-03-05 02:33:49,664 DEBUG: networkidle timed out for https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/ (non-fatal)
-2026-03-05 02:33:55,262 DEBUG: BotBrowser received 640240 bytes for https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
-2026-03-05 02:33:55,686 DEBUG:   desc length: 5727, img: https://www.reuters.com/resizer/v2/OUV3W6FRKVHM7E5G7GKH7CHQX4.JPG?auth=5a0b9afb5b7abee6786bafe7e01862f94017d9eba03376e57
-2026-03-05 02:33:55,686 INFO: Processing 24/114 [Reuters]: Hormuz reopening is not solely in Trump’s gift
-2026-03-05 02:33:55,686 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
-2026-03-05 02:33:55,686 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
-2026-03-05 02:33:55,686 DEBUG: Using selector: EpollSelector
-2026-03-05 02:33:57,509 DEBUG: BotBrowser received 481287 bytes for https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
-2026-03-05 02:33:57,600 DEBUG:   desc length: 3456, img: https://www.reuters.com/resizer/v2/OUV3W6FRKVHM7E5G7GKH7CHQX4.JPG?auth=5a0b9afb5b7abee6786bafe7e01862f94017d9eba03376e57
-2026-03-05 02:33:57,600 INFO: Processing 25/114 [Reuters]: Kevin Warsh has a point on AI and inflation
-2026-03-05 02:33:57,600 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
-2026-03-05 02:33:57,600 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
-2026-03-05 02:33:57,601 DEBUG: Using selector: EpollSelector
-2026-03-05 02:33:59,582 DEBUG: BotBrowser received 498104 bytes for https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
-2026-03-05 02:33:59,670 DEBUG:   desc length: 6663, img: https://www.reuters.com/resizer/v2/7JB4MAH7I5KTRKFFEKWIGODV3I.jpg?auth=29022fd2dff45899215604bbf299dc90c79c209a945f0bd7e
-2026-03-05 02:33:59,670 INFO: Processing 26/114 [Reuters]: Iran crisis jumbles the Gulf state pecking order
-2026-03-05 02:33:59,670 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
-2026-03-05 02:33:59,671 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
-2026-03-05 02:33:59,671 DEBUG: Using selector: EpollSelector
-2026-03-05 02:34:01,520 DEBUG: BotBrowser received 495340 bytes for https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
-2026-03-05 02:34:01,611 DEBUG:   desc length: 3410, img: https://www.reuters.com/resizer/v2/AEYDKLXCNVJFZITMFDZULJVKRY.jpg?auth=bb8d4abe783e172bc608e026ef25c175237b9a190746934e2
-2026-03-05 02:34:01,611 INFO: Processing 27/114 [Reuters]: Private credit pioneers see downside of redemption
-2026-03-05 02:34:01,611 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
-2026-03-05 02:34:01,611 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
-2026-03-05 02:34:01,611 DEBUG: Using selector: EpollSelector
-2026-03-05 02:34:03,527 DEBUG: BotBrowser received 482377 bytes for https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
-2026-03-05 02:34:03,615 DEBUG:   desc length: 3182, img: https://www.reuters.com/resizer/v2/QFTACTXLQBKR5BETLXIPII2CYE.jpg?auth=c474ff31425a2b34dd4b7d70a1317bba82097d7794238b104
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-israel-us-march-04-2026-e1c316da4ce809407122590a6872aa85
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/kurdish-dissident-groups-iran-war-iraq-f76efe372becb7d80d3ed026791e67ba
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-ee527a73689fb718be316cc2997694ea
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/honduras-asfura-trump-china-taiwan-shrimp-farmers-78b00ac7a11b86174a32754de9de75bc
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stranded-travelers-iran-war-middle-east-38cbb9babed49fad08949bba8aef3d50
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/live/iran-war-israel-trump-03-03-2026
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/france-nuclear-weapons-macron-deterrence-ccbcfb03ef4a1e3efe287fb744adb148
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/live/iran-war-israel-trump-lebanon-march-04-2026
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-position-us-iran-attack-1042fa7295500f90ecd6285d552da349
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-israel-us-03-02-2026-cb42936de1d8c261be8f30f11c6665fa
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/video/citing-tremendous-progress-trump-gives-the-us-a-15-out-of-10-grade-for-iran-war-12df450169364a98846c0eeb712e0ef9
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/video/white-house-says-trumps-feeling-based-on-fact-that-iran-posed-an-imminent-threat-led-to-strikes-afdafd3d3fec4d1ba28babb5b2638ab5
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/video/video-shows-huge-blast-near-us-consulate-in-dubai-ef93d7ed38994fdc8259c06c7297659c
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/sri-lanka-iran-middle-east-ship-sinking-69191dde43154c5176a8aeacc9128748
-2026-03-05 02:34:03,616 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-us-war-israel-strait-or-hormuz-deaths-f1619c6bfbbd5fe10857ff0af073aa0e
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/lebanon-israel-hezbollah-airstrikes-litani-evacuation-hazmieh-f61d22f9bc723b9bae1865a14e3c1139
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/russia-libya-lng-carrier-arctic-metagaz-e40477839f7e8c5863492ec6de2b95de
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/russia-ukraine-war-talks-us-iran-f9069ab3f4cde813af0e6221daf6bf71
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/ghana-russia-ukraine-fighters-war-f77465f7c2c1d4f6749557a60ccf9046
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/ukraine-economy-war-ebrd-electricity-838255aa27f76046a296dfe029e2d0a9
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stocks-markets-iran-oil-trump-c9a42448cbc7afc35e959dd444614aa0
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/pmi-china-contraction-economy-21dea697d4c6d87bfed822a941becca0
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/elon-musk-twitter-lawsuit-shareholders-stock-3fa8783666737839cdd7331fec1bf61d
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/africa-tiktok-farming-agriculture-business-video-76a3f955d409e9edfc3fff1d86c70e4f
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/meta-instagram-new-mexico-zuckerberg-mosseri-social-e5a6749f4628cff9ff399df142783f33
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-trump-spain-war-sanchez-bases-26c3132777225c4e473f090b7ab07037
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-war-middle-east-travel-stranded-dba77afeee3d0b3d1b8a7956e1b2bc89
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/france-nuclear-weapons-macron-europe-deterrence-471cce59f2a31c492ec9966bd532d679
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-war-oil-gas-lng-russia-ukraine-b43d87b37c4a3b29a12198e055786f51
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/nepal-shah-oli-protests-election-58cac72e25490c8c6363626a7dc10171
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/pakkstan-afghanistan-fighting-turkey-mediation-b4d729bd6f8fdfe9a7b34b8e4f0a12e0
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-congress-economy-gdp-trump-target-1822006cd39ff43505fa9a47a4581a16
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-spying-london-britain-e3746f630c1e9680b49b46165eb577bf
-2026-03-05 02:34:03,617 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/ecuador-cuba-trump-noboa-bc7b4bab79e54a39bb8f18d683105b22
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/cuba-blackout-power-outage-havana-western-island-f7d1a4927bbcefb774ccf34dbbc9a794
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/nahuel-gallo-venezuela-argentina-5a8795443ca808425d3c345b42e6b634
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/brazil-mercosur-european-union-trade-deal-b73403ac02c83f38d8336a3d7cce0f00
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/south-sudan-msf-aid-workers-unaccounted-for-b9df50eaa5df080080cc2dd6d26b13bb
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/us-rwanda-sanctions-congo-m23-military-nyakarundi-4122f57015e3f5688d4011de737e278b
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/anglican-communion-divisions-africa-lgbtq-gender-2a539fcf903ad9a07a7f825649dd882e
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/south-sudan-violence-insurgents-69a8a9bf191c0c2d8583fbc37ff9ae70
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/texas-austin-bar-shooting-deadly-university-b9ebb0d141b01eca6e34f790248306dc
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/rhode-island-priest-abuse-f40c99b76870a2516999bf2d676aa144
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/rhode-island-catholic-priest-abuse-diocese-dfde5b09131ea4fc668e32663b3b83d2
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/homeland-security-immigration-enforcement-bovino-investigation-2a88d58b353c98fe893727c19158e601
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/virginia-redistricting-democrats-referendum-court-lawsuits-09784036e696bbe8d4d254e15079a5d8
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-us-military-deaths-0a3f1532ec1953d51898e5b5e2b625d6
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-manufacturing-economy-pmi-685ab43bcb8d113e7df0b9be8e9f417d
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-congress-what-to-expect-10c6976dfe8e824922deaff3f4880153
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/photo-gallery/total-lunar-eclipse-blood-moon-b20ee3da55e4f7544e2488dd19f91527
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-party-congress-economy-property-jinping-e9b8c257561f67b19fbe9b2521835343
-2026-03-05 02:34:03,618 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-us-israel-international-reaction-03-02-2026-db5128dca1593c0af6c9f89ecbbe57d1
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/japan-taiwan-vietnam-india-womens-asian-cup-247b8863c009bb2015699bed6b2f9ca3
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-war-supply-chain-disruption-8f262bb210710b7509221a3dccf787c9
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/india-canada-trade-modi-carney-632cf32892560ab18a72e67f39df6c15
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/t20-world-cup-africa-zimbabwe-india-wi-de7637c3b857fe7471dbd805104c6be1
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/india-canada-modi-carney-trade-tariffs-diversify-83ee6bc8498e8c185b39b09b01dc55c7
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/assassinations-plot-trump-biden-iran-asif-merchant-4c1693913158947f648171a45e34d382
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stocks-markets-iran-trump-oil-china-a88fbee22bf1ded91d51454033f1c088
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/honduras-cuban-doctors-e860064a52dfb79d5500d5b849e61066
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/north-korea-kim-jong-un-destroyer-nuclear-f3bca713aa647eb41b8ec95b0c59eb8d
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/american-airlines-venezuela-trump-flights-faa-51b41eaee733a8adf068d68bf7d24984
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/florida-cuba-investigation-brothers-to-rescue-shootdown-e4e217b26a0a20a0e6f4adc9318e9a87
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/congo-rubaya-collapse-7b1e24f3d071a20b4865832bfec122f1
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/google-play-store-changes-epic-games-1618d9a98b6a8b37ac2897be5aa105ad
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/photo-gallery/associated-press-top-photos-march-4-2026-531b4cee1e208cbc3a6cc38ca5df23b6
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stella-mccartney-paris-fashion-year-of-horse-2a8112a791fa3efada84d78298be5301
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/venezuela-us-burgum-rodriguez-trump-minerals-dc9193f2832ad8ceafbfa551f078bfdd
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/puerto-rico-ambulance-shooting-killed-santurce-07429ac092f1419db03b1eb4a2645b18
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/russia-ukraine-war-hungary-oil-gas-putin-orban-183daedf1c4bd94e1af48baaf4bc474c
-2026-03-05 02:34:03,619 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/italy-art-michelangelo-vatican-e13f23b042f1c20e81c2f8e4d5deed97
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/france-cuba-havana-flights-suspended-fuel-oil-c767377453390f8007e2839e779398f9
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/photo-gallery/photos-talarico-iran-us-israeli-war-jesse-jackson-holi-hindu-festival-b02b32f69bc6aaf99927868ec3c71f8f
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/uk-hong-kong-spying-trial-3555bb4708cb92ebe56c502d9749d7d7
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/brazil-banco-master-bank-fraud-13c9a88612145e7e5fc759c019af2ac2
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/apple-iphone17e-macbook-monitors-ipad-e52b1d9b4df4c0bc6b40b11dc155450b
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/sea-level-rise-climate-change-flooding-warming-59bb59d2fe839224a10bd28d604b5d95
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/us-ecuador-military-operation-drugs-organized-crime-43cd71e72057273437075429dcdc20c5
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/cuba-terrorism-charges-us-boat-shooting-34ce5212cd10f58fb45a347f9cbb7630
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/rapper-ghetts-sentenced-drink-driving-6e6e846115c694ca2f188addf9b65cb2
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/haiti-ban-us-commercial-flights-0f4d06828861de8509e53b2d2e42d3ed
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/greece-politics-golden-dawn-court-crime-52c2af8ddb635a5f902d9cecc3ec5671
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/trump-starmer-us-uk-special-relationship-iran-2b5be4d200f7c0b081f9f5a59f260efc
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/australia-carney-canada-iran-regret-ab529749962be194ad9501cbcac6f9e9
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/renewable-energy-africa-funding-sefa-climate-0947a10179329eab4e47cdde9a6285b5
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/south-africa-mosiuoa-lekota-antiapartheid-activist-obit-b1e2c80f029c3517aba59429eda36f30
-2026-03-05 02:34:03,620 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-soccer-womens-asian-cup-australia-d9f23186baad32bdcceb01952d02556f
-2026-03-05 02:34:03,621 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-05 02:34:03,814 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
-2026-03-05 02:34:03,815 DEBUG: Shutting down BotBrowser (pid 3870)
-2026-03-05 02:34:03,933 INFO: Loaded existing XML: pau.xml
-2026-03-05 02:34:03,939 INFO: Loaded existing XML: reuters.xml
-2026-03-05 02:34:03,940 INFO: Existing items in main feed: 500
-2026-03-05 02:34:03,940 INFO: Existing items in Reuters feed: 434
-2026-03-05 02:34:03,940 DEBUG: Already exists, skipping: https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
-2026-03-05 02:34:03,940 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
-2026-03-05 02:34:03,940 DEBUG: Added: https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
-2026-03-05 02:34:03,940 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
-2026-03-05 02:34:03,940 DEBUG: Added: https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
-2026-03-05 02:34:03,940 DEBUG: Already exists, skipping: https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
-2026-03-05 02:34:03,940 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
-2026-03-05 02:34:03,940 DEBUG: Already exists, skipping: https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
-2026-03-05 02:34:03,940 DEBUG: Already exists, skipping: https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Already exists, skipping: https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Already exists, skipping: https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Already exists, skipping: https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Already exists, skipping: https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Added: https://www.reuters.com/world/china/who-is-contesting-nepals-polls-what-is-stake-2026-03-05/
-2026-03-05 02:34:03,941 DEBUG: Added: https://www.reuters.com/world/americas/australia-canada-sign-new-deals-critical-minerals-2026-03-05/
-2026-03-05 02:34:03,941 DEBUG: Added: https://www.reuters.com/world/china/chinas-defence-spending-rise-7-2026-vs-72-set-2025-2026-03-05/
-2026-03-05 02:34:03,941 DEBUG: Added: https://www.reuters.com/world/china/china-support-hong-kongs-integration-with-countrys-overall-development-2026-03-05/
-2026-03-05 02:34:03,941 DEBUG: Added: https://www.reuters.com/world/americas/australia-join-g7-critical-minerals-alliance-canadas-carney-says-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Already exists, skipping: https://www.reuters.com/business/healthcare-pharmaceuticals/white-house-says-trump-using-preventative-skin-treatment-neck-rash-offers-no-2026-03-04/
-2026-03-05 02:34:03,941 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://apnews.com/article/iran-israel-us-march-04-2026-e1c316da4ce809407122590a6872aa85
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://apnews.com/article/kurdish-dissident-groups-iran-war-iraq-f76efe372becb7d80d3ed026791e67ba
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-ee527a73689fb718be316cc2997694ea
-2026-03-05 02:34:03,942 DEBUG: Added: https://apnews.com/article/honduras-asfura-trump-china-taiwan-shrimp-farmers-78b00ac7a11b86174a32754de9de75bc
-2026-03-05 02:34:03,942 DEBUG: Added: https://apnews.com/article/stranded-travelers-iran-war-middle-east-38cbb9babed49fad08949bba8aef3d50
-2026-03-05 02:34:03,942 DEBUG: Already exists, skipping: https://apnews.com/live/iran-war-israel-trump-03-03-2026
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/france-nuclear-weapons-macron-deterrence-ccbcfb03ef4a1e3efe287fb744adb148
-2026-03-05 02:34:03,943 DEBUG: Added: https://apnews.com/live/iran-war-israel-trump-lebanon-march-04-2026
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/china-position-us-iran-attack-1042fa7295500f90ecd6285d552da349
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/iran-israel-us-03-02-2026-cb42936de1d8c261be8f30f11c6665fa
-2026-03-05 02:34:03,943 DEBUG: Added: https://apnews.com/video/citing-tremendous-progress-trump-gives-the-us-a-15-out-of-10-grade-for-iran-war-12df450169364a98846c0eeb712e0ef9
-2026-03-05 02:34:03,943 DEBUG: Added: https://apnews.com/video/white-house-says-trumps-feeling-based-on-fact-that-iran-posed-an-imminent-threat-led-to-strikes-afdafd3d3fec4d1ba28babb5b2638ab5
-2026-03-05 02:34:03,943 DEBUG: Added: https://apnews.com/video/video-shows-huge-blast-near-us-consulate-in-dubai-ef93d7ed38994fdc8259c06c7297659c
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/sri-lanka-iran-middle-east-ship-sinking-69191dde43154c5176a8aeacc9128748
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/iran-us-war-israel-strait-or-hormuz-deaths-f1619c6bfbbd5fe10857ff0af073aa0e
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/lebanon-israel-hezbollah-airstrikes-litani-evacuation-hazmieh-f61d22f9bc723b9bae1865a14e3c1139
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/russia-libya-lng-carrier-arctic-metagaz-e40477839f7e8c5863492ec6de2b95de
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/russia-ukraine-war-talks-us-iran-f9069ab3f4cde813af0e6221daf6bf71
-2026-03-05 02:34:03,943 DEBUG: Already exists, skipping: https://apnews.com/article/ghana-russia-ukraine-fighters-war-f77465f7c2c1d4f6749557a60ccf9046
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/ukraine-economy-war-ebrd-electricity-838255aa27f76046a296dfe029e2d0a9
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/stocks-markets-iran-oil-trump-c9a42448cbc7afc35e959dd444614aa0
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/pmi-china-contraction-economy-21dea697d4c6d87bfed822a941becca0
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/elon-musk-twitter-lawsuit-shareholders-stock-3fa8783666737839cdd7331fec1bf61d
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/africa-tiktok-farming-agriculture-business-video-76a3f955d409e9edfc3fff1d86c70e4f
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/meta-instagram-new-mexico-zuckerberg-mosseri-social-e5a6749f4628cff9ff399df142783f33
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/iran-trump-spain-war-sanchez-bases-26c3132777225c4e473f090b7ab07037
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/iran-war-middle-east-travel-stranded-dba77afeee3d0b3d1b8a7956e1b2bc89
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/france-nuclear-weapons-macron-europe-deterrence-471cce59f2a31c492ec9966bd532d679
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/iran-war-oil-gas-lng-russia-ukraine-b43d87b37c4a3b29a12198e055786f51
-2026-03-05 02:34:03,944 DEBUG: Added: https://apnews.com/article/nepal-shah-oli-protests-election-58cac72e25490c8c6363626a7dc10171
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/pakkstan-afghanistan-fighting-turkey-mediation-b4d729bd6f8fdfe9a7b34b8e4f0a12e0
-2026-03-05 02:34:03,944 DEBUG: Added: https://apnews.com/article/china-congress-economy-gdp-trump-target-1822006cd39ff43505fa9a47a4581a16
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/china-spying-london-britain-e3746f630c1e9680b49b46165eb577bf
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/ecuador-cuba-trump-noboa-bc7b4bab79e54a39bb8f18d683105b22
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/cuba-blackout-power-outage-havana-western-island-f7d1a4927bbcefb774ccf34dbbc9a794
-2026-03-05 02:34:03,944 DEBUG: Already exists, skipping: https://apnews.com/article/nahuel-gallo-venezuela-argentina-5a8795443ca808425d3c345b42e6b634
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/brazil-mercosur-european-union-trade-deal-b73403ac02c83f38d8336a3d7cce0f00
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/south-sudan-msf-aid-workers-unaccounted-for-b9df50eaa5df080080cc2dd6d26b13bb
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/us-rwanda-sanctions-congo-m23-military-nyakarundi-4122f57015e3f5688d4011de737e278b
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/anglican-communion-divisions-africa-lgbtq-gender-2a539fcf903ad9a07a7f825649dd882e
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/south-sudan-violence-insurgents-69a8a9bf191c0c2d8583fbc37ff9ae70
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/texas-austin-bar-shooting-deadly-university-b9ebb0d141b01eca6e34f790248306dc
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/rhode-island-priest-abuse-f40c99b76870a2516999bf2d676aa144
-2026-03-05 02:34:03,945 DEBUG: Added: https://apnews.com/article/rhode-island-catholic-priest-abuse-diocese-dfde5b09131ea4fc668e32663b3b83d2
-2026-03-05 02:34:03,945 DEBUG: Added: https://apnews.com/article/homeland-security-immigration-enforcement-bovino-investigation-2a88d58b353c98fe893727c19158e601
-2026-03-05 02:34:03,945 DEBUG: Added: https://apnews.com/article/virginia-redistricting-democrats-referendum-court-lawsuits-09784036e696bbe8d4d254e15079a5d8
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/iran-us-military-deaths-0a3f1532ec1953d51898e5b5e2b625d6
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/china-manufacturing-economy-pmi-685ab43bcb8d113e7df0b9be8e9f417d
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/china-congress-what-to-expect-10c6976dfe8e824922deaff3f4880153
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/photo-gallery/total-lunar-eclipse-blood-moon-b20ee3da55e4f7544e2488dd19f91527
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/china-party-congress-economy-property-jinping-e9b8c257561f67b19fbe9b2521835343
-2026-03-05 02:34:03,945 DEBUG: Already exists, skipping: https://apnews.com/article/iran-us-israel-international-reaction-03-02-2026-db5128dca1593c0af6c9f89ecbbe57d1
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/japan-taiwan-vietnam-india-womens-asian-cup-247b8863c009bb2015699bed6b2f9ca3
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/iran-war-supply-chain-disruption-8f262bb210710b7509221a3dccf787c9
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/india-canada-trade-modi-carney-632cf32892560ab18a72e67f39df6c15
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/t20-world-cup-africa-zimbabwe-india-wi-de7637c3b857fe7471dbd805104c6be1
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/india-canada-modi-carney-trade-tariffs-diversify-83ee6bc8498e8c185b39b09b01dc55c7
-2026-03-05 02:34:03,946 DEBUG: Added: https://apnews.com/article/assassinations-plot-trump-biden-iran-asif-merchant-4c1693913158947f648171a45e34d382
-2026-03-05 02:34:03,946 DEBUG: Added: https://apnews.com/article/stocks-markets-iran-trump-oil-china-a88fbee22bf1ded91d51454033f1c088
-2026-03-05 02:34:03,946 DEBUG: Added: https://apnews.com/article/honduras-cuban-doctors-e860064a52dfb79d5500d5b849e61066
-2026-03-05 02:34:03,946 DEBUG: Added: https://apnews.com/article/north-korea-kim-jong-un-destroyer-nuclear-f3bca713aa647eb41b8ec95b0c59eb8d
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/american-airlines-venezuela-trump-flights-faa-51b41eaee733a8adf068d68bf7d24984
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/florida-cuba-investigation-brothers-to-rescue-shootdown-e4e217b26a0a20a0e6f4adc9318e9a87
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/congo-rubaya-collapse-7b1e24f3d071a20b4865832bfec122f1
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/google-play-store-changes-epic-games-1618d9a98b6a8b37ac2897be5aa105ad
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/photo-gallery/associated-press-top-photos-march-4-2026-531b4cee1e208cbc3a6cc38ca5df23b6
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/stella-mccartney-paris-fashion-year-of-horse-2a8112a791fa3efada84d78298be5301
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/venezuela-us-burgum-rodriguez-trump-minerals-dc9193f2832ad8ceafbfa551f078bfdd
-2026-03-05 02:34:03,946 DEBUG: Already exists, skipping: https://apnews.com/article/puerto-rico-ambulance-shooting-killed-santurce-07429ac092f1419db03b1eb4a2645b18
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/russia-ukraine-war-hungary-oil-gas-putin-orban-183daedf1c4bd94e1af48baaf4bc474c
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/italy-art-michelangelo-vatican-e13f23b042f1c20e81c2f8e4d5deed97
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/france-cuba-havana-flights-suspended-fuel-oil-c767377453390f8007e2839e779398f9
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/photo-gallery/photos-talarico-iran-us-israeli-war-jesse-jackson-holi-hindu-festival-b02b32f69bc6aaf99927868ec3c71f8f
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/uk-hong-kong-spying-trial-3555bb4708cb92ebe56c502d9749d7d7
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/brazil-banco-master-bank-fraud-13c9a88612145e7e5fc759c019af2ac2
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/apple-iphone17e-macbook-monitors-ipad-e52b1d9b4df4c0bc6b40b11dc155450b
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/sea-level-rise-climate-change-flooding-warming-59bb59d2fe839224a10bd28d604b5d95
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/us-ecuador-military-operation-drugs-organized-crime-43cd71e72057273437075429dcdc20c5
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/cuba-terrorism-charges-us-boat-shooting-34ce5212cd10f58fb45a347f9cbb7630
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/rapper-ghetts-sentenced-drink-driving-6e6e846115c694ca2f188addf9b65cb2
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/haiti-ban-us-commercial-flights-0f4d06828861de8509e53b2d2e42d3ed
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/greece-politics-golden-dawn-court-crime-52c2af8ddb635a5f902d9cecc3ec5671
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/trump-starmer-us-uk-special-relationship-iran-2b5be4d200f7c0b081f9f5a59f260efc
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/australia-carney-canada-iran-regret-ab529749962be194ad9501cbcac6f9e9
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/renewable-energy-africa-funding-sefa-climate-0947a10179329eab4e47cdde9a6285b5
-2026-03-05 02:34:03,947 DEBUG: Already exists, skipping: https://apnews.com/article/south-africa-mosiuoa-lekota-antiapartheid-activist-obit-b1e2c80f029c3517aba59429eda36f30
-2026-03-05 02:34:03,948 DEBUG: Already exists, skipping: https://apnews.com/article/iran-soccer-womens-asian-cup-australia-d9f23186baad32bdcceb01952d02556f
-2026-03-05 02:34:03,948 INFO: Added 15 new articles to main feed
-2026-03-05 02:34:03,948 INFO: Added 7 new articles to Reuters feed
-2026-03-05 02:34:03,948 INFO: Trimmed feed to 500 items
-2026-03-05 02:34:03,973 INFO: Done! Main feed saved to pau.xml
-2026-03-05 02:34:03,973 INFO: Done! Reuters feed saved to reuters.xml
-2026-03-05 02:34:03,973 INFO: Debug log saved to debug.log
+2026-03-05 04:25:48,530 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
+2026-03-05 04:25:48,530 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/
+2026-03-05 04:25:48,530 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-05 04:25:48,532 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-05 04:25:49,034 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-05 04:25:49,535 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-05 04:25:50,037 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-05 04:25:50,538 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-05 04:25:50,539 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-05 04:25:50,539 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-05 04:25:50,907 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/
+2026-03-05 04:25:50,907 DEBUG: Using selector: EpollSelector
+2026-03-05 04:25:52,719 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.reuters.com/world/", waiting until "domcontentloaded"
+
+2026-03-05 04:25:52,719 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-05 04:25:52,719 DEBUG: Killing existing BotBrowser (pid 3742)
+2026-03-05 04:25:52,735 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-05 04:25:52,740 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-05 04:25:53,242 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-05 04:25:53,243 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-05 04:25:53,243 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-05 04:25:55,243 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/
+2026-03-05 04:25:55,244 DEBUG: Using selector: EpollSelector
+2026-03-05 04:25:56,982 DEBUG: BotBrowser received 532477 bytes for https://www.reuters.com/world/
+2026-03-05 04:25:56,984 DEBUG: Saved HTML to opinin.html (532477 bytes)
+2026-03-05 04:25:57,036 DEBUG: Primary selector nodes found: 20
+2026-03-05 04:25:57,037 INFO: Primary world selector matched 20 items.
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/world/asia-pacific/iran-launches-wave-missiles-israel-us-republicans-block-measure-halt-us-air-2026-03-05/ | Iran launches wave of missiles at Israel; US Republicans block measure to halt US air campaign
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/ | US Senate backs Trump on Iran strikes, blocks bid to limit his war powers
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/ | Nepal goes to the polls; voters seek change after youth-led protests
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/ | Trump weighing US role in Iran after conflict, White House says
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/ | China to build 'birth-friendly society', refine social security system
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/ | Landslide kills over 200 people at Congo's Rubaya mine, mines ministry says
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/ | Pakistani man says Iran forced him into plot to kill Trump, media say
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/world/asia-pacific/iranian-sailors-recovering-sri-lankan-hospital-after-us-submarine-attack-2026-03-05/ | Iranian sailors recovering in Sri Lankan hospital after US submarine attack, authorities say
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/ | Iran war breaks UN Charter, strike on school shocking, UN probe says
+2026-03-05 04:25:57,037 DEBUG:   - https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/ | Cuba hit by widespread power blackout amid US oil chokehold
+2026-03-05 04:25:57,038 DEBUG:   - https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/ | US sinks Iranian warship far from Gulf, NATO downs Iranian missile heading for Turkey
+2026-03-05 04:25:57,038 DEBUG:   - https://www.reuters.com/world/china/singapore-police-announce-arrest-3-linked-alleged-scam-syndicate-prince-group-2026-03-05/ | Singapore police announce arrest of 3 linked to alleged scam syndicate Prince Group
+2026-03-05 04:25:57,038 INFO: Found 20 Reuters world articles
+2026-03-05 04:25:57,038 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
+2026-03-05 04:25:57,038 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/
+2026-03-05 04:25:57,038 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/
+2026-03-05 04:25:57,038 DEBUG: Using selector: EpollSelector
+2026-03-05 04:26:13,970 DEBUG: networkidle timed out for https://www.reuters.com/commentary/ (non-fatal)
+2026-03-05 04:26:19,901 DEBUG: BotBrowser received 707184 bytes for https://www.reuters.com/commentary/
+2026-03-05 04:26:19,904 DEBUG: Saved HTML to commentary.html (707184 bytes)
+2026-03-05 04:26:20,116 INFO: Primary commentary selector matched 7 cards.
+2026-03-05 04:26:20,117 DEBUG:   - href=/world/middle-east/global-markets-trading-day-graphic-2026-03-04/ | title=Trading Day: Respite, but for how long?
+2026-03-05 04:26:20,118 DEBUG:   - href=/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/ | title=Mideast crisis highlights risk of dollar liquidity shock
+2026-03-05 04:26:20,119 DEBUG:   - href=/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/ | title=Trump's Hormuz shipping plan is too little, too late in race to avert energy shock
+2026-03-05 04:26:20,119 DEBUG:   - href=/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/ | title=Hormuz reopening is not solely in Trump’s gift
+2026-03-05 04:26:20,120 DEBUG:   - href=/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/ | title=Kevin Warsh has a point on AI and inflation
+2026-03-05 04:26:20,120 DEBUG:   - href=/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/ | title=Iran crisis jumbles the Gulf state pecking order
+2026-03-05 04:26:20,120 DEBUG:   - href=/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/ | title=Private credit pioneers see downside of redemption
+2026-03-05 04:26:20,120 INFO: Total Reuters articles (world + commentary): 27
+2026-03-05 04:26:20,120 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
+2026-03-05 04:26:20,120 DEBUG: Routing to FlareSolverr: https://apnews.com/world-news
+2026-03-05 04:26:20,120 DEBUG: FlareSolverr GET: https://apnews.com/world-news
+2026-03-05 04:26:20,123 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-05 04:26:28,582 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1407145
+2026-03-05 04:26:28,587 DEBUG: FlareSolverr HTTP 200
+2026-03-05 04:26:28,595 DEBUG: FlareSolverr received 1336165 bytes for https://apnews.com/world-news
+2026-03-05 04:26:28,602 DEBUG: Saved HTML to apnews.html (1336165 bytes)
+2026-03-05 04:26:29,046 INFO: AP News primary selector matched 89 cards.
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/iran-israel-us-march-04-2026-e1c316da4ce809407122590a6872aa85 | thumb=https://dims.apnews.com/dims4/default/99b23c5/2147483647/strip/true/crop/8640x57 | Iran launches missiles at Israel and US bases as Israeli military begins new strikes in Lebanon
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/kurdish-dissident-groups-iran-war-iraq-f76efe372becb7d80d3ed026791e67ba | thumb=https://dims.apnews.com/dims4/default/0c71878/2147483647/strip/true/crop/6390x42 | Kurdish dissident groups say they are preparing to join the fight against Iran with US support
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-ee527a73689fb718be316cc2997694ea | thumb=https://dims.apnews.com/dims4/default/8a262b2/2147483647/strip/true/crop/3948x26 | A son of Iran’s late supreme leader is a possible candidate to replace his father as war rages
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/cuba-blackout-power-outage-havana-western-island-f7d1a4927bbcefb774ccf34dbbc9a794 | thumb=https://dims.apnews.com/dims4/default/90378c4/2147483647/strip/true/crop/7498x49 | Millions left without power after major blackout hits Cuba’s western region
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/china-congress-economy-gdp-trump-target-1822006cd39ff43505fa9a47a4581a16 | thumb=https://dims.apnews.com/dims4/default/fe8762a/2147483647/strip/true/crop/5068x33 | China sets a lower economic growth target of 4.5% to 5% for 2026 as challenges loom
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-03-03-2026 | thumb= | Pentagon releases the names of 4 killed troops and says they died in a drone strike in Kuwait
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/france-nuclear-weapons-macron-deterrence-ccbcfb03ef4a1e3efe287fb744adb148 | thumb= | Macron says France will allow temporary deployment of nuclear-armed jets to European allies
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-lebanon-march-04-2026 | thumb= | Senate rejects war powers bill to halt attacks against Iran
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/china-position-us-iran-attack-1042fa7295500f90ecd6285d552da349 | thumb= | What China’s response to the US attack on Iran says about its foreign policy
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/article/iran-israel-us-03-02-2026-cb42936de1d8c261be8f30f11c6665fa | thumb= | As Mideast conflict widens, US says attacks on Iran will last weeks and intensify
+2026-03-05 04:26:29,046 DEBUG:   - https://apnews.com/video/citing-tremendous-progress-trump-gives-the-us-a-15-out-of-10-grade-for-iran-war-12df450169364a98846c0eeb712e0ef9 | thumb= | Citing ‘tremendous progress,’ Trump gives the US a 15 out of 10 grade for Iran war
+2026-03-05 04:26:29,047 DEBUG:   - https://apnews.com/video/white-house-says-trumps-feeling-based-on-fact-that-iran-posed-an-imminent-threat-led-to-strikes-afdafd3d3fec4d1ba28babb5b2638ab5 | thumb= | White House says Trump’s ‘feeling based on fact’ that Iran posed an imminent threat led to strikes
+2026-03-05 04:26:29,047 INFO: Found 89 AP News articles
+2026-03-05 04:26:29,047 INFO: Fetching France24 RSS via FlareSolverr: https://www.france24.com/en/rss
+2026-03-05 04:26:29,047 DEBUG: Routing to FlareSolverr: https://www.france24.com/en/rss
+2026-03-05 04:26:29,047 DEBUG: FlareSolverr GET: https://www.france24.com/en/rss
+2026-03-05 04:26:29,047 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-05 04:26:29,717 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 30945
+2026-03-05 04:26:29,717 DEBUG: FlareSolverr HTTP 200
+2026-03-05 04:26:29,718 DEBUG: FlareSolverr received 29908 bytes for https://www.france24.com/en/rss
+2026-03-05 04:26:29,718 INFO: Found 0 total items in France24 RSS
+2026-03-05 04:26:29,718 INFO: France24: kept 0 items, excluded 0
+2026-03-05 04:26:29,718 INFO: Total unique articles to process: 116
+2026-03-05 04:26:29,718 DEBUG:   sample 1: [Reuters] https://www.reuters.com/world/asia-pacific/iran-launches-wave-missiles-israel-us-republicans-block-measure-halt-us-air-2026-03-05/
+2026-03-05 04:26:29,718 DEBUG:   sample 2: [Reuters] https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
+2026-03-05 04:26:29,718 DEBUG:   sample 3: [Reuters] https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
+2026-03-05 04:26:29,718 DEBUG:   sample 4: [Reuters] https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
+2026-03-05 04:26:29,718 DEBUG:   sample 5: [Reuters] https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
+2026-03-05 04:26:29,719 DEBUG:   sample 6: [Reuters] https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
+2026-03-05 04:26:29,719 DEBUG:   sample 7: [Reuters] https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/
+2026-03-05 04:26:29,719 DEBUG:   sample 8: [Reuters] https://www.reuters.com/world/asia-pacific/iranian-sailors-recovering-sri-lankan-hospital-after-us-submarine-attack-2026-03-05/
+2026-03-05 04:26:29,719 DEBUG:   sample 9: [Reuters] https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
+2026-03-05 04:26:29,719 DEBUG:   sample 10: [Reuters] https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
+2026-03-05 04:26:29,719 DEBUG:   sample 11: [Reuters] https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
+2026-03-05 04:26:29,719 DEBUG:   sample 12: [Reuters] https://www.reuters.com/world/china/singapore-police-announce-arrest-3-linked-alleged-scam-syndicate-prince-group-2026-03-05/
+2026-03-05 04:26:29,720 INFO: Processing 1/116 [Reuters]: Iran launches wave of missiles at Israel; US Republicans block measure to halt U
+2026-03-05 04:26:29,720 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/asia-pacific/iran-launches-wave-missiles-israel-us-republicans-block-measure-halt-us-air-2026-03-05/
+2026-03-05 04:26:29,720 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/asia-pacific/iran-launches-wave-missiles-israel-us-republicans-block-measure-halt-us-air-2026-03-05/
+2026-03-05 04:26:29,720 DEBUG: Using selector: EpollSelector
+2026-03-05 04:26:31,538 DEBUG: BotBrowser received 490847 bytes for https://www.reuters.com/world/asia-pacific/iran-launches-wave-missiles-israel-us-republicans-block-measure-halt-us-air-2026-03-05/
+2026-03-05 04:26:31,627 DEBUG:   desc length: 4340, img: https://www.reuters.com/resizer/v2/JX27CHNHVFMWNM6WBKXWCZNFC4.jpg?auth=9f408b7837237d9574adbce9faff2ff7abb0effc2c569228e
+2026-03-05 04:26:31,628 INFO: Processing 2/116 [Reuters]: US Senate backs Trump on Iran strikes, blocks bid to limit his war powers
+2026-03-05 04:26:31,628 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
+2026-03-05 04:26:31,628 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
+2026-03-05 04:26:31,628 DEBUG: Using selector: EpollSelector
+2026-03-05 04:26:33,388 DEBUG: BotBrowser received 496129 bytes for https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
+2026-03-05 04:26:33,479 DEBUG:   desc length: 4253, img: https://www.reuters.com/resizer/v2/NNSQNESPCVIN3HDPQPVRD5TLQ4.jpg?auth=73507cb54634eb617e48e008969a24f0472ea6ee19342e031
+2026-03-05 04:26:33,479 INFO: Processing 3/116 [Reuters]: Nepal goes to the polls; voters seek change after youth-led protests
+2026-03-05 04:26:33,479 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
+2026-03-05 04:26:33,479 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
+2026-03-05 04:26:33,480 DEBUG: Using selector: EpollSelector
+2026-03-05 04:26:35,268 DEBUG: BotBrowser received 472311 bytes for https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
+2026-03-05 04:26:35,361 DEBUG:   desc length: 3590, img: https://www.reuters.com/resizer/v2/EX5RRNZIBBJKXISIEDNQBTJPMU.jpg?auth=b451e7b9b91447310a52ef8b6c6c20754cab52ec37481afec
+2026-03-05 04:26:35,361 INFO: Processing 4/116 [Reuters]: Trump weighing US role in Iran after conflict, White House says
+2026-03-05 04:26:35,361 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
+2026-03-05 04:26:35,361 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
+2026-03-05 04:26:35,361 DEBUG: Using selector: EpollSelector
+2026-03-05 04:26:37,111 DEBUG: BotBrowser received 529355 bytes for https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
+2026-03-05 04:26:37,202 DEBUG:   desc length: 2226, img: https://www.reuters.com/resizer/v2/XE2JZXT64JONZDJKGPCY26IT7I.jpg?auth=36cc67e646d8cdbcfdbf8c8c70bac59d8165c27fc30918432
+2026-03-05 04:26:37,202 INFO: Processing 5/116 [Reuters]: China to build 'birth-friendly society', refine social security system
+2026-03-05 04:26:37,202 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
+2026-03-05 04:26:37,202 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
+2026-03-05 04:26:37,202 DEBUG: Using selector: EpollSelector
+2026-03-05 04:26:53,395 DEBUG: networkidle timed out for https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/ (non-fatal)
+2026-03-05 04:27:02,146 DEBUG: BotBrowser received 634969 bytes for https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
+2026-03-05 04:27:02,501 DEBUG:   desc length: 2902, img: https://www.reuters.com/resizer/v2/VADWNVR2Z5PUTNZD6NUO6WU77U.jpg?auth=09ec581ca7739e1724295156f5dd9d7e37ae02be22691d6f3
+2026-03-05 04:27:02,501 INFO: Processing 6/116 [Reuters]: Landslide kills over 200 people at Congo's Rubaya mine, mines ministry says
+2026-03-05 04:27:02,501 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
+2026-03-05 04:27:02,501 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
+2026-03-05 04:27:02,501 DEBUG: Using selector: EpollSelector
+2026-03-05 04:27:04,602 DEBUG: BotBrowser received 423165 bytes for https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
+2026-03-05 04:27:04,685 DEBUG:   desc length: 1461, img: https://www.reuters.com/resizer/v2/466BJJQ7PVGY5O53NZ3KL65MHM.png?auth=b9c3bf166c40a6778eb5672993fde7c30a15f48329026674e
+2026-03-05 04:27:04,686 INFO: Processing 7/116 [Reuters]: Pakistani man says Iran forced him into plot to kill Trump, media say
+2026-03-05 04:27:04,686 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/
+2026-03-05 04:27:04,686 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/
+2026-03-05 04:27:04,686 DEBUG: Using selector: EpollSelector
+2026-03-05 04:27:20,928 DEBUG: networkidle timed out for https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/ (non-fatal)
+2026-03-05 04:27:25,973 DEBUG: BotBrowser received 581970 bytes for https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/
+2026-03-05 04:27:26,200 DEBUG:   desc length: 1954, img: https://www.reuters.com/resizer/v2/LELOKS77P5MJXBQANSGQBLOADA.jpg?auth=09e363d350ba093d1a3fef4082a6cf1d78a0b1ebba2a8321c
+2026-03-05 04:27:26,200 INFO: Processing 8/116 [Reuters]: Iranian sailors recovering in Sri Lankan hospital after US submarine attack, aut
+2026-03-05 04:27:26,200 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/asia-pacific/iranian-sailors-recovering-sri-lankan-hospital-after-us-submarine-attack-2026-03-05/
+2026-03-05 04:27:26,200 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/asia-pacific/iranian-sailors-recovering-sri-lankan-hospital-after-us-submarine-attack-2026-03-05/
+2026-03-05 04:27:26,200 DEBUG: Using selector: EpollSelector
+2026-03-05 04:27:28,022 DEBUG: BotBrowser received 446034 bytes for https://www.reuters.com/world/asia-pacific/iranian-sailors-recovering-sri-lankan-hospital-after-us-submarine-attack-2026-03-05/
+2026-03-05 04:27:28,106 DEBUG:   desc length: 1534, img: https://www.reuters.com/resizer/v2/3RG5PG66UBKWLOK2BC4MG4F4HE.jpg?auth=48d72e87537a820548176302801ea95562a3fbe3fd02fb05f
+2026-03-05 04:27:28,106 INFO: Processing 9/116 [Reuters]: Iran war breaks UN Charter, strike on school shocking, UN probe says
+2026-03-05 04:27:28,107 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
+2026-03-05 04:27:28,107 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
+2026-03-05 04:27:28,107 DEBUG: Using selector: EpollSelector
+2026-03-05 04:27:29,938 DEBUG: BotBrowser received 452585 bytes for https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
+2026-03-05 04:27:30,023 DEBUG:   desc length: 1912, img: https://www.reuters.com/resizer/v2/KVFM55ZB7RKBRB3KFJ6SUWFCVA.jpg?auth=9bf9d56943877f9b4b86903f0ce2a77a0d7616411b25c9d2c
+2026-03-05 04:27:30,023 INFO: Processing 10/116 [Reuters]: Cuba hit by widespread power blackout amid US oil chokehold
+2026-03-05 04:27:30,023 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
+2026-03-05 04:27:30,023 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
+2026-03-05 04:27:30,024 DEBUG: Using selector: EpollSelector
+2026-03-05 04:27:31,992 DEBUG: BotBrowser received 469266 bytes for https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
+2026-03-05 04:27:32,156 DEBUG:   desc length: 2701, img: https://www.reuters.com/resizer/v2/53EE5PURKBMB5CIZC23TGFYULI.jpg?auth=9fb2420ec2b4161afbb8c82153f083a524e509d771eea65ff
+2026-03-05 04:27:32,156 INFO: Processing 11/116 [Reuters]: US sinks Iranian warship far from Gulf, NATO downs Iranian missile heading for T
+2026-03-05 04:27:32,156 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
+2026-03-05 04:27:32,156 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
+2026-03-05 04:27:32,156 DEBUG: Using selector: EpollSelector
+2026-03-05 04:27:33,995 DEBUG: BotBrowser received 593327 bytes for https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
+2026-03-05 04:27:34,097 DEBUG:   desc length: 6625, img: https://www.reuters.com/resizer/v2/LVO2ILELDJKIHGCURHTLKCPLLI.jpg?auth=15958e06dec22a58cdd2ba353e22aa5bbc7ed906ddc2b9ebc
+2026-03-05 04:27:34,097 INFO: Processing 12/116 [Reuters]: Singapore police announce arrest of 3 linked to alleged scam syndicate Prince Gr
+2026-03-05 04:27:34,097 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/china/singapore-police-announce-arrest-3-linked-alleged-scam-syndicate-prince-group-2026-03-05/
+2026-03-05 04:27:34,097 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/china/singapore-police-announce-arrest-3-linked-alleged-scam-syndicate-prince-group-2026-03-05/
+2026-03-05 04:27:34,097 DEBUG: Using selector: EpollSelector
+2026-03-05 04:27:50,336 DEBUG: networkidle timed out for https://www.reuters.com/world/china/singapore-police-announce-arrest-3-linked-alleged-scam-syndicate-prince-group-2026-03-05/ (non-fatal)
+2026-03-05 04:27:54,583 DEBUG: BotBrowser received 537377 bytes for https://www.reuters.com/world/china/singapore-police-announce-arrest-3-linked-alleged-scam-syndicate-prince-group-2026-03-05/
+2026-03-05 04:27:54,721 DEBUG:   desc length: 245, img: https://www.reuters.com/resizer/v2/466BJJQ7PVGY5O53NZ3KL65MHM.png?auth=b9c3bf166c40a6778eb5672993fde7c30a15f48329026674e
+2026-03-05 04:27:54,721 INFO: Processing 13/116 [Reuters]: Israel orders Lebanese to leave swathe of the south 'immediately'
+2026-03-05 04:27:54,721 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
+2026-03-05 04:27:54,721 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
+2026-03-05 04:27:54,721 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:11,037 DEBUG: networkidle timed out for https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/ (non-fatal)
+2026-03-05 04:28:16,087 DEBUG: BotBrowser received 623475 bytes for https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
+2026-03-05 04:28:16,333 DEBUG:   desc length: 5088, img: https://www.reuters.com/resizer/v2/NNIKW5JGONNIFNF6N3FE3BD3BM.jpg?auth=509da2b80df747d15bbe95577e3cd7414da8abeef2bfd7d00
+2026-03-05 04:28:16,334 INFO: Processing 14/116 [Reuters]: Pentagon identifies two soldiers killed in Iran war
+2026-03-05 04:28:16,334 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/pentagon-identifies-two-soldiers-killed-iran-war-2026-03-05/
+2026-03-05 04:28:16,335 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/pentagon-identifies-two-soldiers-killed-iran-war-2026-03-05/
+2026-03-05 04:28:16,335 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:32,714 DEBUG: networkidle timed out for https://www.reuters.com/world/pentagon-identifies-two-soldiers-killed-iran-war-2026-03-05/ (non-fatal)
+2026-03-05 04:28:39,502 DEBUG: BotBrowser received 561964 bytes for https://www.reuters.com/world/pentagon-identifies-two-soldiers-killed-iran-war-2026-03-05/
+2026-03-05 04:28:39,815 DEBUG:   desc length: 1112, img: https://www.reuters.com/resizer/v2/6353G3XCYJOXBASUMB62RGU664.jpg?auth=c2b03af4246f165ad2f5eea82af50b66eb9aafa220a4d9dfc
+2026-03-05 04:28:39,816 INFO: Processing 15/116 [Reuters]: Iran conflict's impact on energy temporary and a 'small price,' US energy secret
+2026-03-05 04:28:39,816 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/iran-conflicts-impact-energy-temporary-small-price-us-energy-secretary-says-2026-03-05/
+2026-03-05 04:28:39,817 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/iran-conflicts-impact-energy-temporary-small-price-us-energy-secretary-says-2026-03-05/
+2026-03-05 04:28:39,818 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:41,726 DEBUG: BotBrowser received 455213 bytes for https://www.reuters.com/world/middle-east/iran-conflicts-impact-energy-temporary-small-price-us-energy-secretary-says-2026-03-05/
+2026-03-05 04:28:41,812 DEBUG:   desc length: 2222, img: https://www.reuters.com/resizer/v2/RHOIHKT535KZNETKWIZLMXBROY.jpg?auth=ad8ba50bd7f4e6aca7a5af6e6be30b67b297ea38ebec25878
+2026-03-05 04:28:41,812 INFO: Processing 16/116 [Reuters]: Gulf shipping crisis deepens as tankers stranded for fifth day, US sinks Iranian
+2026-03-05 04:28:41,812 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
+2026-03-05 04:28:41,812 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
+2026-03-05 04:28:41,812 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:43,729 DEBUG: BotBrowser received 489475 bytes for https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
+2026-03-05 04:28:43,824 DEBUG:   desc length: 4853, img: https://www.reuters.com/resizer/v2/D3M7D6EYZFOY7APRRYYTQQS5MQ.jpg?auth=7ba876afd9c7f55e2e7c83f3b77d711fb5ad75bccab58588b
+2026-03-05 04:28:43,824 INFO: Processing 17/116 [Reuters]: Swedish fighter jets patrol Iceland in show of force over Arctic
+2026-03-05 04:28:43,824 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
+2026-03-05 04:28:43,824 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
+2026-03-05 04:28:43,824 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:45,677 DEBUG: BotBrowser received 479526 bytes for https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
+2026-03-05 04:28:45,771 DEBUG:   desc length: 3367, img: https://www.reuters.com/resizer/v2/M57SAF7IVZNJFPNFODG65HMAFI.jpg?auth=04c0c4cae41577f22ab72988127051263f3692fe13aef300c
+2026-03-05 04:28:45,771 INFO: Processing 18/116 [Reuters]: Iran conflict may divert US weapons from Ukraine
+2026-03-05 04:28:45,771 DEBUG: Routing to BotBrowser: https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
+2026-03-05 04:28:45,771 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
+2026-03-05 04:28:45,771 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:47,647 DEBUG: BotBrowser received 475937 bytes for https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
+2026-03-05 04:28:47,733 DEBUG:   desc length: 5973, img: https://www.reuters.com/resizer/v2/GV3DG3FRFJL6LH4TL3HQ3SDGZA.jpg?auth=9596f4f2c91ec9902e3df6e57862a99ae545f57d3369a86c6
+2026-03-05 04:28:47,733 INFO: Processing 19/116 [Reuters]: Iran will target Israeli nuclear site if regime change is sought, Iranian offici
+2026-03-05 04:28:47,733 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
+2026-03-05 04:28:47,733 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
+2026-03-05 04:28:47,734 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:49,593 DEBUG: BotBrowser received 424665 bytes for https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
+2026-03-05 04:28:49,674 DEBUG:   desc length: 246, img: https://www.reuters.com/resizer/v2/J2OT46IMSVO2LHG3HHCW3T5WGM.jpg?auth=1bb42dc711388997fd45b2f1aac58ca16ebd233c55b315fd7
+2026-03-05 04:28:49,674 INFO: Processing 20/116 [Reuters]: Canada working to repatriate more than 2,000 citizens from Middle East
+2026-03-05 04:28:49,674 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
+2026-03-05 04:28:49,674 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
+2026-03-05 04:28:49,674 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:51,473 DEBUG: BotBrowser received 463822 bytes for https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
+2026-03-05 04:28:51,570 DEBUG:   desc length: 2758, img: https://www.reuters.com/resizer/v2/ZDWNHZOGGJKOJCVVVXT2BSJOUA.jpg?auth=fbe05e1ded7f27892cd85315216b5042138a5ec17a34340f5
+2026-03-05 04:28:51,570 INFO: Processing 21/116 [Reuters]: Trading Day: Respite, but for how long?
+2026-03-05 04:28:51,570 DEBUG: Routing to BotBrowser: https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
+2026-03-05 04:28:51,570 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
+2026-03-05 04:28:51,571 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:53,595 DEBUG: BotBrowser received 488424 bytes for https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
+2026-03-05 04:28:53,688 DEBUG:   desc length: 2617, img: https://www.reuters.com/resizer/v2/CEG6UDICTBLKDATLI36L5KYOWM.jpg?auth=7c1bfc21f39bf512eef0908af5b31af9eb8bf76299b85e8a1
+2026-03-05 04:28:53,688 INFO: Processing 22/116 [Reuters]: Mideast crisis highlights risk of dollar liquidity shock
+2026-03-05 04:28:53,688 DEBUG: Routing to BotBrowser: https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
+2026-03-05 04:28:53,688 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
+2026-03-05 04:28:53,688 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:55,543 DEBUG: BotBrowser received 485205 bytes for https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
+2026-03-05 04:28:55,633 DEBUG:   desc length: 5296, img: https://www.reuters.com/resizer/v2/AKG5TQCCI5HRHLFXDGVQTEB6K4.JPG?auth=4f9ac38f3d1ece25458c9e6f481cc3b1c8df5f69b21a40aa2
+2026-03-05 04:28:55,633 INFO: Processing 23/116 [Reuters]: Trump's Hormuz shipping plan is too little, too late in race to avert energy sho
+2026-03-05 04:28:55,633 DEBUG: Routing to BotBrowser: https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
+2026-03-05 04:28:55,633 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
+2026-03-05 04:28:55,633 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:57,470 DEBUG: BotBrowser received 470919 bytes for https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
+2026-03-05 04:28:57,634 DEBUG:   desc length: 5727, img: https://www.reuters.com/resizer/v2/OUV3W6FRKVHM7E5G7GKH7CHQX4.JPG?auth=5a0b9afb5b7abee6786bafe7e01862f94017d9eba03376e57
+2026-03-05 04:28:57,634 INFO: Processing 24/116 [Reuters]: Hormuz reopening is not solely in Trump’s gift
+2026-03-05 04:28:57,634 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
+2026-03-05 04:28:57,634 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
+2026-03-05 04:28:57,634 DEBUG: Using selector: EpollSelector
+2026-03-05 04:28:59,528 DEBUG: BotBrowser received 480695 bytes for https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
+2026-03-05 04:28:59,617 DEBUG:   desc length: 3456, img: https://www.reuters.com/resizer/v2/OUV3W6FRKVHM7E5G7GKH7CHQX4.JPG?auth=5a0b9afb5b7abee6786bafe7e01862f94017d9eba03376e57
+2026-03-05 04:28:59,617 INFO: Processing 25/116 [Reuters]: Kevin Warsh has a point on AI and inflation
+2026-03-05 04:28:59,617 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
+2026-03-05 04:28:59,617 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
+2026-03-05 04:28:59,617 DEBUG: Using selector: EpollSelector
+2026-03-05 04:29:02,378 DEBUG: BotBrowser received 498105 bytes for https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
+2026-03-05 04:29:02,468 DEBUG:   desc length: 6663, img: https://www.reuters.com/resizer/v2/7JB4MAH7I5KTRKFFEKWIGODV3I.jpg?auth=29022fd2dff45899215604bbf299dc90c79c209a945f0bd7e
+2026-03-05 04:29:02,469 INFO: Processing 26/116 [Reuters]: Iran crisis jumbles the Gulf state pecking order
+2026-03-05 04:29:02,469 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
+2026-03-05 04:29:02,469 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
+2026-03-05 04:29:02,469 DEBUG: Using selector: EpollSelector
+2026-03-05 04:29:04,323 DEBUG: BotBrowser received 493788 bytes for https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
+2026-03-05 04:29:04,414 DEBUG:   desc length: 3410, img: https://www.reuters.com/resizer/v2/AEYDKLXCNVJFZITMFDZULJVKRY.jpg?auth=bb8d4abe783e172bc608e026ef25c175237b9a190746934e2
+2026-03-05 04:29:04,414 INFO: Processing 27/116 [Reuters]: Private credit pioneers see downside of redemption
+2026-03-05 04:29:04,414 DEBUG: Routing to BotBrowser: https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
+2026-03-05 04:29:04,414 DEBUG: BotBrowser GET via Playwright CDP: https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
+2026-03-05 04:29:04,414 DEBUG: Using selector: EpollSelector
+2026-03-05 04:29:20,716 DEBUG: networkidle timed out for https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/ (non-fatal)
+2026-03-05 04:29:26,968 DEBUG: BotBrowser received 617253 bytes for https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
+2026-03-05 04:29:27,256 DEBUG:   desc length: 3182, img: https://www.reuters.com/resizer/v2/QFTACTXLQBKR5BETLXIPII2CYE.jpg?auth=c474ff31425a2b34dd4b7d70a1317bba82097d7794238b104
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-israel-us-march-04-2026-e1c316da4ce809407122590a6872aa85
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/kurdish-dissident-groups-iran-war-iraq-f76efe372becb7d80d3ed026791e67ba
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-ee527a73689fb718be316cc2997694ea
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/cuba-blackout-power-outage-havana-western-island-f7d1a4927bbcefb774ccf34dbbc9a794
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-congress-economy-gdp-trump-target-1822006cd39ff43505fa9a47a4581a16
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/live/iran-war-israel-trump-03-03-2026
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/france-nuclear-weapons-macron-deterrence-ccbcfb03ef4a1e3efe287fb744adb148
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/live/iran-war-israel-trump-lebanon-march-04-2026
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-position-us-iran-attack-1042fa7295500f90ecd6285d552da349
+2026-03-05 04:29:27,256 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-israel-us-03-02-2026-cb42936de1d8c261be8f30f11c6665fa
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/video/citing-tremendous-progress-trump-gives-the-us-a-15-out-of-10-grade-for-iran-war-12df450169364a98846c0eeb712e0ef9
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/video/white-house-says-trumps-feeling-based-on-fact-that-iran-posed-an-imminent-threat-led-to-strikes-afdafd3d3fec4d1ba28babb5b2638ab5
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/video/video-shows-huge-blast-near-us-consulate-in-dubai-ef93d7ed38994fdc8259c06c7297659c
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/sri-lanka-iran-middle-east-ship-sinking-69191dde43154c5176a8aeacc9128748
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stranded-travelers-iran-war-middle-east-38cbb9babed49fad08949bba8aef3d50
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-us-war-israel-strait-or-hormuz-deaths-f1619c6bfbbd5fe10857ff0af073aa0e
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/lebanon-israel-hezbollah-airstrikes-litani-evacuation-hazmieh-f61d22f9bc723b9bae1865a14e3c1139
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/russia-libya-lng-carrier-arctic-metagaz-e40477839f7e8c5863492ec6de2b95de
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/trump-starmer-us-uk-special-relationship-iran-2b5be4d200f7c0b081f9f5a59f260efc
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/russia-ukraine-war-talks-us-iran-f9069ab3f4cde813af0e6221daf6bf71
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/ghana-russia-ukraine-fighters-war-f77465f7c2c1d4f6749557a60ccf9046
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/ukraine-economy-war-ebrd-electricity-838255aa27f76046a296dfe029e2d0a9
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stocks-markets-iran-oil-trump-c9a42448cbc7afc35e959dd444614aa0
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/pmi-china-contraction-economy-21dea697d4c6d87bfed822a941becca0
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/elon-musk-twitter-lawsuit-shareholders-stock-3fa8783666737839cdd7331fec1bf61d
+2026-03-05 04:29:27,257 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/africa-tiktok-farming-agriculture-business-video-76a3f955d409e9edfc3fff1d86c70e4f
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/meta-instagram-new-mexico-zuckerberg-mosseri-social-e5a6749f4628cff9ff399df142783f33
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-trump-spain-war-sanchez-bases-26c3132777225c4e473f090b7ab07037
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-war-middle-east-travel-stranded-dba77afeee3d0b3d1b8a7956e1b2bc89
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/france-nuclear-weapons-macron-europe-deterrence-471cce59f2a31c492ec9966bd532d679
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-war-oil-gas-lng-russia-ukraine-b43d87b37c4a3b29a12198e055786f51
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/honduras-asfura-trump-china-taiwan-shrimp-farmers-78b00ac7a11b86174a32754de9de75bc
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/nepal-shah-oli-protests-election-58cac72e25490c8c6363626a7dc10171
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/australia-canada-carney-iran-albanese-782de2f4cf66feab671e56c46d87700a
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/middle-east-wars-energy-asia-gas-oil-8041a26142b8b7ce122c8b548f375924
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/ecuador-cuba-trump-noboa-bc7b4bab79e54a39bb8f18d683105b22
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/nahuel-gallo-venezuela-argentina-5a8795443ca808425d3c345b42e6b634
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/brazil-mercosur-european-union-trade-deal-b73403ac02c83f38d8336a3d7cce0f00
+2026-03-05 04:29:27,258 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/venezuela-us-burgum-rodriguez-trump-minerals-dc9193f2832ad8ceafbfa551f078bfdd
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/south-sudan-msf-aid-workers-unaccounted-for-b9df50eaa5df080080cc2dd6d26b13bb
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/us-rwanda-sanctions-congo-m23-military-nyakarundi-4122f57015e3f5688d4011de737e278b
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/anglican-communion-divisions-africa-lgbtq-gender-2a539fcf903ad9a07a7f825649dd882e
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/south-sudan-violence-insurgents-69a8a9bf191c0c2d8583fbc37ff9ae70
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/texas-austin-bar-shooting-deadly-university-b9ebb0d141b01eca6e34f790248306dc
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/rhode-island-priest-abuse-f40c99b76870a2516999bf2d676aa144
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/rhode-island-catholic-priest-abuse-diocese-dfde5b09131ea4fc668e32663b3b83d2
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/homeland-security-immigration-enforcement-bovino-investigation-2a88d58b353c98fe893727c19158e601
+2026-03-05 04:29:27,259 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/virginia-redistricting-democrats-referendum-court-lawsuits-09784036e696bbe8d4d254e15079a5d8
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-us-military-deaths-0a3f1532ec1953d51898e5b5e2b625d6
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-spying-london-britain-e3746f630c1e9680b49b46165eb577bf
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-manufacturing-economy-pmi-685ab43bcb8d113e7df0b9be8e9f417d
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-congress-what-to-expect-10c6976dfe8e824922deaff3f4880153
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/photo-gallery/total-lunar-eclipse-blood-moon-b20ee3da55e4f7544e2488dd19f91527
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/china-party-congress-economy-property-jinping-e9b8c257561f67b19fbe9b2521835343
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/japan-taiwan-vietnam-india-womens-asian-cup-247b8863c009bb2015699bed6b2f9ca3
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iran-war-supply-chain-disruption-8f262bb210710b7509221a3dccf787c9
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/india-canada-trade-modi-carney-632cf32892560ab18a72e67f39df6c15
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/t20-world-cup-africa-zimbabwe-india-wi-de7637c3b857fe7471dbd805104c6be1
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/india-canada-modi-carney-trade-tariffs-diversify-83ee6bc8498e8c185b39b09b01dc55c7
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/japan-baby-monkey-zoo-7911e0597837b97199a810601f91c35d
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/donald-trump-iran-war-powers-resolution-9f99f49807fbbe65bf04e5518e64c830
+2026-03-05 04:29:27,260 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/assassinations-plot-trump-biden-iran-asif-merchant-4c1693913158947f648171a45e34d382
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stocks-markets-iran-trump-oil-china-a88fbee22bf1ded91d51454033f1c088
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/honduras-cuban-doctors-e860064a52dfb79d5500d5b849e61066
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/north-korea-kim-jong-un-destroyer-nuclear-f3bca713aa647eb41b8ec95b0c59eb8d
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/american-airlines-venezuela-trump-flights-faa-51b41eaee733a8adf068d68bf7d24984
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/florida-cuba-investigation-brothers-to-rescue-shootdown-e4e217b26a0a20a0e6f4adc9318e9a87
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/congo-rubaya-collapse-7b1e24f3d071a20b4865832bfec122f1
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/google-play-store-changes-epic-games-1618d9a98b6a8b37ac2897be5aa105ad
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/photo-gallery/associated-press-top-photos-march-4-2026-531b4cee1e208cbc3a6cc38ca5df23b6
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/stella-mccartney-paris-fashion-year-of-horse-2a8112a791fa3efada84d78298be5301
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/puerto-rico-ambulance-shooting-killed-santurce-07429ac092f1419db03b1eb4a2645b18
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/russia-ukraine-war-hungary-oil-gas-putin-orban-183daedf1c4bd94e1af48baaf4bc474c
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/italy-art-michelangelo-vatican-e13f23b042f1c20e81c2f8e4d5deed97
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/france-cuba-havana-flights-suspended-fuel-oil-c767377453390f8007e2839e779398f9
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/photo-gallery/photos-talarico-iran-us-israeli-war-jesse-jackson-holi-hindu-festival-b02b32f69bc6aaf99927868ec3c71f8f
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/uk-hong-kong-spying-trial-3555bb4708cb92ebe56c502d9749d7d7
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/brazil-banco-master-bank-fraud-13c9a88612145e7e5fc759c019af2ac2
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/iraq-world-cup-playoff-difficulties-83f04a43056689ab6a7bb0bcab1aad62
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/apple-iphone17e-macbook-monitors-ipad-e52b1d9b4df4c0bc6b40b11dc155450b
+2026-03-05 04:29:27,261 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/sea-level-rise-climate-change-flooding-warming-59bb59d2fe839224a10bd28d604b5d95
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/us-ecuador-military-operation-drugs-organized-crime-43cd71e72057273437075429dcdc20c5
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/cuba-terrorism-charges-us-boat-shooting-34ce5212cd10f58fb45a347f9cbb7630
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/rapper-ghetts-sentenced-drink-driving-6e6e846115c694ca2f188addf9b65cb2
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/haiti-ban-us-commercial-flights-0f4d06828861de8509e53b2d2e42d3ed
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/greece-politics-golden-dawn-court-crime-52c2af8ddb635a5f902d9cecc3ec5671
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/pakkstan-afghanistan-fighting-turkey-mediation-b4d729bd6f8fdfe9a7b34b8e4f0a12e0
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/australia-carney-canada-iran-regret-ab529749962be194ad9501cbcac6f9e9
+2026-03-05 04:29:27,262 DEBUG: Skipping full fetch for AP News: https://apnews.com/article/renewable-energy-africa-funding-sefa-climate-0947a10179329eab4e47cdde9a6285b5
+2026-03-05 04:29:27,263 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-05 04:29:27,506 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
+2026-03-05 04:29:27,507 DEBUG: Shutting down BotBrowser (pid 3917)
+2026-03-05 04:29:27,575 INFO: Loaded existing XML: pau.xml
+2026-03-05 04:29:27,582 INFO: Loaded existing XML: reuters.xml
+2026-03-05 04:29:27,583 INFO: Existing items in main feed: 500
+2026-03-05 04:29:27,583 INFO: Existing items in Reuters feed: 441
+2026-03-05 04:29:27,583 DEBUG: Added: https://www.reuters.com/world/asia-pacific/iran-launches-wave-missiles-israel-us-republicans-block-measure-halt-us-air-2026-03-05/
+2026-03-05 04:29:27,583 DEBUG: Already exists, skipping: https://www.reuters.com/world/us/us-lawmakers-set-vote-war-powers-iran-conflict-widens-2026-03-04/
+2026-03-05 04:29:27,583 DEBUG: Already exists, skipping: https://www.reuters.com/world/asia-pacific/nepal-goes-polls-voters-seek-change-after-youth-led-protests-2026-03-05/
+2026-03-05 04:29:27,583 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/trump-weighing-us-role-iran-after-conflict-white-house-says-2026-03-04/
+2026-03-05 04:29:27,583 DEBUG: Already exists, skipping: https://www.reuters.com/business/healthcare-pharmaceuticals/china-build-birth-friendly-society-refine-social-security-system-2026-03-05/
+2026-03-05 04:29:27,583 DEBUG: Already exists, skipping: https://www.reuters.com/business/environment/landslide-kills-over-200-people-congos-rubaya-mine-mines-ministry-says-2026-03-04/
+2026-03-05 04:29:27,583 DEBUG: Added: https://www.reuters.com/world/us/pakistani-man-says-iran-forced-him-into-plot-kill-trump-media-say-2026-03-05/
+2026-03-05 04:29:27,583 DEBUG: Added: https://www.reuters.com/world/asia-pacific/iranian-sailors-recovering-sri-lankan-hospital-after-us-submarine-attack-2026-03-05/
+2026-03-05 04:29:27,583 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/iran-war-breaks-un-charter-strike-school-shocking-un-probe-says-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/business/energy/mass-blackout-cuts-power-across-most-cuba-amid-us-oil-chokehold-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/us-assault-iran-ahead-schedule-says-us-middle-east-commander-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Added: https://www.reuters.com/world/china/singapore-police-announce-arrest-3-linked-alleged-scam-syndicate-prince-group-2026-03-05/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/world/several-killed-israeli-strike-building-lebanons-baalbek-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Added: https://www.reuters.com/world/pentagon-identifies-two-soldiers-killed-iran-war-2026-03-05/
+2026-03-05 04:29:27,584 DEBUG: Added: https://www.reuters.com/world/middle-east/iran-conflicts-impact-energy-temporary-small-price-us-energy-secretary-says-2026-03-05/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/business/energy/hormuz-shutdown-worsens-after-us-hits-iranian-warship-tankers-stranded-fifth-day-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/business/aerospace-defense/swedish-fighter-jets-patrol-iceland-show-force-over-arctic-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/iran-will-target-israeli-nuclear-site-if-regime-change-is-sought-iranian-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/world/more-than-2000-canadians-request-assistance-leaving-middle-east-official-says-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/world/middle-east/global-markets-trading-day-graphic-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/markets/mideast-crisis-highlights-risk-dollar-liquidity-shock-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/markets/commodities/trumps-hormuz-shipping-plan-is-too-little-too-late-race-avert-energy-shock-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/hormuz-reopening-is-not-solely-trumps-gift-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/kevin-warsh-has-point-ai-inflation-2026-03-04/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/iran-crisis-jumbles-gulf-state-pecking-order-2026-03-02/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://www.reuters.com/commentary/breakingviews/private-credit-pioneers-see-downside-redemption-2026-03-03/
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://apnews.com/article/iran-israel-us-march-04-2026-e1c316da4ce809407122590a6872aa85
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://apnews.com/article/kurdish-dissident-groups-iran-war-iraq-f76efe372becb7d80d3ed026791e67ba
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-ee527a73689fb718be316cc2997694ea
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://apnews.com/article/cuba-blackout-power-outage-havana-western-island-f7d1a4927bbcefb774ccf34dbbc9a794
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://apnews.com/article/china-congress-economy-gdp-trump-target-1822006cd39ff43505fa9a47a4581a16
+2026-03-05 04:29:27,584 DEBUG: Already exists, skipping: https://apnews.com/live/iran-war-israel-trump-03-03-2026
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/france-nuclear-weapons-macron-deterrence-ccbcfb03ef4a1e3efe287fb744adb148
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/live/iran-war-israel-trump-lebanon-march-04-2026
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/china-position-us-iran-attack-1042fa7295500f90ecd6285d552da349
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/iran-israel-us-03-02-2026-cb42936de1d8c261be8f30f11c6665fa
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/video/citing-tremendous-progress-trump-gives-the-us-a-15-out-of-10-grade-for-iran-war-12df450169364a98846c0eeb712e0ef9
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/video/white-house-says-trumps-feeling-based-on-fact-that-iran-posed-an-imminent-threat-led-to-strikes-afdafd3d3fec4d1ba28babb5b2638ab5
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/video/video-shows-huge-blast-near-us-consulate-in-dubai-ef93d7ed38994fdc8259c06c7297659c
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/sri-lanka-iran-middle-east-ship-sinking-69191dde43154c5176a8aeacc9128748
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/stranded-travelers-iran-war-middle-east-38cbb9babed49fad08949bba8aef3d50
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/iran-us-war-israel-strait-or-hormuz-deaths-f1619c6bfbbd5fe10857ff0af073aa0e
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/lebanon-israel-hezbollah-airstrikes-litani-evacuation-hazmieh-f61d22f9bc723b9bae1865a14e3c1139
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/russia-libya-lng-carrier-arctic-metagaz-e40477839f7e8c5863492ec6de2b95de
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/trump-starmer-us-uk-special-relationship-iran-2b5be4d200f7c0b081f9f5a59f260efc
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/russia-ukraine-war-talks-us-iran-f9069ab3f4cde813af0e6221daf6bf71
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/ghana-russia-ukraine-fighters-war-f77465f7c2c1d4f6749557a60ccf9046
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/ukraine-economy-war-ebrd-electricity-838255aa27f76046a296dfe029e2d0a9
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/stocks-markets-iran-oil-trump-c9a42448cbc7afc35e959dd444614aa0
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/pmi-china-contraction-economy-21dea697d4c6d87bfed822a941becca0
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/elon-musk-twitter-lawsuit-shareholders-stock-3fa8783666737839cdd7331fec1bf61d
+2026-03-05 04:29:27,585 DEBUG: Already exists, skipping: https://apnews.com/article/africa-tiktok-farming-agriculture-business-video-76a3f955d409e9edfc3fff1d86c70e4f
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/meta-instagram-new-mexico-zuckerberg-mosseri-social-e5a6749f4628cff9ff399df142783f33
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/iran-trump-spain-war-sanchez-bases-26c3132777225c4e473f090b7ab07037
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/iran-war-middle-east-travel-stranded-dba77afeee3d0b3d1b8a7956e1b2bc89
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/france-nuclear-weapons-macron-europe-deterrence-471cce59f2a31c492ec9966bd532d679
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/iran-war-oil-gas-lng-russia-ukraine-b43d87b37c4a3b29a12198e055786f51
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/honduras-asfura-trump-china-taiwan-shrimp-farmers-78b00ac7a11b86174a32754de9de75bc
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/nepal-shah-oli-protests-election-58cac72e25490c8c6363626a7dc10171
+2026-03-05 04:29:27,586 DEBUG: Added: https://apnews.com/article/australia-canada-carney-iran-albanese-782de2f4cf66feab671e56c46d87700a
+2026-03-05 04:29:27,586 DEBUG: Added: https://apnews.com/article/middle-east-wars-energy-asia-gas-oil-8041a26142b8b7ce122c8b548f375924
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/ecuador-cuba-trump-noboa-bc7b4bab79e54a39bb8f18d683105b22
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/nahuel-gallo-venezuela-argentina-5a8795443ca808425d3c345b42e6b634
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/brazil-mercosur-european-union-trade-deal-b73403ac02c83f38d8336a3d7cce0f00
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/venezuela-us-burgum-rodriguez-trump-minerals-dc9193f2832ad8ceafbfa551f078bfdd
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/south-sudan-msf-aid-workers-unaccounted-for-b9df50eaa5df080080cc2dd6d26b13bb
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/us-rwanda-sanctions-congo-m23-military-nyakarundi-4122f57015e3f5688d4011de737e278b
+2026-03-05 04:29:27,586 DEBUG: Already exists, skipping: https://apnews.com/article/anglican-communion-divisions-africa-lgbtq-gender-2a539fcf903ad9a07a7f825649dd882e
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/south-sudan-violence-insurgents-69a8a9bf191c0c2d8583fbc37ff9ae70
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/texas-austin-bar-shooting-deadly-university-b9ebb0d141b01eca6e34f790248306dc
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/rhode-island-priest-abuse-f40c99b76870a2516999bf2d676aa144
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/rhode-island-catholic-priest-abuse-diocese-dfde5b09131ea4fc668e32663b3b83d2
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/homeland-security-immigration-enforcement-bovino-investigation-2a88d58b353c98fe893727c19158e601
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/virginia-redistricting-democrats-referendum-court-lawsuits-09784036e696bbe8d4d254e15079a5d8
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/iran-us-military-deaths-0a3f1532ec1953d51898e5b5e2b625d6
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/china-spying-london-britain-e3746f630c1e9680b49b46165eb577bf
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/china-manufacturing-economy-pmi-685ab43bcb8d113e7df0b9be8e9f417d
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/china-congress-what-to-expect-10c6976dfe8e824922deaff3f4880153
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/photo-gallery/total-lunar-eclipse-blood-moon-b20ee3da55e4f7544e2488dd19f91527
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/china-party-congress-economy-property-jinping-e9b8c257561f67b19fbe9b2521835343
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/japan-taiwan-vietnam-india-womens-asian-cup-247b8863c009bb2015699bed6b2f9ca3
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/iran-war-supply-chain-disruption-8f262bb210710b7509221a3dccf787c9
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/india-canada-trade-modi-carney-632cf32892560ab18a72e67f39df6c15
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/t20-world-cup-africa-zimbabwe-india-wi-de7637c3b857fe7471dbd805104c6be1
+2026-03-05 04:29:27,587 DEBUG: Already exists, skipping: https://apnews.com/article/india-canada-modi-carney-trade-tariffs-diversify-83ee6bc8498e8c185b39b09b01dc55c7
+2026-03-05 04:29:27,588 DEBUG: Added: https://apnews.com/article/japan-baby-monkey-zoo-7911e0597837b97199a810601f91c35d
+2026-03-05 04:29:27,588 DEBUG: Added: https://apnews.com/article/donald-trump-iran-war-powers-resolution-9f99f49807fbbe65bf04e5518e64c830
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/assassinations-plot-trump-biden-iran-asif-merchant-4c1693913158947f648171a45e34d382
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/stocks-markets-iran-trump-oil-china-a88fbee22bf1ded91d51454033f1c088
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/honduras-cuban-doctors-e860064a52dfb79d5500d5b849e61066
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/north-korea-kim-jong-un-destroyer-nuclear-f3bca713aa647eb41b8ec95b0c59eb8d
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/american-airlines-venezuela-trump-flights-faa-51b41eaee733a8adf068d68bf7d24984
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/florida-cuba-investigation-brothers-to-rescue-shootdown-e4e217b26a0a20a0e6f4adc9318e9a87
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/congo-rubaya-collapse-7b1e24f3d071a20b4865832bfec122f1
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/google-play-store-changes-epic-games-1618d9a98b6a8b37ac2897be5aa105ad
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/photo-gallery/associated-press-top-photos-march-4-2026-531b4cee1e208cbc3a6cc38ca5df23b6
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/stella-mccartney-paris-fashion-year-of-horse-2a8112a791fa3efada84d78298be5301
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/puerto-rico-ambulance-shooting-killed-santurce-07429ac092f1419db03b1eb4a2645b18
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/russia-ukraine-war-hungary-oil-gas-putin-orban-183daedf1c4bd94e1af48baaf4bc474c
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/italy-art-michelangelo-vatican-e13f23b042f1c20e81c2f8e4d5deed97
+2026-03-05 04:29:27,588 DEBUG: Already exists, skipping: https://apnews.com/article/france-cuba-havana-flights-suspended-fuel-oil-c767377453390f8007e2839e779398f9
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/photo-gallery/photos-talarico-iran-us-israeli-war-jesse-jackson-holi-hindu-festival-b02b32f69bc6aaf99927868ec3c71f8f
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/uk-hong-kong-spying-trial-3555bb4708cb92ebe56c502d9749d7d7
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/brazil-banco-master-bank-fraud-13c9a88612145e7e5fc759c019af2ac2
+2026-03-05 04:29:27,589 DEBUG: Added: https://apnews.com/article/iraq-world-cup-playoff-difficulties-83f04a43056689ab6a7bb0bcab1aad62
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/apple-iphone17e-macbook-monitors-ipad-e52b1d9b4df4c0bc6b40b11dc155450b
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/sea-level-rise-climate-change-flooding-warming-59bb59d2fe839224a10bd28d604b5d95
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/us-ecuador-military-operation-drugs-organized-crime-43cd71e72057273437075429dcdc20c5
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/cuba-terrorism-charges-us-boat-shooting-34ce5212cd10f58fb45a347f9cbb7630
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/rapper-ghetts-sentenced-drink-driving-6e6e846115c694ca2f188addf9b65cb2
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/haiti-ban-us-commercial-flights-0f4d06828861de8509e53b2d2e42d3ed
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/greece-politics-golden-dawn-court-crime-52c2af8ddb635a5f902d9cecc3ec5671
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/pakkstan-afghanistan-fighting-turkey-mediation-b4d729bd6f8fdfe9a7b34b8e4f0a12e0
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/australia-carney-canada-iran-regret-ab529749962be194ad9501cbcac6f9e9
+2026-03-05 04:29:27,589 DEBUG: Already exists, skipping: https://apnews.com/article/renewable-energy-africa-funding-sefa-climate-0947a10179329eab4e47cdde9a6285b5
+2026-03-05 04:29:27,589 INFO: Added 5 new articles to main feed
+2026-03-05 04:29:27,589 INFO: Added 6 new articles to Reuters feed
+2026-03-05 04:29:27,589 INFO: Trimmed feed to 500 items
+2026-03-05 04:29:27,603 INFO: Done! Main feed saved to pau.xml
+2026-03-05 04:29:27,604 INFO: Done! Reuters feed saved to reuters.xml
+2026-03-05 04:29:27,604 INFO: Debug log saved to debug.log
