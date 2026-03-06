@@ -76,10 +76,11 @@ REUTERS_SKIP_PATHS = (
     "/video/",
 )
 
-# Titles that indicate a card is a promo/nav element, not an article
+# Titles that are purely UI labels / non-article cards.
+# Keep this list tight — "column", "analysis", "report" etc. are real article types.
+# Path-based filtering (REUTERS_SKIP_PATHS) handles newsletters/videos/graphics already.
 REUTERS_JUNK_TITLES = {
-    "newsletter", "column", "video", "podcast", "live", "graphics",
-    "graphic", "report", "briefing", "analysis",
+    "video", "live", "graphic", "graphics", "podcast",
 }
 
 # How many Reuters article fetches between BotBrowser hard restarts
@@ -846,7 +847,88 @@ for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
     debug("  sample %d: [%s] %s", i, a.get("source"), a.get("url"))
 
 # ------------------------------
-# 4. FETCH FULL TEXT
+# 4. LOAD OR CREATE XML  (moved early so we can skip re-fetching existing content)
+# ------------------------------
+
+def load_or_create_xml(path, title, link, description):
+    if os.path.exists(path):
+        try:
+            tree = ET.parse(path)
+            root = tree.getroot()
+            info("Loaded existing XML: %s", path)
+        except ET.ParseError as e:
+            warn("XML parse error (%s) — creating new: %s", e, path)
+            root = ET.Element("rss", version="2.0")
+            tree = ET.ElementTree(root)
+    else:
+        root = ET.Element("rss", version="2.0")
+        tree = ET.ElementTree(root)
+        info("Created new XML root: %s", path)
+
+    channel = root.find("channel")
+    if channel is None:
+        channel = ET.SubElement(root, "channel")
+        ET.SubElement(channel, "title").text       = title
+        ET.SubElement(channel, "link").text        = link
+        ET.SubElement(channel, "description").text = description
+
+    return tree, root, channel
+
+
+tree, root, channel = load_or_create_xml(
+    XML_FILE,
+    "AP News + France24 Combined Feed",
+    "https://evilgodfahim.github.io/reur/",
+    "Combined scraped articles from AP News and France24",
+)
+
+reuters_tree, reuters_root, reuters_channel = load_or_create_xml(
+    REUTERS_XML_FILE,
+    "Reuters Feed",
+    "https://evilgodfahim.github.io/reur/reuters",
+    "Scraped articles from Reuters",
+)
+
+# ------------------------------
+# 5. DEDUPLICATE EXISTING
+# ------------------------------
+
+existing = {
+    item.find("link").text.strip()
+    for item in channel.findall("item")
+    if item.find("link") is not None and item.find("link").text
+}
+reuters_existing = {
+    item.find("link").text.strip()
+    for item in reuters_channel.findall("item")
+    if item.find("link") is not None and item.find("link").text
+}
+info("Existing items in main feed: %d", len(existing))
+info("Existing items in Reuters feed: %d", len(reuters_existing))
+
+# URLs that are already in the XML AND already have a non-empty description/full-text.
+# These must NOT be re-fetched — we already have their content.
+existing_with_desc = {
+    item.find("link").text.strip()
+    for item in channel.findall("item")
+    if item.find("link") is not None
+    and item.find("link").text
+    and item.find("description") is not None
+    and (item.find("description").text or "").strip()
+}
+reuters_existing_with_desc = {
+    item.find("link").text.strip()
+    for item in reuters_channel.findall("item")
+    if item.find("link") is not None
+    and item.find("link").text
+    and item.find("description") is not None
+    and (item.find("description").text or "").strip()
+}
+info("Existing items with content in main feed: %d", len(existing_with_desc))
+info("Existing items with content in Reuters feed: %d", len(reuters_existing_with_desc))
+
+# ------------------------------
+# 6. FETCH FULL TEXT
 # ------------------------------
 
 for a in all_articles:
@@ -862,6 +944,14 @@ for a in all_articles:
 for i, a in enumerate(all_articles, 1):
     if a.get("source") == "APNews":
         debug("Skipping full fetch for AP News: %s", a.get("url"))
+        continue
+
+    # Skip fetching if this URL is already in the XML with a description.
+    # Title-only stubs (desc == "") are NOT in existing_with_desc, so they will be fetched.
+    is_reuters = a.get("source") == "Reuters"
+    already_have_content = reuters_existing_with_desc if is_reuters else existing_with_desc
+    if a["url"] in already_have_content:
+        debug("Already in XML with content, skipping fetch: %s", a["url"])
         continue
 
     info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
@@ -920,66 +1010,6 @@ flare_session_destroy()
 _botbrowser_shutdown()
 
 # ------------------------------
-# 5. LOAD OR CREATE XML
-# ------------------------------
-
-def load_or_create_xml(path, title, link, description):
-    if os.path.exists(path):
-        try:
-            tree = ET.parse(path)
-            root = tree.getroot()
-            info("Loaded existing XML: %s", path)
-        except ET.ParseError as e:
-            warn("XML parse error (%s) — creating new: %s", e, path)
-            root = ET.Element("rss", version="2.0")
-            tree = ET.ElementTree(root)
-    else:
-        root = ET.Element("rss", version="2.0")
-        tree = ET.ElementTree(root)
-        info("Created new XML root: %s", path)
-
-    channel = root.find("channel")
-    if channel is None:
-        channel = ET.SubElement(root, "channel")
-        ET.SubElement(channel, "title").text       = title
-        ET.SubElement(channel, "link").text        = link
-        ET.SubElement(channel, "description").text = description
-
-    return tree, root, channel
-
-
-tree, root, channel = load_or_create_xml(
-    XML_FILE,
-    "AP News + France24 Combined Feed",
-    "https://evilgodfahim.github.io/reur/",
-    "Combined scraped articles from AP News and France24",
-)
-
-reuters_tree, reuters_root, reuters_channel = load_or_create_xml(
-    REUTERS_XML_FILE,
-    "Reuters Feed",
-    "https://evilgodfahim.github.io/reur/reuters",
-    "Scraped articles from Reuters",
-)
-
-# ------------------------------
-# 6. DEDUPLICATE EXISTING
-# ------------------------------
-
-existing = {
-    item.find("link").text.strip()
-    for item in channel.findall("item")
-    if item.find("link") is not None and item.find("link").text
-}
-reuters_existing = {
-    item.find("link").text.strip()
-    for item in reuters_channel.findall("item")
-    if item.find("link") is not None and item.find("link").text
-}
-info("Existing items in main feed: %d", len(existing))
-info("Existing items in Reuters feed: %d", len(reuters_existing))
-
-# ------------------------------
 # 7. ADD NEW ARTICLES
 # ------------------------------
 
@@ -992,15 +1022,21 @@ for art in all_articles:
     if art["url"] in target_existing:
         debug("Already exists, skipping: %s", art["url"])
         continue
+
+    # For non-APNews articles that came back with no description (fetch failed or
+    # extractor found nothing), fall back to the title so the article is still
+    # added to the feed rather than silently dropped.
     if art.get("source") != "APNews" and not (art.get("desc") or "").strip():
-        warn("Skipping (no description): %s", art.get("title", "")[:60])
-        continue
+        warn("No description fetched, using title as fallback: %s", art.get("title", "")[:80])
+        art["desc"] = art.get("title", "")
+        art.setdefault("img",  art.get("thumb", "") or "")
+        art.setdefault("pub",  now_utc())
 
     item = ET.SubElement(target_channel, "item")
     ET.SubElement(item, "title").text       = art["title"]
     ET.SubElement(item, "link").text        = art["url"]
-    ET.SubElement(item, "description").text = art["desc"]
-    ET.SubElement(item, "pubDate").text     = art["pub"]
+    ET.SubElement(item, "description").text = art.get("desc", "")
+    ET.SubElement(item, "pubDate").text     = art.get("pub", now_utc())
     if art.get("img"):
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
 
