@@ -39,6 +39,12 @@ log = logging.getLogger("scraper")
 FLARESOLVERR_URL        = "http://localhost:8191/v1"
 REUTERS_URL             = "https://www.reuters.com/world/"
 REUTERS_COMMENTARY_URL  = "https://www.reuters.com/commentary/"
+REUTERS_EXTRA_URLS      = [
+    "https://www.reuters.com/business/energy/",
+    "https://www.reuters.com/business/environment/",
+    "https://www.reuters.com/sustainability/climate-energy/",
+    "https://www.reuters.com/sustainability/reuters-impact/",
+]
 APNEWS_URL              = "https://apnews.com/world-news"
 APNEWS_BASE             = "https://apnews.com"
 FRANCE24_RSS            = "https://www.france24.com/en/rss"
@@ -384,6 +390,63 @@ def extract_image_url(soup_page):
             return src.strip()
     return ""
 
+
+def extract_reuters_extra_cards(soup, page_url):
+    """
+    Extract article cards from the extra Reuters section pages
+    (energy, environment, climate-energy, reuters-impact) using their
+    specific data-testid card selectors.
+    Returns a list of dicts: {url, title, source, thumb}.
+    """
+    results = []
+    seen = set()
+
+    def _add(href, title, thumb=""):
+        url = build_full_url(href)
+        if not url or not title or url in seen:
+            return
+        seen.add(url)
+        results.append({"url": url, "title": title, "source": "Reuters", "thumb": thumb})
+
+    def _eager_image(el):
+        img = el.select_one('img[data-testid="EagerImage"]')
+        return (img.get("src") or img.get("data-src") or "").strip() if img else ""
+
+    def _noscript_image(el):
+        ns = el.select_one("noscript > img[src]")
+        return ns.get("src", "").strip() if ns else ""
+
+    # Static Media Maximizer cards
+    for card in soup.select(
+        'li.static-media-maximizer-module__card__F-y9S > '
+        'div.basic-card-module__container__TucWe[data-testid="BasicCard"]'
+    ):
+        link_el = card.select_one('a[data-testid="Title"]')
+        if link_el:
+            _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
+
+    # Generic BasicCard lists
+    for card in soup.select('div.basic-card-module__container__TucWe[data-testid="BasicCard"]'):
+        link_el = card.select_one('a[data-testid="Title"]')
+        if link_el:
+            _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
+
+    # Talking Points / MediaCard cells
+    for cell in soup.select('li[data-testid="TalkingPointsCell"] > a[data-testid="MediaCard"]'):
+        heading = cell.select_one('span[data-testid="MediaCardHeading"]')
+        if heading:
+            _add(cell.get("href", ""), heading.get_text(" ", strip=True), _noscript_image(cell))
+
+    # Generic MediaCard tiles
+    for card in soup.select('a[data-testid="MediaCard"]'):
+        heading = card.select_one('span[data-testid="MediaCardHeading"]')
+        if heading:
+            _add(card.get("href", ""), heading.get_text(" ", strip=True), _noscript_image(card))
+
+    debug("extract_reuters_extra_cards: %d items from %s", len(results), page_url)
+    return results
+
+
 # ------------------------------
 # 1. FETCH REUTERS WORLD  (BotBrowser)
 # ------------------------------
@@ -526,7 +589,55 @@ else:
     info("Total Reuters articles (world + commentary): %d", len(reuters_articles))
 
 # ------------------------------
-# 1C. FETCH AP NEWS WORLD  (FlareSolverr)
+# 1C. FETCH REUTERS EXTRA SECTION PAGES  (BotBrowser)
+# ------------------------------
+
+for extra_url in REUTERS_EXTRA_URLS:
+    info("Fetching Reuters extra page via BotBrowser: %s", extra_url)
+    extra_html = fetch_page(extra_url)
+
+    if extra_html is None:
+        warn("Failed to fetch Reuters extra page: %s", extra_url)
+        continue
+
+    slug = extra_url.rstrip("/").split("/")[-1] or extra_url.rstrip("/").split("/")[-2]
+    save_debug_html(f"reuters_extra_{slug}.html", extra_html)
+
+    extra_soup = BeautifulSoup(extra_html, "html.parser")
+    cards = extract_reuters_extra_cards(extra_soup, extra_url)
+
+    if cards:
+        info("Extra page %s: found %d cards.", extra_url, len(cards))
+        for c in cards[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | %s", c["url"], c["title"])
+        reuters_articles.extend(cards)
+    else:
+        warn("Extra page %s: no cards matched — falling back to anchor scan.", extra_url)
+        seen_extra = set()
+        for a in extra_soup.find_all("a", href=True):
+            href = a["href"].strip()
+            if re.search(
+                r'^/(world|article|business|markets|breakingviews|technology|'
+                r'investigations|commentary|sustainability)/',
+                href
+            ) or '/article/' in href:
+                title_text = a.get_text(" ", strip=True)
+                if not title_text:
+                    parent = a.find_parent()
+                    title_text = parent.get_text(" ", strip=True) if parent else ""
+                if not title_text:
+                    continue
+                full = build_full_url(href)
+                if not full or full in seen_extra:
+                    continue
+                seen_extra.add(full)
+                reuters_articles.append({"url": full, "title": title_text, "source": "Reuters"})
+        info("Extra page %s: fallback anchor scan found %d candidates.", extra_url, len(seen_extra))
+
+info("Total Reuters articles after extra pages: %d", len(reuters_articles))
+
+# ------------------------------
+# 1D. FETCH AP NEWS WORLD  (FlareSolverr)
 # ------------------------------
 
 info("Fetching AP News world page via FlareSolverr: %s", APNEWS_URL)
