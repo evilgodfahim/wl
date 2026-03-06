@@ -39,6 +39,12 @@ log = logging.getLogger("scraper")
 FLARESOLVERR_URL        = "http://localhost:8191/v1"
 REUTERS_URL             = "https://www.reuters.com/world/"
 REUTERS_COMMENTARY_URL  = "https://www.reuters.com/commentary/"
+REUTERS_EXTRA_URLS      = [
+    "https://www.reuters.com/business/energy/",
+    "https://www.reuters.com/business/environment/",
+    "https://www.reuters.com/sustainability/climate-energy/",
+    "https://www.reuters.com/sustainability/reuters-impact/",
+]
 APNEWS_URL              = "https://apnews.com/world-news"
 APNEWS_BASE             = "https://apnews.com"
 FRANCE24_RSS            = "https://www.france24.com/en/rss"
@@ -52,6 +58,36 @@ REUTERS_BASE            = "https://www.reuters.com"
 TIMEOUT_MS              = 120000
 
 FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
+
+# DataDome CAPTCHA markers — if any appear in a BotBrowser response, treat as blocked
+DATADOME_MARKERS = [
+    "geo.captcha-delivery.com",
+    "ct.captcha-delivery.com",
+    "captcha-delivery.com",
+    "DataDome",
+]
+
+# URL path prefixes that are never fetchable articles on reuters.com
+REUTERS_SKIP_PATHS = (
+    "/newsletters/",
+    "/graphics/",       # interactive pages — parsed separately if desired
+    "/live-blog/",
+    "/podcast/",
+    "/video/",
+)
+
+# Titles that are purely UI labels / non-article cards.
+# Keep this list tight — "column", "analysis", "report" etc. are real article types.
+# Path-based filtering (REUTERS_SKIP_PATHS) handles newsletters/videos/graphics already.
+REUTERS_JUNK_TITLES = {
+    "video", "live", "graphic", "graphics", "podcast",
+}
+
+# How many Reuters article fetches between BotBrowser hard restarts
+BOTBROWSER_RESTART_EVERY = 10
+
+# Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
+BOTBROWSER_FETCH_DELAY = 1.5
 
 # ------------------------------
 # BotBrowser Configuration
@@ -174,6 +210,11 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
     if not html or len(html) < 500:
         warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s", len(html), url)
+        return None
+
+    # Detect DataDome challenge page — looks like a valid page but is just a CAPTCHA shell
+    if any(m in html for m in DATADOME_MARKERS):
+        warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked", url, len(html))
         return None
 
     debug("BotBrowser received %d bytes for %s", len(html), url)
@@ -384,6 +425,83 @@ def extract_image_url(soup_page):
             return src.strip()
     return ""
 
+
+def extract_reuters_extra_cards(soup, page_url):
+    """
+    Extract article cards from the extra Reuters section pages
+    (energy, environment, climate-energy, reuters-impact) using their
+    specific data-testid card selectors.
+    Returns a list of dicts: {url, title, source, thumb}.
+    """
+    results = []
+    seen = set()
+
+    def _is_valid(url, title):
+        """Reject non-reuters.com URLs, known junk paths, and placeholder titles."""
+        if not url or not title:
+            return False
+        # Must be on reuters.com proper (not reutersevents.com etc.)
+        if not re.match(r'https?://(?:www\.)?reuters\.com/', url):
+            return False
+        # Skip paths that are never plain articles
+        parsed_path = url.split("reuters.com", 1)[-1]
+        if any(parsed_path.startswith(p) for p in REUTERS_SKIP_PATHS):
+            return False
+        # Skip one-word all-caps / known promo titles  e.g. "NEWSLETTER", "COLUMN"
+        if title.strip().lower() in REUTERS_JUNK_TITLES:
+            return False
+        return True
+
+    def _add(href, title, thumb=""):
+        url = build_full_url(href)
+        title = (title or "").strip()
+        if url in seen:
+            return
+        if not _is_valid(url, title):
+            debug("  [extra] skipping junk: %s | %s", url, title)
+            return
+        seen.add(url)
+        results.append({"url": url, "title": title, "source": "Reuters", "thumb": thumb})
+
+    def _eager_image(el):
+        img = el.select_one('img[data-testid="EagerImage"]')
+        return (img.get("src") or img.get("data-src") or "").strip() if img else ""
+
+    def _noscript_image(el):
+        ns = el.select_one("noscript > img[src]")
+        return ns.get("src", "").strip() if ns else ""
+
+    # Static Media Maximizer cards
+    for card in soup.select(
+        'li.static-media-maximizer-module__card__F-y9S > '
+        'div.basic-card-module__container__TucWe[data-testid="BasicCard"]'
+    ):
+        link_el = card.select_one('a[data-testid="Title"]')
+        if link_el:
+            _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
+
+    # Generic BasicCard lists
+    for card in soup.select('div.basic-card-module__container__TucWe[data-testid="BasicCard"]'):
+        link_el = card.select_one('a[data-testid="Title"]')
+        if link_el:
+            _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
+
+    # Talking Points / MediaCard cells
+    for cell in soup.select('li[data-testid="TalkingPointsCell"] > a[data-testid="MediaCard"]'):
+        heading = cell.select_one('span[data-testid="MediaCardHeading"]')
+        if heading:
+            _add(cell.get("href", ""), heading.get_text(" ", strip=True), _noscript_image(cell))
+
+    # Generic MediaCard tiles
+    for card in soup.select('a[data-testid="MediaCard"]'):
+        heading = card.select_one('span[data-testid="MediaCardHeading"]')
+        if heading:
+            _add(card.get("href", ""), heading.get_text(" ", strip=True), _noscript_image(card))
+
+    debug("extract_reuters_extra_cards: %d items from %s", len(results), page_url)
+    return results
+
+
 # ------------------------------
 # 1. FETCH REUTERS WORLD  (BotBrowser)
 # ------------------------------
@@ -526,7 +644,55 @@ else:
     info("Total Reuters articles (world + commentary): %d", len(reuters_articles))
 
 # ------------------------------
-# 1C. FETCH AP NEWS WORLD  (FlareSolverr)
+# 1C. FETCH REUTERS EXTRA SECTION PAGES  (BotBrowser)
+# ------------------------------
+
+for extra_url in REUTERS_EXTRA_URLS:
+    info("Fetching Reuters extra page via BotBrowser: %s", extra_url)
+    extra_html = fetch_page(extra_url)
+
+    if extra_html is None:
+        warn("Failed to fetch Reuters extra page: %s", extra_url)
+        continue
+
+    slug = extra_url.rstrip("/").split("/")[-1] or extra_url.rstrip("/").split("/")[-2]
+    save_debug_html(f"reuters_extra_{slug}.html", extra_html)
+
+    extra_soup = BeautifulSoup(extra_html, "html.parser")
+    cards = extract_reuters_extra_cards(extra_soup, extra_url)
+
+    if cards:
+        info("Extra page %s: found %d cards.", extra_url, len(cards))
+        for c in cards[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | %s", c["url"], c["title"])
+        reuters_articles.extend(cards)
+    else:
+        warn("Extra page %s: no cards matched — falling back to anchor scan.", extra_url)
+        seen_extra = set()
+        for a in extra_soup.find_all("a", href=True):
+            href = a["href"].strip()
+            if re.search(
+                r'^/(world|article|business|markets|breakingviews|technology|'
+                r'investigations|commentary|sustainability)/',
+                href
+            ) or '/article/' in href:
+                title_text = a.get_text(" ", strip=True)
+                if not title_text:
+                    parent = a.find_parent()
+                    title_text = parent.get_text(" ", strip=True) if parent else ""
+                if not title_text:
+                    continue
+                full = build_full_url(href)
+                if not full or full in seen_extra:
+                    continue
+                seen_extra.add(full)
+                reuters_articles.append({"url": full, "title": title_text, "source": "Reuters"})
+        info("Extra page %s: fallback anchor scan found %d candidates.", extra_url, len(seen_extra))
+
+info("Total Reuters articles after extra pages: %d", len(reuters_articles))
+
+# ------------------------------
+# 1D. FETCH AP NEWS WORLD  (FlareSolverr)
 # ------------------------------
 
 info("Fetching AP News world page via FlareSolverr: %s", APNEWS_URL)
@@ -681,58 +847,7 @@ for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
     debug("  sample %d: [%s] %s", i, a.get("source"), a.get("url"))
 
 # ------------------------------
-# 4. FETCH FULL TEXT
-# ------------------------------
-
-for a in all_articles:
-    if a.get("source") == "APNews":
-        thumb = a.get("thumb", "") or ""
-        a["img"] = thumb
-        if thumb:
-            a["desc"] = '<img src="{}" alt="" style="max-width:100%"/><br/>{}'.format(thumb, a.get("title", ""))
-        else:
-            a["desc"] = a.get("title", "")
-        a["pub"] = now_utc()
-
-for i, a in enumerate(all_articles, 1):
-    if a.get("source") == "APNews":
-        debug("Skipping full fetch for AP News: %s", a.get("url"))
-        continue
-
-    info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
-
-    page = fetch_page(a["url"])
-
-    if page is None:
-        warn("Failed to fetch: %s", a.get("url"))
-        a["desc"] = ""
-        a["img"]  = a.get("thumb", "") or ""
-        a["pub"]  = now_utc()
-        continue
-
-    source = a.get("source")
-    if source == "Reuters":
-        a["desc"] = extract_full_text_reuters(page)
-    else:
-        a["desc"] = extract_full_text_france24(page)
-    a["desc"] = a["desc"] or ""
-
-    soup_page = BeautifulSoup(page, "html.parser")
-    a["img"] = extract_image_url(soup_page) or a.get("thumb", "") or ""
-    a["pub"] = now_utc()
-
-    desc_len = len(a["desc"])
-    debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
-    if desc_len == 0:
-        warn("  Empty description for: %s\n  Page snippet: %s",
-             a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
-
-# Cleanup
-flare_session_destroy()
-_botbrowser_shutdown()
-
-# ------------------------------
-# 5. LOAD OR CREATE XML
+# 4. LOAD XML EARLY (to skip already-known articles)
 # ------------------------------
 
 def load_or_create_xml(path, title, link, description):
@@ -774,10 +889,6 @@ reuters_tree, reuters_root, reuters_channel = load_or_create_xml(
     "Scraped articles from Reuters",
 )
 
-# ------------------------------
-# 6. DEDUPLICATE EXISTING
-# ------------------------------
-
 existing = {
     item.find("link").text.strip()
     for item in channel.findall("item")
@@ -792,6 +903,87 @@ info("Existing items in main feed: %d", len(existing))
 info("Existing items in Reuters feed: %d", len(reuters_existing))
 
 # ------------------------------
+# 5. FETCH FULL TEXT
+# ------------------------------
+
+for a in all_articles:
+    if a.get("source") == "APNews":
+        thumb = a.get("thumb", "") or ""
+        a["img"] = thumb
+        if thumb:
+            a["desc"] = '<img src="{}" alt="" style="max-width:100%"/><br/>{}'.format(thumb, a.get("title", ""))
+        else:
+            a["desc"] = a.get("title", "")
+        a["pub"] = now_utc()
+
+reuters_fetch_count = 0
+for i, a in enumerate(all_articles, 1):
+    if a.get("source") == "APNews":
+        debug("Skipping full fetch for AP News: %s", a.get("url"))
+        continue
+
+    # Skip articles already in the feed — no need to fetch them
+    is_reuters = a.get("source") == "Reuters"
+    if a["url"] in (reuters_existing if is_reuters else existing):
+        debug("Already in feed, skipping fetch: %s", a["url"])
+        continue
+
+    info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
+
+    # Periodically restart BotBrowser to reset DataDome fingerprint.
+    if a.get("source") == "Reuters":
+        reuters_fetch_count += 1
+        if reuters_fetch_count > 1 and reuters_fetch_count % BOTBROWSER_RESTART_EVERY == 0:
+            info("DataDome prevention: restarting BotBrowser after %d Reuters fetches", reuters_fetch_count)
+            _start_botbrowser()
+            time.sleep(3)
+
+    page = fetch_page(a["url"])
+
+    # If BotBrowser returned None (DataDome blocked), do one immediate restart + retry
+    if page is None and a.get("source") == "Reuters":
+        warn("DataDome likely blocked %s — restarting BotBrowser and retrying once", a.get("url"))
+        if _start_botbrowser():
+            time.sleep(3)
+            page = fetch_page(a["url"])
+
+    if page is None:
+        warn("Failed to fetch: %s", a.get("url"))
+        a["desc"] = ""
+        a["img"]  = a.get("thumb", "") or ""
+        a["pub"]  = now_utc()
+        continue
+
+    source = a.get("source")
+    if source == "Reuters":
+        a["desc"] = extract_full_text_reuters(page)
+    else:
+        a["desc"] = extract_full_text_france24(page)
+    a["desc"] = a["desc"] or ""
+
+    soup_page = BeautifulSoup(page, "html.parser")
+    a["img"] = extract_image_url(soup_page) or a.get("thumb", "") or ""
+    a["pub"] = now_utc()
+
+    desc_len = len(a["desc"])
+    debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
+    if desc_len == 0:
+        warn("  Empty description for: %s\n  Page snippet: %s",
+             a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+
+    # Throttle BotBrowser requests to reduce DataDome rate-limiting
+    if a.get("source") == "Reuters":
+        time.sleep(BOTBROWSER_FETCH_DELAY)
+
+# Cleanup
+flare_session_destroy()
+_botbrowser_shutdown()
+
+# ------------------------------
+# 6. DEDUPLICATE EXISTING  (sets already built above)
+# ------------------------------
+
+# ------------------------------
 # 7. ADD NEW ARTICLES
 # ------------------------------
 
@@ -804,14 +996,24 @@ for art in all_articles:
     if art["url"] in target_existing:
         debug("Already exists, skipping: %s", art["url"])
         continue
-    if art.get("source") != "APNews" and not (art.get("desc") or "").strip():
-        warn("Skipping (no description): %s", art.get("title", "")[:60])
+
+    title = (art.get("title") or "").strip()
+    desc  = (art.get("desc")  or "").strip()
+
+    # Skip only if both title and description are empty — a title alone is enough
+    if not title and not desc:
+        warn("Skipping (no title or description): %s", art["url"])
         continue
 
+    # If description is missing, fall back to the title so the feed item isn't blank
+    if not desc:
+        warn("No description for '%s' — using title as fallback", title[:60])
+        desc = title
+
     item = ET.SubElement(target_channel, "item")
-    ET.SubElement(item, "title").text       = art["title"]
+    ET.SubElement(item, "title").text       = title
     ET.SubElement(item, "link").text        = art["url"]
-    ET.SubElement(item, "description").text = art["desc"]
+    ET.SubElement(item, "description").text = desc
     ET.SubElement(item, "pubDate").text     = art["pub"]
     if art.get("img"):
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
