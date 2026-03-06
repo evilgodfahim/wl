@@ -59,6 +59,35 @@ TIMEOUT_MS              = 120000
 
 FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
 
+# DataDome CAPTCHA markers — if any appear in a BotBrowser response, treat as blocked
+DATADOME_MARKERS = [
+    "geo.captcha-delivery.com",
+    "ct.captcha-delivery.com",
+    "captcha-delivery.com",
+    "DataDome",
+]
+
+# URL path prefixes that are never fetchable articles on reuters.com
+REUTERS_SKIP_PATHS = (
+    "/newsletters/",
+    "/graphics/",       # interactive pages — parsed separately if desired
+    "/live-blog/",
+    "/podcast/",
+    "/video/",
+)
+
+# Titles that indicate a card is a promo/nav element, not an article
+REUTERS_JUNK_TITLES = {
+    "newsletter", "column", "video", "podcast", "live", "graphics",
+    "graphic", "report", "briefing", "analysis",
+}
+
+# How many Reuters article fetches between BotBrowser hard restarts
+BOTBROWSER_RESTART_EVERY = 10
+
+# Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
+BOTBROWSER_FETCH_DELAY = 1.5
+
 # ------------------------------
 # BotBrowser Configuration
 # ------------------------------
@@ -180,6 +209,11 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
     if not html or len(html) < 500:
         warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s", len(html), url)
+        return None
+
+    # Detect DataDome challenge page — looks like a valid page but is just a CAPTCHA shell
+    if any(m in html for m in DATADOME_MARKERS):
+        warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked", url, len(html))
         return None
 
     debug("BotBrowser received %d bytes for %s", len(html), url)
@@ -401,9 +435,29 @@ def extract_reuters_extra_cards(soup, page_url):
     results = []
     seen = set()
 
+    def _is_valid(url, title):
+        """Reject non-reuters.com URLs, known junk paths, and placeholder titles."""
+        if not url or not title:
+            return False
+        # Must be on reuters.com proper (not reutersevents.com etc.)
+        if not re.match(r'https?://(?:www\.)?reuters\.com/', url):
+            return False
+        # Skip paths that are never plain articles
+        parsed_path = url.split("reuters.com", 1)[-1]
+        if any(parsed_path.startswith(p) for p in REUTERS_SKIP_PATHS):
+            return False
+        # Skip one-word all-caps / known promo titles  e.g. "NEWSLETTER", "COLUMN"
+        if title.strip().lower() in REUTERS_JUNK_TITLES:
+            return False
+        return True
+
     def _add(href, title, thumb=""):
         url = build_full_url(href)
-        if not url or not title or url in seen:
+        title = (title or "").strip()
+        if url in seen:
+            return
+        if not _is_valid(url, title):
+            debug("  [extra] skipping junk: %s | %s", url, title)
             return
         seen.add(url)
         results.append({"url": url, "title": title, "source": "Reuters", "thumb": thumb})
@@ -812,7 +866,26 @@ for i, a in enumerate(all_articles, 1):
 
     info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
 
+    # Periodically restart BotBrowser to reset DataDome fingerprint.
+    # We count only Reuters fetches since those go through BotBrowser.
+    if a.get("source") == "Reuters":
+        reuters_fetch_count = sum(
+            1 for x in all_articles[:i]
+            if x.get("source") == "Reuters" and x.get("source") != "APNews"
+        )
+        if reuters_fetch_count > 0 and reuters_fetch_count % BOTBROWSER_RESTART_EVERY == 0:
+            info("DataDome prevention: restarting BotBrowser after %d Reuters fetches", reuters_fetch_count)
+            _start_botbrowser()
+            time.sleep(3)
+
     page = fetch_page(a["url"])
+
+    # If BotBrowser returned None (DataDome blocked), do one immediate restart + retry
+    if page is None and a.get("source") == "Reuters":
+        warn("DataDome likely blocked %s — restarting BotBrowser and retrying once", a.get("url"))
+        if _start_botbrowser():
+            time.sleep(3)
+            page = fetch_page(a["url"])
 
     if page is None:
         warn("Failed to fetch: %s", a.get("url"))
@@ -837,6 +910,10 @@ for i, a in enumerate(all_articles, 1):
     if desc_len == 0:
         warn("  Empty description for: %s\n  Page snippet: %s",
              a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+
+    # Throttle BotBrowser requests to reduce DataDome rate-limiting
+    if a.get("source") == "Reuters":
+        time.sleep(BOTBROWSER_FETCH_DELAY)
 
 # Cleanup
 flare_session_destroy()
