@@ -47,7 +47,7 @@ REUTERS_EXTRA_URLS      = [
 ]
 APNEWS_URL              = "https://apnews.com/world-news"
 APNEWS_BASE             = "https://apnews.com"
-FRANCE24_RSS            = "https://www.france24.com/en/rss"
+FRANCE24_URL            = "https://www.france24.com/en/"
 HTML_FILE               = "opinin.html"
 COMMENTARY_HTML_FILE    = "commentary.html"
 APNEWS_HTML_FILE        = "apnews.html"
@@ -773,39 +773,86 @@ else:
     info("Found %d AP News articles", len(apnews_articles))
 
 # ------------------------------
-# 2. FETCH FRANCE24 RSS  (FlareSolverr)
+# 2. FETCH FRANCE24  (FlareSolverr)
 # ------------------------------
 
-info("Fetching France24 RSS via FlareSolverr: %s", FRANCE24_RSS)
-rss_html = fetch_page(FRANCE24_RSS)
+FRANCE24_BASE = "https://www.france24.com"
+
+info("Fetching France24 page via FlareSolverr: %s", FRANCE24_URL)
+f24_html = fetch_page(FRANCE24_URL)
 france24_articles = []
 
-if rss_html:
-    items = re.findall(r'<item>(.*?)</item>', rss_html, re.DOTALL)
-    info("Found %d total items in France24 RSS", len(items))
-    added = excluded = 0
-    for item_content in items:
-        title_m = re.search(r'<title>(.*?)</title>', item_content)
-        link_m  = re.search(r'<link>(.*?)</link>', item_content)
-        if not title_m or not link_m:
-            continue
-        title = title_m.group(1).strip()
-        url   = link_m.group(1).strip()
-        if not url.startswith("http"):
-            continue
-        skip = False
-        for ex in FRANCE24_EXCLUDE:
-            if ex in url:
-                excluded += 1
-                skip = True
-                break
-        if skip:
-            continue
-        france24_articles.append({"url": url, "title": title, "source": "France24"})
-        added += 1
-    info("France24: kept %d items, excluded %d", added, excluded)
+if f24_html is None:
+    warn("Failed to fetch France24 page")
 else:
-    warn("Failed to fetch France24 RSS")
+    save_debug_html("france24.html", f24_html)
+    f24soup = BeautifulSoup(f24_html, "html.parser")
+    seen_f24 = set()
+    added = excluded = 0
+
+    for art in f24soup.select("div.m-item-list-article[data-article-list]"):
+        # Title and URL
+        title_el = art.select_one(".article__infos .article__title a[data-article-item-link]")
+        if not title_el:
+            continue
+        title = title_el.get_text(" ", strip=True)
+        href  = title_el.get("href", "").strip()
+        # Fallback: get URL from thumbnail anchor if title link has no href
+        if not href:
+            thumb_anchor = art.select_one("a.m-item-image[data-article-item-link]")
+            if thumb_anchor:
+                href = thumb_anchor.get("href", "").strip()
+        if not href:
+            continue
+        url = href if href.startswith("http") else FRANCE24_BASE + href
+        if not url or url in seen_f24:
+            continue
+
+        # Filter excluded paths
+        skip = any(ex in url for ex in FRANCE24_EXCLUDE)
+        if skip:
+            excluded += 1
+            continue
+
+        # Thumbnail
+        thumb = ""
+        if not art.select_one(".m-item-list-article--no-image"):
+            img_el = art.select_one("a.m-item-image picture.a-picture img.a-img")
+            if img_el:
+                thumb = (img_el.get("src") or img_el.get("srcset") or "").strip()
+            if not thumb:
+                src_el = art.select_one("a.m-item-image picture.a-picture source[type='image/webp']")
+                if src_el:
+                    thumb = src_el.get("srcset", "").split()[0].rstrip(",").strip()
+
+        seen_f24.add(url)
+        france24_articles.append({"url": url, "title": title, "source": "France24", "thumb": thumb})
+        added += 1
+
+    # Also pick up carousel items
+    for art in f24soup.select(".m-carousel-item"):
+        title_el = art.select_one(".m-carousel-item__title a[href]")
+        if not title_el:
+            continue
+        title = title_el.get_text(" ", strip=True)
+        href  = title_el.get("href", "").strip()
+        if not href:
+            continue
+        url = href if href.startswith("http") else FRANCE24_BASE + href
+        if not url or url in seen_f24:
+            continue
+        if any(ex in url for ex in FRANCE24_EXCLUDE):
+            excluded += 1
+            continue
+        thumb = ""
+        img_el = art.select_one("a.m-item-image picture.a-picture img.a-img")
+        if img_el:
+            thumb = (img_el.get("src") or img_el.get("srcset") or "").strip()
+        seen_f24.add(url)
+        france24_articles.append({"url": url, "title": title, "source": "France24", "thumb": thumb})
+        added += 1
+
+    info("France24: kept %d items, excluded %d", added, excluded)
 
 # ------------------------------
 # 3. COMBINE & DEDUPE
