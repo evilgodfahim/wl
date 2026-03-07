@@ -1,645 +1,185 @@
-2026-03-07 10:03:49,852 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
-2026-03-07 10:03:49,853 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-07 10:03:49,854 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-07 10:03:50,356 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-07 10:03:50,857 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-07 10:03:51,366 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-07 10:03:51,372 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-07 10:03:51,372 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-07 10:03:51,987 DEBUG: Using selector: EpollSelector
-2026-03-07 10:03:53,740 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Page.goto: Target page, context or browser has been closed
-Call log:
-  - navigating to "https://www.reuters.com/world/", waiting until "domcontentloaded"
-
-2026-03-07 10:03:53,740 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-07 10:03:53,740 DEBUG: Killing existing BotBrowser (pid 3708)
-2026-03-07 10:03:53,773 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-07 10:03:53,774 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-07 10:03:54,275 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-07 10:03:54,276 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-07 10:03:54,276 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-07 10:03:56,277 DEBUG: Using selector: EpollSelector
-2026-03-07 10:03:58,104 DEBUG: BotBrowser received 543305 bytes for https://www.reuters.com/world/
-2026-03-07 10:03:58,105 DEBUG: Saved HTML to opinin.html (543305 bytes)
-2026-03-07 10:03:58,148 DEBUG: Primary selector nodes found: 20
-2026-03-07 10:03:58,149 INFO: Primary world selector matched 20 items.
-2026-03-07 10:03:58,149 DEBUG:   - https://www.reuters.com/world/middle-east/iran-war-enters-second-week-trump-demands-unconditional-surrender-2026-03-07/ | Israel and Iran exchange fire, Pezeshkian apologises to neighbours
-2026-03-07 10:03:58,149 DEBUG:   - https://www.reuters.com/world/middle-east/one-week-into-iran-war-dangers-us-trump-multiply-2026-03-07/ | One week into Iran war, the dangers for the US and Trump multiply
-2026-03-07 10:03:58,149 DEBUG:   - https://www.reuters.com/business/media-telecom/inside-nepal-campaign-that-could-vault-balendra-shah-power-2026-03-07/ | Inside the Nepal campaign that could vault Balendra Shah to power
-2026-03-07 10:03:58,149 DEBUG:   - https://www.reuters.com/business/aerospace-defense/war-spreads-airline-pilots-contend-with-drones-missiles-stress-2026-03-07/ | As war spreads, airline pilots contend with drones, missiles - and stress
-2026-03-07 10:03:58,149 DEBUG:   - https://www.reuters.com/world/europe/russian-strike-kills-seven-including-two-children-ukraines-kharkiv-governor-says-2026-03-07/ | Russia hits Ukraine with drones, missiles, kills at least seven in Kharkiv
-2026-03-07 10:03:58,149 DEBUG:   - https://www.reuters.com/world/middle-east/refugees-migrants-lebanon-find-rare-sanctuary-israeli-strikes-beirut-church-2026-03-07/ | Refugees, migrants in Lebanon find rare sanctuary from Israeli strikes in Beirut church
-2026-03-07 10:03:58,150 DEBUG:   - https://www.reuters.com/world/europe/perpignan-french-far-right-tests-tough-on-crime-blueprint-2026-03-07/ | In Perpignan, French far right tests tough-on-crime blueprint
-2026-03-07 10:03:58,150 DEBUG:   - https://www.reuters.com/world/asia-pacific/india-let-iran-warship-dock-day-us-sank-another-off-sri-lanka-officials-say-2026-03-07/ | India let Iran warship dock the day US sank another off Sri Lanka, officials say
-2026-03-07 10:03:58,150 DEBUG:   - https://www.reuters.com/world/middle-east/iran-suspend-strikes-neighbours-unless-attacks-come-them-2026-03-07/ | Iran to suspend strikes on neighbours unless attacks come from them
-2026-03-07 10:03:58,150 DEBUG:   - https://www.reuters.com/world/middle-east/lebanon-says-least-16-dead-israeli-strikes-eastern-town-2026-03-07/ | Israel carries out rare airborne raid in Lebanon; 16 killed in strikes
-2026-03-07 10:03:58,150 DEBUG:   - https://www.reuters.com/business/energy/azerbaijan-says-it-foils-iranian-plots-including-plan-attack-major-pipeline-2026-03-07/ | Azerbaijan says it foils Iranian plots including plan to attack major pipeline
-2026-03-07 10:03:58,150 DEBUG:   - https://www.reuters.com/world/middle-east/israel-backing-iranian-kurdish-plans-seize-iran-border-areas-sources-say-2026-03-06/ | Exclusive: Israel backing Iranian Kurdish plans to seize Iran border areas, sources say
-2026-03-07 10:03:58,150 INFO: Found 20 Reuters world articles
-2026-03-07 10:03:58,150 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
-2026-03-07 10:03:58,150 DEBUG: Using selector: EpollSelector
-2026-03-07 10:04:14,725 DEBUG: networkidle timed out for https://www.reuters.com/commentary/ (non-fatal)
-2026-03-07 10:04:15,764 DEBUG: BotBrowser received 714573 bytes for https://www.reuters.com/commentary/
-2026-03-07 10:04:15,771 DEBUG: Saved HTML to commentary.html (714573 bytes)
-2026-03-07 10:04:15,851 INFO: Primary commentary selector matched 7 cards.
-2026-03-07 10:04:15,851 DEBUG:   - href=/markets/commodities/rip-up-glut-forecasts-mideast-oil-shock-signals-supply-crunch-2026-03-06/ | title=Rip up the glut forecasts - Mideast oil shock signals supply crunch
-2026-03-07 10:04:15,851 DEBUG:   - href=/business/finance/global-markets-view-usa-2026-03-06/ | title=Morning Bid: No quiet on the eastern front
-2026-03-07 10:04:15,851 DEBUG:   - href=/markets/commodities/iran-war-exposes-fragility-western-aluminium-market-2026-03-06/ | title=Iran war exposes fragility of Western aluminium market
-2026-03-07 10:04:15,851 DEBUG:   - href=/commentary/breakingviews/private-credit-woes-come-larry-finks-legacy-2026-03-06/ | title=Private credit woes come for Larry Fink’s legacy
-2026-03-07 10:04:15,851 DEBUG:   - href=/commentary/breakingviews/markets-iran-base-case-looks-like-best-case-2026-03-06/ | title=Markets’ Iran base case looks like a best case
-2026-03-07 10:04:15,851 DEBUG:   - href=/commentary/breakingviews/lloyd-blankfein-memoir-dispels-goldmans-mystique-2026-03-05/ | title=Lloyd Blankfein memoir dispels Goldman's mystique
-2026-03-07 10:04:15,851 DEBUG:   - href=/commentary/breakingviews/iran-reveals-stretched-trump-tariff-trades-2026-03-05/ | title=Iran reveals stretched Trump tariff trades
-2026-03-07 10:04:15,851 INFO: Total Reuters articles (world + commentary): 27
-2026-03-07 10:04:15,851 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
-2026-03-07 10:04:15,851 DEBUG: Using selector: EpollSelector
-2026-03-07 10:04:32,517 DEBUG: networkidle timed out for https://www.reuters.com/business/energy/ (non-fatal)
-2026-03-07 10:04:34,105 DEBUG: BotBrowser received 1007912 bytes for https://www.reuters.com/business/energy/
-2026-03-07 10:04:34,108 DEBUG: Saved HTML to reuters_extra_energy.html (1007912 bytes)
-2026-03-07 10:04:34,231 DEBUG: extract_reuters_extra_cards: 7 items from https://www.reuters.com/business/energy/
-2026-03-07 10:04:34,231 INFO: Extra page https://www.reuters.com/business/energy/: found 7 cards.
-2026-03-07 10:04:34,231 DEBUG:   - https://www.reuters.com/business/energy/oil-falls-us-may-intervene-futures-market-issues-waiver-russian-purchases-2026-03-06/ | Iran war sends US crude futures up 12% a barrel
-2026-03-07 10:04:34,231 DEBUG:   - https://www.reuters.com/business/energy/iran-conflict-boosts-us-gulf-oil-prices-highest-since-2020-2026-03-06/ | Iran conflict boosts U.S. Gulf oil prices to highest since 2020
-2026-03-07 10:04:34,231 DEBUG:   - https://www.reuters.com/business/energy/us-pump-prices-surge-iran-war-upends-global-energy-supply-2026-03-07/ | US pump prices surge as Iran war upends global energy supply
-2026-03-07 10:04:34,231 DEBUG:   - https://www.reuters.com/business/energy/oil-derivatives-signal-traders-see-middle-east-shock-short-lived-2026-03-06/ | Oil derivatives signal traders see Middle East shock as short-lived
-2026-03-07 10:04:34,231 DEBUG:   - https://www.reuters.com/business/energy/us-drillers-add-oil-gas-rigs-first-time-four-weeks-baker-hughes-says-2026-03-06/ | US drillers add oil, gas rigs for first time in four weeks, Baker Hughes says
-2026-03-07 10:04:34,231 DEBUG:   - https://www.reuters.com/markets/commodities/rip-up-glut-forecasts-mideast-oil-shock-signals-supply-crunch-2026-03-06/ | COLUMN
-2026-03-07 10:04:34,231 DEBUG:   - https://www.reuters.com/commentary/breakingviews/markets-iran-base-case-looks-like-best-case-2026-03-06/ | BREAKINGVIEWS
-2026-03-07 10:04:34,232 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
-2026-03-07 10:04:34,232 DEBUG: Using selector: EpollSelector
-2026-03-07 10:04:50,514 DEBUG: networkidle timed out for https://www.reuters.com/business/environment/ (non-fatal)
-2026-03-07 10:04:53,137 DEBUG: BotBrowser received 1171293 bytes for https://www.reuters.com/business/environment/
-2026-03-07 10:04:53,141 DEBUG: Saved HTML to reuters_extra_environment.html (1171293 bytes)
-2026-03-07 10:04:53,393 DEBUG: extract_reuters_extra_cards: 14 items from https://www.reuters.com/business/environment/
-2026-03-07 10:04:53,393 INFO: Extra page https://www.reuters.com/business/environment/: found 14 cards.
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/business/environment/worlds-largest-urban-coffee-plantation-welcomes-new-trees-brazil-2026-03-06/ | World's largest urban coffee plantation welcomes new trees in Brazil
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/sustainability/cop/eu-countries-give-final-approval-2040-climate-target-90-emissions-cut-2026-03-05/ | EU countries give final approval to 2040 climate target for 90% emissions cut
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/china-plans-cut-carbon-dioxide-emissions-per-unit-gdp-by-around-38-2026-2026-03-05/ | China's decarbonisation plan takes cautious steps as world backtracks on climate
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/trump-administration-considering-looser-protections-north-atlantic-right-whale-2026-03-03/ | Trump administration considering looser protections for North Atlantic right whale
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/sustainability/cop/coastal-el-nino-threatens-perus-booming-agro-exports-with-heavy-rains-2026-03-03/ | Coastal El Nino threatens Peru's booming agro-exports with heavy rains
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/eu-axes-steel-emissions-label-made-europe-law-draft-shows-2026-03-03/ | EU axes steel emissions label from 'made in Europe' law, draft shows
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/uk-activists-plan-protests-over-climate-social-impacts-ai-data-centres-2026-02-27/ | Anti-data centre protests mount
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/world/ceo-world-economic-forum-quits-after-epstein-ties-scrutinised-2026-02-26/ | CEO of World Economic Forum quits
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/investigates/special-report/climate-icehockey-pakistan/ | Warmer winters leave Pakistan festival on thin ice
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/investigates/special-report/spain-environment-wildhorses/ | Spain's wild horses in peril, despite key role in wildfire prevention
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/investigates/special-report/climate-change-china-potatoes/ | China scientists rush to climate-proof potatoes
-2026-03-07 10:04:53,393 DEBUG:   - https://www.reuters.com/investigations/buffetts-berkshire-hathaway-operates-dirtiest-set-coal-fired-power-plants-us-2025-01-14/ | Buffett’s Berkshire Hathaway operates the dirtiest set of coal-fired power plants in the US
-2026-03-07 10:04:53,393 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
-2026-03-07 10:04:53,393 DEBUG: Using selector: EpollSelector
-2026-03-07 10:05:09,946 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/climate-energy/ (non-fatal)
-2026-03-07 10:05:11,256 DEBUG: BotBrowser received 1364421 bytes for https://www.reuters.com/sustainability/climate-energy/
-2026-03-07 10:05:11,260 DEBUG: Saved HTML to reuters_extra_climate-energy.html (1364421 bytes)
-2026-03-07 10:05:11,401 DEBUG: extract_reuters_extra_cards: 6 items from https://www.reuters.com/sustainability/climate-energy/
-2026-03-07 10:05:11,401 INFO: Extra page https://www.reuters.com/sustainability/climate-energy/: found 6 cards.
-2026-03-07 10:05:11,401 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/oil-spill-disrupts-livelihoods-mexicos-veracruz-state-2026-03-06/ | Oil spill disrupts livelihoods in Mexico's Veracruz state
-2026-03-07 10:05:11,401 DEBUG:   - https://www.reuters.com/world/seafarers-can-refuse-sail-through-mideast-gulf-region-main-union-says-2026-03-05/ | Seafarers can refuse to sail through Mideast Gulf region, main union says
-2026-03-07 10:05:11,401 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/seven-countries-warn-eu-not-upend-energy-market-design-2026-03-05/ | Seven countries warn EU not to upend energy market design
-2026-03-07 10:05:11,401 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/lloyds-market-engaging-with-us-government-over-gulf-maritime-plan-officials-say-2026-03-05/ | Lloyd’s market engaging with US government over Gulf maritime plan, officials say
-2026-03-07 10:05:11,401 DEBUG:   - https://www.reuters.com/sustainability/cop/eu-countries-give-final-approval-2040-climate-target-90-emissions-cut-2026-03-05/ | EU countries give final approval to 2040 climate target for 90% emissions cut
-2026-03-07 10:05:11,401 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/whats-chinas-new-five-year-plan-commodity-markets-2026-03-05/ | What's in China's new five-year plan for commodity markets
-2026-03-07 10:05:11,402 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-07 10:05:11,402 DEBUG: Using selector: EpollSelector
-2026-03-07 10:05:28,584 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/reuters-impact/ (non-fatal)
-2026-03-07 10:05:30,029 DEBUG: BotBrowser received 1306445 bytes for https://www.reuters.com/sustainability/reuters-impact/
-2026-03-07 10:05:30,036 DEBUG: Saved HTML to reuters_extra_reuters-impact.html (1306445 bytes)
-2026-03-07 10:05:30,224 DEBUG: extract_reuters_extra_cards: 3 items from https://www.reuters.com/sustainability/reuters-impact/
-2026-03-07 10:05:30,224 INFO: Extra page https://www.reuters.com/sustainability/reuters-impact/: found 3 cards.
-2026-03-07 10:05:30,224 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/oil-spill-disrupts-livelihoods-mexicos-veracruz-state-2026-03-06/ | Oil spill disrupts livelihoods in Mexico's Veracruz state
-2026-03-07 10:05:30,224 DEBUG:   - https://www.reuters.com/world/seafarers-can-refuse-sail-through-mideast-gulf-region-main-union-says-2026-03-05/ | Seafarers can refuse to sail through Mideast Gulf region, main union says
-2026-03-07 10:05:30,224 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/seven-countries-warn-eu-not-upend-energy-market-design-2026-03-05/ | Seven countries warn EU not to upend energy market design
-2026-03-07 10:05:30,224 INFO: Total Reuters articles after extra pages: 57
-2026-03-07 10:05:30,225 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
-2026-03-07 10:05:30,225 DEBUG: FlareSolverr GET: https://apnews.com/world-news
-2026-03-07 10:05:30,225 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:05:39,767 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1429261
-2026-03-07 10:05:39,784 DEBUG: FlareSolverr received 1357626 bytes for https://apnews.com/world-news
-2026-03-07 10:05:39,788 DEBUG: Saved HTML to apnews.html (1357626 bytes)
-2026-03-07 10:05:40,202 INFO: AP News primary selector matched 87 cards.
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/iran-israel-us-march-7-2026-d347fd6a03185f51d670bf4e7cbf5373 | thumb=https://dims.apnews.com/dims4/default/9221363/2147483647/strip/true/crop/6000x40 | Iran’s president apologizes for strikes on neighbors as missiles and drones still pound their cities
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/iran-war-american-detainees-0e804fa13d80a27bed63409e2f17390a | thumb=https://dims.apnews.com/dims4/default/3b69fb9/2147483647/strip/true/crop/2622x17 | US detainees in Iran risk becoming collateral damage in war, families and supporters fear
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/russia-ukraine-war-kharkiv-f555c370a7439a41393e74a6e603db43 | thumb=https://dims.apnews.com/dims4/default/7193407/2147483647/strip/true/crop/6000x40 | At least 7 killed in Ukraine’s Kharkiv as Russian missile hits apartment building
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-a2de686507c9179788d2a8793c8414a0 | thumb=https://dims.apnews.com/dims4/default/8a262b2/2147483647/strip/true/crop/3948x26 | What to know as a son of Iran’s late supreme leader is a possible candidate to replace his father
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/israel-iran-war-children-killed-beit-shemesh-bc7c276d30d67e011867b5d328ffcdba | thumb=https://dims.apnews.com/dims4/default/4cdd44b/2147483647/strip/true/crop/8128x54 | Israeli family who buried 3 of their children after missile attack clings to faith
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/iran-warship-iris-dena-india-14916ad657e50f048bbeb42b38224ecb | thumb= | Iranian warship sunk by the US was sailing home after taking part in an exhibition hosted by India
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-lebanon-march-05-2026 | thumb= | March 5 updates on the Iran war
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-lebanon-03-06-2026 | thumb= | Iran war updates March 6
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/ecuador-cuba-trump-noboa-bc7b4bab79e54a39bb8f18d683105b22 | thumb= | Ecuador declares Cuba’s ambassador ‘persona non grata,’ orders mission to leave the country
-2026-03-07 10:05:40,202 DEBUG:   - https://apnews.com/article/sri-lanka-iran-middle-east-ship-sinking-69191dde43154c5176a8aeacc9128748 | thumb= | Sri Lanka recovers 87 bodies from Iranian warship sunk off its coast by a US submarine
-2026-03-07 10:05:40,203 DEBUG:   - https://apnews.com/video/drones-target-oilfields-in-southern-iraq-4b9f76ba08e94e60bc59e9da814316fa | thumb= | Drones target oilfields in southern Iraq
-2026-03-07 10:05:40,203 DEBUG:   - https://apnews.com/video/department-of-defense-video-shiows-u-s-torpedo-attack-on-iranian-ship-22204a40c3434b608c040bf1a9618885 | thumb= | Department of Defense video shows US torpedo attack on Iranian ship
-2026-03-07 10:05:40,203 INFO: Found 87 AP News articles
-2026-03-07 10:05:40,203 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
-2026-03-07 10:05:40,203 DEBUG: FlareSolverr GET: https://www.france24.com/en/
-2026-03-07 10:05:40,204 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:05:42,002 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 893812
-2026-03-07 10:05:42,009 DEBUG: FlareSolverr received 869444 bytes for https://www.france24.com/en/
-2026-03-07 10:05:42,011 DEBUG: Saved HTML to france24.html (869444 bytes)
-2026-03-07 10:05:42,195 INFO: France24: kept 62 items, excluded 33
-2026-03-07 10:05:42,196 INFO: Total unique articles to process: 197
-2026-03-07 10:05:42,201 INFO: Loaded existing XML: pau.xml
-2026-03-07 10:05:42,217 INFO: Loaded existing XML: reuters.xml
-2026-03-07 10:05:42,218 INFO: Existing items in main feed: 500
-2026-03-07 10:05:42,218 INFO: Existing items in Reuters feed: 500
-2026-03-07 10:05:42,219 INFO: Processing 3/197 [Reuters]: Inside the Nepal campaign that could vault Balendra Shah to power
-2026-03-07 10:05:42,219 DEBUG: Using selector: EpollSelector
-2026-03-07 10:05:58,712 DEBUG: networkidle timed out for https://www.reuters.com/business/media-telecom/inside-nepal-campaign-that-could-vault-balendra-shah-power-2026-03-07/ (non-fatal)
-2026-03-07 10:06:00,720 DEBUG: BotBrowser received 607503 bytes for https://www.reuters.com/business/media-telecom/inside-nepal-campaign-that-could-vault-balendra-shah-power-2026-03-07/
-2026-03-07 10:06:00,841 DEBUG:   desc length: 5114, img: https://www.reuters.com/resizer/v2/K5CZWSAFKRLQHJ2THP5AMF3ITE.jpg?auth=5013d3acca1b7e219885f13f6a642634781e3182bbee9c377
-2026-03-07 10:06:02,341 INFO: Processing 10/197 [Reuters]: Israel carries out rare airborne raid in Lebanon; 16 killed in strikes
-2026-03-07 10:06:02,341 DEBUG: Using selector: EpollSelector
-2026-03-07 10:06:18,779 DEBUG: networkidle timed out for https://www.reuters.com/world/middle-east/lebanon-says-least-16-dead-israeli-strikes-eastern-town-2026-03-07/ (non-fatal)
-2026-03-07 10:06:21,317 DEBUG: BotBrowser received 579611 bytes for https://www.reuters.com/world/middle-east/lebanon-says-least-16-dead-israeli-strikes-eastern-town-2026-03-07/
-2026-03-07 10:06:21,512 DEBUG:   desc length: 2870, img: https://www.reuters.com/resizer/v2/466BJJQ7PVGY5O53NZ3KL65MHM.png?auth=b9c3bf166c40a6778eb5672993fde7c30a15f48329026674e
-2026-03-07 10:06:23,012 INFO: Processing 136/197 [France24]: Middle East live: Iran defies US demand for surrender, apologises for strikes on
-2026-03-07 10:06:23,012 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260307-live-israel-launches-broader-attacks-on-tehran-as-war-goes-into-eighth-day
-2026-03-07 10:06:23,013 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:24,686 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 734032
-2026-03-07 10:06:24,697 DEBUG: FlareSolverr received 720136 bytes for https://www.france24.com/en/middle-east/20260307-live-israel-launches-broader-attacks-on-tehran-as-war-goes-into-eighth-day
-2026-03-07 10:06:24,863 DEBUG:   desc length: 11777, img: https://s.france24.com/media/display/2d05e536-0f37-11f1-add3-005056bfb2b6/w:1280/p:16x9/000-94N69AB.jpg
-2026-03-07 10:06:24,864 INFO: Processing 137/197 [France24]: Russia is helping Iran target US military forces, officials say
-2026-03-07 10:06:24,864 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260307-russia-is-helping-iran-target-us-military-forces-officials-say
-2026-03-07 10:06:24,865 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:25,657 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 514193
-2026-03-07 10:06:25,661 DEBUG: FlareSolverr received 502357 bytes for https://www.france24.com/en/middle-east/20260307-russia-is-helping-iran-target-us-military-forces-officials-say
-2026-03-07 10:06:25,747 DEBUG:   desc length: 4928, img: https://s.france24.com/media/display/683bc376-19ed-11f1-a51d-005056bfb2b6/w:1280/p:16x9/AP26065449909927.jpg
-2026-03-07 10:06:25,747 INFO: Processing 138/197 [France24]: Iran's Azeris fear ethnic strife, sucking Turkey and Azerbaijan into the war
-2026-03-07 10:06:25,747 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260306-iran-azeris-fear-ethnic-strife-sucking-turkey-and-azerbaijan-into-the-war-middle-east
-2026-03-07 10:06:25,748 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:26,335 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 522424
-2026-03-07 10:06:26,340 DEBUG: FlareSolverr received 510234 bytes for https://www.france24.com/en/middle-east/20260306-iran-azeris-fear-ethnic-strife-sucking-turkey-and-azerbaijan-into-the-war-middle-east
-2026-03-07 10:06:26,426 DEBUG:   desc length: 10181, img: https://s.france24.com/media/display/1b0656de-197a-11f1-9691-005056bf30b7/w:1280/p:16x9/000-762A9PQ.jpg
-2026-03-07 10:06:26,426 INFO: Processing 139/197 [France24]: Nepal's former rapper Shah set for landslide win in parliamentary polls
-2026-03-07 10:06:26,426 DEBUG: FlareSolverr GET: https://www.france24.com/en/asia-pacific/20260307-former-rapper-shah-defeats-former-pm-oliv-in-nepal-parliamentary-elections
-2026-03-07 10:06:26,427 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:27,082 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 527420
-2026-03-07 10:06:27,087 DEBUG: FlareSolverr received 515009 bytes for https://www.france24.com/en/asia-pacific/20260307-former-rapper-shah-defeats-former-pm-oliv-in-nepal-parliamentary-elections
-2026-03-07 10:06:27,189 DEBUG:   desc length: 5357, img: https://s.france24.com/media/display/f774d416-1a00-11f1-a893-005056bfb2b6/w:1280/p:16x9/AP26062401678191.jpg
-2026-03-07 10:06:27,189 INFO: Processing 140/197 [France24]: Zelensky visits eastern front as Ukraine and Russia complete POW swap
-2026-03-07 10:06:27,189 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20260306-zelensky-visits-eastern-front-as-ukraine-and-russia-complete-pow-swap
-2026-03-07 10:06:27,190 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:27,758 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 511451
-2026-03-07 10:06:27,762 DEBUG: FlareSolverr received 499788 bytes for https://www.france24.com/en/europe/20260306-zelensky-visits-eastern-front-as-ukraine-and-russia-complete-pow-swap
-2026-03-07 10:06:27,839 DEBUG:   desc length: 2552, img: https://s.france24.com/media/display/96b298ac-1942-11f1-a628-005056bf30b7/w:1280/p:16x9/000-A24G6KE.jpg
-2026-03-07 10:06:27,839 INFO: Processing 141/197 [France24]: ‘Self-destructive, suicidal’: In Lebanon, anger rises against Hezbollah amid Isr
-2026-03-07 10:06:27,839 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260306-self-destructive-suicidal-in-lebanon-anger-rises-against-hezbollah-amid-israeli-strikes
-2026-03-07 10:06:27,840 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:28,424 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 533039
-2026-03-07 10:06:28,427 DEBUG: FlareSolverr received 520215 bytes for https://www.france24.com/en/middle-east/20260306-self-destructive-suicidal-in-lebanon-anger-rises-against-hezbollah-amid-israeli-strikes
-2026-03-07 10:06:28,517 DEBUG:   desc length: 7410, img: https://s.france24.com/media/display/1d3212c6-17f0-11f1-b3c2-005056bf30b7/w:1280/p:16x9/AP26061257328488.jpg
-2026-03-07 10:06:28,517 INFO: Processing 142/197 [France24]: Ukraine to provide drone protection support in Middle East at US request
-2026-03-07 10:06:28,517 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20260306-ukraine-zelensky-us-middle-east-counter-iranian-drone-threat
-2026-03-07 10:06:28,518 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:29,473 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 521731
-2026-03-07 10:06:29,476 DEBUG: FlareSolverr received 509319 bytes for https://www.france24.com/en/europe/20260306-ukraine-zelensky-us-middle-east-counter-iranian-drone-threat
-2026-03-07 10:06:29,673 DEBUG:   desc length: 2674, img: https://s.france24.com/media/display/07caccd2-1941-11f1-b3d2-005056a90284/w:1280/p:16x9/2026-03-05T162141Z-1943114969-RC
-2026-03-07 10:06:29,673 INFO: Processing 143/197 [France24]: Surge in GPS interference around Strait of Hormuz increases shipping risks
-2026-03-07 10:06:29,673 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260306-surge-gps-interference-strait-hormuz-increases-shipping-risks
-2026-03-07 10:06:29,673 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:30,910 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 540916
-2026-03-07 10:06:30,914 DEBUG: FlareSolverr received 527956 bytes for https://www.france24.com/en/middle-east/20260306-surge-gps-interference-strait-hormuz-increases-shipping-risks
-2026-03-07 10:06:31,011 DEBUG:   desc length: 10206, img: https://s.france24.com/media/display/da27e010-18c5-11f1-a4f3-005056bfb2b6/w:1280/p:16x9/000-98WG8TD.jpg
-2026-03-07 10:06:31,011 INFO: Processing 144/197 [France24]: Trump says only Tehran's 'unconditional surrender' can end US-Israeli war on Ira
-2026-03-07 10:06:31,011 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260306-trump-says-only-iran-s-unconditional-surrender-can-end-war
-2026-03-07 10:06:31,012 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:32,108 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 542137
-2026-03-07 10:06:32,112 DEBUG: FlareSolverr received 529274 bytes for https://www.france24.com/en/middle-east/20260306-trump-says-only-iran-s-unconditional-surrender-can-end-war
-2026-03-07 10:06:32,209 DEBUG:   desc length: 5531, img: https://s.france24.com/media/display/b1e4d386-1985-11f1-ac71-005056a97e36/w:1280/p:16x9/d1d84a93ba3add00dbb7c3d334fc8789
-2026-03-07 10:06:32,209 INFO: Processing 145/197 [France24]: ‘Panic and fear’: Iran’s political prisoners face increasing danger amid US-Isra
-2026-03-07 10:06:32,209 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260305-panic-and-fear-iran-political-prisoners-face-increasing-danger-amid-us-israel-war
-2026-03-07 10:06:32,210 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:33,627 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 527702
-2026-03-07 10:06:33,631 DEBUG: FlareSolverr received 515268 bytes for https://www.france24.com/en/middle-east/20260305-panic-and-fear-iran-political-prisoners-face-increasing-danger-amid-us-israel-war
-2026-03-07 10:06:33,724 DEBUG:   desc length: 7371, img: https://s.france24.com/media/display/528d5c6e-189f-11f1-88ef-005056bfb2b6/w:1280/p:16x9/000-34777RM.jpg
-2026-03-07 10:06:33,724 INFO: Processing 146/197 [France24]: US Justice Department releases Epstein files with accusations against Trump
-2026-03-07 10:06:33,724 DEBUG: FlareSolverr GET: https://www.france24.com/en/americas/20260306-us-justice-department-releases-epstein-files-with-accusations-against-trump
-2026-03-07 10:06:33,725 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:34,339 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 511971
-2026-03-07 10:06:34,344 DEBUG: FlareSolverr received 500238 bytes for https://www.france24.com/en/americas/20260306-us-justice-department-releases-epstein-files-with-accusations-against-trump
-2026-03-07 10:06:34,431 DEBUG:   desc length: 2924, img: https://s.france24.com/media/display/ef1cef56-1965-11f1-b4e8-005056a90284/w:1280/p:16x9/063-2264068172.jpg
-2026-03-07 10:06:34,431 INFO: Processing 147/197 [France24]: US Congress narrowly rejects war powers resolution to halt Trump’s Iran attacks
-2026-03-07 10:06:34,431 DEBUG: FlareSolverr GET: https://www.france24.com/en/americas/20260305-us-congress-rejects-war-powers-resolution-halt-trump-iran-attacks
-2026-03-07 10:06:34,432 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:35,925 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 541830
-2026-03-07 10:06:35,928 DEBUG: FlareSolverr received 528521 bytes for https://www.france24.com/en/americas/20260305-us-congress-rejects-war-powers-resolution-halt-trump-iran-attacks
-2026-03-07 10:06:36,023 DEBUG:   desc length: 7572, img: https://s.france24.com/media/display/8a26777c-17e2-11f1-8185-005056a97e36/w:1280/p:16x9/AP26058701619478.jpg
-2026-03-07 10:06:36,023 INFO: Processing 148/197 [France24]: US, Venezuela restore diplomatic relations as Washington pushes for access to mi
-2026-03-07 10:06:36,023 DEBUG: FlareSolverr GET: https://www.france24.com/en/americas/20260306-us-venezuela-restore-diplomatic-ties-after-2019-break
-2026-03-07 10:06:36,024 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:37,489 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 514718
-2026-03-07 10:06:37,492 DEBUG: FlareSolverr received 502932 bytes for https://www.france24.com/en/americas/20260306-us-venezuela-restore-diplomatic-ties-after-2019-break
-2026-03-07 10:06:37,675 DEBUG:   desc length: 3114, img: https://s.france24.com/media/display/3b9fd840-18ec-11f1-a637-005056bf30b7/w:1280/p:16x9/ca3828c3648760f930bf0df3b810b5be
-2026-03-07 10:06:37,675 INFO: Processing 149/197 [France24]: Trump fires homeland security chief and immigration-crackdown enforcer Kristi No
-2026-03-07 10:06:37,675 DEBUG: FlareSolverr GET: https://www.france24.com/en/americas/20260305-trump-fires-homeland-security-chief-and-immigration-crackdown-enforcer-kristi-noem
-2026-03-07 10:06:37,676 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:38,409 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 518014
-2026-03-07 10:06:38,413 DEBUG: FlareSolverr received 506075 bytes for https://www.france24.com/en/americas/20260305-trump-fires-homeland-security-chief-and-immigration-crackdown-enforcer-kristi-noem
-2026-03-07 10:06:38,525 DEBUG:   desc length: 3554, img: https://s.france24.com/media/display/95cbd72e-18c9-11f1-997e-005056a90284/w:1280/p:16x9/Part-GTY-2264574108-1-1-1.jpg
-2026-03-07 10:06:38,525 INFO: Processing 150/197 [France24]: From Ukraine to Iran, kamikaze drones are becoming indispensable to modern warfa
-2026-03-07 10:06:38,525 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260304-from-ukraine-iran-kamikaze-drones-becoming-indispensable-modern-warfare
-2026-03-07 10:06:38,526 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:40,044 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 514887
-2026-03-07 10:06:40,049 DEBUG: FlareSolverr received 503033 bytes for https://www.france24.com/en/middle-east/20260304-from-ukraine-iran-kamikaze-drones-becoming-indispensable-modern-warfare
-2026-03-07 10:06:40,135 DEBUG:   desc length: 4075, img: https://s.france24.com/media/display/288b684c-1715-11f1-a3cd-005056bfb2b6/w:1280/p:16x9/Main-Shahed-Lucas-drone-kamikaze
-2026-03-07 10:06:40,135 INFO: Processing 151/197 [France24]: US-Israeli strikes on Iran put China’s energy security at risk
-2026-03-07 10:06:40,135 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260303-us-israeli-strikes-on-iran-put-china-s-energy-security-at-risk
-2026-03-07 10:06:40,136 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:41,195 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 518296
-2026-03-07 10:06:41,201 DEBUG: FlareSolverr received 506408 bytes for https://www.france24.com/en/middle-east/20260303-us-israeli-strikes-on-iran-put-china-s-energy-security-at-risk
-2026-03-07 10:06:41,282 DEBUG:   desc length: 7518, img: https://s.france24.com/media/display/17fc3eb4-172b-11f1-8eee-005056a97e36/w:1280/p:16x9/000-99EA3KT.jpg
-2026-03-07 10:06:41,282 INFO: Processing 152/197 [France24]: US hails progress on Haiti's anti-gang force, but elections face steep hurdles
-2026-03-07 10:06:41,282 DEBUG: FlareSolverr GET: https://www.france24.com/en/americas/20260228-us-hails-progress-haiti-anti-gang-force-rubio-elections
-2026-03-07 10:06:41,283 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:42,688 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 516014
-2026-03-07 10:06:42,690 DEBUG: FlareSolverr received 504026 bytes for https://www.france24.com/en/americas/20260228-us-hails-progress-haiti-anti-gang-force-rubio-elections
-2026-03-07 10:06:42,831 DEBUG:   desc length: 5543, img: https://s.france24.com/media/display/1a703b6a-140a-11f1-b493-005056a90284/w:1280/p:16x9/000-92ZN7WG.jpg
-2026-03-07 10:06:42,831 INFO: Processing 153/197 [France24]: Pakistan-Afghanistan 'open war': How and why we got here
-2026-03-07 10:06:42,831 DEBUG: FlareSolverr GET: https://www.france24.com/en/asia-pacific/20260227-pakistan-afghanistan-open-war-how-and-why-we-got-here
-2026-03-07 10:06:42,833 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:44,436 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 520824
-2026-03-07 10:06:44,440 DEBUG: FlareSolverr received 508662 bytes for https://www.france24.com/en/asia-pacific/20260227-pakistan-afghanistan-open-war-how-and-why-we-got-here
-2026-03-07 10:06:44,526 DEBUG:   desc length: 7997, img: https://s.france24.com/media/display/8503f764-13bf-11f1-b820-005056bfb2b6/w:1280/p:16x9/AP26058270694882.jpg
-2026-03-07 10:06:44,526 INFO: Processing 154/197 [France24]: US says Iran fight only just begun as Israel bombards Beirut
-2026-03-07 10:06:44,526 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260305-iran-launches-missiles-at-israel-as-middle-east-conflict-escalates
-2026-03-07 10:06:44,526 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:47,459 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 702072
-2026-03-07 10:06:47,464 DEBUG: FlareSolverr received 688967 bytes for https://www.france24.com/en/middle-east/20260305-iran-launches-missiles-at-israel-as-middle-east-conflict-escalates
-2026-03-07 10:06:47,597 DEBUG:   desc length: 5355, img: https://s.france24.com/media/display/9d0b3032-18da-11f1-9bb7-005056bfb2b6/w:1280/p:16x9/AP26064757011248.jpg
-2026-03-07 10:06:47,597 INFO: Processing 155/197 [France24]: War in Middle East: Ghanaian peacekeepers in Lebanon wounded in missile attacks
-2026-03-07 10:06:47,597 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260306-us-warns-bombardment-surge-as-israel-strikes-iran-lebanon
-2026-03-07 10:06:47,598 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:49,204 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 787149
-2026-03-07 10:06:49,211 DEBUG: FlareSolverr received 772375 bytes for https://www.france24.com/en/middle-east/20260306-us-warns-bombardment-surge-as-israel-strikes-iran-lebanon
-2026-03-07 10:06:49,435 DEBUG:   desc length: 19082, img: https://s.france24.com/media/display/9fc24f1c-8bf1-11ef-aa59-005056bf30b7/w:1280/p:16x9/unifil-LEBANON.jpg
-2026-03-07 10:06:49,436 INFO: Processing 156/197 [France24]: European countries to deploy military assets to Cyprus after drone attack on UK 
-2026-03-07 10:06:49,436 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20260305-european-countries-deploy-military-assets-cyprus-after-iranian-attack-uk-base
-2026-03-07 10:06:49,436 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:50,593 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 516540
-2026-03-07 10:06:50,596 DEBUG: FlareSolverr received 504404 bytes for https://www.france24.com/en/europe/20260305-european-countries-deploy-military-assets-cyprus-after-iranian-attack-uk-base
-2026-03-07 10:06:50,680 DEBUG:   desc length: 3010, img: https://s.france24.com/media/display/28c03a9c-13d5-11f1-a1c9-005056a90284/w:1280/p:16x9/AP26058311227999.jpg
-2026-03-07 10:06:50,680 INFO: Processing 157/197 [France24]: Senate Republicans block war powers resolution to halt Trump’s Iran campaign
-2026-03-07 10:06:50,680 DEBUG: FlareSolverr GET: https://www.france24.com/en/americas/20260304-war-of-choice-us-congress-opens-first-iran-war-vote-amid-intensifying-debate
-2026-03-07 10:06:50,681 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:52,145 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 527437
-2026-03-07 10:06:52,149 DEBUG: FlareSolverr received 514720 bytes for https://www.france24.com/en/americas/20260304-war-of-choice-us-congress-opens-first-iran-war-vote-amid-intensifying-debate
-2026-03-07 10:06:52,232 DEBUG:   desc length: 6849, img: https://s.france24.com/media/display/47ac17ae-1796-11f1-a2b9-005056a90284/w:1280/p:16x9/AP26062861940008.jpg
-2026-03-07 10:06:52,232 INFO: Processing 158/197 [France24]: Israel working to intercept missiles 'launched from Iran'
-2026-03-07 10:06:52,232 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260304-live-deadly-strikes-in-lebanon-iran-claims-complete-control-of-strait-of-hormuz
-2026-03-07 10:06:52,233 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:53,145 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 708715
-2026-03-07 10:06:53,151 DEBUG: FlareSolverr received 695795 bytes for https://www.france24.com/en/middle-east/20260304-live-deadly-strikes-in-lebanon-iran-claims-complete-control-of-strait-of-hormuz
-2026-03-07 10:06:53,238 DEBUG:   desc length: 7615, img: https://s.france24.com/media/display/6af81d16-182c-11f1-937f-005056bfb2b6/w:1280/p:16x9/2026-03-04T163908Z-1497062885-RC
-2026-03-07 10:06:53,238 INFO: Processing 159/197 [France24]: US reaches out to Iran’s Kurds, but will they also be ‘hung out to dry’?
-2026-03-07 10:06:53,238 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260305-us-reaches-out-to-iran-kurds-but-will-they-be-hung-out-to-dry-this-time-middle-east-war
-2026-03-07 10:06:53,239 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:54,463 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 530384
-2026-03-07 10:06:54,467 DEBUG: FlareSolverr received 517807 bytes for https://www.france24.com/en/middle-east/20260305-us-reaches-out-to-iran-kurds-but-will-they-be-hung-out-to-dry-this-time-middle-east-war
-2026-03-07 10:06:54,553 DEBUG:   desc length: 11617, img: https://s.france24.com/media/display/d3afc784-18a7-11f1-8525-005056a97e36/w:1280/p:16x9/2026-03-05T082908Z-240488937-RC2
-2026-03-07 10:06:54,553 INFO: Processing 160/197 [France24]: North Korea's Kim inspects new destroyer, vows progress on naval nuclear expansi
-2026-03-07 10:06:54,553 DEBUG: FlareSolverr GET: https://www.france24.com/en/asia-pacific/20260305-kim-jong-un-inspects-new-destroyer-and-pledges-naval-nuclear-expansion
-2026-03-07 10:06:54,554 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:55,725 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 519652
-2026-03-07 10:06:55,731 DEBUG: FlareSolverr received 507364 bytes for https://www.france24.com/en/asia-pacific/20260305-kim-jong-un-inspects-new-destroyer-and-pledges-naval-nuclear-expansion
-2026-03-07 10:06:55,815 DEBUG:   desc length: 4178, img: https://s.france24.com/media/display/a606aa08-183b-11f1-b0f4-005056bfb2b6/w:1280/p:16x9/6b0821b5f82d41b673a1f4723ff681b2
-2026-03-07 10:06:55,815 INFO: Processing 161/197 [France24]: Is China training an army of robots? Nope, it’s an AI-generated video
-2026-03-07 10:06:55,815 DEBUG: FlareSolverr GET: https://www.france24.com/en/asia-pacific/20260305-china-army-robots-video-artificial-intelligence
-2026-03-07 10:06:55,816 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:57,029 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 526741
-2026-03-07 10:06:57,033 DEBUG: FlareSolverr received 514209 bytes for https://www.france24.com/en/asia-pacific/20260305-china-army-robots-video-artificial-intelligence
-2026-03-07 10:06:57,220 DEBUG:   desc length: 3365, img: https://s.france24.com/media/display/a84a7992-1648-11f1-bc2f-005056a90284/w:1280/p:16x9/bang1.jpg
-2026-03-07 10:06:57,220 INFO: Processing 162/197 [France24]: Our Observers in Tehran: 'For us to achieve freedom, war is the only option'
-2026-03-07 10:06:57,221 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260303-our-observers-in-tehran-for-us-to-achieve-freedom-war-is-the-only-option
-2026-03-07 10:06:57,221 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:06:58,965 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 515814
-2026-03-07 10:06:58,968 DEBUG: FlareSolverr received 503795 bytes for https://www.france24.com/en/middle-east/20260303-our-observers-in-tehran-for-us-to-achieve-freedom-war-is-the-only-option
-2026-03-07 10:06:59,041 DEBUG:   desc length: 5123, img: https://s.france24.com/media/display/78d8ffa4-1728-11f1-8971-005056bfb2b6/w:1280/p:16x9/photo-2026-03-03-15-35-08-1.jpg
-2026-03-07 10:06:59,042 INFO: Processing 163/197 [France24]: UN approves first carbon credit to Myanmar woodstove project
-2026-03-07 10:06:59,042 DEBUG: FlareSolverr GET: https://www.france24.com/en/environment/20260226-un-approves-first-carbon-credit-to-myanmar-woodstove-project
-2026-03-07 10:06:59,043 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:00,403 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 511123
-2026-03-07 10:07:00,405 DEBUG: FlareSolverr received 499369 bytes for https://www.france24.com/en/environment/20260226-un-approves-first-carbon-credit-to-myanmar-woodstove-project
-2026-03-07 10:07:00,496 DEBUG:   desc length: 3005, img: https://s.france24.com/media/display/1435402a-12ec-11f1-bae8-005056a90284/w:1280/p:16x9/AP25021627118164.jpg
-2026-03-07 10:07:00,496 INFO: Processing 164/197 [France24]: Comedy legend Jim Carrey receives lifetime honour at France’s 2026 Cesar Awards
-2026-03-07 10:07:00,496 DEBUG: FlareSolverr GET: https://www.france24.com/en/culture/20260227-comedy-legend-jim-carrey-lifetime-honour-france-2026-cesar-awards
-2026-03-07 10:07:00,497 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:02,381 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 509539
-2026-03-07 10:07:02,385 DEBUG: FlareSolverr received 497677 bytes for https://www.france24.com/en/culture/20260227-comedy-legend-jim-carrey-lifetime-honour-france-2026-cesar-awards
-2026-03-07 10:07:02,463 DEBUG:   desc length: 1642, img: https://s.france24.com/media/display/153a8d6c-1365-11f1-9635-005056a97e36/w:1280/p:16x9/8b348ed47c03819913f5fa9514701d5e
-2026-03-07 10:07:02,463 INFO: Processing 165/197 [France24]: South Korean director Park Chan-wook to lead Cannes festival jury
-2026-03-07 10:07:02,463 DEBUG: FlareSolverr GET: https://www.france24.com/en/south-korean-director-park-chan-wook-to-lead-cannes-festival-jury
-2026-03-07 10:07:02,464 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:03,182 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 472241
-2026-03-07 10:07:03,184 DEBUG: FlareSolverr received 460455 bytes for https://www.france24.com/en/south-korean-director-park-chan-wook-to-lead-cannes-festival-jury
-2026-03-07 10:07:03,269 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/af992720-1332-11f1-8036-005056bf30b7/w:1280/p:16x9/EN-20260226-171241-171425-CS.jpg
-2026-03-07 10:07:03,269 WARNING:   Empty description for: https://www.france24.com/en/south-korean-director-park-chan-wook-to-lead-cannes-festival-jury
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.967b667000ec5471518a.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:03,269 INFO: Processing 166/197 [France24]: Anthropic CEO says AI company 'cannot in good conscience accede' to Pentagon's d
-2026-03-07 10:07:03,269 DEBUG: FlareSolverr GET: https://www.france24.com/en/anthropic-ceo-says-ai-company-cannot-in-good-conscience-accede-to-pentagon-s-demands
-2026-03-07 10:07:03,270 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:03,971 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 472800
-2026-03-07 10:07:03,975 DEBUG: FlareSolverr received 461056 bytes for https://www.france24.com/en/anthropic-ceo-says-ai-company-cannot-in-good-conscience-accede-to-pentagon-s-demands
-2026-03-07 10:07:04,057 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/74bb8f20-1365-11f1-a721-005056a97e36/w:1280/p:16x9/EN-20260226-234004-234407-CS.jpg
-2026-03-07 10:07:04,057 WARNING:   Empty description for: https://www.france24.com/en/anthropic-ceo-says-ai-company-cannot-in-good-conscience-accede-to-pentagon-s-demands
-  Page snippet: <html dir="ltr" lang="en" class=" webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.967b667000ec5471518a.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}bod
-2026-03-07 10:07:04,057 INFO: Processing 167/197 [France24]: US ‘totally’ rejects global AI governance, White House adviser tells India summi
-2026-03-07 10:07:04,057 DEBUG: FlareSolverr GET: https://www.france24.com/en/technology/20260220-us-totally-rejects-global-ai-governance-white-house-adviser-tells-india-summit
-2026-03-07 10:07:04,058 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:05,489 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 517975
-2026-03-07 10:07:05,492 DEBUG: FlareSolverr received 505646 bytes for https://www.france24.com/en/technology/20260220-us-totally-rejects-global-ai-governance-white-house-adviser-tells-india-summit
-2026-03-07 10:07:05,590 DEBUG:   desc length: 2843, img: https://s.france24.com/media/display/1ad293ca-0e40-11f1-bd6d-005056bf30b7/w:1280/p:16x9/AP26048246725422.jpg
-2026-03-07 10:07:05,590 INFO: Processing 168/197 [France24]: Zuckerberg defends Meta's policies on children at landmark social media trial
-2026-03-07 10:07:05,591 DEBUG: FlareSolverr GET: https://www.france24.com/en/technology/20260219-zuckerberg-defends-meta-policies-on-children-at-landmark-social-media-harm-trial
-2026-03-07 10:07:05,592 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:07,632 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 528455
-2026-03-07 10:07:07,636 DEBUG: FlareSolverr received 515703 bytes for https://www.france24.com/en/technology/20260219-zuckerberg-defends-meta-policies-on-children-at-landmark-social-media-harm-trial
-2026-03-07 10:07:07,822 DEBUG:   desc length: 6545, img: https://s.france24.com/media/display/e0731c54-0d36-11f1-b660-005056a97e36/w:1280/p:16x9/AP26050036900608.jpg
-2026-03-07 10:07:07,823 INFO: Processing 169/197 [France24]: Landmark trial accusing social media companies of addicting children to their pl
-2026-03-07 10:07:07,823 DEBUG: FlareSolverr GET: https://www.france24.com/en/landmark-trial-accusing-social-media-companies-of-addicting-children-to-their-platforms-begins
-2026-03-07 10:07:07,823 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:10,026 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 473474
-2026-03-07 10:07:10,028 DEBUG: FlareSolverr received 461573 bytes for https://www.france24.com/en/landmark-trial-accusing-social-media-companies-of-addicting-children-to-their-platforms-begins
-2026-03-07 10:07:10,121 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/1b2d2b00-0602-11f1-9fbb-005056bfb2b6/w:1280/p:16x9/capture-1226695907698a57e9a14c54
-2026-03-07 10:07:10,121 WARNING:   Empty description for: https://www.france24.com/en/landmark-trial-accusing-social-media-companies-of-addicting-children-to-their-platforms-begins
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.e15143bb4146103dadb4.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.e4833bb768337e276640.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:10,121 INFO: Processing 170/197 [France24]: Middle East war: Fuel prices surge in France amid margin concerns
-2026-03-07 10:07:10,121 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east-war-fuel-prices-surge-in-france-amid-margin-concerns
-2026-03-07 10:07:10,122 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:10,969 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 474607
-2026-03-07 10:07:10,974 DEBUG: FlareSolverr received 462780 bytes for https://www.france24.com/en/middle-east-war-fuel-prices-surge-in-france-amid-margin-concerns
-2026-03-07 10:07:11,063 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/132460e0-193a-11f1-9a24-005056a97e36/w:1280/p:16x9/EN-20260306-094337-094513-CS.jpg
-2026-03-07 10:07:11,063 WARNING:   Empty description for: https://www.france24.com/en/middle-east-war-fuel-prices-surge-in-france-amid-margin-concerns
+2026-03-07 10:29:28,336 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
+2026-03-07 10:29:28,336 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-07 10:29:28,338 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-07 10:29:28,840 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-07 10:29:29,341 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-07 10:29:29,342 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-07 10:29:29,342 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-07 10:29:29,494 DEBUG: Using selector: EpollSelector
+2026-03-07 10:29:31,593 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Target page, context or browser has been closed
+2026-03-07 10:29:31,593 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-07 10:29:31,594 DEBUG: Killing existing BotBrowser (pid 3710)
+2026-03-07 10:29:31,610 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-07 10:29:31,612 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-07 10:29:32,113 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-07 10:29:32,116 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-07 10:29:32,117 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-07 10:29:34,117 DEBUG: Using selector: EpollSelector
+2026-03-07 10:29:35,806 DEBUG: BotBrowser received 543306 bytes for https://www.reuters.com/world/
+2026-03-07 10:29:35,807 DEBUG: Saved HTML to opinin.html (543306 bytes)
+2026-03-07 10:29:35,850 DEBUG: Primary selector nodes found: 20
+2026-03-07 10:29:35,851 INFO: Primary world selector matched 20 items.
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/middle-east/iran-war-enters-second-week-trump-demands-unconditional-surrender-2026-03-07/ | Israel and Iran exchange fire, Pezeshkian apologises to neighbours
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/middle-east/one-week-into-iran-war-dangers-us-trump-multiply-2026-03-07/ | One week into Iran war, the dangers for the US and Trump multiply
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/business/media-telecom/inside-nepal-campaign-that-could-vault-balendra-shah-power-2026-03-07/ | Inside the Nepal campaign that could vault Balendra Shah to power
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/business/aerospace-defense/war-spreads-airline-pilots-contend-with-drones-missiles-stress-2026-03-07/ | As war spreads, airline pilots contend with drones, missiles - and stress
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/europe/russian-strike-kills-seven-including-two-children-ukraines-kharkiv-governor-says-2026-03-07/ | Russia hits Ukraine with drones, missiles, kills at least seven in Kharkiv
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/middle-east/refugees-migrants-lebanon-find-rare-sanctuary-israeli-strikes-beirut-church-2026-03-07/ | Refugees, migrants in Lebanon find rare sanctuary from Israeli strikes in Beirut church
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/europe/perpignan-french-far-right-tests-tough-on-crime-blueprint-2026-03-07/ | In Perpignan, French far right tests tough-on-crime blueprint
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/asia-pacific/india-let-iran-warship-dock-day-us-sank-another-off-sri-lanka-officials-say-2026-03-07/ | India let Iran warship dock the day US sank another off Sri Lanka, officials say
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/middle-east/iran-suspend-strikes-neighbours-unless-attacks-come-them-2026-03-07/ | Iran to suspend strikes on neighbours unless attacks come from them
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/middle-east/lebanon-says-least-16-dead-israeli-strikes-eastern-town-2026-03-07/ | Israel carries out rare airborne raid in Lebanon; 16 killed in strikes
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/business/energy/azerbaijan-says-it-foils-iranian-plots-including-plan-attack-major-pipeline-2026-03-07/ | Azerbaijan says it foils Iranian plots including plan to attack major pipeline
+2026-03-07 10:29:35,851 DEBUG:   - https://www.reuters.com/world/middle-east/israel-backing-iranian-kurdish-plans-seize-iran-border-areas-sources-say-2026-03-06/ | Exclusive: Israel backing Iranian Kurdish plans to seize Iran border areas, sources say
+2026-03-07 10:29:35,851 INFO: Found 20 Reuters world articles
+2026-03-07 10:29:35,851 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
+2026-03-07 10:29:35,852 DEBUG: Using selector: EpollSelector
+2026-03-07 10:29:52,068 DEBUG: networkidle timed out for https://www.reuters.com/commentary/ (non-fatal)
+2026-03-07 10:29:54,190 DEBUG: BotBrowser received 713867 bytes for https://www.reuters.com/commentary/
+2026-03-07 10:29:54,194 DEBUG: Saved HTML to commentary.html (713867 bytes)
+2026-03-07 10:29:54,254 INFO: Primary commentary selector matched 7 cards.
+2026-03-07 10:29:54,254 DEBUG:   - href=/markets/commodities/rip-up-glut-forecasts-mideast-oil-shock-signals-supply-crunch-2026-03-06/ | title=Rip up the glut forecasts - Mideast oil shock signals supply crunch
+2026-03-07 10:29:54,255 DEBUG:   - href=/business/finance/global-markets-view-usa-2026-03-06/ | title=Morning Bid: No quiet on the eastern front
+2026-03-07 10:29:54,255 DEBUG:   - href=/markets/commodities/iran-war-exposes-fragility-western-aluminium-market-2026-03-06/ | title=Iran war exposes fragility of Western aluminium market
+2026-03-07 10:29:54,255 DEBUG:   - href=/commentary/breakingviews/private-credit-woes-come-larry-finks-legacy-2026-03-06/ | title=Private credit woes come for Larry Fink’s legacy
+2026-03-07 10:29:54,255 DEBUG:   - href=/commentary/breakingviews/markets-iran-base-case-looks-like-best-case-2026-03-06/ | title=Markets’ Iran base case looks like a best case
+2026-03-07 10:29:54,255 DEBUG:   - href=/commentary/breakingviews/lloyd-blankfein-memoir-dispels-goldmans-mystique-2026-03-05/ | title=Lloyd Blankfein memoir dispels Goldman's mystique
+2026-03-07 10:29:54,255 DEBUG:   - href=/commentary/breakingviews/iran-reveals-stretched-trump-tariff-trades-2026-03-05/ | title=Iran reveals stretched Trump tariff trades
+2026-03-07 10:29:54,255 INFO: Total Reuters articles (world + commentary): 27
+2026-03-07 10:29:54,255 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
+2026-03-07 10:29:54,255 DEBUG: Using selector: EpollSelector
+2026-03-07 10:29:56,340 DEBUG: BotBrowser received 782684 bytes for https://www.reuters.com/business/energy/
+2026-03-07 10:29:56,342 DEBUG: Saved HTML to reuters_extra_energy.html (782684 bytes)
+2026-03-07 10:29:56,431 DEBUG: extract_reuters_extra_cards: 7 items from https://www.reuters.com/business/energy/
+2026-03-07 10:29:56,431 INFO: Extra page https://www.reuters.com/business/energy/: found 7 cards.
+2026-03-07 10:29:56,431 DEBUG:   - https://www.reuters.com/business/energy/oil-falls-us-may-intervene-futures-market-issues-waiver-russian-purchases-2026-03-06/ | Iran war sends US crude futures up 12% a barrel
+2026-03-07 10:29:56,431 DEBUG:   - https://www.reuters.com/business/energy/iran-conflict-boosts-us-gulf-oil-prices-highest-since-2020-2026-03-06/ | Iran conflict boosts U.S. Gulf oil prices to highest since 2020
+2026-03-07 10:29:56,431 DEBUG:   - https://www.reuters.com/business/energy/us-pump-prices-surge-iran-war-upends-global-energy-supply-2026-03-07/ | US pump prices surge as Iran war upends global energy supply
+2026-03-07 10:29:56,431 DEBUG:   - https://www.reuters.com/business/energy/oil-derivatives-signal-traders-see-middle-east-shock-short-lived-2026-03-06/ | Oil derivatives signal traders see Middle East shock as short-lived
+2026-03-07 10:29:56,431 DEBUG:   - https://www.reuters.com/business/energy/us-drillers-add-oil-gas-rigs-first-time-four-weeks-baker-hughes-says-2026-03-06/ | US drillers add oil, gas rigs for first time in four weeks, Baker Hughes says
+2026-03-07 10:29:56,432 DEBUG:   - https://www.reuters.com/markets/commodities/rip-up-glut-forecasts-mideast-oil-shock-signals-supply-crunch-2026-03-06/ | COLUMN
+2026-03-07 10:29:56,432 DEBUG:   - https://www.reuters.com/commentary/breakingviews/markets-iran-base-case-looks-like-best-case-2026-03-06/ | BREAKINGVIEWS
+2026-03-07 10:29:56,432 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
+2026-03-07 10:29:56,432 DEBUG: Using selector: EpollSelector
+2026-03-07 10:30:12,708 DEBUG: networkidle timed out for https://www.reuters.com/business/environment/ (non-fatal)
+2026-03-07 10:30:13,879 DEBUG: BotBrowser received 1104176 bytes for https://www.reuters.com/business/environment/
+2026-03-07 10:30:13,885 DEBUG: Saved HTML to reuters_extra_environment.html (1104176 bytes)
+2026-03-07 10:30:13,998 DEBUG: extract_reuters_extra_cards: 14 items from https://www.reuters.com/business/environment/
+2026-03-07 10:30:13,998 INFO: Extra page https://www.reuters.com/business/environment/: found 14 cards.
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/business/environment/worlds-largest-urban-coffee-plantation-welcomes-new-trees-brazil-2026-03-06/ | World's largest urban coffee plantation welcomes new trees in Brazil
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/sustainability/cop/eu-countries-give-final-approval-2040-climate-target-90-emissions-cut-2026-03-05/ | EU countries give final approval to 2040 climate target for 90% emissions cut
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/china-plans-cut-carbon-dioxide-emissions-per-unit-gdp-by-around-38-2026-2026-03-05/ | China's decarbonisation plan takes cautious steps as world backtracks on climate
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/trump-administration-considering-looser-protections-north-atlantic-right-whale-2026-03-03/ | Trump administration considering looser protections for North Atlantic right whale
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/sustainability/cop/coastal-el-nino-threatens-perus-booming-agro-exports-with-heavy-rains-2026-03-03/ | Coastal El Nino threatens Peru's booming agro-exports with heavy rains
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/eu-axes-steel-emissions-label-made-europe-law-draft-shows-2026-03-03/ | EU axes steel emissions label from 'made in Europe' law, draft shows
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/uk-activists-plan-protests-over-climate-social-impacts-ai-data-centres-2026-02-27/ | Anti-data centre protests mount
+2026-03-07 10:30:13,998 DEBUG:   - https://www.reuters.com/world/ceo-world-economic-forum-quits-after-epstein-ties-scrutinised-2026-02-26/ | CEO of World Economic Forum quits
+2026-03-07 10:30:13,999 DEBUG:   - https://www.reuters.com/investigates/special-report/climate-icehockey-pakistan/ | Warmer winters leave Pakistan festival on thin ice
+2026-03-07 10:30:13,999 DEBUG:   - https://www.reuters.com/investigates/special-report/spain-environment-wildhorses/ | Spain's wild horses in peril, despite key role in wildfire prevention
+2026-03-07 10:30:13,999 DEBUG:   - https://www.reuters.com/investigates/special-report/climate-change-china-potatoes/ | China scientists rush to climate-proof potatoes
+2026-03-07 10:30:13,999 DEBUG:   - https://www.reuters.com/investigations/buffetts-berkshire-hathaway-operates-dirtiest-set-coal-fired-power-plants-us-2025-01-14/ | Buffett’s Berkshire Hathaway operates the dirtiest set of coal-fired power plants in the US
+2026-03-07 10:30:13,999 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
+2026-03-07 10:30:13,999 DEBUG: Using selector: EpollSelector
+2026-03-07 10:30:30,250 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/climate-energy/ (non-fatal)
+2026-03-07 10:30:34,815 DEBUG: BotBrowser received 1354802 bytes for https://www.reuters.com/sustainability/climate-energy/
+2026-03-07 10:30:34,821 DEBUG: Saved HTML to reuters_extra_climate-energy.html (1354802 bytes)
+2026-03-07 10:30:35,068 DEBUG: extract_reuters_extra_cards: 6 items from https://www.reuters.com/sustainability/climate-energy/
+2026-03-07 10:30:35,068 INFO: Extra page https://www.reuters.com/sustainability/climate-energy/: found 6 cards.
+2026-03-07 10:30:35,068 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/oil-spill-disrupts-livelihoods-mexicos-veracruz-state-2026-03-06/ | Oil spill disrupts livelihoods in Mexico's Veracruz state
+2026-03-07 10:30:35,068 DEBUG:   - https://www.reuters.com/world/seafarers-can-refuse-sail-through-mideast-gulf-region-main-union-says-2026-03-05/ | Seafarers can refuse to sail through Mideast Gulf region, main union says
+2026-03-07 10:30:35,068 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/seven-countries-warn-eu-not-upend-energy-market-design-2026-03-05/ | Seven countries warn EU not to upend energy market design
+2026-03-07 10:30:35,068 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/lloyds-market-engaging-with-us-government-over-gulf-maritime-plan-officials-say-2026-03-05/ | Lloyd’s market engaging with US government over Gulf maritime plan, officials say
+2026-03-07 10:30:35,068 DEBUG:   - https://www.reuters.com/sustainability/cop/eu-countries-give-final-approval-2040-climate-target-90-emissions-cut-2026-03-05/ | EU countries give final approval to 2040 climate target for 90% emissions cut
+2026-03-07 10:30:35,068 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/whats-chinas-new-five-year-plan-commodity-markets-2026-03-05/ | What's in China's new five-year plan for commodity markets
+2026-03-07 10:30:35,068 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-07 10:30:35,068 DEBUG: Using selector: EpollSelector
+2026-03-07 10:30:51,649 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/reuters-impact/ (non-fatal)
+2026-03-07 10:30:52,590 DEBUG: BotBrowser received 851346 bytes for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-07 10:30:52,593 DEBUG: Saved HTML to reuters_extra_reuters-impact.html (851346 bytes)
+2026-03-07 10:30:52,739 DEBUG: extract_reuters_extra_cards: 3 items from https://www.reuters.com/sustainability/reuters-impact/
+2026-03-07 10:30:52,739 INFO: Extra page https://www.reuters.com/sustainability/reuters-impact/: found 3 cards.
+2026-03-07 10:30:52,739 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/oil-spill-disrupts-livelihoods-mexicos-veracruz-state-2026-03-06/ | Oil spill disrupts livelihoods in Mexico's Veracruz state
+2026-03-07 10:30:52,739 DEBUG:   - https://www.reuters.com/world/seafarers-can-refuse-sail-through-mideast-gulf-region-main-union-says-2026-03-05/ | Seafarers can refuse to sail through Mideast Gulf region, main union says
+2026-03-07 10:30:52,739 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/seven-countries-warn-eu-not-upend-energy-market-design-2026-03-05/ | Seven countries warn EU not to upend energy market design
+2026-03-07 10:30:52,739 INFO: Total Reuters articles after extra pages: 57
+2026-03-07 10:30:52,739 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
+2026-03-07 10:30:52,739 DEBUG: FlareSolverr GET: https://apnews.com/world-news
+2026-03-07 10:30:52,740 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-07 10:31:00,908 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1431216
+2026-03-07 10:31:00,919 DEBUG: FlareSolverr received 1359563 bytes for https://apnews.com/world-news
+2026-03-07 10:31:00,925 DEBUG: Saved HTML to apnews.html (1359563 bytes)
+2026-03-07 10:31:01,351 INFO: AP News primary selector matched 87 cards.
+2026-03-07 10:31:01,351 DEBUG:   - https://apnews.com/article/iran-israel-us-march-7-2026-d347fd6a03185f51d670bf4e7cbf5373 | thumb=https://dims.apnews.com/dims4/default/9221363/2147483647/strip/true/crop/6000x40 | Iran’s president apologizes for strikes on neighbors as missiles and drones still pound their cities
+2026-03-07 10:31:01,351 DEBUG:   - https://apnews.com/article/iran-war-american-detainees-0e804fa13d80a27bed63409e2f17390a | thumb=https://dims.apnews.com/dims4/default/3b69fb9/2147483647/strip/true/crop/2622x17 | US detainees in Iran risk becoming collateral damage in war, families and supporters fear
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/article/russia-ukraine-war-kharkiv-f555c370a7439a41393e74a6e603db43 | thumb=https://dims.apnews.com/dims4/default/7193407/2147483647/strip/true/crop/6000x40 | At least 7 killed in Ukraine’s Kharkiv as Russian missile hits apartment building
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/article/iran-us-mojtaba-khamenei-supreme-leader-a2de686507c9179788d2a8793c8414a0 | thumb=https://dims.apnews.com/dims4/default/8a262b2/2147483647/strip/true/crop/3948x26 | What to know as a son of Iran’s late supreme leader is a possible candidate to replace his father
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/article/israel-iran-war-children-killed-beit-shemesh-bc7c276d30d67e011867b5d328ffcdba | thumb=https://dims.apnews.com/dims4/default/4cdd44b/2147483647/strip/true/crop/8128x54 | Israeli family who buried 3 of their children after missile attack clings to faith
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/article/iran-warship-iris-dena-india-14916ad657e50f048bbeb42b38224ecb | thumb= | Iranian warship sunk by the US was sailing home after taking part in an exhibition hosted by India
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-lebanon-march-05-2026 | thumb= | March 5 updates on the Iran war
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-lebanon-03-06-2026 | thumb= | Iran war updates March 6
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/article/ecuador-cuba-trump-noboa-bc7b4bab79e54a39bb8f18d683105b22 | thumb= | Ecuador declares Cuba’s ambassador ‘persona non grata,’ orders mission to leave the country
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/article/sri-lanka-iran-middle-east-ship-sinking-69191dde43154c5176a8aeacc9128748 | thumb= | Sri Lanka recovers 87 bodies from Iranian warship sunk off its coast by a US submarine
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/video/drones-target-oilfields-in-southern-iraq-4b9f76ba08e94e60bc59e9da814316fa | thumb= | Drones target oilfields in southern Iraq
+2026-03-07 10:31:01,352 DEBUG:   - https://apnews.com/video/department-of-defense-video-shiows-u-s-torpedo-attack-on-iranian-ship-22204a40c3434b608c040bf1a9618885 | thumb= | Department of Defense video shows US torpedo attack on Iranian ship
+2026-03-07 10:31:01,352 INFO: Found 87 AP News articles
+2026-03-07 10:31:01,352 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
+2026-03-07 10:31:01,352 DEBUG: FlareSolverr GET: https://www.france24.com/en/
+2026-03-07 10:31:01,353 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-07 10:31:03,125 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 894455
+2026-03-07 10:31:03,132 DEBUG: FlareSolverr received 870067 bytes for https://www.france24.com/en/
+2026-03-07 10:31:03,134 DEBUG: Saved HTML to france24.html (870067 bytes)
+2026-03-07 10:31:03,287 INFO: France24: kept 64 items, excluded 33
+2026-03-07 10:31:03,288 INFO: Total unique articles to process: 199
+2026-03-07 10:31:03,294 INFO: Loaded existing XML: pau.xml
+2026-03-07 10:31:03,307 INFO: Loaded existing XML: reuters.xml
+2026-03-07 10:31:03,308 INFO: Existing items in main feed: 500
+2026-03-07 10:31:03,308 INFO: Existing items in Reuters feed: 500
+2026-03-07 10:31:03,309 INFO: Processing 177/199 [France24]: Millions of workers facing uncertainty as tensions escalate in the Middle East
+2026-03-07 10:31:03,309 DEBUG: FlareSolverr GET: https://www.france24.com/en/millions-of-workers-facing-uncertainty-as-tensions-escalate-in-the-middle-east
+2026-03-07 10:31:03,309 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-07 10:31:04,317 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 476115
+2026-03-07 10:31:04,321 DEBUG: FlareSolverr received 464369 bytes for https://www.france24.com/en/millions-of-workers-facing-uncertainty-as-tensions-escalate-in-the-middle-east
+2026-03-07 10:31:04,491 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/eaa83236-1a0b-11f1-8960-005056a90284/w:1280/p:16x9/EN-20260307-102605-102755-CS.jpg
+2026-03-07 10:31:04,491 WARNING:   Empty description for: https://www.france24.com/en/millions-of-workers-facing-uncertainty-as-tensions-escalate-in-the-middle-east
+  Page snippet: <html dir="ltr" lang="en" class=" webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}bod
+2026-03-07 10:31:04,491 INFO: Processing 178/199 [France24]: Russia sharing intelligence information to help Tehran, officials say
+2026-03-07 10:31:04,491 DEBUG: FlareSolverr GET: https://www.france24.com/en/russia-sharing-intelligence-information-to-help-tehran-officials-say
+2026-03-07 10:31:04,492 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-07 10:31:05,371 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 474828
+2026-03-07 10:31:05,376 DEBUG: FlareSolverr received 463181 bytes for https://www.france24.com/en/russia-sharing-intelligence-information-to-help-tehran-officials-say
+2026-03-07 10:31:05,489 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/381e0bea-1a0b-11f1-840b-005056bfb2b6/w:1280/p:16x9/EN-20260307-101228-102354-CS.jpg
+2026-03-07 10:31:05,489 WARNING:   Empty description for: https://www.france24.com/en/russia-sharing-intelligence-information-to-help-tehran-officials-say
   Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:11,063 INFO: Processing 171/197 [France24]: French policeman to be tried over 2023 killing of teen Nahel
-2026-03-07 10:07:11,063 DEBUG: FlareSolverr GET: https://www.france24.com/en/france/20260305-french-policeman-to-be-tried-over-2023-killing-of-teen-nahel
-2026-03-07 10:07:11,064 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:13,271 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 511557
-2026-03-07 10:07:13,276 DEBUG: FlareSolverr received 499812 bytes for https://www.france24.com/en/france/20260305-french-policeman-to-be-tried-over-2023-killing-of-teen-nahel
-2026-03-07 10:07:13,367 DEBUG:   desc length: 2699, img: https://s.france24.com/media/display/2dcf900c-1879-11f1-b7b2-005056a97e36/w:1280/p:16x9/AP24181506351390.jpg
-2026-03-07 10:07:13,367 INFO: Processing 172/197 [France24]: Kanye West 'not welcome' to perform in Marseille, French mayor says
-2026-03-07 10:07:13,367 DEBUG: FlareSolverr GET: https://www.france24.com/en/france/20260304-kanye-west-not-welcome-to-perform-in-marseille-french-mayor-says
-2026-03-07 10:07:13,368 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:14,315 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 512353
-2026-03-07 10:07:14,318 DEBUG: FlareSolverr received 500348 bytes for https://www.france24.com/en/france/20260304-kanye-west-not-welcome-to-perform-in-marseille-french-mayor-says
-2026-03-07 10:07:14,396 DEBUG:   desc length: 2125, img: https://s.france24.com/media/display/652a9b6e-17f2-11f1-9635-005056bfb2b6/w:1280/p:16x9/AP21327654800621.jpg
-2026-03-07 10:07:14,396 INFO: Processing 173/197 [France24]: Former hostage Louis Arnaud discusses life in Evin prison – and his fears for Ir
-2026-03-07 10:07:14,396 DEBUG: FlareSolverr GET: https://www.france24.com/en/france/20260304-former-hostage-louis-arnaud-discusses-life-evin-prison-fears-for-iran-future
-2026-03-07 10:07:14,397 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:15,728 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 525718
-2026-03-07 10:07:15,734 DEBUG: FlareSolverr received 513435 bytes for https://www.france24.com/en/france/20260304-former-hostage-louis-arnaud-discusses-life-evin-prison-fears-for-iran-future
-2026-03-07 10:07:15,857 DEBUG:   desc length: 8148, img: https://s.france24.com/media/display/39042116-17b3-11f1-bed3-005056bf30b7/w:1280/p:16x9/Louis-Arnaud-France-24.jpg
-2026-03-07 10:07:15,857 INFO: Processing 174/197 [France24]: Conservative Anglicans challenge historic female leader with rival leadership
-2026-03-07 10:07:15,857 DEBUG: FlareSolverr GET: https://www.france24.com/en/conservative-anglicans-challenge-historic-female-leader-with-rival-leadership
-2026-03-07 10:07:15,858 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:16,503 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 471902
-2026-03-07 10:07:16,508 DEBUG: FlareSolverr received 460230 bytes for https://www.france24.com/en/conservative-anglicans-challenge-historic-female-leader-with-rival-leadership
-2026-03-07 10:07:16,609 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/f2ddb736-1953-11f1-8d2f-005056bf30b7/w:1280/p:16x9/capture-144801275969aac1a8972097
-2026-03-07 10:07:16,609 WARNING:   Empty description for: https://www.france24.com/en/conservative-anglicans-challenge-historic-female-leader-with-rival-leadership
+2026-03-07 10:31:05,489 INFO: Processing 179/199 [France24]: Israel raids deep into Lebanon: Israeli troops engage Hezbollah after helicopter
+2026-03-07 10:31:05,489 DEBUG: FlareSolverr GET: https://www.france24.com/en/israel-raids-deep-into-lebanon-israeli-troops-engage-hezbollah-after-helicopter-raid
+2026-03-07 10:31:05,490 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-07 10:31:06,497 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 476109
+2026-03-07 10:31:06,502 DEBUG: FlareSolverr received 464332 bytes for https://www.france24.com/en/israel-raids-deep-into-lebanon-israeli-troops-engage-hezbollah-after-helicopter-raid
+2026-03-07 10:31:06,627 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/0267f052-1a0a-11f1-bc7f-005056a97e36/w:1280/p:16x9/EN-20260307-100936-101155-CS.jpg
+2026-03-07 10:31:06,628 WARNING:   Empty description for: https://www.france24.com/en/israel-raids-deep-into-lebanon-israeli-troops-engage-hezbollah-after-helicopter-raid
   Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:16,609 INFO: Processing 175/197 [France24]: Mine collapses in eastern Congo, with official death toll disputed by M23 rebels
-2026-03-07 10:07:16,609 DEBUG: FlareSolverr GET: https://www.france24.com/en/mine-collapses-in-eastern-congo-with-official-death-toll-disputed-by-m23-rebels
-2026-03-07 10:07:16,610 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:17,209 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 473469
-2026-03-07 10:07:17,212 DEBUG: FlareSolverr received 461711 bytes for https://www.france24.com/en/mine-collapses-in-eastern-congo-with-official-death-toll-disputed-by-m23-rebels
-2026-03-07 10:07:17,413 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/2d11ad7e-1952-11f1-87b0-005056bf30b7/w:1280/p:16x9/EN-20260305-214441-214616-CS.jpg
-2026-03-07 10:07:17,413 WARNING:   Empty description for: https://www.france24.com/en/mine-collapses-in-eastern-congo-with-official-death-toll-disputed-by-m23-rebels
+2026-03-07 10:31:06,628 INFO: Processing 180/199 [France24]: Kurdish Iraq draws a line: Erbil warns against attacks on Iran from Kurdish terr
+2026-03-07 10:31:06,628 DEBUG: FlareSolverr GET: https://www.france24.com/en/kurdish-iraq-draws-a-line-erbil-warns-against-attacks-on-iran-from-kurdish-territory
+2026-03-07 10:31:06,629 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-07 10:31:07,806 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 474993
+2026-03-07 10:31:07,811 DEBUG: FlareSolverr received 463348 bytes for https://www.france24.com/en/kurdish-iraq-draws-a-line-erbil-warns-against-attacks-on-iran-from-kurdish-territory
+2026-03-07 10:31:07,900 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/657b7c32-1a09-11f1-bbe0-005056bfb2b6/w:1280/p:16x9/EN-20260307-100521-100715-CS.jpg
+2026-03-07 10:31:07,900 WARNING:   Empty description for: https://www.france24.com/en/kurdish-iraq-draws-a-line-erbil-warns-against-attacks-on-iran-from-kurdish-territory
   Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:17,413 INFO: Processing 176/197 [France24]: Mine collapse in eastern DR Congo leaves 200 dead
-2026-03-07 10:07:17,413 DEBUG: FlareSolverr GET: https://www.france24.com/en/mine-collapse-in-eastern-congo-leaves-200-dead
-2026-03-07 10:07:17,414 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:18,989 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 548280
-2026-03-07 10:07:18,992 DEBUG: FlareSolverr received 535581 bytes for https://www.france24.com/en/mine-collapse-in-eastern-congo-leaves-200-dead
-2026-03-07 10:07:19,096 DEBUG:   desc length: 46, img: https://s.france24.com/media/display/b648e3a0-194d-11f1-98a3-005056a90284/w:1280/p:16x9/capture-142245842169aab7322e2806
-2026-03-07 10:07:19,096 INFO: Processing 177/197 [France24]: Death toll mounts in Middle East war: Over 1,400 killed across Iran, Lebanon and
-2026-03-07 10:07:19,096 DEBUG: FlareSolverr GET: https://www.france24.com/en/death-toll-mounts-in-middle-east-war-over-1-400-killed-across-iran-lebanon-and-israel
-2026-03-07 10:07:19,097 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:20,909 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 477195
-2026-03-07 10:07:20,912 DEBUG: FlareSolverr received 465276 bytes for https://www.france24.com/en/death-toll-mounts-in-middle-east-war-over-1-400-killed-across-iran-lebanon-and-israel
-2026-03-07 10:07:20,992 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/de1b53b6-1a08-11f1-b97e-005056a97e36/w:1280/p:16x9/EN-20260307-100216-100420-CS.jpg
-2026-03-07 10:07:20,992 WARNING:   Empty description for: https://www.france24.com/en/death-toll-mounts-in-middle-east-war-over-1-400-killed-across-iran-lebanon-and-israel
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:20,992 INFO: Processing 178/197 [France24]: Lebanon under fire from Israel: Clashes erupts as Israeli forces attempt landing
-2026-03-07 10:07:20,992 DEBUG: FlareSolverr GET: https://www.france24.com/en/lebanon-under-fire-from-israel-clashes-erupts-as-israeli-forces-attempt-landing-operation
-2026-03-07 10:07:20,993 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:21,771 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 475502
-2026-03-07 10:07:21,775 DEBUG: FlareSolverr received 463591 bytes for https://www.france24.com/en/lebanon-under-fire-from-israel-clashes-erupts-as-israeli-forces-attempt-landing-operation
-2026-03-07 10:07:21,863 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/318fb1fa-1a08-11f1-b625-005056a90284/w:1280/p:16x9/EN-20260307-082306-083550-CS.jpg
-2026-03-07 10:07:21,863 WARNING:   Empty description for: https://www.france24.com/en/lebanon-under-fire-from-israel-clashes-erupts-as-israeli-forces-attempt-landing-operation
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:21,863 INFO: Processing 179/197 [France24]: Polymarket faces allegations of insider trading after suspicious Iran war bets
-2026-03-07 10:07:21,863 DEBUG: FlareSolverr GET: https://www.france24.com/en/polymarket-faces-allegations-of-insider-trading-after-suspicious-iran-war-bets
-2026-03-07 10:07:21,864 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:22,558 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 476059
-2026-03-07 10:07:22,560 DEBUG: FlareSolverr received 464262 bytes for https://www.france24.com/en/polymarket-faces-allegations-of-insider-trading-after-suspicious-iran-war-bets
-2026-03-07 10:07:22,639 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/73ac0088-197d-11f1-95e6-005056a97e36/w:1280/p:16x9/EN-20260306-172354-172616-CS.jpg
-2026-03-07 10:07:22,639 WARNING:   Empty description for: https://www.france24.com/en/polymarket-faces-allegations-of-insider-trading-after-suspicious-iran-war-bets
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:22,640 INFO: Processing 180/197 [France24]: Iran war divides US Congress over Constitution interpretation
-2026-03-07 10:07:22,640 DEBUG: FlareSolverr GET: https://www.france24.com/en/iran-war-divides-us-congress-over-constitution-interpretation
-2026-03-07 10:07:22,641 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:23,296 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 475587
-2026-03-07 10:07:23,300 DEBUG: FlareSolverr received 463797 bytes for https://www.france24.com/en/iran-war-divides-us-congress-over-constitution-interpretation
-2026-03-07 10:07:23,381 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/5c8230da-18ec-11f1-9d0e-005056bfb2b6/w:1280/p:16x9/2026-03-05T223628Z-47119707-RC2M
-2026-03-07 10:07:23,381 WARNING:   Empty description for: https://www.france24.com/en/iran-war-divides-us-congress-over-constitution-interpretation
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:23,381 INFO: Processing 181/197 [France24]: 'Purely defensive' posture: Europe’s reluctant role in an expanding Middle East 
-2026-03-07 10:07:23,382 DEBUG: FlareSolverr GET: https://www.france24.com/en/purely-defensive-posture-europe-s-reluctant-role-in-an-expanding-middle-east-conflict
-2026-03-07 10:07:23,382 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:24,510 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 482585
-2026-03-07 10:07:24,514 DEBUG: FlareSolverr received 470117 bytes for https://www.france24.com/en/purely-defensive-posture-europe-s-reluctant-role-in-an-expanding-middle-east-conflict
-2026-03-07 10:07:24,602 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/e0264b26-1967-11f1-b70b-005056bfb2b6/w:1280/p:16x9/EN-20260306-082020-082749-CS.jpg
-2026-03-07 10:07:24,602 WARNING:   Empty description for: https://www.france24.com/en/purely-defensive-posture-europe-s-reluctant-role-in-an-expanding-middle-east-conflict
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.ce48c58f1c043e066393.css">                                  <style>body [v-cloak]{display:none}body
-2026-03-07 10:07:24,602 INFO: Processing 182/197 [France24]: Transforming Payments in the DRC: A Leap Towards a Digital Future
-2026-03-07 10:07:24,602 DEBUG: FlareSolverr GET: https://www.france24.com/en/sponsored-content/20250923-transforming-payments-in-the-drc-a-leap-towards-a-digital-future
-2026-03-07 10:07:24,603 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:25,423 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 504643
-2026-03-07 10:07:25,426 DEBUG: FlareSolverr received 493237 bytes for https://www.france24.com/en/sponsored-content/20250923-transforming-payments-in-the-drc-a-leap-towards-a-digital-future
-2026-03-07 10:07:25,598 DEBUG:   desc length: 3902, img: https://s.france24.com/media/display/04f977ba-9886-11f0-a142-005056bf30b7/w:1280/p:16x9/77793b04-c464-4acb-9a7e-36b49958
-2026-03-07 10:07:25,599 INFO: Processing 183/197 [France24]: Africa's $88 billion solutions: How ATAF fights illicit financial flows
-2026-03-07 10:07:25,599 DEBUG: FlareSolverr GET: https://www.france24.com/en/sponsored-content/20250108-africa-s-88-billion-solutions-how-ataf-fights-illicit-financial-flows
-2026-03-07 10:07:25,599 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:27,488 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 501024
-2026-03-07 10:07:27,491 DEBUG: FlareSolverr received 489848 bytes for https://www.france24.com/en/sponsored-content/20250108-africa-s-88-billion-solutions-how-ataf-fights-illicit-financial-flows
-2026-03-07 10:07:27,554 DEBUG:   desc length: 4216, img: https://s.france24.com/media/display/3a84c8bc-cc12-11ef-8324-005056a97e36/w:1280/p:16x9/THE%20ATAF%20LAUNCHED%20A%20BOOK
-2026-03-07 10:07:27,554 INFO: Processing 184/197 [France24]: Burundi: innovative solutions to fight stunting in children
-2026-03-07 10:07:27,554 DEBUG: FlareSolverr GET: https://www.france24.com/en/sponsored-content/20240122-burundi-innovative-solutions-to-fight-stunting-in-children
-2026-03-07 10:07:27,555 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:28,127 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 501126
-2026-03-07 10:07:28,130 DEBUG: FlareSolverr received 489900 bytes for https://www.france24.com/en/sponsored-content/20240122-burundi-innovative-solutions-to-fight-stunting-in-children
-2026-03-07 10:07:28,204 DEBUG:   desc length: 3713, img: https://s.france24.com/media/display/a16fd85e-b47c-11ee-8c4e-005056a97e36/w:1280/p:16x9/1er%20Photo%20article%202-.jpg
-2026-03-07 10:07:28,204 INFO: Processing 185/197 [France24]: Child malnutrition in Burundi: concrete actions to help children
-2026-03-07 10:07:28,204 DEBUG: FlareSolverr GET: https://www.france24.com/en/sponsored-content/20231215-child-malnutrition-in-burundi-concrete-actions-to-help-children
-2026-03-07 10:07:28,205 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:28,860 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 501694
-2026-03-07 10:07:28,863 DEBUG: FlareSolverr received 490463 bytes for https://www.france24.com/en/sponsored-content/20231215-child-malnutrition-in-burundi-concrete-actions-to-help-children
-2026-03-07 10:07:28,938 DEBUG:   desc length: 3617, img: https://s.france24.com/media/display/9ba1e732-9802-11ee-8638-005056bfb2b6/w:1280/p:16x9/%C2%A9UNICEF%20Burundi-A.%20Muco
-2026-03-07 10:07:28,938 INFO: Processing 186/197 [France24]: Interview of Anthony Ginter, President & CEO - WEO
-2026-03-07 10:07:28,938 DEBUG: FlareSolverr GET: https://www.france24.com/en/sponsored-content/20230911-interview-of-anthony-ginter-president-ceo-weo
-2026-03-07 10:07:28,940 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:29,747 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 506272
-2026-03-07 10:07:29,750 DEBUG: FlareSolverr received 494784 bytes for https://www.france24.com/en/sponsored-content/20230911-interview-of-anthony-ginter-president-ceo-weo
-2026-03-07 10:07:29,820 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/6436eb14-50a7-11ee-8e88-005056a90321/w:1280/p:16x9/FMM_GINTER_WEO_EN_V2.jpg
-2026-03-07 10:07:29,821 WARNING:   Empty description for: https://www.france24.com/en/sponsored-content/20230911-interview-of-anthony-ginter-president-ceo-weo
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/article.a66d35b21380997ea62e.css">                                      <style>body [v-cloak]{display:non
-2026-03-07 10:07:29,821 INFO: Processing 187/197 [France24]: Reporters without borders
-2026-03-07 10:07:29,821 DEBUG: FlareSolverr GET: https://donate.rsf.org?cid=213&lang=en_EN&reserved_origine=FAGFMM&utm_source=fmm&utm_medium=display&utm_campaign=FR_FUNDRAISING_EN_CFA_GAZA-FMM__ALL
-2026-03-07 10:07:29,821 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:36,573 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 233659
-2026-03-07 10:07:36,575 DEBUG: FlareSolverr received 220129 bytes for https://donate.rsf.org?cid=213&lang=en_EN&reserved_origine=FAGFMM&utm_source=fmm&utm_medium=display&utm_campaign=FR_FUNDRAISING_EN_CFA_GAZA-FMM__ALL
-2026-03-07 10:07:36,681 DEBUG:   desc length: 0, img: /cdn.iraiser.eu/8u5I9gyQQatUmc/0NN6Fgg==/default/origin/RSFlogoENRVB.png
-2026-03-07 10:07:36,682 WARNING:   Empty description for: https://donate.rsf.org?cid=213&lang=en_EN&reserved_origine=FAGFMM&utm_source=fmm&utm_medium=display&utm_campaign=FR_FUNDRAISING_EN_CFA_GAZA-FMM__ALL
-  Page snippet: <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_EN" lang="en_EN" class="wf-raleway-n4-active wf-active" style="--main-action-color: #E40046; --main-action-color-lighter: #ff4062; --main-action-color-transparent: #e4004626; --main-action-color-lighter-opaque: #ffe3e8; --border-radius: 5px; --description-color: #E4004600; --information-color: #E40046; --column-background-color: #EAEAEAE8; --banner-color: #030303; --banner-color-darker: #000000; --fontsize: 15px; --widgets-color-progress-bar-goal: #010101; --widgets-color-last-donors: #010101; --widgets-color-cookies-banner: #010101;"><head> <meta content="text/html; charset=UTF-8" http-equiv="content-type"> <title>Reporters Without Borders | Support press freedom </title> <meta name="description" content="Reporters Without Borders, a
-2026-03-07 10:07:36,682 INFO: Processing 188/197 [France24]: Survivors of Assad's prisons speak out about rape and torture
-2026-03-07 10:07:36,682 DEBUG: FlareSolverr GET: https://www.france24.com/en/syrian-women-assad-jails/
-2026-03-07 10:07:36,683 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:38,724 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 544407
-2026-03-07 10:07:38,729 DEBUG: FlareSolverr received 534069 bytes for https://www.france24.com/en/syrian-women-assad-jails/
-2026-03-07 10:07:38,814 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/99f8a93a-e6c1-11ee-9116-005056bf30b7/w:1280/p:16x9/img-default-F24.jpg
-2026-03-07 10:07:38,814 WARNING:   Empty description for: https://www.france24.com/en/syrian-women-assad-jails/
-  Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.00a1d1fc602ab5db5ece.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/page-builder.7bd52aa9f5e98928e393.css">                                  <style>body [v-cloak]{display:no
-2026-03-07 10:07:38,814 INFO: Processing 189/197 [France24]: The church by the airport: Inside Russia’s suspected spy activities in Sweden
-2026-03-07 10:07:38,814 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20250704-the-church-by-the-airport-inside-russia-s-suspected-spy-activities-in-sweden
-2026-03-07 10:07:38,817 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:39,666 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 552662
-2026-03-07 10:07:39,671 DEBUG: FlareSolverr received 538879 bytes for https://www.france24.com/en/europe/20250704-the-church-by-the-airport-inside-russia-s-suspected-spy-activities-in-sweden
-2026-03-07 10:07:39,859 DEBUG:   desc length: 17390, img: https://s.france24.com/media/display/9faa55d4-58af-11f0-832a-005056bf30b7/w:1280/p:16x9/main-enquete-EN-2.jpg
-2026-03-07 10:07:39,859 INFO: Processing 190/197 [France24]: Searching for radioactive waste in the depths of the Atlantic
-2026-03-07 10:07:39,859 DEBUG: FlareSolverr GET: https://www.france24.com/en/environment/20250607-searching-radioactive-waste-depths-atlantic-france-nuclear
-2026-03-07 10:07:39,860 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:41,377 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 521342
-2026-03-07 10:07:41,380 DEBUG: FlareSolverr received 509307 bytes for https://www.france24.com/en/environment/20250607-searching-radioactive-waste-depths-atlantic-france-nuclear
-2026-03-07 10:07:41,459 DEBUG:   desc length: 7425, img: https://s.france24.com/media/display/f20a8fb8-37dc-11f0-8065-005056a97e36/w:1280/p:16x9/campagnes%20NODSSUM.jpg
-2026-03-07 10:07:41,459 INFO: Processing 191/197 [France24]: 'We'll make it home together': A friendship between two deported women in Ravens
-2026-03-07 10:07:41,459 DEBUG: FlareSolverr GET: https://webdoc.france24.com/nous-rentrerons-ensemble-suzanne-simone-camp-ravensbruck/friendship-at-ravensbruck.html
-2026-03-07 10:07:41,460 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:44,122 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 150387
-2026-03-07 10:07:44,123 DEBUG: FlareSolverr received 145792 bytes for https://webdoc.france24.com/nous-rentrerons-ensemble-suzanne-simone-camp-ravensbruck/friendship-at-ravensbruck.html
-2026-03-07 10:07:44,159 DEBUG:   desc length: 0, img: https://webdoc.france24.com/nous-rentrerons-ensemble-suzanne-simone-camp-ravensbruck/medias/share_coveren.jpg
-2026-03-07 10:07:44,159 WARNING:   Empty description for: https://webdoc.france24.com/nous-rentrerons-ensemble-suzanne-simone-camp-ravensbruck/friendship-at-ravensbruck.html
-  Page snippet: <html lang="en" data-locale="en" data-graphics-type="webdoc" data-cmp-theme="france24" class="lenis" style=""><head>     <meta http-equiv="content-type" content="text/html; charset=utf-8">     <title>“We’ll make it home together” Suzanne &amp; Simone, a friendship at Ravensbrück camp via @France24_en</title>       <script id="spcloader" type="text/javascript" async="" src="https://sdk.privacy-center.org/495f718a-9d29-4830-96dc-6035928a6362/loader.js?target=webdoc.france24.com" charset="utf-8"></script><script id="didomi-script">         var didomiLg = "fr"; window.didomiConfig = {languages:{enabled:[didomiLg],default:didomiLg}}; window.gdprAppliesGlobally=true;         (function(){function a(e){if(!window.frames[e]){if(document.body&&document.body.firstChild){var t=document.body;var n=docu
-2026-03-07 10:07:44,160 INFO: Processing 192/197 [France24]: ‘Unwavering friendship’: The true story of nine women who escaped a Nazi death m
-2026-03-07 10:07:44,160 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20250429-true-story-nine-women-who-escaped-nazi-death-march-ravensbruck
-2026-03-07 10:07:44,160 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:44,964 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 524413
-2026-03-07 10:07:44,968 DEBUG: FlareSolverr received 511468 bytes for https://www.france24.com/en/europe/20250429-true-story-nine-women-who-escaped-nazi-death-march-ravensbruck
-2026-03-07 10:07:45,054 DEBUG:   desc length: 7711, img: https://s.france24.com/media/display/00d84eda-21bd-11f0-ba88-005056a90284/w:1280/p:16x9/main-ravensbruck.jpg
-2026-03-07 10:07:45,054 INFO: Processing 193/197 [France24]: Pope Francis, first Latin American pontiff and champion of the forgotten
-2026-03-07 10:07:45,054 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20250421-pope-francis-first-latin-american-pontiff-dies-after-double-pneumonia-battle
-2026-03-07 10:07:45,055 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:46,917 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 531484
-2026-03-07 10:07:46,921 DEBUG: FlareSolverr received 518735 bytes for https://www.france24.com/en/europe/20250421-pope-francis-first-latin-american-pontiff-dies-after-double-pneumonia-battle
-2026-03-07 10:07:47,001 DEBUG:   desc length: 10873, img: https://s.france24.com/media/display/cb4513ba-1ec5-11f0-9692-005056a90284/w:1280/p:16x9/Pape-necro.jpg
-2026-03-07 10:07:47,001 INFO: Processing 194/197 [France24]: Haiti’s independence ransom: Macron offers ‘truth’, Haitians want reparations
-2026-03-07 10:07:47,002 DEBUG: FlareSolverr GET: https://www.france24.com/en/americas/20250417-haiti-independence-ransom-macron-offers-truth-haitians-want-reparations-slavery
-2026-03-07 10:07:47,003 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:47,676 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 540351
-2026-03-07 10:07:47,680 DEBUG: FlareSolverr received 526871 bytes for https://www.france24.com/en/americas/20250417-haiti-independence-ransom-macron-offers-truth-haitians-want-reparations-slavery
-2026-03-07 10:07:47,784 DEBUG:   desc length: 11957, img: https://s.france24.com/media/display/667ae2b0-1bab-11f0-9805-005056a90284/w:1280/p:16x9/france-haiti-treaty.jpg
-2026-03-07 10:07:47,784 INFO: Processing 195/197 [France24]: Saved from destruction: Paris show offers glimpse of Gaza’s archaeological treas
-2026-03-07 10:07:47,784 DEBUG: FlareSolverr GET: https://www.france24.com/en/culture/20250403-saved-from-destruction-paris-exhibition-offers-glimpse-of-gaza-archaeological-treasures
-2026-03-07 10:07:47,785 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:49,280 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 534616
-2026-03-07 10:07:49,283 DEBUG: FlareSolverr received 521865 bytes for https://www.france24.com/en/culture/20250403-saved-from-destruction-paris-exhibition-offers-glimpse-of-gaza-archaeological-treasures
-2026-03-07 10:07:49,369 DEBUG:   desc length: 7340, img: https://s.france24.com/media/display/6f4fa8b0-101d-11f0-b2c5-005056bf30b7/w:1280/p:16x9/000_38JC4QY.jpg
-2026-03-07 10:07:49,369 INFO: Processing 196/197 [France24]: Lithium: The white gold of the energy transition
-2026-03-07 10:07:49,369 DEBUG: FlareSolverr GET: https://webdoc.france24.com/lithium-energy-automobile-industry-bolivia-argentina-chile/
-2026-03-07 10:07:49,370 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:54,071 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 157024
-2026-03-07 10:07:54,072 DEBUG: FlareSolverr received 150978 bytes for https://webdoc.france24.com/lithium-energy-automobile-industry-bolivia-argentina-chile/
-2026-03-07 10:07:54,102 DEBUG:   desc length: 0, img: https://webdoc.france24.com/lithium-energy-automobile-industry-bolivia-argentina-chile/fb_tw.png
-2026-03-07 10:07:54,102 WARNING:   Empty description for: https://webdoc.france24.com/lithium-energy-automobile-industry-bolivia-argentina-chile/
-  Page snippet: <html dir="ltr" lang="en" data-locale="en" data-graphics-type="webdoc" data-cmp-theme="france24" class=" js no-touch cssanimations csstransitions" style=""><head>     <meta http-equiv="content-type" content="text/html; charset=utf-8">     <title>Lithium: The white gold of the energy transition - FRANCE 24</title>     <script id="spcloader" type="text/javascript" async="" src="https://sdk.privacy-center.org/495f718a-9d29-4830-96dc-6035928a6362/loader.js?target=webdoc.france24.com" charset="utf-8"></script><script id="didomi-script">     var didomiLg = "en"; window.didomiConfig = {languages:{enabled:[didomiLg],default:didomiLg}}; window.gdprAppliesGlobally=true;     (function(){function a(e){if(!window.frames[e]){if(document.body&&document.body.firstChild){var t=document.body;var n=document.
-2026-03-07 10:07:54,102 INFO: Processing 197/197 [France24]: 'The Bibi Files': Documentary reveals the police interrogations behind Netanyahu
-2026-03-07 10:07:54,102 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20240910-the-bibi-files-documentary-reveals-the-police-interrogations-behind-netanyahu-s-graft-trial
-2026-03-07 10:07:54,103 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:54,706 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 535728
-2026-03-07 10:07:54,712 DEBUG: FlareSolverr received 522744 bytes for https://www.france24.com/en/middle-east/20240910-the-bibi-files-documentary-reveals-the-police-interrogations-behind-netanyahu-s-graft-trial
-2026-03-07 10:07:54,901 DEBUG:   desc length: 13084, img: https://s.france24.com/media/display/bfce0ed0-6ed3-11ef-96b3-005056bf30b7/w:1280/p:16x9/netanyahu-car.jpg
-2026-03-07 10:07:54,902 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-07 10:07:56,171 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
-2026-03-07 10:07:56,172 DEBUG: Shutting down BotBrowser (pid 3881)
-2026-03-07 10:07:56,235 DEBUG: Added: https://www.reuters.com/business/media-telecom/inside-nepal-campaign-that-could-vault-balendra-shah-power-2026-03-07/
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.reuters.com/world/middle-east/lebanon-says-least-16-dead-israeli-strikes-eastern-town-2026-03-07/
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/middle-east/20260307-live-israel-launches-broader-attacks-on-tehran-as-war-goes-into-eighth-day
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/middle-east/20260307-russia-is-helping-iran-target-us-military-forces-officials-say
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/middle-east/20260306-iran-azeris-fear-ethnic-strife-sucking-turkey-and-azerbaijan-into-the-war-middle-east
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/asia-pacific/20260307-former-rapper-shah-defeats-former-pm-oliv-in-nepal-parliamentary-elections
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/europe/20260306-zelensky-visits-eastern-front-as-ukraine-and-russia-complete-pow-swap
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/middle-east/20260306-self-destructive-suicidal-in-lebanon-anger-rises-against-hezbollah-amid-israeli-strikes
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/europe/20260306-ukraine-zelensky-us-middle-east-counter-iranian-drone-threat
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/middle-east/20260306-surge-gps-interference-strait-hormuz-increases-shipping-risks
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/middle-east/20260306-trump-says-only-iran-s-unconditional-surrender-can-end-war
-2026-03-07 10:07:56,236 DEBUG: Added: https://www.france24.com/en/middle-east/20260305-panic-and-fear-iran-political-prisoners-face-increasing-danger-amid-us-israel-war
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/americas/20260306-us-justice-department-releases-epstein-files-with-accusations-against-trump
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/americas/20260305-us-congress-rejects-war-powers-resolution-halt-trump-iran-attacks
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/americas/20260306-us-venezuela-restore-diplomatic-ties-after-2019-break
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/americas/20260305-trump-fires-homeland-security-chief-and-immigration-crackdown-enforcer-kristi-noem
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/middle-east/20260304-from-ukraine-iran-kamikaze-drones-becoming-indispensable-modern-warfare
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/middle-east/20260303-us-israeli-strikes-on-iran-put-china-s-energy-security-at-risk
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/americas/20260228-us-hails-progress-haiti-anti-gang-force-rubio-elections
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/asia-pacific/20260227-pakistan-afghanistan-open-war-how-and-why-we-got-here
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/middle-east/20260305-iran-launches-missiles-at-israel-as-middle-east-conflict-escalates
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/middle-east/20260306-us-warns-bombardment-surge-as-israel-strikes-iran-lebanon
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/europe/20260305-european-countries-deploy-military-assets-cyprus-after-iranian-attack-uk-base
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/americas/20260304-war-of-choice-us-congress-opens-first-iran-war-vote-amid-intensifying-debate
-2026-03-07 10:07:56,237 DEBUG: Added: https://www.france24.com/en/middle-east/20260304-live-deadly-strikes-in-lebanon-iran-claims-complete-control-of-strait-of-hormuz
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/middle-east/20260305-us-reaches-out-to-iran-kurds-but-will-they-be-hung-out-to-dry-this-time-middle-east-war
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/asia-pacific/20260305-kim-jong-un-inspects-new-destroyer-and-pledges-naval-nuclear-expansion
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/asia-pacific/20260305-china-army-robots-video-artificial-intelligence
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/middle-east/20260303-our-observers-in-tehran-for-us-to-achieve-freedom-war-is-the-only-option
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/environment/20260226-un-approves-first-carbon-credit-to-myanmar-woodstove-project
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/culture/20260227-comedy-legend-jim-carrey-lifetime-honour-france-2026-cesar-awards
-2026-03-07 10:07:56,238 WARNING: No description for 'South Korean director Park Chan-wook to lead Cannes festival' — using title as fallback
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/south-korean-director-park-chan-wook-to-lead-cannes-festival-jury
-2026-03-07 10:07:56,238 WARNING: No description for 'Anthropic CEO says AI company 'cannot in good conscience acc' — using title as fallback
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/anthropic-ceo-says-ai-company-cannot-in-good-conscience-accede-to-pentagon-s-demands
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/technology/20260220-us-totally-rejects-global-ai-governance-white-house-adviser-tells-india-summit
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/technology/20260219-zuckerberg-defends-meta-policies-on-children-at-landmark-social-media-harm-trial
-2026-03-07 10:07:56,238 WARNING: No description for 'Landmark trial accusing social media companies of addicting ' — using title as fallback
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/landmark-trial-accusing-social-media-companies-of-addicting-children-to-their-platforms-begins
-2026-03-07 10:07:56,238 WARNING: No description for 'Middle East war: Fuel prices surge in France amid margin con' — using title as fallback
-2026-03-07 10:07:56,238 DEBUG: Added: https://www.france24.com/en/middle-east-war-fuel-prices-surge-in-france-amid-margin-concerns
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/france/20260305-french-policeman-to-be-tried-over-2023-killing-of-teen-nahel
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/france/20260304-kanye-west-not-welcome-to-perform-in-marseille-french-mayor-says
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/france/20260304-former-hostage-louis-arnaud-discusses-life-evin-prison-fears-for-iran-future
-2026-03-07 10:07:56,239 WARNING: No description for 'Conservative Anglicans challenge historic female leader with' — using title as fallback
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/conservative-anglicans-challenge-historic-female-leader-with-rival-leadership
-2026-03-07 10:07:56,239 WARNING: No description for 'Mine collapses in eastern Congo, with official death toll di' — using title as fallback
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/mine-collapses-in-eastern-congo-with-official-death-toll-disputed-by-m23-rebels
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/mine-collapse-in-eastern-congo-leaves-200-dead
-2026-03-07 10:07:56,239 WARNING: No description for 'Death toll mounts in Middle East war: Over 1,400 killed acro' — using title as fallback
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/death-toll-mounts-in-middle-east-war-over-1-400-killed-across-iran-lebanon-and-israel
-2026-03-07 10:07:56,239 WARNING: No description for 'Lebanon under fire from Israel: Clashes erupts as Israeli fo' — using title as fallback
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/lebanon-under-fire-from-israel-clashes-erupts-as-israeli-forces-attempt-landing-operation
-2026-03-07 10:07:56,239 WARNING: No description for 'Polymarket faces allegations of insider trading after suspic' — using title as fallback
-2026-03-07 10:07:56,239 DEBUG: Added: https://www.france24.com/en/polymarket-faces-allegations-of-insider-trading-after-suspicious-iran-war-bets
-2026-03-07 10:07:56,239 WARNING: No description for 'Iran war divides US Congress over Constitution interpretatio' — using title as fallback
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/iran-war-divides-us-congress-over-constitution-interpretation
-2026-03-07 10:07:56,240 WARNING: No description for ''Purely defensive' posture: Europe’s reluctant role in an ex' — using title as fallback
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/purely-defensive-posture-europe-s-reluctant-role-in-an-expanding-middle-east-conflict
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/sponsored-content/20250923-transforming-payments-in-the-drc-a-leap-towards-a-digital-future
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/sponsored-content/20250108-africa-s-88-billion-solutions-how-ataf-fights-illicit-financial-flows
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/sponsored-content/20240122-burundi-innovative-solutions-to-fight-stunting-in-children
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/sponsored-content/20231215-child-malnutrition-in-burundi-concrete-actions-to-help-children
-2026-03-07 10:07:56,240 WARNING: No description for 'Interview of Anthony Ginter, President & CEO - WEO' — using title as fallback
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/sponsored-content/20230911-interview-of-anthony-ginter-president-ceo-weo
-2026-03-07 10:07:56,240 WARNING: No description for 'Reporters without borders' — using title as fallback
-2026-03-07 10:07:56,240 DEBUG: Added: https://donate.rsf.org?cid=213&lang=en_EN&reserved_origine=FAGFMM&utm_source=fmm&utm_medium=display&utm_campaign=FR_FUNDRAISING_EN_CFA_GAZA-FMM__ALL
-2026-03-07 10:07:56,240 WARNING: No description for 'Survivors of Assad's prisons speak out about rape and tortur' — using title as fallback
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/syrian-women-assad-jails/
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/europe/20250704-the-church-by-the-airport-inside-russia-s-suspected-spy-activities-in-sweden
-2026-03-07 10:07:56,240 DEBUG: Added: https://www.france24.com/en/environment/20250607-searching-radioactive-waste-depths-atlantic-france-nuclear
-2026-03-07 10:07:56,241 WARNING: No description for ''We'll make it home together': A friendship between two depo' — using title as fallback
-2026-03-07 10:07:56,241 DEBUG: Added: https://webdoc.france24.com/nous-rentrerons-ensemble-suzanne-simone-camp-ravensbruck/friendship-at-ravensbruck.html
-2026-03-07 10:07:56,241 DEBUG: Added: https://www.france24.com/en/europe/20250429-true-story-nine-women-who-escaped-nazi-death-march-ravensbruck
-2026-03-07 10:07:56,241 DEBUG: Added: https://www.france24.com/en/europe/20250421-pope-francis-first-latin-american-pontiff-dies-after-double-pneumonia-battle
-2026-03-07 10:07:56,241 DEBUG: Added: https://www.france24.com/en/americas/20250417-haiti-independence-ransom-macron-offers-truth-haitians-want-reparations-slavery
-2026-03-07 10:07:56,241 DEBUG: Added: https://www.france24.com/en/culture/20250403-saved-from-destruction-paris-exhibition-offers-glimpse-of-gaza-archaeological-treasures
-2026-03-07 10:07:56,241 WARNING: No description for 'Lithium: The white gold of the energy transition' — using title as fallback
-2026-03-07 10:07:56,241 DEBUG: Added: https://webdoc.france24.com/lithium-energy-automobile-industry-bolivia-argentina-chile/
-2026-03-07 10:07:56,241 DEBUG: Added: https://www.france24.com/en/middle-east/20240910-the-bibi-files-documentary-reveals-the-police-interrogations-behind-netanyahu-s-graft-trial
-2026-03-07 10:07:56,241 INFO: Added 62 new articles to main feed
-2026-03-07 10:07:56,241 INFO: Added 2 new articles to Reuters feed
-2026-03-07 10:07:56,241 INFO: Trimmed feed to 500 items
-2026-03-07 10:07:56,242 INFO: Trimmed feed to 500 items
-2026-03-07 10:07:56,257 INFO: Done! Main feed saved to pau.xml
-2026-03-07 10:07:56,257 INFO: Done! Reuters feed saved to reuters.xml
-2026-03-07 10:07:56,257 INFO: Debug log saved to debug.log
+2026-03-07 10:31:07,901 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-07 10:31:08,059 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
+2026-03-07 10:31:08,060 DEBUG: Shutting down BotBrowser (pid 3884)
+2026-03-07 10:31:08,124 WARNING: No description for 'Millions of workers facing uncertainty as tensions escalate ' — using title as fallback
+2026-03-07 10:31:08,124 DEBUG: Added: https://www.france24.com/en/millions-of-workers-facing-uncertainty-as-tensions-escalate-in-the-middle-east
+2026-03-07 10:31:08,124 WARNING: No description for 'Russia sharing intelligence information to help Tehran, offi' — using title as fallback
+2026-03-07 10:31:08,124 DEBUG: Added: https://www.france24.com/en/russia-sharing-intelligence-information-to-help-tehran-officials-say
+2026-03-07 10:31:08,124 WARNING: No description for 'Israel raids deep into Lebanon: Israeli troops engage Hezbol' — using title as fallback
+2026-03-07 10:31:08,124 DEBUG: Added: https://www.france24.com/en/israel-raids-deep-into-lebanon-israeli-troops-engage-hezbollah-after-helicopter-raid
+2026-03-07 10:31:08,124 WARNING: No description for 'Kurdish Iraq draws a line: Erbil warns against attacks on Ir' — using title as fallback
+2026-03-07 10:31:08,124 DEBUG: Added: https://www.france24.com/en/kurdish-iraq-draws-a-line-erbil-warns-against-attacks-on-iran-from-kurdish-territory
+2026-03-07 10:31:08,125 INFO: Added 4 new articles to main feed
+2026-03-07 10:31:08,125 INFO: Added 0 new articles to Reuters feed
+2026-03-07 10:31:08,125 INFO: Trimmed feed to 500 items
+2026-03-07 10:31:08,143 INFO: Done! Main feed saved to pau.xml
+2026-03-07 10:31:08,143 INFO: Done! Reuters feed saved to reuters.xml
+2026-03-07 10:31:08,143 INFO: Debug log saved to debug.log
