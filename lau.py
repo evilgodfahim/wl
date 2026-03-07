@@ -59,26 +59,23 @@ TIMEOUT_MS              = 120000
 
 FRANCE24_EXCLUDE = ["/video/", "/live-news/", "/sport/", "/tv-shows/", "/sports/", "/videos/"]
 
-# DataDome CAPTCHA markers — if any appear in a BotBrowser response, treat as blocked
+# DataDome CAPTCHA challenge page unique CSS — never present in real pages.
+# (Script URLs like captcha-delivery.com appear on ALL Reuters pages, so must not be used.)
 DATADOME_MARKERS = [
-    "geo.captcha-delivery.com",
-    "ct.captcha-delivery.com",
-    "captcha-delivery.com",
-    "DataDome",
+    "#cmsg{animation: A 1.5s;}",
+    "#cmsg{animation:A 1.5s}",
 ]
 
 # URL path prefixes that are never fetchable articles on reuters.com
 REUTERS_SKIP_PATHS = (
     "/newsletters/",
-    "/graphics/",       # interactive pages — parsed separately if desired
+    "/graphics/",
     "/live-blog/",
     "/podcast/",
     "/video/",
 )
 
 # Titles that are purely UI labels / non-article cards.
-# Keep this list tight — "column", "analysis", "report" etc. are real article types.
-# Path-based filtering (REUTERS_SKIP_PATHS) handles newsletters/videos/graphics already.
 REUTERS_JUNK_TITLES = {
     "video", "live", "graphic", "graphics", "podcast",
 }
@@ -172,7 +169,6 @@ def _botbrowser_fetch_once(url: str) -> str | None:
         return None
 
     cdp_endpoint = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}"
-    debug("BotBrowser GET via Playwright CDP: %s", url)
 
     try:
         with sync_playwright() as pw:
@@ -212,7 +208,7 @@ def _botbrowser_fetch_once(url: str) -> str | None:
         warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s", len(html), url)
         return None
 
-    # Detect DataDome challenge page — looks like a valid page but is just a CAPTCHA shell
+    # Detect DataDome challenge page via its unique CSS keyframe
     if any(m in html for m in DATADOME_MARKERS):
         warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked", url, len(html))
         return None
@@ -302,10 +298,8 @@ def is_reuters_url(url: str) -> bool:
 
 def fetch_page(url: str) -> str | None:
     if is_reuters_url(url):
-        debug("Routing to BotBrowser: %s", url)
         return botbrowser_get(url)
     else:
-        debug("Routing to FlareSolverr: %s", url)
         return flare_get(url)
 
 
@@ -329,7 +323,6 @@ def flare_get(url):
         warn("FlareSolverr request error: %s", e)
         return None
 
-    debug("FlareSolverr HTTP %s", r.status_code)
     if r.status_code != 200:
         warn("FlareSolverr returned HTTP %s for %s", r.status_code, url)
         return None
@@ -427,27 +420,17 @@ def extract_image_url(soup_page):
 
 
 def extract_reuters_extra_cards(soup, page_url):
-    """
-    Extract article cards from the extra Reuters section pages
-    (energy, environment, climate-energy, reuters-impact) using their
-    specific data-testid card selectors.
-    Returns a list of dicts: {url, title, source, thumb}.
-    """
     results = []
     seen = set()
 
     def _is_valid(url, title):
-        """Reject non-reuters.com URLs, known junk paths, and placeholder titles."""
         if not url or not title:
             return False
-        # Must be on reuters.com proper (not reutersevents.com etc.)
         if not re.match(r'https?://(?:www\.)?reuters\.com/', url):
             return False
-        # Skip paths that are never plain articles
         parsed_path = url.split("reuters.com", 1)[-1]
         if any(parsed_path.startswith(p) for p in REUTERS_SKIP_PATHS):
             return False
-        # Skip one-word all-caps / known promo titles  e.g. "NEWSLETTER", "COLUMN"
         if title.strip().lower() in REUTERS_JUNK_TITLES:
             return False
         return True
@@ -458,7 +441,6 @@ def extract_reuters_extra_cards(soup, page_url):
         if url in seen:
             return
         if not _is_valid(url, title):
-            debug("  [extra] skipping junk: %s | %s", url, title)
             return
         seen.add(url)
         results.append({"url": url, "title": title, "source": "Reuters", "thumb": thumb})
@@ -471,7 +453,6 @@ def extract_reuters_extra_cards(soup, page_url):
         ns = el.select_one("noscript > img[src]")
         return ns.get("src", "").strip() if ns else ""
 
-    # Static Media Maximizer cards
     for card in soup.select(
         'li.static-media-maximizer-module__card__F-y9S > '
         'div.basic-card-module__container__TucWe[data-testid="BasicCard"]'
@@ -480,19 +461,16 @@ def extract_reuters_extra_cards(soup, page_url):
         if link_el:
             _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
 
-    # Generic BasicCard lists
     for card in soup.select('div.basic-card-module__container__TucWe[data-testid="BasicCard"]'):
         link_el = card.select_one('a[data-testid="Title"]')
         if link_el:
             _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
 
-    # Talking Points / MediaCard cells
     for cell in soup.select('li[data-testid="TalkingPointsCell"] > a[data-testid="MediaCard"]'):
         heading = cell.select_one('span[data-testid="MediaCardHeading"]')
         if heading:
             _add(cell.get("href", ""), heading.get_text(" ", strip=True), _noscript_image(cell))
 
-    # Generic MediaCard tiles
     for card in soup.select('a[data-testid="MediaCard"]'):
         heading = card.select_one('span[data-testid="MediaCardHeading"]')
         if heading:
@@ -843,8 +821,6 @@ for item in reuters_articles + apnews_articles + france24_articles:
 
 all_articles = combined
 info("Total unique articles to process: %d", len(all_articles))
-for i, a in enumerate(all_articles[:DEBUG_SAMPLE_LIMIT], 1):
-    debug("  sample %d: [%s] %s", i, a.get("source"), a.get("url"))
 
 # ------------------------------
 # 4. LOAD XML EARLY (to skip already-known articles)
@@ -919,13 +895,11 @@ for a in all_articles:
 reuters_fetch_count = 0
 for i, a in enumerate(all_articles, 1):
     if a.get("source") == "APNews":
-        debug("Skipping full fetch for AP News: %s", a.get("url"))
         continue
 
     # Skip articles already in the feed — no need to fetch them
     is_reuters = a.get("source") == "Reuters"
     if a["url"] in (reuters_existing if is_reuters else existing):
-        debug("Already in feed, skipping fetch: %s", a["url"])
         continue
 
     info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
@@ -980,11 +954,7 @@ flare_session_destroy()
 _botbrowser_shutdown()
 
 # ------------------------------
-# 6. DEDUPLICATE EXISTING  (sets already built above)
-# ------------------------------
-
-# ------------------------------
-# 7. ADD NEW ARTICLES
+# 6. ADD NEW ARTICLES
 # ------------------------------
 
 new_count = reuters_new_count = 0
@@ -994,18 +964,17 @@ for art in all_articles:
     target_existing = reuters_existing if is_reuters else existing
 
     if art["url"] in target_existing:
-        debug("Already exists, skipping: %s", art["url"])
         continue
 
     title = (art.get("title") or "").strip()
     desc  = (art.get("desc")  or "").strip()
 
-    # Skip only if both title and description are empty — a title alone is enough
+    # Skip only if both title and description are empty
     if not title and not desc:
         warn("Skipping (no title or description): %s", art["url"])
         continue
 
-    # If description is missing, fall back to the title so the feed item isn't blank
+    # If description is missing, fall back to the title
     if not desc:
         warn("No description for '%s' — using title as fallback", title[:60])
         desc = title
@@ -1028,7 +997,7 @@ info("Added %d new articles to main feed", new_count)
 info("Added %d new articles to Reuters feed", reuters_new_count)
 
 # ------------------------------
-# 8. TRIM OLD ITEMS
+# 7. TRIM OLD ITEMS
 # ------------------------------
 
 for ch in (channel, reuters_channel):
@@ -1039,7 +1008,7 @@ for ch in (channel, reuters_channel):
         info("Trimmed feed to %d items", MAX_ITEMS)
 
 # ------------------------------
-# 9. SAVE XML
+# 8. SAVE XML
 # ------------------------------
 
 os.makedirs(os.path.dirname(XML_FILE) or ".", exist_ok=True)
