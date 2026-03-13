@@ -1,218 +1,213 @@
-2026-03-13 14:12:40,149 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
-2026-03-13 14:12:40,150 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-13 14:12:40,151 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-13 14:12:40,653 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-13 14:12:41,154 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-13 14:12:41,656 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-13 14:12:42,157 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-13 14:12:42,158 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-13 14:12:42,158 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-13 14:12:43,238 DEBUG: Using selector: EpollSelector
-2026-03-13 14:12:43,843 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Page.goto: net::ERR_ABORTED; maybe frame was detached?
+2026-03-13 15:11:34,447 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
+2026-03-13 15:11:34,448 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-13 15:11:34,450 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:34,951 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:35,453 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:35,954 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:36,456 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:36,957 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:36,958 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-13 15:11:36,959 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-13 15:11:38,000 DEBUG: Using selector: EpollSelector
+2026-03-13 15:11:38,760 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Page.goto: Target page, context or browser has been closed
 Call log:
   - navigating to "https://www.reuters.com/world/", waiting until "domcontentloaded"
 
-2026-03-13 14:12:43,844 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-13 14:12:43,844 DEBUG: Killing existing BotBrowser (pid 3628)
-2026-03-13 14:12:43,860 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-13 14:12:43,863 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-13 14:12:44,365 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-13 14:12:44,366 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-13 14:12:44,366 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-13 14:12:46,367 DEBUG: Using selector: EpollSelector
-2026-03-13 14:12:48,330 DEBUG: BotBrowser received 611110 bytes for https://www.reuters.com/world/
-2026-03-13 14:12:48,331 DEBUG: Saved HTML to opinin.html (611110 bytes)
-2026-03-13 14:12:48,388 DEBUG: Primary selector nodes found: 40
-2026-03-13 14:12:48,389 INFO: Primary world selector matched 40 items.
-2026-03-13 14:12:48,389 DEBUG:   - https://www.reuters.com/business/swiss-sticking-mandate-trade-talks-with-us-minister-says-2026-03-13/ | Swiss sticking to mandate for trade talks with US, minister says
-2026-03-13 14:12:48,389 DEBUG:   - https://www.reuters.com/world/middle-east/both-sides-dig-iran-war-approaches-two-week-mark-2026-03-13/ | Trump says US will hit Iran 'very hard' after easing sanctions on Russian oil
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/us/with-iran-war-exit-elusive-trump-aides-vie-affect-outcome-2026-03-13/ | Exclusive: With Iran war exit elusive, Trump aides vie to affect outcome
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/americas/cuban-president-under-pressure-economic-crisis-trump-address-media-2026-03-13/ | Cuba says it has opened talks with US as oil blockade takes toll
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/six-french-soldiers-wounded-iraq-after-drone-attack-army-says-2026-03-12/ | One French soldier killed and six others wounded after Iraq drone attack
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/business/aerospace-defense/zelenskiy-heads-france-iran-war-distracts-ukraine-2026-03-13/ | Seeking support in France, Zelenskiy says Russia oil waiver won't help end war
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/middle-east/why-havent-houthis-irans-allies-yemen-stepped-into-war-2026-03-13/ | Why haven’t the Houthis, Iran’s allies in Yemen, stepped into the war?
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/business/finance/how-an-obscure-banker-slipped-into-brazils-political-inner-circle-triggering-2026-03-13/ | How an obscure banker slipped into Brazil’s political inner circle, triggering a scandal
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/pope-leo-says-christians-who-start-wars-should-go-confession-2026-03-13/ | Pope Leo says Christians who start wars should go to confession
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/europe/frances-position-middle-east-is-defensive-macron-says-after-attack-its-soldiers-2026-03-13/ | France's position in Middle East is defensive, Macron says, after attack on its soldiers
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/irans-new-supreme-leader-wounded-likely-disfigured-hegseth-says-2026-03-13/ | Iran's new supreme leader wounded, likely disfigured, Hegseth says
-2026-03-13 14:12:48,390 DEBUG:   - https://www.reuters.com/world/africa/south-africas-president-authorises-deployment-2200-troops-help-fight-crime-2026-03-13/ | South Africa's president authorises deployment of 2,200 troops to help fight crime
-2026-03-13 14:12:48,390 INFO: Found 40 Reuters world articles
-2026-03-13 14:12:48,390 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
-2026-03-13 14:12:48,390 DEBUG: Using selector: EpollSelector
-2026-03-13 14:13:04,649 DEBUG: networkidle timed out for https://www.reuters.com/commentary/ (non-fatal)
-2026-03-13 14:13:05,525 DEBUG: BotBrowser received 708151 bytes for https://www.reuters.com/commentary/
-2026-03-13 14:13:05,531 DEBUG: Saved HTML to commentary.html (708151 bytes)
-2026-03-13 14:13:05,670 INFO: Primary commentary selector matched 7 cards.
-2026-03-13 14:13:05,670 DEBUG:   - href=/business/finance/global-markets-view-usa-2026-03-13/ | title=Morning Bid: Markets over a barrel
-2026-03-13 14:13:05,671 DEBUG:   - href=/world/asia-pacific/global-markets-trading-day-graphic-2026-03-12/ | title=Trading Day: The destructive power of $100 oil
-2026-03-13 14:13:05,671 DEBUG:   - href=/markets/iran-war-is-one-taco-too-far-2026-03-12/ | title=Iran war is one 'TACO' too far
-2026-03-13 14:13:05,671 DEBUG:   - href=/commentary/breakingviews/gulf-states-can-make-financial-point-trump-2026-03-13/ | title=Gulf states can make a financial point to Trump
-2026-03-13 14:13:05,671 DEBUG:   - href=/commentary/breakingviews/mexico-has-chance-reap-nearshoring-boons-2026-03-13/ | title=Mexico has a chance to reap nearshoring boons
-2026-03-13 14:13:05,671 DEBUG:   - href=/commentary/breakingviews/iran-war-shows-up-folly-slow-energy-transition-2026-03-13/ | title=Iran war shows up folly of slow energy transition
-2026-03-13 14:13:05,671 DEBUG:   - href=/commentary/breakingviews/how-insider-trading-fears-harm-prediction-markets-2026-03-12/ | title=How insider-trading fears harm prediction markets
-2026-03-13 14:13:05,671 INFO: Total Reuters articles (world + commentary): 47
-2026-03-13 14:13:05,671 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
-2026-03-13 14:13:05,671 DEBUG: Using selector: EpollSelector
-2026-03-13 14:13:22,120 DEBUG: networkidle timed out for https://www.reuters.com/business/energy/ (non-fatal)
-2026-03-13 14:13:25,363 DEBUG: BotBrowser received 1417464 bytes for https://www.reuters.com/business/energy/
-2026-03-13 14:13:25,372 DEBUG: Saved HTML to reuters_extra_energy.html (1417464 bytes)
-2026-03-13 14:13:25,609 DEBUG: extract_reuters_extra_cards: 7 items from https://www.reuters.com/business/energy/
-2026-03-13 14:13:25,610 INFO: Extra page https://www.reuters.com/business/energy/: found 7 cards.
-2026-03-13 14:13:25,610 DEBUG:   - https://www.reuters.com/world/middle-east/iran-unleashes-oil-shock-blunt-us-firepower-2026-03-13/ | Iran unleashes oil shock to blunt US firepower
-2026-03-13 14:13:25,610 DEBUG:   - https://www.reuters.com/business/energy/sinopec-plans-cut-crude-runs-by-over-10-mideast-supply-squeeze-sources-say-2026-03-13/ | Exclusive: Top global refiner Sinopec to cut crude runs by over 10% on Mideast supply squeeze, sources say
-2026-03-13 14:13:25,610 DEBUG:   - https://www.reuters.com/business/energy/debt-burdened-europe-has-fewer-options-buffer-energy-shock-2026-03-13/ | Debt-burdened Europe has fewer options to buffer energy shock
-2026-03-13 14:13:25,610 DEBUG:   - https://www.reuters.com/business/energy/us-issues-new-russia-related-general-license-oil-treasury-website-2026-03-12/ | US issues 30-day sanctions waiver for purchase of Russian oil at sea
-2026-03-13 14:13:25,610 DEBUG:   - https://www.reuters.com/business/energy/saudi-arabia-cuts-oil-output-20-8-million-bpd-amid-iran-war-sources-say-2026-03-13/ | Saudi Arabia cuts oil output 20% to 8 million bpd amid Iran war, sources say
-2026-03-13 14:13:25,610 DEBUG:   - https://www.reuters.com/commentary/breakingviews/iran-war-shows-up-folly-slow-energy-transition-2026-03-13/ | BREAKINGVIEWS
-2026-03-13 14:13:25,610 DEBUG:   - https://www.reuters.com/markets/commodities/is-europes-gas-demand-recovery-derailed-or-just-dented-by-iran-crisis-2026-03-12/ | COLUMN
-2026-03-13 14:13:25,610 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
-2026-03-13 14:13:25,610 DEBUG: Using selector: EpollSelector
-2026-03-13 14:13:41,996 DEBUG: networkidle timed out for https://www.reuters.com/business/environment/ (non-fatal)
-2026-03-13 14:13:43,985 DEBUG: BotBrowser received 1122864 bytes for https://www.reuters.com/business/environment/
-2026-03-13 14:13:43,991 DEBUG: Saved HTML to reuters_extra_environment.html (1122864 bytes)
-2026-03-13 14:13:44,288 DEBUG: extract_reuters_extra_cards: 14 items from https://www.reuters.com/business/environment/
-2026-03-13 14:13:44,289 INFO: Extra page https://www.reuters.com/business/environment/: found 14 cards.
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/caribbean-islands-seek-200-million-regional-biodiversity-push-2026-03-12/ | Caribbean islands seek $200 million for regional biodiversity push
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/sustainability/society-equity/who-warns-health-risks-black-rain-iran-2026-03-10/ | WHO warns of health risks from 'black rain' in Iran
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/business/environment/magnitude-55-earthquake-hits-central-turkey-emsc-says-2026-03-13/ | Magnitude 5.5 earthquake hits central Turkey, EMSC says
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/business/environment/brazils-dreams-industrial-scale-cocoa-farms-fading-after-price-crash-2026-03-12/ | Brazil's dreams for industrial-scale cocoa farms fading after price crash
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/paris-mayoral-race-tests-support-green-transformation-2026-03-13/ | Paris mayoral race tests support for green transformation
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/world/us-sues-california-over-zero-emission-vehicle-greenhouse-gas-rules-2026-03-12/ | US sues California over zero emission vehicle, greenhouse gas rules
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/eu-looks-soften-energy-bill-pressures-industry-document-shows-2026-03-07/ | EU looks to soften energy bill pressures for industry
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/business/environment/kenya-says-death-toll-floods-nearly-doubles-42-2026-03-09/ | Death toll nearly doubles to 42
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/sustainability/cop/eu-countries-give-final-approval-2040-climate-target-90-emissions-cut-2026-03-05/ | EU countries give final approval to 2040 target
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/investigates/special-report/spain-environment-wildhorses/ | Spain's wild horses in peril, despite key role in wildfire prevention
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/investigates/special-report/climate-change-china-potatoes/ | China scientists rush to climate-proof potatoes
-2026-03-13 14:13:44,289 DEBUG:   - https://www.reuters.com/investigations/buffetts-berkshire-hathaway-operates-dirtiest-set-coal-fired-power-plants-us-2025-01-14/ | Buffett’s Berkshire Hathaway operates the dirtiest set of coal-fired power plants in the US
-2026-03-13 14:13:44,289 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
-2026-03-13 14:13:44,289 DEBUG: Using selector: EpollSelector
-2026-03-13 14:14:00,734 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/climate-energy/ (non-fatal)
-2026-03-13 14:14:04,200 DEBUG: BotBrowser received 1363569 bytes for https://www.reuters.com/sustainability/climate-energy/
-2026-03-13 14:14:04,204 DEBUG: Saved HTML to reuters_extra_climate-energy.html (1363569 bytes)
-2026-03-13 14:14:04,337 DEBUG: extract_reuters_extra_cards: 6 items from https://www.reuters.com/sustainability/climate-energy/
-2026-03-13 14:14:04,338 INFO: Extra page https://www.reuters.com/sustainability/climate-energy/: found 6 cards.
-2026-03-13 14:14:04,338 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/south-korea-says-considering-energy-vouchers-boosting-coal-nuclear-power-2026-03-13/ | South Korea says considering energy vouchers, boosting coal and nuclear power
-2026-03-13 14:14:04,338 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/philippines-looks-regulate-power-market-lng-prices-surge-2026-03-13/ | Exclusive: Philippines looks to regulate power market as LNG prices surge
-2026-03-13 14:14:04,338 DEBUG:   - https://www.reuters.com/business/energy/pakistans-domestic-power-sources-cushion-lng-supply-risk-minister-says-2026-03-13/ | Exclusive: Pakistan's domestic power sources cushion LNG supply risk, minister says
-2026-03-13 14:14:04,338 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/backlash-against-data-centres-is-spilling-into-french-municipal-election-races-2026-03-13/ | A backlash against data centres is spilling into French municipal election races
-2026-03-13 14:14:04,338 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/global-ev-sales-fall-again-february-2026-03-13/ | Global EV sales fall again in February
-2026-03-13 14:14:04,338 DEBUG:   - https://www.reuters.com/world/us-sues-california-over-zero-emission-vehicle-greenhouse-gas-rules-2026-03-12/ | US sues California over zero emission vehicle, greenhouse gas rules
-2026-03-13 14:14:04,338 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-13 14:14:04,338 DEBUG: Using selector: EpollSelector
-2026-03-13 14:14:20,678 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/reuters-impact/ (non-fatal)
-2026-03-13 14:14:24,571 DEBUG: BotBrowser received 1317267 bytes for https://www.reuters.com/sustainability/reuters-impact/
-2026-03-13 14:14:24,575 DEBUG: Saved HTML to reuters_extra_reuters-impact.html (1317267 bytes)
-2026-03-13 14:14:24,677 DEBUG: extract_reuters_extra_cards: 4 items from https://www.reuters.com/sustainability/reuters-impact/
-2026-03-13 14:14:24,678 INFO: Extra page https://www.reuters.com/sustainability/reuters-impact/: found 4 cards.
-2026-03-13 14:14:24,678 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/south-korea-says-considering-energy-vouchers-boosting-coal-nuclear-power-2026-03-13/ | South Korea says considering energy vouchers, boosting coal and nuclear power
-2026-03-13 14:14:24,678 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/backlash-against-data-centres-is-spilling-into-french-municipal-election-races-2026-03-13/ | A backlash against data centres is spilling into French municipal election races
-2026-03-13 14:14:24,678 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/global-ev-sales-fall-again-february-2026-03-13/ | Global EV sales fall again in February
-2026-03-13 14:14:24,678 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/caribbean-islands-seek-200-million-regional-biodiversity-push-2026-03-12/ | Caribbean islands seek $200 million for regional biodiversity push
-2026-03-13 14:14:24,678 INFO: Total Reuters articles after extra pages: 78
-2026-03-13 14:14:24,678 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
-2026-03-13 14:14:24,678 DEBUG: FlareSolverr GET: https://apnews.com/world-news
-2026-03-13 14:14:24,679 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-13 14:14:32,095 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1582784
-2026-03-13 14:14:32,107 DEBUG: FlareSolverr received 1508319 bytes for https://apnews.com/world-news
-2026-03-13 14:14:32,113 DEBUG: Saved HTML to apnews.html (1508319 bytes)
-2026-03-13 14:14:32,927 INFO: AP News primary selector matched 88 cards.
-2026-03-13 14:14:32,927 DEBUG:   - https://apnews.com/article/iran-israel-us-march-13-2026-oil-prices-2a86a1f5c5997b70c6586d957074fb0c | thumb=https://dims.apnews.com/dims4/default/5cc731a/2147483647/strip/true/crop/5999x40 | Blast rocks Tehran after Israel threatened to target area of government-organized rally
-2026-03-13 14:14:32,927 DEBUG:   - https://apnews.com/article/us-iran-tanker-aircraft-crash-iraq-kc135-c337359a58be6280dc96fdbf1cb48a5b | thumb=https://dims.apnews.com/dims4/default/a2d2792/2147483647/strip/true/crop/4437x29 | A US military refueling plane crashed in Iraq, killing 4. Here’s what to know
-2026-03-13 14:14:32,927 DEBUG:   - https://apnews.com/article/china-taiwan-military-flights-decline-b24b743955ab9544513c1de151e2b870 | thumb=https://dims.apnews.com/dims4/default/3062346/2147483647/strip/true/crop/4500x30 | What to know about the falloff in China’s military flights around Taiwan
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/article/russia-ukraine-war-macron-oil-drones-a9330482d471ea67890a0e8ec1913db7 | thumb=https://dims.apnews.com/dims4/default/0725950/2147483647/strip/true/crop/4040x26 | Zelenskyy says US 30-day waiver on Russian oil sanctions is ‘not the right decision’
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/article/iraq-iran-war-kurds-oil-exports-baghdad-95ece8d9ce780634220cec5efe860c86 | thumb=https://dims.apnews.com/dims4/default/e40e5d4/2147483647/strip/true/crop/3443x22 | Iraq is caught in the crossfire of the Iran war, with attacks by both sides on its soil
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-03-12-2026 | thumb= | US military says a refueling aircraft went down in Iraq, rescue efforts are underway
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/article/uk-house-of-lords-hereditary-peers-expelled-535df8781dd01e8970acda1dca99d3d4 | thumb= | Lords a-leaving: Britain is ejecting hereditary nobles from Parliament after 700 years
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/live/iran-war-israel-trump--03-11-2026 | thumb= | Pentagon says first week of Iran war cost the US $11.3 billion, an AP source says
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/article/iran-us-israel-war-attrition-analysis-5d7e50c3a6da57414bbf4a5e255e4a7e | thumb= | Analysis: Iran war becomes a contest of who can take the most pain
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/article/iran-israel-us-march-12-2026-oil-prices-90e17dbf7354d1e9428994ab2a036506 | thumb= | Iran war disrupts energy supplies as Iran’s new leader resolves to keep fighting
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/video/casts-of-pompeii-victims-captured-at-the-time-of-their-death-goes-on-display-886e91c909e84cfa90ad00f18c6a1fdb | thumb= | Casts of Pompeii victims captured at the time of their death goes on display
-2026-03-13 14:14:32,928 DEBUG:   - https://apnews.com/video/cctv-footage-shows-the-moment-of-impact-as-an-iranian-missile-hits-in-central-israel-ef017414a2ae473ca20325f0f2338baf | thumb= | CCTV video shows the moment an Iran missile hit central Israel
-2026-03-13 14:14:32,928 INFO: Found 88 AP News articles
-2026-03-13 14:14:32,928 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
-2026-03-13 14:14:32,928 DEBUG: FlareSolverr GET: https://www.france24.com/en/
-2026-03-13 14:14:32,929 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-13 14:14:36,244 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 900118
-2026-03-13 14:14:36,252 DEBUG: FlareSolverr received 875190 bytes for https://www.france24.com/en/
-2026-03-13 14:14:36,256 DEBUG: Saved HTML to france24.html (875190 bytes)
-2026-03-13 14:14:36,544 INFO: France24: kept 59 items, excluded 33
-2026-03-13 14:14:36,544 INFO: Total unique articles to process: 210
-2026-03-13 14:14:36,549 INFO: Loaded existing XML: pau.xml
-2026-03-13 14:14:36,563 INFO: Loaded existing XML: reuters.xml
-2026-03-13 14:14:36,564 INFO: Existing items in main feed: 500
-2026-03-13 14:14:36,564 INFO: Existing items in Reuters feed: 500
-2026-03-13 14:14:36,564 INFO: Processing 1/210 [Reuters]: Swiss sticking to mandate for trade talks with US, minister says
-2026-03-13 14:14:36,565 DEBUG: Using selector: EpollSelector
-2026-03-13 14:14:53,328 DEBUG: networkidle timed out for https://www.reuters.com/business/swiss-sticking-mandate-trade-talks-with-us-minister-says-2026-03-13/ (non-fatal)
-2026-03-13 14:14:54,992 DEBUG: BotBrowser received 579408 bytes for https://www.reuters.com/business/swiss-sticking-mandate-trade-talks-with-us-minister-says-2026-03-13/
-2026-03-13 14:14:55,104 DEBUG:   desc length: 1148, img: https://www.reuters.com/resizer/v2/UJZOKI32M5MB5KMAMCYCSU2DCA.jpg?auth=90a45858040b8bebf2d2741b6edfb3440a52fd63e0ffeb01f
-2026-03-13 14:14:56,604 INFO: Processing 9/210 [Reuters]: Pope Leo says Christians who start wars should go to confession
-2026-03-13 14:14:56,604 DEBUG: Using selector: EpollSelector
-2026-03-13 14:14:58,586 DEBUG: BotBrowser received 461212 bytes for https://www.reuters.com/world/pope-leo-says-christians-who-start-wars-should-go-confession-2026-03-13/
-2026-03-13 14:14:58,675 DEBUG:   desc length: 1629, img: https://www.reuters.com/resizer/v2/BSKZM7I3JROFBJLDM6QL3ZDE34.jpg?auth=52a31cb54129c1bb4083de4ed4254f707439499b04fde4f09
-2026-03-13 14:15:00,176 INFO: Processing 12/210 [Reuters]: South Africa's president authorises deployment of 2,200 troops to help fight cri
-2026-03-13 14:15:00,176 DEBUG: Using selector: EpollSelector
-2026-03-13 14:15:02,053 DEBUG: BotBrowser received 415340 bytes for https://www.reuters.com/world/africa/south-africas-president-authorises-deployment-2200-troops-help-fight-crime-2026-03-13/
-2026-03-13 14:15:02,243 DEBUG:   desc length: 204, img: https://www.reuters.com/resizer/v2/YC7WH2STWVLDBOS4L5RP5QRK2Q.jpg?auth=209597fec3fd73a470d6066d33ee9d9024ec967034478fa46
-2026-03-13 14:15:03,743 INFO: Processing 13/210 [Reuters]: Swedish Liberals and Sweden Democrats agree pact to boost right's September elec
-2026-03-13 14:15:03,743 DEBUG: Using selector: EpollSelector
-2026-03-13 14:15:05,531 DEBUG: BotBrowser received 419617 bytes for https://www.reuters.com/world/swedish-liberals-sweden-democrats-agree-pact-boost-rights-september-election-2026-03-13/
-2026-03-13 14:15:05,627 DEBUG:   desc length: 434, img: https://www.reuters.com/resizer/v2/LIH2S5ZJDRLKFFQWFY67MIIN7Y.jpg?auth=4d1749925c14bf142a45ab6973d728dabf07b14256a727f51
-2026-03-13 14:15:07,127 INFO: Processing 14/210 [Reuters]: UAE says Iran must halt attacks on neighbours to allow diplomacy
-2026-03-13 14:15:07,127 DEBUG: Using selector: EpollSelector
-2026-03-13 14:15:09,113 DEBUG: BotBrowser received 477539 bytes for https://www.reuters.com/world/middle-east/uae-says-iran-must-halt-attacks-neighbours-allow-diplomacy-2026-03-13/
-2026-03-13 14:15:09,200 DEBUG:   desc length: 2575, img: https://www.reuters.com/resizer/v2/I5HGRZKMTJMDREMARA3V5GMUNI.jpg?auth=b92d2830472c6c60bc8b4dd419b28282a79f24f0790813ffc
-2026-03-13 14:15:10,700 INFO: Processing 15/210 [Reuters]: Putin questions crucial infrastructure protection amid intensified Ukrainian att
-2026-03-13 14:15:10,701 DEBUG: Using selector: EpollSelector
-2026-03-13 14:15:12,572 DEBUG: BotBrowser received 468580 bytes for https://www.reuters.com/world/putin-questions-crucial-infrastructure-protection-amid-intensified-ukrainian-2026-03-13/
-2026-03-13 14:15:12,667 DEBUG:   desc length: 2146, img: https://www.reuters.com/resizer/v2/5GXPJANS7BPNRHE7P5JSG4Q2PE.jpg?auth=a0dc16ae59e6e9860304c032c74374c92a0a4e540a8bf77fd
-2026-03-13 14:15:14,167 INFO: Processing 17/210 [Reuters]: Africa-bound India-flagged fuel tanker sets sail from east of Hormuz, Indian off
-2026-03-13 14:15:14,167 DEBUG: Using selector: EpollSelector
-2026-03-13 14:15:16,008 DEBUG: BotBrowser received 464327 bytes for https://www.reuters.com/world/india/africa-bound-india-flagged-fuel-tanker-sets-sail-east-hormuz-indian-official-2026-03-13/
-2026-03-13 14:15:16,097 DEBUG:   desc length: 1272, img: https://www.reuters.com/resizer/v2/466BJJQ7PVGY5O53NZ3KL65MHM.png?auth=b9c3bf166c40a6778eb5672993fde7c30a15f48329026674e
-2026-03-13 14:15:17,597 INFO: Processing 42/210 [Reuters]: Iran unleashes oil shock to blunt US firepower
-2026-03-13 14:15:17,598 DEBUG: Using selector: EpollSelector
-2026-03-13 14:15:19,984 DEBUG: BotBrowser received 502338 bytes for https://www.reuters.com/world/middle-east/iran-unleashes-oil-shock-blunt-us-firepower-2026-03-13/
-2026-03-13 14:15:20,076 DEBUG:   desc length: 5504, img: https://www.reuters.com/resizer/v2/54PEXX6JSRJ5ZCNULJAEPY22VU.jpg?auth=294718b53565b9f6fc2b8ce3708d89aa46e1ac56212b5daf0
-2026-03-13 14:15:21,576 INFO: Processing 46/210 [Reuters]: Saudi Arabia cuts oil output 20% to 8 million bpd amid Iran war, sources say
-2026-03-13 14:15:21,577 DEBUG: Using selector: EpollSelector
-2026-03-13 14:15:23,620 DEBUG: BotBrowser received 456541 bytes for https://www.reuters.com/business/energy/saudi-arabia-cuts-oil-output-20-8-million-bpd-amid-iran-war-sources-say-2026-03-13/
-2026-03-13 14:15:23,832 DEBUG:   desc length: 1710, img: https://www.reuters.com/resizer/v2/KHKRJAZNNZLMBELHQNXBGBOX74.jpg?auth=ccaf85fb31185a542a37bd4280ee17431caaad43467a66b87
-2026-03-13 14:15:25,332 INFO: Processing 189/210 [France24]: Iran's new supreme leader 'likely disfigured', US defence chief says
-2026-03-13 14:15:25,333 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260313-iran-s-new-supreme-leader-likely-disfigured-us-defence-chief-says
-2026-03-13 14:15:25,334 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-13 14:15:26,144 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 506678
-2026-03-13 14:15:26,149 DEBUG: FlareSolverr received 495131 bytes for https://www.france24.com/en/middle-east/20260313-iran-s-new-supreme-leader-likely-disfigured-us-defence-chief-says
-2026-03-13 14:15:26,251 DEBUG:   desc length: 1185, img: https://s.france24.com/media/display/23a034f8-1edf-11f1-a6a2-005056a97e36/w:1280/p:16x9/AP26072451950446.jpg
-2026-03-13 14:15:26,251 INFO: Processing 190/210 [France24]: EU backs ban on AI generating sexualised deepfakes after Grok backlash
-2026-03-13 14:15:26,252 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20260313-eu-backs-ban-on-ai-generating-sexualised-deepfakes-after-grok-backlash
-2026-03-13 14:15:26,252 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-13 14:15:26,877 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 513311
-2026-03-13 14:15:26,881 DEBUG: FlareSolverr received 501402 bytes for https://www.france24.com/en/europe/20260313-eu-backs-ban-on-ai-generating-sexualised-deepfakes-after-grok-backlash
-2026-03-13 14:15:26,969 DEBUG:   desc length: 1700, img: https://s.france24.com/media/display/c35ecc36-1ed3-11f1-a3e1-005056a97e36/w:1280/p:16x9/94f553b26d35a2c536fb60417fae04fd
-2026-03-13 14:15:26,970 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-13 14:15:27,158 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
-2026-03-13 14:15:27,159 DEBUG: Shutting down BotBrowser (pid 3797)
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/business/swiss-sticking-mandate-trade-talks-with-us-minister-says-2026-03-13/
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/world/pope-leo-says-christians-who-start-wars-should-go-confession-2026-03-13/
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/world/africa/south-africas-president-authorises-deployment-2200-troops-help-fight-crime-2026-03-13/
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/world/swedish-liberals-sweden-democrats-agree-pact-boost-rights-september-election-2026-03-13/
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/world/middle-east/uae-says-iran-must-halt-attacks-neighbours-allow-diplomacy-2026-03-13/
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/world/putin-questions-crucial-infrastructure-protection-amid-intensified-ukrainian-2026-03-13/
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/world/india/africa-bound-india-flagged-fuel-tanker-sets-sail-east-hormuz-indian-official-2026-03-13/
-2026-03-13 14:15:27,223 DEBUG: Added: https://www.reuters.com/world/middle-east/iran-unleashes-oil-shock-blunt-us-firepower-2026-03-13/
-2026-03-13 14:15:27,224 DEBUG: Added: https://www.reuters.com/business/energy/saudi-arabia-cuts-oil-output-20-8-million-bpd-amid-iran-war-sources-say-2026-03-13/
-2026-03-13 14:15:27,224 DEBUG: Added: https://apnews.com/article/russia-ukraine-war-macron-oil-drones-a9330482d471ea67890a0e8ec1913db7
-2026-03-13 14:15:27,224 DEBUG: Added: https://apnews.com/article/iraq-iran-war-kurds-oil-exports-baghdad-95ece8d9ce780634220cec5efe860c86
-2026-03-13 14:15:27,224 DEBUG: Added: https://apnews.com/article/old-dominion-university-shooting-rotc-3e9049d15354b33bba37035a98a5299f
-2026-03-13 14:15:27,224 DEBUG: Added: https://apnews.com/article/sweden-sea-owl-i-shadow-fleet-4a949b7b11d355e7db0a767982125e6e
-2026-03-13 14:15:27,224 DEBUG: Added: https://apnews.com/article/doctor-who-lost-episodes-found-daleks-6849b09faa6eca9377b2a0db45d47ff8
-2026-03-13 14:15:27,224 DEBUG: Added: https://www.france24.com/en/middle-east/20260313-iran-s-new-supreme-leader-likely-disfigured-us-defence-chief-says
-2026-03-13 14:15:27,224 DEBUG: Added: https://www.france24.com/en/europe/20260313-eu-backs-ban-on-ai-generating-sexualised-deepfakes-after-grok-backlash
-2026-03-13 14:15:27,224 INFO: Added 7 new articles to main feed
-2026-03-13 14:15:27,224 INFO: Added 9 new articles to Reuters feed
-2026-03-13 14:15:27,224 INFO: Trimmed feed to 500 items
-2026-03-13 14:15:27,225 INFO: Trimmed feed to 500 items
-2026-03-13 14:15:27,242 INFO: Done! Main feed saved to pau.xml
-2026-03-13 14:15:27,242 INFO: Done! Reuters feed saved to reuters.xml
-2026-03-13 14:15:27,242 INFO: Debug log saved to debug.log
+2026-03-13 15:11:38,760 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-13 15:11:38,760 DEBUG: Killing existing BotBrowser (pid 3714)
+2026-03-13 15:11:38,793 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-13 15:11:38,794 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:39,295 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-13 15:11:39,296 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-13 15:11:39,297 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-13 15:11:41,297 DEBUG: Using selector: EpollSelector
+2026-03-13 15:11:57,563 DEBUG: networkidle timed out for https://www.reuters.com/world/ (non-fatal)
+2026-03-13 15:11:58,483 DEBUG: BotBrowser received 721389 bytes for https://www.reuters.com/world/
+2026-03-13 15:11:58,490 DEBUG: Saved HTML to opinin.html (721389 bytes)
+2026-03-13 15:11:58,599 DEBUG: Primary selector nodes found: 40
+2026-03-13 15:11:58,600 INFO: Primary world selector matched 40 items.
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/world/africa/ivory-coast-welcomes-talking-drum-first-artifact-sent-back-france-2026-03-13/ | Ivory Coast welcomes 'talking drum', first artifact sent back from France
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/world/middle-east/both-sides-dig-iran-war-approaches-two-week-mark-2026-03-13/ | Trump says US will hit Iran 'very hard' after easing sanctions on Russian oil
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/world/us/with-iran-war-exit-elusive-trump-aides-vie-affect-outcome-2026-03-13/ | Exclusive: With Iran war exit elusive, Trump aides vie to affect outcome
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/world/americas/cuban-president-under-pressure-economic-crisis-trump-address-media-2026-03-13/ | Cuba says it has opened talks with US as oil blockade takes toll
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/business/aerospace-defense/zelenskiy-heads-france-iran-war-distracts-ukraine-2026-03-13/ | Seeking support in France, Zelenskiy says Russia oil waiver won't help end war
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/world/all-six-us-service-members-killed-plane-crash-over-iraq-2026-03-13/ | All six US service members killed in plane crash over Iraq
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/world/polands-tusk-vows-use-eu-defence-loans-despite-presidents-veto-2026-03-13/ | Poland presses on with EU defence plan despite president's veto
+2026-03-13 15:11:58,600 DEBUG:   - https://www.reuters.com/world/europe/greenlands-siumut-party-withdraws-governing-coalition-2026-03-13/ | Greenland's Siumut party withdraws from governing coalition
+2026-03-13 15:11:58,601 DEBUG:   - https://www.reuters.com/world/americas/uruguayan-alleged-cartel-leader-marset-arrested-bolivia-2026-03-13/ | Accused Uruguayan drug kingpin Marset captured in Bolivia, Paraguay official says
+2026-03-13 15:11:58,601 DEBUG:   - https://www.reuters.com/world/middle-east/why-havent-houthis-irans-allies-yemen-stepped-into-war-2026-03-13/ | Why haven’t the Houthis, Iran’s allies in Yemen, stepped into the war?
+2026-03-13 15:11:58,601 DEBUG:   - https://www.reuters.com/business/finance/how-an-obscure-banker-slipped-into-brazils-political-inner-circle-triggering-2026-03-13/ | How an obscure banker slipped into Brazil’s political inner circle, triggering a scandal
+2026-03-13 15:11:58,601 DEBUG:   - https://www.reuters.com/world/pope-leo-says-christians-who-start-wars-should-go-confession-2026-03-13/ | Pope Leo says Christians who start wars should go to confession
+2026-03-13 15:11:58,601 INFO: Found 40 Reuters world articles
+2026-03-13 15:11:58,601 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
+2026-03-13 15:11:58,601 DEBUG: Using selector: EpollSelector
+2026-03-13 15:12:14,909 DEBUG: networkidle timed out for https://www.reuters.com/commentary/ (non-fatal)
+2026-03-13 15:12:15,813 DEBUG: BotBrowser received 711007 bytes for https://www.reuters.com/commentary/
+2026-03-13 15:12:15,817 DEBUG: Saved HTML to commentary.html (711007 bytes)
+2026-03-13 15:12:15,870 INFO: Primary commentary selector matched 7 cards.
+2026-03-13 15:12:15,870 DEBUG:   - href=/business/finance/global-markets-view-usa-2026-03-13/ | title=Morning Bid: Markets over a barrel
+2026-03-13 15:12:15,870 DEBUG:   - href=/world/asia-pacific/global-markets-trading-day-graphic-2026-03-12/ | title=Trading Day: The destructive power of $100 oil
+2026-03-13 15:12:15,870 DEBUG:   - href=/markets/iran-war-is-one-taco-too-far-2026-03-12/ | title=Iran war is one 'TACO' too far
+2026-03-13 15:12:15,870 DEBUG:   - href=/commentary/breakingviews/gulf-states-can-make-financial-point-trump-2026-03-13/ | title=Gulf states can make a financial point to Trump
+2026-03-13 15:12:15,870 DEBUG:   - href=/commentary/breakingviews/mexico-has-chance-reap-nearshoring-boons-2026-03-13/ | title=Mexico has a chance to reap nearshoring boons
+2026-03-13 15:12:15,870 DEBUG:   - href=/commentary/breakingviews/iran-war-shows-up-folly-slow-energy-transition-2026-03-13/ | title=Iran war shows up folly of slow energy transition
+2026-03-13 15:12:15,870 DEBUG:   - href=/commentary/breakingviews/how-insider-trading-fears-harm-prediction-markets-2026-03-12/ | title=How insider-trading fears harm prediction markets
+2026-03-13 15:12:15,870 INFO: Total Reuters articles (world + commentary): 47
+2026-03-13 15:12:15,871 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
+2026-03-13 15:12:15,871 DEBUG: Using selector: EpollSelector
+2026-03-13 15:12:32,026 DEBUG: networkidle timed out for https://www.reuters.com/business/energy/ (non-fatal)
+2026-03-13 15:12:33,168 DEBUG: BotBrowser received 1339148 bytes for https://www.reuters.com/business/energy/
+2026-03-13 15:12:33,173 DEBUG: Saved HTML to reuters_extra_energy.html (1339148 bytes)
+2026-03-13 15:12:33,391 DEBUG: extract_reuters_extra_cards: 7 items from https://www.reuters.com/business/energy/
+2026-03-13 15:12:33,391 INFO: Extra page https://www.reuters.com/business/energy/: found 7 cards.
+2026-03-13 15:12:33,391 DEBUG:   - https://www.reuters.com/business/energy/oil-drops-after-us-issues-license-countries-buy-russian-oil-stranded-sea-30-days-2026-03-13/ | Oil prices dip as Indian tanker sails out of Strait of Hormuz
+2026-03-13 15:12:33,391 DEBUG:   - https://www.reuters.com/business/energy/sinopec-plans-cut-crude-runs-by-over-10-mideast-supply-squeeze-sources-say-2026-03-13/ | Exclusive: Top global refiner Sinopec to cut crude runs by over 10% on Mideast supply squeeze, sources say
+2026-03-13 15:12:33,391 DEBUG:   - https://www.reuters.com/world/middle-east/iran-unleashes-oil-shock-blunt-us-firepower-2026-03-13/ | Iran unleashes oil shock to blunt US firepower
+2026-03-13 15:12:33,391 DEBUG:   - https://www.reuters.com/business/energy/us-issues-new-russia-related-general-license-oil-treasury-website-2026-03-12/ | US issues 30-day sanctions waiver for purchase of Russian oil at sea
+2026-03-13 15:12:33,391 DEBUG:   - https://www.reuters.com/business/energy/debt-burdened-europe-has-fewer-options-buffer-energy-shock-2026-03-13/ | Debt-burdened Europe has fewer options to buffer energy shock
+2026-03-13 15:12:33,391 DEBUG:   - https://www.reuters.com/commentary/breakingviews/iran-war-shows-up-folly-slow-energy-transition-2026-03-13/ | BREAKINGVIEWS
+2026-03-13 15:12:33,391 DEBUG:   - https://www.reuters.com/markets/commodities/is-europes-gas-demand-recovery-derailed-or-just-dented-by-iran-crisis-2026-03-12/ | COLUMN
+2026-03-13 15:12:33,391 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
+2026-03-13 15:12:33,392 DEBUG: Using selector: EpollSelector
+2026-03-13 15:12:49,514 DEBUG: networkidle timed out for https://www.reuters.com/business/environment/ (non-fatal)
+2026-03-13 15:12:50,554 DEBUG: BotBrowser received 1114829 bytes for https://www.reuters.com/business/environment/
+2026-03-13 15:12:50,558 DEBUG: Saved HTML to reuters_extra_environment.html (1114829 bytes)
+2026-03-13 15:12:50,685 DEBUG: extract_reuters_extra_cards: 14 items from https://www.reuters.com/business/environment/
+2026-03-13 15:12:50,685 INFO: Extra page https://www.reuters.com/business/environment/: found 14 cards.
+2026-03-13 15:12:50,685 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/caribbean-islands-seek-200-million-regional-biodiversity-push-2026-03-12/ | Caribbean islands seek $200 million for regional biodiversity push
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/sustainability/society-equity/who-warns-health-risks-black-rain-iran-2026-03-10/ | WHO warns of health risks from 'black rain' in Iran
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/business/environment/magnitude-55-earthquake-hits-central-turkey-emsc-says-2026-03-13/ | Magnitude 5.5 earthquake hits central Turkey, EMSC says
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/business/environment/brazils-dreams-industrial-scale-cocoa-farms-fading-after-price-crash-2026-03-12/ | Brazil's dreams for industrial-scale cocoa farms fading after price crash
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/world/us-sues-california-over-zero-emission-vehicle-greenhouse-gas-rules-2026-03-12/ | US sues California over zero emission vehicle, greenhouse gas rules
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/business/environment/punch-japanese-snow-monkey-captures-hearts-while-kin-face-culls-2026-03-10/ | Punch the Japanese snow monkey captures hearts while kin face culls
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/eu-looks-soften-energy-bill-pressures-industry-document-shows-2026-03-07/ | EU looks to soften energy bill pressures for industry
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/business/environment/kenya-says-death-toll-floods-nearly-doubles-42-2026-03-09/ | Death toll nearly doubles to 42
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/sustainability/cop/eu-countries-give-final-approval-2040-climate-target-90-emissions-cut-2026-03-05/ | EU countries give final approval to 2040 target
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/investigates/special-report/spain-environment-wildhorses/ | Spain's wild horses in peril, despite key role in wildfire prevention
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/investigates/special-report/climate-change-china-potatoes/ | China scientists rush to climate-proof potatoes
+2026-03-13 15:12:50,686 DEBUG:   - https://www.reuters.com/investigations/buffetts-berkshire-hathaway-operates-dirtiest-set-coal-fired-power-plants-us-2025-01-14/ | Buffett’s Berkshire Hathaway operates the dirtiest set of coal-fired power plants in the US
+2026-03-13 15:12:50,686 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
+2026-03-13 15:12:50,686 DEBUG: Using selector: EpollSelector
+2026-03-13 15:13:07,028 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/climate-energy/ (non-fatal)
+2026-03-13 15:13:08,948 DEBUG: BotBrowser received 1361521 bytes for https://www.reuters.com/sustainability/climate-energy/
+2026-03-13 15:13:08,953 DEBUG: Saved HTML to reuters_extra_climate-energy.html (1361521 bytes)
+2026-03-13 15:13:09,140 DEBUG: extract_reuters_extra_cards: 6 items from https://www.reuters.com/sustainability/climate-energy/
+2026-03-13 15:13:09,140 INFO: Extra page https://www.reuters.com/sustainability/climate-energy/: found 6 cards.
+2026-03-13 15:13:09,140 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/south-korea-says-considering-energy-vouchers-boosting-coal-nuclear-power-2026-03-13/ | South Korea says considering energy vouchers, boosting coal and nuclear power
+2026-03-13 15:13:09,140 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/philippines-looks-regulate-power-market-lng-prices-surge-2026-03-13/ | Exclusive: Philippines looks to regulate power market as LNG prices surge
+2026-03-13 15:13:09,140 DEBUG:   - https://www.reuters.com/business/energy/pakistans-domestic-power-sources-cushion-lng-supply-risk-minister-says-2026-03-13/ | Exclusive: Pakistan's domestic power sources cushion LNG supply risk, minister says
+2026-03-13 15:13:09,140 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/backlash-against-data-centres-is-spilling-into-french-municipal-election-races-2026-03-13/ | A backlash against data centres is spilling into French municipal election races
+2026-03-13 15:13:09,140 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/global-ev-sales-fall-again-february-2026-03-13/ | Global EV sales fall again in February
+2026-03-13 15:13:09,140 DEBUG:   - https://www.reuters.com/world/us-sues-california-over-zero-emission-vehicle-greenhouse-gas-rules-2026-03-12/ | US sues California over zero emission vehicle, greenhouse gas rules
+2026-03-13 15:13:09,140 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-13 15:13:09,141 DEBUG: Using selector: EpollSelector
+2026-03-13 15:13:26,115 DEBUG: networkidle timed out for https://www.reuters.com/sustainability/reuters-impact/ (non-fatal)
+2026-03-13 15:13:28,958 DEBUG: BotBrowser received 1313921 bytes for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-13 15:13:28,962 DEBUG: Saved HTML to reuters_extra_reuters-impact.html (1313921 bytes)
+2026-03-13 15:13:29,044 DEBUG: extract_reuters_extra_cards: 5 items from https://www.reuters.com/sustainability/reuters-impact/
+2026-03-13 15:13:29,045 INFO: Extra page https://www.reuters.com/sustainability/reuters-impact/: found 5 cards.
+2026-03-13 15:13:29,045 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/paris-mayoral-race-tests-support-green-transformation-2026-03-13/ | Paris mayoral race tests support for green transformation
+2026-03-13 15:13:29,045 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/south-korea-says-considering-energy-vouchers-boosting-coal-nuclear-power-2026-03-13/ | South Korea says considering energy vouchers, boosting coal and nuclear power
+2026-03-13 15:13:29,045 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/backlash-against-data-centres-is-spilling-into-french-municipal-election-races-2026-03-13/ | A backlash against data centres is spilling into French municipal election races
+2026-03-13 15:13:29,045 DEBUG:   - https://www.reuters.com/sustainability/climate-energy/global-ev-sales-fall-again-february-2026-03-13/ | Global EV sales fall again in February
+2026-03-13 15:13:29,045 DEBUG:   - https://www.reuters.com/sustainability/boards-policy-regulation/caribbean-islands-seek-200-million-regional-biodiversity-push-2026-03-12/ | Caribbean islands seek $200 million for regional biodiversity push
+2026-03-13 15:13:29,045 INFO: Total Reuters articles after extra pages: 79
+2026-03-13 15:13:29,045 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
+2026-03-13 15:13:29,045 DEBUG: FlareSolverr GET: https://apnews.com/world-news
+2026-03-13 15:13:29,046 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-13 15:13:43,335 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1599731
+2026-03-13 15:13:43,345 DEBUG: FlareSolverr received 1522814 bytes for https://apnews.com/world-news
+2026-03-13 15:13:43,349 DEBUG: Saved HTML to apnews.html (1522814 bytes)
+2026-03-13 15:13:43,732 INFO: AP News primary selector matched 88 cards.
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/iran-israel-us-march-13-2026-oil-prices-2a86a1f5c5997b70c6586d957074fb0c | thumb=https://dims.apnews.com/dims4/default/5cc731a/2147483647/strip/true/crop/5999x40 | Blast rocks Tehran after Israel threatened to target area of government-organized rally
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/us-iran-tanker-aircraft-crash-iraq-kc135-c337359a58be6280dc96fdbf1cb48a5b | thumb=https://dims.apnews.com/dims4/default/a2d2792/2147483647/strip/true/crop/4437x29 | A US military refueling plane crashed in Iraq, killing 6. Here’s what to know
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/china-taiwan-military-flights-decline-b24b743955ab9544513c1de151e2b870 | thumb=https://dims.apnews.com/dims4/default/ffca50a/2147483647/strip/true/crop/6000x40 | What to know about the falloff in China’s military flights around Taiwan
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/russia-ukraine-war-macron-oil-drones-a9330482d471ea67890a0e8ec1913db7 | thumb=https://dims.apnews.com/dims4/default/0725950/2147483647/strip/true/crop/4040x26 | Zelenskyy says US 30-day waiver on Russian oil sanctions is ‘not the right decision’
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/iraq-iran-war-kurds-oil-exports-baghdad-95ece8d9ce780634220cec5efe860c86 | thumb=https://dims.apnews.com/dims4/default/e40e5d4/2147483647/strip/true/crop/3443x22 | Iraq is caught in the crossfire of the Iran war, with attacks by both sides on its soil
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-03-12-2026 | thumb= | US military says a refueling aircraft went down in Iraq, rescue efforts are underway
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/uk-house-of-lords-hereditary-peers-expelled-535df8781dd01e8970acda1dca99d3d4 | thumb= | Lords a-leaving: Britain is ejecting hereditary nobles from Parliament after 700 years
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/live/iran-war-israel-trump--03-11-2026 | thumb= | Pentagon says first week of Iran war cost the US $11.3 billion, an AP source says
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/iran-us-israel-war-attrition-analysis-5d7e50c3a6da57414bbf4a5e255e4a7e | thumb= | Analysis: Iran war becomes a contest of who can take the most pain
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/article/iran-israel-us-march-12-2026-oil-prices-90e17dbf7354d1e9428994ab2a036506 | thumb= | Iran war disrupts energy supplies as Iran’s new leader resolves to keep fighting
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/video/casts-of-pompeii-victims-captured-at-the-time-of-their-death-goes-on-display-886e91c909e84cfa90ad00f18c6a1fdb | thumb= | Casts of Pompeii victims captured at the time of their death goes on display
+2026-03-13 15:13:43,732 DEBUG:   - https://apnews.com/video/cctv-footage-shows-the-moment-of-impact-as-an-iranian-missile-hits-in-central-israel-ef017414a2ae473ca20325f0f2338baf | thumb= | CCTV video shows the moment an Iran missile hit central Israel
+2026-03-13 15:13:43,732 INFO: Found 88 AP News articles
+2026-03-13 15:13:43,732 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
+2026-03-13 15:13:43,732 DEBUG: FlareSolverr GET: https://www.france24.com/en/
+2026-03-13 15:13:43,733 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-13 15:13:46,610 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 900490
+2026-03-13 15:13:46,618 DEBUG: FlareSolverr received 875553 bytes for https://www.france24.com/en/
+2026-03-13 15:13:46,622 DEBUG: Saved HTML to france24.html (875553 bytes)
+2026-03-13 15:13:46,760 INFO: France24: kept 58 items, excluded 35
+2026-03-13 15:13:46,761 INFO: Total unique articles to process: 207
+2026-03-13 15:13:46,765 INFO: Loaded existing XML: pau.xml
+2026-03-13 15:13:46,773 INFO: Loaded existing XML: reuters.xml
+2026-03-13 15:13:46,773 INFO: Existing items in main feed: 500
+2026-03-13 15:13:46,773 INFO: Existing items in Reuters feed: 500
+2026-03-13 15:13:46,774 INFO: Processing 1/207 [Reuters]: Ivory Coast welcomes 'talking drum', first artifact sent back from France
+2026-03-13 15:13:46,774 DEBUG: Using selector: EpollSelector
+2026-03-13 15:13:48,887 DEBUG: BotBrowser received 460827 bytes for https://www.reuters.com/world/africa/ivory-coast-welcomes-talking-drum-first-artifact-sent-back-france-2026-03-13/
+2026-03-13 15:13:48,965 DEBUG:   desc length: 1662, img: https://www.reuters.com/resizer/v2/Y34CLHBFRRNQFEWX4QVHLQRTTI.jpg?auth=d37bc235ab902573d5dc869724f859e71f563e2d7ac68b9fe
+2026-03-13 15:13:50,465 INFO: Processing 6/207 [Reuters]: All six US service members killed in plane crash over Iraq
+2026-03-13 15:13:50,465 DEBUG: Using selector: EpollSelector
+2026-03-13 15:13:52,173 DEBUG: BotBrowser received 413066 bytes for https://www.reuters.com/world/all-six-us-service-members-killed-plane-crash-over-iraq-2026-03-13/
+2026-03-13 15:13:52,239 DEBUG:   desc length: 186, img: https://www.reuters.com/resizer/v2/J2OT46IMSVO2LHG3HHCW3T5WGM.jpg?auth=1bb42dc711388997fd45b2f1aac58ca16ebd233c55b315fd7
+2026-03-13 15:13:53,739 INFO: Processing 7/207 [Reuters]: Poland presses on with EU defence plan despite president's veto
+2026-03-13 15:13:53,740 DEBUG: Using selector: EpollSelector
+2026-03-13 15:13:55,522 DEBUG: BotBrowser received 471973 bytes for https://www.reuters.com/world/polands-tusk-vows-use-eu-defence-loans-despite-presidents-veto-2026-03-13/
+2026-03-13 15:13:55,679 DEBUG:   desc length: 2385, img: https://www.reuters.com/resizer/v2/IJ4N2HVNJFJINJEUAPYTZQLTLY.jpg?auth=c4deadc00a13afc9b7ba4535ca5db96fb5999c4540050fb8b
+2026-03-13 15:13:57,179 INFO: Processing 8/207 [Reuters]: Greenland's Siumut party withdraws from governing coalition
+2026-03-13 15:13:57,180 DEBUG: Using selector: EpollSelector
+2026-03-13 15:14:13,410 DEBUG: networkidle timed out for https://www.reuters.com/world/europe/greenlands-siumut-party-withdraws-governing-coalition-2026-03-13/ (non-fatal)
+2026-03-13 15:14:15,234 DEBUG: BotBrowser received 626542 bytes for https://www.reuters.com/world/europe/greenlands-siumut-party-withdraws-governing-coalition-2026-03-13/
+2026-03-13 15:14:15,365 DEBUG:   desc length: 1625, img: https://www.reuters.com/resizer/v2/K3D4RMUXHVJOBNCM5NXO5K7RBA.jpg?auth=2872401a6068d63d38c4d9250802dcfd498c01d33d16b48cf
+2026-03-13 15:14:16,866 INFO: Processing 13/207 [Reuters]: US veteran flees ahead of US trial over failed 2020 Maduro ouster plot
+2026-03-13 15:14:16,866 DEBUG: Using selector: EpollSelector
+2026-03-13 15:14:18,610 DEBUG: BotBrowser received 406253 bytes for https://www.reuters.com/world/americas/us-veteran-flees-ahead-us-trial-over-failed-2020-maduro-ouster-plot-2026-03-13/
+2026-03-13 15:14:18,678 DEBUG:   desc length: 372, img: https://www.reuters.com/resizer/v2/466BJJQ7PVGY5O53NZ3KL65MHM.png?auth=b9c3bf166c40a6778eb5672993fde7c30a15f48329026674e
+2026-03-13 15:14:20,178 INFO: Processing 15/207 [Reuters]: Lebanon's offer for direct talks with Israel falls on deaf ears, sources say
+2026-03-13 15:14:20,178 DEBUG: Using selector: EpollSelector
+2026-03-13 15:14:21,901 DEBUG: BotBrowser received 493394 bytes for https://www.reuters.com/world/middle-east/lebanons-offer-direct-talks-with-israel-falls-deaf-ears-sources-say-2026-03-13/
+2026-03-13 15:14:21,970 DEBUG:   desc length: 4831, img: https://www.reuters.com/resizer/v2/TTX4SJPRGFMCNOBWN5F7YMR2T4.jpg?auth=2e385690e0a1f8905b3f90aa50727383a77155aa890d7b96c
+2026-03-13 15:14:23,471 INFO: Processing 152/207 [France24]: Russia summons UK, French envoys over Ukraine Storm Shadow missile strike
+2026-03-13 15:14:23,471 DEBUG: FlareSolverr GET: https://www.france24.com/en/europe/20260313-russia-summons-uk-french-envoys-over-ukraine-storm-shadow-missile-strike
+2026-03-13 15:14:23,472 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-13 15:14:24,337 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 506162
+2026-03-13 15:14:24,340 DEBUG: FlareSolverr received 494596 bytes for https://www.france24.com/en/europe/20260313-russia-summons-uk-french-envoys-over-ukraine-storm-shadow-missile-strike
+2026-03-13 15:14:24,537 DEBUG:   desc length: 575, img: https://s.france24.com/media/display/85a7f502-1ee7-11f1-ba22-005056a97e36/w:1280/p:16x9/russian-foreign-ministry-moscow.
+2026-03-13 15:14:24,537 INFO: Processing 187/207 [France24]: Mideast war puts Lebanon's patients and hospitals at risk
+2026-03-13 15:14:24,537 DEBUG: FlareSolverr GET: https://www.france24.com/en/middle-east/20260313-mideast-iran-war-puts-lebanon-patients-and-hospitals-at-risk
+2026-03-13 15:14:24,538 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-13 15:14:25,163 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 523466
+2026-03-13 15:14:25,167 DEBUG: FlareSolverr received 510953 bytes for https://www.france24.com/en/middle-east/20260313-mideast-iran-war-puts-lebanon-patients-and-hospitals-at-risk
+2026-03-13 15:14:25,258 DEBUG:   desc length: 5393, img: https://s.france24.com/media/display/6212fb68-1e70-11f1-9313-005056bf30b7/w:1280/p:16x9/IMG-0357.jpg
+2026-03-13 15:14:25,259 INFO: Processing 188/207 [France24]: Lebanon’s Mission Impossible: Could US and Israeli pressure to disarm Hezbollah 
+2026-03-13 15:14:25,259 DEBUG: FlareSolverr GET: https://www.france24.com/en/lebanon-s-mission-impossible-could-us-and-israeli-pressure-to-disarm-hezbollah-lead-to-civil-war
+2026-03-13 15:14:25,260 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-13 15:14:26,194 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 478173
+2026-03-13 15:14:26,197 DEBUG: FlareSolverr received 466131 bytes for https://www.france24.com/en/lebanon-s-mission-impossible-could-us-and-israeli-pressure-to-disarm-hezbollah-lead-to-civil-war
+2026-03-13 15:14:26,275 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/8740feea-1ee7-11f1-91ce-005056a97e36/w:1280/p:16x9/EN-20260312-080356-081220-CS.jpg
+2026-03-13 15:14:26,275 WARNING:   Empty description for: https://www.france24.com/en/lebanon-s-mission-impossible-could-us-and-israeli-pressure-to-disarm-hezbollah-lead-to-civil-war
+  Page snippet: <html dir="ltr" lang="en" class=" webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.786b4d6b5366f605cd76.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.c220d741e27778362f36.css">                                  <style>body [v-cloak]{display:none}bod
+2026-03-13 15:14:26,276 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-13 15:14:26,458 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
+2026-03-13 15:14:26,458 DEBUG: Shutting down BotBrowser (pid 3882)
+2026-03-13 15:14:26,522 DEBUG: Added: https://www.reuters.com/world/africa/ivory-coast-welcomes-talking-drum-first-artifact-sent-back-france-2026-03-13/
+2026-03-13 15:14:26,522 DEBUG: Added: https://www.reuters.com/world/all-six-us-service-members-killed-plane-crash-over-iraq-2026-03-13/
+2026-03-13 15:14:26,522 DEBUG: Added: https://www.reuters.com/world/polands-tusk-vows-use-eu-defence-loans-despite-presidents-veto-2026-03-13/
+2026-03-13 15:14:26,522 DEBUG: Added: https://www.reuters.com/world/europe/greenlands-siumut-party-withdraws-governing-coalition-2026-03-13/
+2026-03-13 15:14:26,522 DEBUG: Added: https://www.reuters.com/world/americas/us-veteran-flees-ahead-us-trial-over-failed-2020-maduro-ouster-plot-2026-03-13/
+2026-03-13 15:14:26,522 DEBUG: Added: https://www.reuters.com/world/middle-east/lebanons-offer-direct-talks-with-israel-falls-deaf-ears-sources-say-2026-03-13/
+2026-03-13 15:14:26,523 DEBUG: Added: https://apnews.com/article/ivory-coast-france-artifact-colonial-era-abidjan-f6a5c6b75eb11655dfe1883519eb91fe
+2026-03-13 15:14:26,523 DEBUG: Added: https://apnews.com/article/yayoi-kusama-ludwig-cologne-germany-japan-7847250b9cfd95e7e503c86f5540b25e
+2026-03-13 15:14:26,523 DEBUG: Added: https://www.france24.com/en/europe/20260313-russia-summons-uk-french-envoys-over-ukraine-storm-shadow-missile-strike
+2026-03-13 15:14:26,523 DEBUG: Added: https://www.france24.com/en/middle-east/20260313-mideast-iran-war-puts-lebanon-patients-and-hospitals-at-risk
+2026-03-13 15:14:26,523 WARNING: No description for 'Lebanon’s Mission Impossible: Could US and Israeli pressure ' — using title as fallback
+2026-03-13 15:14:26,523 DEBUG: Added: https://www.france24.com/en/lebanon-s-mission-impossible-could-us-and-israeli-pressure-to-disarm-hezbollah-lead-to-civil-war
+2026-03-13 15:14:26,523 INFO: Added 5 new articles to main feed
+2026-03-13 15:14:26,523 INFO: Added 6 new articles to Reuters feed
+2026-03-13 15:14:26,523 INFO: Trimmed feed to 500 items
+2026-03-13 15:14:26,523 INFO: Trimmed feed to 500 items
+2026-03-13 15:14:26,540 INFO: Done! Main feed saved to pau.xml
+2026-03-13 15:14:26,540 INFO: Done! Reuters feed saved to reuters.xml
+2026-03-13 15:14:26,540 INFO: Debug log saved to debug.log
