@@ -84,7 +84,7 @@ REUTERS_JUNK_TITLES = {
 BOTBROWSER_RESTART_EVERY = 10
 
 # Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
-BOTBROWSER_FETCH_DELAY = 5
+BOTBROWSER_FETCH_DELAY = 1.5
 
 # ------------------------------
 # BotBrowser Configuration
@@ -121,6 +121,7 @@ def _start_botbrowser() -> bool:
         "--disable-gpu",
         f"--remote-debugging-port={BOTBROWSER_CDP_PORT}",
         "--remote-debugging-address=127.0.0.1",
+        "--disable-blink-features=AutomationControlled",
     ]
     if BOTBROWSER_PROFILE:
         cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
@@ -142,7 +143,6 @@ def _start_botbrowser() -> bool:
             r = requests.get(cdp_url, timeout=2)
             if r.status_code == 200:
                 debug("BotBrowser CDP ready on port %d", BOTBROWSER_CDP_PORT)
-                time.sleep(4)  # Wait for BotBrowser to finish patch/fingerprint init
                 return True
         except Exception:
             pass
@@ -173,14 +173,23 @@ def _botbrowser_fetch_once(url: str) -> str | None:
     try:
         with sync_playwright() as pw:
             browser = pw.chromium.connect_over_cdp(cdp_endpoint)
-            context = browser.contexts[0]  # Use BotBrowser's default context (preserves fingerprint)
+            context = browser.new_context(
+                viewport={"width": 1280, "height": 800},
+                user_agent=(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/124.0.0.0 Safari/537.36"
+                ),
+                locale="en-US",
+                java_script_enabled=True,
+            )
             page = context.new_page()
 
             try:
                 page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
             except PWTimeout:
                 warn("BotBrowser navigation timed out for %s", url)
-                page.close()
+                page.close(); context.close(); browser.close()
                 return None
 
             try:
@@ -189,7 +198,7 @@ def _botbrowser_fetch_once(url: str) -> str | None:
                 debug("networkidle timed out for %s (non-fatal)", url)
 
             html = page.content()
-            page.close()
+            page.close(); context.close(); browser.close()
 
     except Exception as e:
         warn("BotBrowser Playwright error for %s: %s", url, e)
@@ -210,15 +219,30 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
 def botbrowser_get(url: str, retries: int = 2) -> str | None:
     for attempt in range(1, retries + 1):
-        if not _start_botbrowser():
+        if not _ensure_botbrowser_running():
             warn("BotBrowser not available (attempt %d/%d)", attempt, retries)
+            time.sleep(2)
             continue
+
+        if _botbrowser_proc is None or _botbrowser_proc.poll() is not None:
+            warn("BotBrowser died before fetch attempt %d — restarting", attempt)
+            if not _start_botbrowser():
+                time.sleep(2)
+                continue
 
         result = _botbrowser_fetch_once(url)
         if result:
             return result
 
-        warn("BotBrowser fetch failed on attempt %d/%d for %s", attempt, retries, url)
+        if _botbrowser_proc is not None and _botbrowser_proc.poll() is not None:
+            warn("BotBrowser process exited (code %d) after attempt %d — will restart",
+                 _botbrowser_proc.returncode, attempt)
+        else:
+            warn("BotBrowser fetch failed on attempt %d — restarting for retry", attempt)
+
+        if attempt < retries:
+            _start_botbrowser()
+            time.sleep(2)
 
     warn("BotBrowser: all %d attempts failed for %s", retries, url)
     return None
@@ -523,7 +547,127 @@ else:
 
     info("Found %d Reuters world articles", len(reuters_articles))
 
-info("Total Reuters articles: %d", len(reuters_articles))
+# ------------------------------
+# 1B. FETCH REUTERS COMMENTARY  (BotBrowser)
+# ------------------------------
+
+info("Fetching Reuters commentary page via BotBrowser: %s", REUTERS_COMMENTARY_URL)
+commentary_html = fetch_page(REUTERS_COMMENTARY_URL)
+
+if commentary_html is None:
+    warn("Failed to fetch Reuters commentary page")
+else:
+    save_debug_html(COMMENTARY_HTML_FILE, commentary_html)
+    csoup = BeautifulSoup(commentary_html, "html.parser")
+
+    primary_cards = []
+    try:
+        for card in csoup.select('[data-testid="StoryCard"]'):
+            title_el = card.select_one('[data-testid="TitleHeading"]')
+            link_el  = card.select_one('[data-testid="TitleLink"]')
+            if not title_el or not link_el:
+                continue
+            title = title_el.get_text(" ", strip=True)
+            href  = link_el.get("href", "").strip()
+            thumb_el = card.select_one(
+                '[data-testid="MediaImageLink"] [data-testid="EagerImageContainer"] img[data-testid="EagerImage"]'
+            )
+            thumb = ""
+            if thumb_el:
+                thumb = (thumb_el.get("src") or thumb_el.get("data-src") or "").strip()
+            primary_cards.append((href, title, thumb))
+    except Exception as e:
+        warn("Exception in primary commentary selector: %s", e)
+
+    if primary_cards:
+        info("Primary commentary selector matched %d cards.", len(primary_cards))
+        for href, title, thumb in primary_cards[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - href=%s | title=%s", href, title)
+        for href, title, thumb in primary_cards:
+            url = build_full_url(href)
+            if url:
+                reuters_articles.append({"url": url, "title": title, "source": "Reuters", "thumb": thumb})
+    else:
+        seen, fallback_cards = set(), []
+        for a in csoup.find_all("a", href=True):
+            href = a["href"].strip()
+            if re.search(
+                r'^/(commentary|breakingviews|article|business|world|opinions)/', href
+            ) or '/article/' in href:
+                title_text = a.get_text(" ", strip=True)
+                if not title_text:
+                    parent = a.find_parent()
+                    title_text = parent.get_text(" ", strip=True) if parent else ""
+                if not title_text:
+                    continue
+                full = build_full_url(href)
+                if not full or full in seen:
+                    continue
+                seen.add(full)
+                thumb = ""
+                parent = a.find_parent()
+                if parent:
+                    img = parent.find("img")
+                    if img:
+                        thumb = (img.get("src") or img.get("data-src") or "").strip()
+                fallback_cards.append((full, title_text, thumb))
+
+        info("Fallback commentary scan found %d candidates.", len(fallback_cards))
+        if not fallback_cards:
+            warn("No commentary candidates found. HTML snippet:\n%s",
+                 commentary_html[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+        for full, title, thumb in fallback_cards:
+            reuters_articles.append({"url": full, "title": title, "source": "Reuters", "thumb": thumb})
+
+    info("Total Reuters articles (world + commentary): %d", len(reuters_articles))
+
+# ------------------------------
+# 1C. FETCH REUTERS EXTRA SECTION PAGES  (BotBrowser)
+# ------------------------------
+
+for extra_url in REUTERS_EXTRA_URLS:
+    info("Fetching Reuters extra page via BotBrowser: %s", extra_url)
+    extra_html = fetch_page(extra_url)
+
+    if extra_html is None:
+        warn("Failed to fetch Reuters extra page: %s", extra_url)
+        continue
+
+    slug = extra_url.rstrip("/").split("/")[-1] or extra_url.rstrip("/").split("/")[-2]
+    save_debug_html(f"reuters_extra_{slug}.html", extra_html)
+
+    extra_soup = BeautifulSoup(extra_html, "html.parser")
+    cards = extract_reuters_extra_cards(extra_soup, extra_url)
+
+    if cards:
+        info("Extra page %s: found %d cards.", extra_url, len(cards))
+        for c in cards[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | %s", c["url"], c["title"])
+        reuters_articles.extend(cards)
+    else:
+        warn("Extra page %s: no cards matched — falling back to anchor scan.", extra_url)
+        seen_extra = set()
+        for a in extra_soup.find_all("a", href=True):
+            href = a["href"].strip()
+            if re.search(
+                r'^/(world|article|business|markets|breakingviews|technology|'
+                r'investigations|commentary|sustainability)/',
+                href
+            ) or '/article/' in href:
+                title_text = a.get_text(" ", strip=True)
+                if not title_text:
+                    parent = a.find_parent()
+                    title_text = parent.get_text(" ", strip=True) if parent else ""
+                if not title_text:
+                    continue
+                full = build_full_url(href)
+                if not full or full in seen_extra:
+                    continue
+                seen_extra.add(full)
+                reuters_articles.append({"url": full, "title": title_text, "source": "Reuters"})
+        info("Extra page %s: fallback anchor scan found %d candidates.", extra_url, len(seen_extra))
+
+info("Total Reuters articles after extra pages: %d", len(reuters_articles))
 
 # ------------------------------
 # 1D. FETCH AP NEWS WORLD  (FlareSolverr)
@@ -816,6 +960,13 @@ for i, a in enumerate(all_articles, 1):
             time.sleep(3)
 
     page = fetch_page(a["url"])
+
+    # If BotBrowser returned None (DataDome blocked), do one immediate restart + retry
+    if page is None and a.get("source") == "Reuters":
+        warn("DataDome likely blocked %s — restarting BotBrowser and retrying once", a.get("url"))
+        if _start_botbrowser():
+            time.sleep(3)
+            page = fetch_page(a["url"])
 
     if page is None:
         warn("Failed to fetch: %s", a.get("url"))
