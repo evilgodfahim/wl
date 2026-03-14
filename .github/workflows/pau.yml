@@ -28,75 +28,72 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
 
-      # Get the latest release tag and save release data
-      - name: Get latest BotBrowser tag
-        id: botbrowser
+      - name: Install Playwright Chromium
         run: |
-          TAG=$(python3 get_bb_tag.py)
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
-          echo "Latest tag: $TAG"
+          playwright install chromium
+          playwright install-deps chromium
 
-      # Install BotBrowser from .deb using the pre-fetched release data
-      - name: Install BotBrowser from .deb
+      - name: Install BotBrowser
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # The Python script saved the full release JSON to /tmp/bb_release.json
-          if [ ! -f /tmp/bb_release.json ]; then
-            echo "ERROR: Release data not found at /tmp/bb_release.json"
-            exit 1
-          fi
+          LATEST=$(python3 get_bb_tag.py)
+          echo "BotBrowser latest release: $LATEST"
+          echo "BOTBROWSER_TAG=$LATEST" >> $GITHUB_ENV
 
-          # Extract the tag name and find the x64 .deb asset
-          TAG=$(jq -r '.tag_name' /tmp/bb_release.json)
-          DEB_ASSET=$(jq -r '.assets[] | select(.name | test("_x64\\.deb$")) | .name' /tmp/bb_release.json | head -1)
+          DEB_ASSET=$(grep "_x64.deb" /tmp/bb_assets.txt | head -1)
+          echo "Using deb asset: $DEB_ASSET"
 
           if [ -z "$DEB_ASSET" ]; then
-            echo "ERROR: Could not find Linux x64 .deb asset in release data"
+            echo "ERROR: no x64 .deb asset found:"
+            cat /tmp/bb_assets.txt
             exit 1
           fi
 
-          echo "Downloading .deb asset: $DEB_ASSET"
-          DOWNLOAD_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${TAG}/${DEB_ASSET}"
-          curl -fL "$DOWNLOAD_URL" -o botbrowser.deb
-
+          DEB_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/${DEB_ASSET}"
+          echo "Downloading: $DEB_URL"
+          curl -fL -H "Authorization: Bearer $GH_TOKEN" "$DEB_URL" -o botbrowser.deb
           sudo dpkg -i botbrowser.deb || sudo apt-get install -f -y
 
-          # Locate the installed binary – it's installed as chromium-browser-stable
-          if [ -f /usr/bin/chromium-browser-stable ]; then
-            BOTBROWSER_BIN=/usr/bin/chromium-browser-stable
-          elif [ -f /usr/bin/botbrowser ]; then
-            BOTBROWSER_BIN=/usr/bin/botbrowser
-          else
-            # Fallback: search for any browser-like binary
-            BOTBROWSER_BIN=$(find /usr/bin -name '*browser*' -type f -executable | grep -m1 -E 'chromium|botbrowser' || true)
-          fi
+          BB_BIN=""
+          for candidate in /usr/bin/chromium-browser-stable /usr/bin/chromium-browser /opt/chromium.org/chromium/chromium /usr/bin/botbrowser; do
+            if [ -f "$candidate" ] && [ -x "$candidate" ]; then
+              BB_BIN="$candidate"
+              break
+            fi
+          done
 
-          if [ -z "$BOTBROWSER_BIN" ] || [ ! -x "$BOTBROWSER_BIN" ]; then
-            echo "ERROR: Could not find installed BotBrowser binary"
+          if [ -z "$BB_BIN" ]; then
+            echo "ERROR: could not find installed browser binary"
             exit 1
           fi
 
-          echo "BOTBROWSER_PATH=$BOTBROWSER_BIN" >> $GITHUB_ENV
-          $BOTBROWSER_BIN --version || true
+          echo "BotBrowser binary: $BB_BIN"
+          "$BB_BIN" --version || true
+          echo "BOTBROWSER_PATH=$BB_BIN" >> $GITHUB_ENV
 
-      # Optional: download bot profile (if available)
-      - name: Download BotBrowser profile (optional)
+      - name: Download BotBrowser bot-profile
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG=$(jq -r '.tag_name' /tmp/bb_release.json)
-          PROFILE_ASSET="botbrowser_${TAG}_x64.enc.zip"
-          DOWNLOAD_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${TAG}/${PROFILE_ASSET}"
-          if curl -fL --output /dev/null --silent --head "$DOWNLOAD_URL"; then
-            echo "Profile asset found, downloading..."
-            curl -fL "$DOWNLOAD_URL" -o profile.zip
-            unzip -q profile.zip
-            PROFILE_FILE=$(ls *.enc 2>/dev/null | head -1 || true)
-            if [ -n "$PROFILE_FILE" ]; then
-              echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_FILE" >> $GITHUB_ENV
-              echo "Using profile: $PROFILE_FILE"
-            else
-              echo "No .enc file found after extraction"
-            fi
+          LATEST="${{ env.BOTBROWSER_TAG }}"
+
+          PROFILE_ASSET=$(grep -i "linux.*enc.zip\|linux.*profile" /tmp/bb_assets.txt | head -1 || true)
+
+          if [ -z "$PROFILE_ASSET" ]; then
+            echo "No linux profile asset found — skipping"
           else
-            echo "No profile asset found for this release"
+            PROFILE_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/${PROFILE_ASSET}"
+            echo "Downloading profile: $PROFILE_URL"
+            curl -fL -H "Authorization: Bearer $GH_TOKEN" "$PROFILE_URL" -o botprofile.zip && unzip -o botprofile.zip || echo "Profile download failed — continuing without profile"
+          fi
+
+          PROFILE_FILE=$(ls *.enc 2>/dev/null | head -1 || true)
+          if [ -n "$PROFILE_FILE" ]; then
+            echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_FILE" >> $GITHUB_ENV
+            echo "Using bot profile: $PROFILE_FILE"
+          else
+            echo "No profile file found — BotBrowser will run without a profile"
           fi
 
       - name: Start FlareSolverr
