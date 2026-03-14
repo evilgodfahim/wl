@@ -84,7 +84,7 @@ REUTERS_JUNK_TITLES = {
 BOTBROWSER_RESTART_EVERY = 10
 
 # Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
-BOTBROWSER_FETCH_DELAY = 1.5
+BOTBROWSER_FETCH_DELAY = 5
 
 # ------------------------------
 # BotBrowser Configuration
