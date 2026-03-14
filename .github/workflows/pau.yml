@@ -144,5 +144,3 @@ jobs:
           git commit -m "Auto update RSS [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git pull --rebase origin main
           git push origin main
-EOF
-python3 -c "import yaml; yaml.safe_load(open('/mnt/user-data/outputs/pau.yml')); print('valid')"
