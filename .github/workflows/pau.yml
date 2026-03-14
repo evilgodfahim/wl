@@ -28,42 +28,43 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
 
-      # Get the latest release tag from BotBrowser repository
+      # Your existing get_bb_tag.py script should be in the repo
       - name: Get latest BotBrowser tag
         id: botbrowser
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Use gh CLI to fetch the latest release tag
-          LATEST=$(gh release list -R botswin/botbrowser --limit 1 --json tagName --jq '.[0].tagName')
-          echo "Latest tag: $LATEST"
-          echo "tag=$LATEST" >> $GITHUB_OUTPUT
+          TAG=$(python3 get_bb_tag.py)
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
 
-      # Download and extract the standalone Linux binary
       - name: Download BotBrowser binary
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ steps.botbrowser.outputs.tag }}"
-          # The standalone binary for Linux x64
-          BINARY_ASSET="botbrowser-linux-x64.zip"
+          # Fetch asset list from GitHub API
+          ASSETS_JSON=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/botswin/BotBrowser/releases/tags/$TAG")
+
+          # Find the Linux x64 binary asset (not .deb, .snap, .enc.zip)
+          BINARY_ASSET=$(echo "$ASSETS_JSON" | jq -r '.assets[] | select(.name | test("linux.*x64") and (test("\\.deb$|\\.snap$|\\.enc\\.zip$") | not)) | .name' | head -1)
+
+          if [ -z "$BINARY_ASSET" ]; then
+            echo "ERROR: Could not find Linux x64 binary asset"
+            exit 1
+          fi
+
+          echo "Downloading binary asset: $BINARY_ASSET"
           DOWNLOAD_URL="https://github.com/botswin/BotBrowser/releases/download/${TAG}/${BINARY_ASSET}"
-          echo "Downloading $BINARY_ASSET from $DOWNLOAD_URL"
-          curl -fL -H "Authorization: Bearer $GH_TOKEN" "$DOWNLOAD_URL" -o botbrowser.zip
-          unzip -q botbrowser.zip
-          # The extracted binary is named "botbrowser" (verify if needed)
+          curl -fL -H "Authorization: Bearer $GH_TOKEN" "$DOWNLOAD_URL" -o botbrowser
+
           chmod +x botbrowser
           echo "BOTBROWSER_PATH=$PWD/botbrowser" >> $GITHUB_ENV
-          # Verify
           ./botbrowser --version || true
 
-      # Optional: download bot profile
       - name: Download BotBrowser profile (optional)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ steps.botbrowser.outputs.tag }}"
-          # Look for a Linux profile asset
           PROFILE_ASSET="botbrowser-linux-x64.enc.zip"
           DOWNLOAD_URL="https://github.com/botswin/BotBrowser/releases/download/${TAG}/${PROFILE_ASSET}"
           if curl -fL -H "Authorization: Bearer $GH_TOKEN" --output /dev/null --silent --head "$DOWNLOAD_URL"; then
