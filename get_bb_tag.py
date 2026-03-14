@@ -16,10 +16,19 @@ def fetch(url, token):
 
 token = os.environ.get("GH_TOKEN", "")
 
-urls_to_try = [
-    "https://api.github.com/repositories/854084975/releases/latest",
-    "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest",
-]
+# If a tag is passed as argument, fetch that specific release
+pinned_tag = sys.argv[1] if len(sys.argv) > 1 else None
+
+if pinned_tag:
+    urls_to_try = [
+        f"https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/tags/{pinned_tag}",
+        f"https://api.github.com/repositories/854084975/releases/tags/{pinned_tag}",
+    ]
+else:
+    urls_to_try = [
+        "https://api.github.com/repositories/854084975/releases/latest",
+        "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/latest",
+    ]
 
 data = None
 for url in urls_to_try:
