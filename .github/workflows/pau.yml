@@ -28,21 +28,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
 
-      # Your existing get_bb_tag.py script should be in the repo
+      # Get the latest release tag using your (fixed) Python script
       - name: Get latest BotBrowser tag
         id: botbrowser
         run: |
           TAG=$(python3 get_bb_tag.py)
           echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "Latest tag: $TAG"
 
+      # Download the standalone BotBrowser binary
       - name: Download BotBrowser binary
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ steps.botbrowser.outputs.tag }}"
-          # Fetch asset list from GitHub API
+          # Fetch asset list from GitHub API (correct repository)
           ASSETS_JSON=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/botswin/BotBrowser/releases/tags/$TAG")
+            "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/tags/$TAG")
 
           # Find the Linux x64 binary asset (not .deb, .snap, .enc.zip)
           BINARY_ASSET=$(echo "$ASSETS_JSON" | jq -r '.assets[] | select(.name | test("linux.*x64") and (test("\\.deb$|\\.snap$|\\.enc\\.zip$") | not)) | .name' | head -1)
@@ -53,20 +55,21 @@ jobs:
           fi
 
           echo "Downloading binary asset: $BINARY_ASSET"
-          DOWNLOAD_URL="https://github.com/botswin/BotBrowser/releases/download/${TAG}/${BINARY_ASSET}"
+          DOWNLOAD_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${TAG}/${BINARY_ASSET}"
           curl -fL -H "Authorization: Bearer $GH_TOKEN" "$DOWNLOAD_URL" -o botbrowser
 
           chmod +x botbrowser
           echo "BOTBROWSER_PATH=$PWD/botbrowser" >> $GITHUB_ENV
           ./botbrowser --version || true
 
+      # Optional: download bot profile
       - name: Download BotBrowser profile (optional)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ steps.botbrowser.outputs.tag }}"
           PROFILE_ASSET="botbrowser-linux-x64.enc.zip"
-          DOWNLOAD_URL="https://github.com/botswin/BotBrowser/releases/download/${TAG}/${PROFILE_ASSET}"
+          DOWNLOAD_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${TAG}/${PROFILE_ASSET}"
           if curl -fL -H "Authorization: Bearer $GH_TOKEN" --output /dev/null --silent --head "$DOWNLOAD_URL"; then
             echo "Profile asset found, downloading..."
             curl -fL -H "Authorization: Bearer $GH_TOKEN" "$DOWNLOAD_URL" -o profile.zip
