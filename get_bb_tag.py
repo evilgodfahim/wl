@@ -65,7 +65,6 @@ if not data or "tag_name" not in data:
 tag = data["tag_name"]
 assets = data.get("assets", [])
 
-# Write asset names to file for the workflow to use
 with open("/tmp/bb_assets.txt", "w") as f:
     for a in assets:
         f.write(a["name"] + "\n")
@@ -75,5 +74,4 @@ print("Assets:", file=sys.stderr)
 for a in assets:
     print(f"  - {a['name']}", file=sys.stderr)
 
-# Print tag to stdout (captured by shell)
 print(tag)
