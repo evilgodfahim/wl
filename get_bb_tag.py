@@ -75,4 +75,5 @@ print("Assets:", file=sys.stderr)
 for a in assets:
     print(f"  - {a['name']}", file=sys.stderr)
 
+# Print tag to stdout (captured by shell)
 print(tag)
