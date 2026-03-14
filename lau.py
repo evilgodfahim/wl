@@ -223,6 +223,7 @@ def botbrowser_get(url: str, retries: int = 2) -> str | None:
 
         result = _botbrowser_fetch_once(url)
         if result:
+            time.sleep(BOTBROWSER_FETCH_DELAY)
             return result
 
         if _botbrowser_proc is not None and _botbrowser_proc.poll() is not None:
