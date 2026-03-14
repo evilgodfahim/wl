@@ -28,7 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
 
-      - name: Install Playwright dependencies
+      - name: Install Playwright Chromium
         run: |
           playwright install-deps chromium
 
@@ -85,13 +85,13 @@ jobs:
           PROFILE_ASSET=$(grep -i "linux.*enc.zip\|linux.*profile" /tmp/bb_assets.txt | head -1 || true)
 
           if [ -z "$PROFILE_ASSET" ]; then
-            echo "No linux profile asset found — skipping"
+            echo "No linux profile asset found - skipping"
           else
             PROFILE_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/${PROFILE_ASSET}"
             echo "Downloading profile: $PROFILE_URL"
             curl -fL -H "Authorization: Bearer $GH_TOKEN" "$PROFILE_URL" -o botprofile.zip \
               && unzip -o botprofile.zip \
-              || echo "Profile download failed — continuing without profile"
+              || echo "Profile download failed - continuing without profile"
           fi
 
           PROFILE_FILE=$(ls *.enc 2>/dev/null | head -1 || true)
@@ -99,7 +99,7 @@ jobs:
             echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_FILE" >> $GITHUB_ENV
             echo "Using bot profile: $PROFILE_FILE"
           else
-            echo "No profile file found — BotBrowser will run without a profile"
+            echo "No profile file found - BotBrowser will run without a profile"
           fi
 
       - name: Start FlareSolverr
@@ -144,5 +144,10 @@ jobs:
           git commit -m "Auto update RSS [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git pull --rebase origin main
           git push origin main
-WORKFLOW
-echo "Done"
+ENDOFFILE
+python3 -c "
+import yaml
+with open('/home/claude/pau.yml') as f:
+    yaml.safe_load(f)
+print('YAML valid')
+"
