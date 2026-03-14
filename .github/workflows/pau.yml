@@ -60,13 +60,14 @@ jobs:
 
           sudo dpkg -i botbrowser.deb || sudo apt-get install -f -y
 
-          # Locate the installed binary
-          if [ -f /usr/bin/botbrowser ]; then
+          # Locate the installed binary – it's installed as chromium-browser-stable
+          if [ -f /usr/bin/chromium-browser-stable ]; then
+            BOTBROWSER_BIN=/usr/bin/chromium-browser-stable
+          elif [ -f /usr/bin/botbrowser ]; then
             BOTBROWSER_BIN=/usr/bin/botbrowser
-          elif [ -f /usr/bin/botbrowser-browser ]; then
-            BOTBROWSER_BIN=/usr/bin/botbrowser-browser
           else
-            BOTBROWSER_BIN=$(find /usr/bin -name '*botbrowser*' -type f -executable | head -1)
+            # Fallback: search for any browser-like binary
+            BOTBROWSER_BIN=$(find /usr/bin -name '*browser*' -type f -executable | grep -m1 -E 'chromium|botbrowser' || true)
           fi
 
           if [ -z "$BOTBROWSER_BIN" ] || [ ! -x "$BOTBROWSER_BIN" ]; then
@@ -81,7 +82,6 @@ jobs:
       - name: Download BotBrowser profile (optional)
         run: |
           TAG=$(jq -r '.tag_name' /tmp/bb_release.json)
-          # Profile asset naming may vary; adjust if needed.
           PROFILE_ASSET="botbrowser_${TAG}_x64.enc.zip"
           DOWNLOAD_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${TAG}/${PROFILE_ASSET}"
           if curl -fL --output /dev/null --silent --head "$DOWNLOAD_URL"; then
