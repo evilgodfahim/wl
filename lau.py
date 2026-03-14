@@ -173,23 +173,14 @@ def _botbrowser_fetch_once(url: str) -> str | None:
     try:
         with sync_playwright() as pw:
             browser = pw.chromium.connect_over_cdp(cdp_endpoint)
-            context = browser.new_context(
-                viewport={"width": 1280, "height": 800},
-                user_agent=(
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/124.0.0.0 Safari/537.36"
-                ),
-                locale="en-US",
-                java_script_enabled=True,
-            )
+            context = browser.contexts[0]  # Use BotBrowser's default context (preserves fingerprint)
             page = context.new_page()
 
             try:
                 page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
             except PWTimeout:
                 warn("BotBrowser navigation timed out for %s", url)
-                page.close(); context.close(); browser.close()
+                page.close(); browser.close()
                 return None
 
             try:
@@ -198,7 +189,7 @@ def _botbrowser_fetch_once(url: str) -> str | None:
                 debug("networkidle timed out for %s (non-fatal)", url)
 
             html = page.content()
-            page.close(); context.close(); browser.close()
+            page.close(); browser.close()
 
     except Exception as e:
         warn("BotBrowser Playwright error for %s: %s", url, e)
@@ -1064,3 +1055,6 @@ reuters_tree.write(REUTERS_XML_FILE, encoding="utf-8", xml_declaration=True)
 info("Done! Main feed saved to %s", XML_FILE)
 info("Done! Reuters feed saved to %s", REUTERS_XML_FILE)
 info("Debug log saved to %s", LOG_FILENAME)
+
+
+
