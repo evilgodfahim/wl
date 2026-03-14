@@ -228,12 +228,13 @@ def botbrowser_get(url: str, retries: int = 2) -> str | None:
         if _botbrowser_proc is not None and _botbrowser_proc.poll() is not None:
             warn("BotBrowser process exited (code %d) after attempt %d — will restart",
                  _botbrowser_proc.returncode, attempt)
+            if attempt < retries:
+                _start_botbrowser()
+                time.sleep(2)
         else:
-            warn("BotBrowser fetch failed on attempt %d — restarting for retry", attempt)
-
-        if attempt < retries:
-            _start_botbrowser()
-            time.sleep(2)
+            warn("BotBrowser fetch failed on attempt %d — keeping instance, retrying", attempt)
+            if attempt < retries:
+                time.sleep(2)
 
     warn("BotBrowser: all %d attempts failed for %s", retries, url)
     return None
