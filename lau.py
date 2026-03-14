@@ -121,10 +121,20 @@ def _start_botbrowser() -> bool:
         "--disable-gpu",
         f"--remote-debugging-port={BOTBROWSER_CDP_PORT}",
         "--remote-debugging-address=127.0.0.1",
-        "--disable-blink-features=AutomationControlled",
+        "--user-data-dir=/tmp/botbrowser_data",
     ]
     if BOTBROWSER_PROFILE:
         cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
+
+    # Remove stale SingletonLock left by previous SIGKILL — Chrome won't start its
+    # default context cleanly if this file exists from a non-graceful shutdown.
+    singleton_lock = "/tmp/botbrowser_data/SingletonLock"
+    if os.path.exists(singleton_lock):
+        try:
+            os.remove(singleton_lock)
+            debug("Removed stale SingletonLock")
+        except OSError:
+            pass
 
     debug("Launching BotBrowser: %s", " ".join(cmd))
     try:
@@ -143,6 +153,7 @@ def _start_botbrowser() -> bool:
             r = requests.get(cdp_url, timeout=2)
             if r.status_code == 200:
                 debug("BotBrowser CDP ready on port %d", BOTBROWSER_CDP_PORT)
+                time.sleep(4)  # Wait for BotBrowser to finish patch/fingerprint init
                 return True
         except Exception:
             pass
