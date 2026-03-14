@@ -35,7 +35,9 @@ jobs:
 
       - name: Apply rebrowser patches
         run: |
-          npx rebrowser-patches@latest patch --packageName playwright
+          PLAYWRIGHT_PATH=$(python3 -c "import playwright; import os; print(os.path.dirname(playwright.__file__))")
+          echo "Playwright path: $PLAYWRIGHT_PATH"
+          npx rebrowser-patches@latest patch --packagePath "$PLAYWRIGHT_PATH" 
 
       - name: Start FlareSolverr
         run: |
