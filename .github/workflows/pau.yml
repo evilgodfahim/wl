@@ -26,18 +26,12 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 playwright
+          pip install requests beautifulsoup4 rebrowser-playwright
 
       - name: Install Playwright Chromium
         run: |
           playwright install chromium
           playwright install-deps chromium
-
-      - name: Apply rebrowser patches
-        run: |
-          PLAYWRIGHT_PATH=$(python3 -c "import playwright; import os; print(os.path.dirname(playwright.__file__))")
-          echo "Playwright path: $PLAYWRIGHT_PATH"
-          npx rebrowser-patches@latest patch --packagePath "$PLAYWRIGHT_PATH/driver/package" 
 
       - name: Start FlareSolverr
         run: |
