@@ -55,8 +55,9 @@ jobs:
           curl -fL -H "Authorization: Bearer $GH_TOKEN" "$DEB_URL" -o botbrowser.deb
           sudo dpkg -i botbrowser.deb || sudo apt-get install -f -y
 
+          # FIX: Prioritize botbrowser binary over system Chromium
           BB_BIN=""
-          for candidate in /usr/bin/chromium-browser-stable /usr/bin/chromium-browser /opt/chromium.org/chromium/chromium /usr/bin/botbrowser; do
+          for candidate in /usr/bin/botbrowser /usr/bin/chromium-browser-stable /usr/bin/chromium-browser /opt/chromium.org/chromium/chromium; do
             if [ -f "$candidate" ] && [ -x "$candidate" ]; then
               BB_BIN="$candidate"
               break
