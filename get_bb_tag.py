@@ -43,7 +43,6 @@ for url in urls_to_try:
         data = None
 
 if not data or "tag_name" not in data:
-    # fallback: list endpoint
     for url in [
         "https://api.github.com/repositories/854084975/releases?per_page=5",
         "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases?per_page=5",
