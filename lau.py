@@ -180,7 +180,7 @@ def _botbrowser_fetch_once(url: str) -> str | None:
                 page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
             except PWTimeout:
                 warn("BotBrowser navigation timed out for %s", url)
-                page.close(); browser.close()
+                page.close()
                 return None
 
             try:
@@ -189,7 +189,7 @@ def _botbrowser_fetch_once(url: str) -> str | None:
                 debug("networkidle timed out for %s (non-fatal)", url)
 
             html = page.content()
-            page.close(); browser.close()
+            page.close()
 
     except Exception as e:
         warn("BotBrowser Playwright error for %s: %s", url, e)
