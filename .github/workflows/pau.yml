@@ -28,7 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
 
-      # Get the latest release tag using your fixed Python script
+      # Get the latest release tag and save release data
       - name: Get latest BotBrowser tag
         id: botbrowser
         run: |
@@ -36,18 +36,21 @@ jobs:
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "Latest tag: $TAG"
 
-      # Download and install the BotBrowser .deb package
-      - name: Download and install BotBrowser from .deb
+      # Install BotBrowser from .deb using the pre-fetched release data
+      - name: Install BotBrowser from .deb
         run: |
-          TAG="${{ steps.botbrowser.outputs.tag }}"
-          # Fetch asset list (public repo, no token needed)
-          ASSETS_JSON=$(curl -s "https://api.github.com/repos/MiddleSchoolStudent/BotBrowser/releases/tags/$TAG")
+          # The Python script saved the full release JSON to /tmp/bb_release.json
+          if [ ! -f /tmp/bb_release.json ]; then
+            echo "ERROR: Release data not found at /tmp/bb_release.json"
+            exit 1
+          fi
 
-          # Find the Linux x64 .deb asset
-          DEB_ASSET=$(echo "$ASSETS_JSON" | jq -r '.assets[] | select(.name | test("_x64\\.deb$")) | .name' | head -1)
+          # Extract the tag name and find the x64 .deb asset
+          TAG=$(jq -r '.tag_name' /tmp/bb_release.json)
+          DEB_ASSET=$(jq -r '.assets[] | select(.name | test("_x64\\.deb$")) | .name' /tmp/bb_release.json | head -1)
 
           if [ -z "$DEB_ASSET" ]; then
-            echo "ERROR: Could not find Linux x64 .deb asset"
+            echo "ERROR: Could not find Linux x64 .deb asset in release data"
             exit 1
           fi
 
@@ -55,16 +58,14 @@ jobs:
           DOWNLOAD_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${TAG}/${DEB_ASSET}"
           curl -fL "$DOWNLOAD_URL" -o botbrowser.deb
 
-          # Install the .deb package
           sudo dpkg -i botbrowser.deb || sudo apt-get install -f -y
 
-          # Locate the installed binary (common paths)
+          # Locate the installed binary
           if [ -f /usr/bin/botbrowser ]; then
             BOTBROWSER_BIN=/usr/bin/botbrowser
           elif [ -f /usr/bin/botbrowser-browser ]; then
             BOTBROWSER_BIN=/usr/bin/botbrowser-browser
           else
-            # Fallback: search for any executable named *botbrowser* in /usr/bin
             BOTBROWSER_BIN=$(find /usr/bin -name '*botbrowser*' -type f -executable | head -1)
           fi
 
@@ -79,7 +80,7 @@ jobs:
       # Optional: download bot profile (if available)
       - name: Download BotBrowser profile (optional)
         run: |
-          TAG="${{ steps.botbrowser.outputs.tag }}"
+          TAG=$(jq -r '.tag_name' /tmp/bb_release.json)
           # Profile asset naming may vary; adjust if needed.
           PROFILE_ASSET="botbrowser_${TAG}_x64.enc.zip"
           DOWNLOAD_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${TAG}/${PROFILE_ASSET}"
