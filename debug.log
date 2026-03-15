@@ -1,141 +1,158 @@
-2026-03-15 16:38:54,240 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
-2026-03-15 16:38:54,240 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-15 16:38:54,242 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:38:54,743 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:38:55,245 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:38:55,747 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:38:55,747 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-15 16:38:55,748 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-15 16:38:56,122 DEBUG: Using selector: EpollSelector
-2026-03-15 16:38:57,530 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Target page, context or browser has been closed
+2026-03-15 17:33:59,897 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
+2026-03-15 17:33:59,897 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 17:33:59,899 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:00,400 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:00,902 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:00,903 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 17:34:00,903 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 17:34:01,082 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:02,769 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Target page, context or browser has been closed
 =========================== logs ===========================
 "load" event fired
 ============================================================
-2026-03-15 16:38:57,530 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-15 16:38:57,530 DEBUG: Killing existing BotBrowser (pid 3727)
-2026-03-15 16:38:57,547 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-15 16:38:57,550 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:38:58,052 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:38:58,052 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-15 16:38:58,053 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-15 16:39:00,053 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:01,926 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/world/ (1494 bytes)
-2026-03-15 16:39:01,927 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAd-74eWvpbiYArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'e7d5aaaed50f66c82d0a06804487392589b775d3d2846d9a10f5a811bc748c33bcf814d968d30c6133c624b0097d1505','qp':'','host':'geo.captcha-delivery.com','cookie':'pQCL49C95Ryf60Stw0uZabaGtcy5CmvwTaoPMDedr13CZSa9~X
-2026-03-15 16:39:01,927 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-15 16:39:01,927 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/world/
-2026-03-15 16:39:01,927 WARNING: Failed to fetch Reuters world page
-2026-03-15 16:39:01,927 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
-2026-03-15 16:39:01,927 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:03,705 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes)
-2026-03-15 16:39:03,705 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAd6ujb6cHxYkArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'6ff233e5203620eb8c921f200bdeb3e5e4eff484d13f1ad9d103a689f0493c88cb0a19f9880224fc90a581f317b48090','qp':'','host':'geo.captcha-delivery.com','cookie':'qJSUWN6ZWyP4eskdEpBh3jHffUmcPcg2_YuhvoJYj8CdEX7pHD
-2026-03-15 16:39:03,705 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-15 16:39:03,705 DEBUG: Killing existing BotBrowser (pid 3912)
-2026-03-15 16:39:03,722 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-15 16:39:03,726 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:04,228 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:04,229 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-15 16:39:04,229 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-15 16:39:06,230 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:08,082 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes)
-2026-03-15 16:39:08,083 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAidld6sWKa64ArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'51136ed8fb1dd42ad6bc4ea2f606066650d30876424991e3da1fbebf7905b31e908a52bd8942a26079015ffad8c67257','qp':'','host':'geo.captcha-delivery.com','cookie':'jI9mlKg3QyV2FNAUU7Y5HHLc6FAhBG27WC7sLHUDUVxRUvgWYM
-2026-03-15 16:39:08,083 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-15 16:39:08,083 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/commentary/
-2026-03-15 16:39:08,083 WARNING: Failed to fetch Reuters commentary page
-2026-03-15 16:39:08,083 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
-2026-03-15 16:39:08,083 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:09,863 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes)
-2026-03-15 16:39:09,863 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMA0Z3tAaVq3zMArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'9efc599f6f99ec5e2f93b13985be3cdd0cadffbc6c4e030eefad6f7a16c943adb8c61b1c2b0f43685c2725175c37f5bd','qp':'','host':'geo.captcha-delivery.com','cookie':'cLuREQV5Rkpjwzy8t8eyqTKxBIougJ6r134PMJAlRg2oMaJmnF
-2026-03-15 16:39:09,863 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-15 16:39:09,863 DEBUG: Killing existing BotBrowser (pid 4252)
-2026-03-15 16:39:09,880 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-15 16:39:09,884 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:10,385 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:10,386 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-15 16:39:10,386 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-15 16:39:12,387 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:14,281 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes)
-2026-03-15 16:39:14,281 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAdFdUMRxPw0cArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'5ac0bff5f53c6c4bbf1cc6eb932a545f1ca3b73d3eb86b98cddbc1d15e569d187fc02a9ead6184c4892647021d500fa2','qp':'','host':'geo.captcha-delivery.com','cookie':'Vy0KOP5CToVgCbVTeOP2j7cIxwCVvWph9MK8tuuWFBEsAZYz9h
-2026-03-15 16:39:14,281 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-15 16:39:14,282 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/energy/
-2026-03-15 16:39:14,282 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/energy/
-2026-03-15 16:39:14,282 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
-2026-03-15 16:39:14,282 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:16,035 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes)
-2026-03-15 16:39:16,035 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMApY2w56MEKfMArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'96a6f9acebe572bc5ebd9d826deaad1788be171fb218f03f2f8cef40d164828a94f2e294867e9afc8cd479342e49c0ca','qp':'','host':'geo.captcha-delivery.com','cookie':'CxcSwTafMoKHQiit74FpYbgpEG4byp_8~OP7NhxgxM49LrIllX
-2026-03-15 16:39:16,035 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-15 16:39:16,035 DEBUG: Killing existing BotBrowser (pid 4521)
-2026-03-15 16:39:16,055 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-15 16:39:16,057 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:16,559 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:16,560 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-15 16:39:16,560 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-15 16:39:18,561 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:20,431 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes)
-2026-03-15 16:39:20,431 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAuq9DjmX4QEUArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'ee0cefa459b124924c2b250aeb0c8d46f831ea9572e198cde63f61602051e8ad5d3bd449e7b1f737ef927030da084f10','qp':'','host':'geo.captcha-delivery.com','cookie':'8gm6eAXNslC4tGqaoKUqDNGWpMwSltFvXk~D~XqrbYnRdd4Huh
-2026-03-15 16:39:20,432 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-15 16:39:20,432 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/environment/
-2026-03-15 16:39:20,432 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/environment/
-2026-03-15 16:39:20,432 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
-2026-03-15 16:39:20,432 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:22,222 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes)
-2026-03-15 16:39:22,222 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMADv_8fw-p470ArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'098e1bdbfc0883205917c1f5c81fbf0d1b63313c0d7f91a49653eed9d124979b73793c6bbbb6713bcb12f9658980fde5','qp':'','host':'geo.captcha-delivery.com','cookie':'IZitPua_iXI~JWWj1p~sE_ACqNypMJPzHzrXSz2V0TsMODODF7
-2026-03-15 16:39:22,222 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-15 16:39:22,222 DEBUG: Killing existing BotBrowser (pid 4800)
-2026-03-15 16:39:22,239 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-15 16:39:22,243 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:22,747 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:22,747 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-15 16:39:22,748 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-15 16:39:24,748 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:26,634 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes)
-2026-03-15 16:39:26,634 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAUpkhkfDQEz0ArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'bace5f843da390282551dc80f46c4a3ecfab07f8a3f144f6e5f4f845e651ccf3c4e95f0c01a4b2d478a9412196d9f4a6','qp':'','host':'geo.captcha-delivery.com','cookie':'H_a_5_cdUSrZ2gyyUqrM9jbyVPr3PXaLX92t4R6zyoiab_Tjrg
-2026-03-15 16:39:26,635 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-15 16:39:26,635 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/climate-energy/
-2026-03-15 16:39:26,635 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/climate-energy/
-2026-03-15 16:39:26,635 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-15 16:39:26,635 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:28,453 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes)
-2026-03-15 16:39:28,453 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMArfvMPIDWOnwArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'69ab6f26c336377829305ab1855d67c87e94cb70a6b955807c5586f54679a35d373dd1f55a6f568bc2a9e5c12e821593','qp':'','host':'geo.captcha-delivery.com','cookie':'gFzvXDUSbE7QPxx38x9NGg94CY0yUM1ov~eHRqzkAVLLpwr1vs
-2026-03-15 16:39:28,453 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-15 16:39:28,453 DEBUG: Killing existing BotBrowser (pid 5080)
-2026-03-15 16:39:28,471 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-15 16:39:28,473 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:28,976 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-15 16:39:28,977 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-15 16:39:28,977 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-15 16:39:30,978 DEBUG: Using selector: EpollSelector
-2026-03-15 16:39:32,855 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes)
-2026-03-15 16:39:32,855 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAXJM6Md_kbW0ArMpkMA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'9e780f5d39c9ac7abdd0cf8225b234a263a7edf9c265461f6466062bdce29499a1705634142678919e1ed4b099a5875c','qp':'','host':'geo.captcha-delivery.com','cookie':'12~q3eCO~B_8tg3NVOz6ybMo2FtMWMK_X_bbn4FyDxgU7kFFMi
-2026-03-15 16:39:32,855 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-15 16:39:32,855 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/reuters-impact/
-2026-03-15 16:39:32,856 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-15 16:39:32,856 INFO: Total Reuters articles after extra pages: 0
-2026-03-15 16:39:32,856 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
-2026-03-15 16:39:32,856 DEBUG: FlareSolverr GET: https://apnews.com/world-news
-2026-03-15 16:39:32,857 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-15 16:40:21,222 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1591984
-2026-03-15 16:40:21,234 DEBUG: FlareSolverr received 1515083 bytes for https://apnews.com/world-news
-2026-03-15 16:40:21,238 DEBUG: Saved HTML to apnews.html (1515083 bytes)
-2026-03-15 16:40:21,629 INFO: AP News primary selector matched 87 cards.
-2026-03-15 16:40:21,630 INFO: Found 87 AP News articles
-2026-03-15 16:40:21,630 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
-2026-03-15 16:40:21,630 DEBUG: FlareSolverr GET: https://www.france24.com/en/
-2026-03-15 16:40:21,630 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-15 16:40:23,458 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 901080
-2026-03-15 16:40:23,467 DEBUG: FlareSolverr received 876139 bytes for https://www.france24.com/en/
-2026-03-15 16:40:23,469 DEBUG: Saved HTML to france24.html (876139 bytes)
-2026-03-15 16:40:23,627 INFO: France24: kept 58 items, excluded 36
-2026-03-15 16:40:23,627 INFO: Total unique articles to process: 144
-2026-03-15 16:40:23,633 INFO: Loaded existing XML: pau.xml
-2026-03-15 16:40:23,641 INFO: Loaded existing XML: reuters.xml
-2026-03-15 16:40:23,641 INFO: Existing items in main feed: 500
-2026-03-15 16:40:23,642 INFO: Existing items in Reuters feed: 500
-2026-03-15 16:40:23,643 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-15 16:40:23,806 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
-2026-03-15 16:40:23,807 DEBUG: Shutting down BotBrowser (pid 5352)
-2026-03-15 16:40:23,838 INFO: Added 1 new articles to main feed
-2026-03-15 16:40:23,838 INFO: Added 0 new articles to Reuters feed
-2026-03-15 16:40:23,839 INFO: Trimmed feed to 500 items
-2026-03-15 16:40:23,854 INFO: Done! Main feed saved to pau.xml
-2026-03-15 16:40:23,854 INFO: Done! Reuters feed saved to reuters.xml
-2026-03-15 16:40:23,854 INFO: Debug log saved to debug.log
+2026-03-15 17:34:02,770 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 17:34:02,770 DEBUG: Killing existing BotBrowser (pid 3696)
+2026-03-15 17:34:02,788 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 17:34:02,794 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:03,296 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:03,296 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 17:34:03,297 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 17:34:05,297 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:07,071 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/world/ (1494 bytes)
+2026-03-15 17:34:07,071 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAnJmahEGPuoQANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'90696be2a6f0804f986bd8af98f498dc6970e74dc123f0b5dd03807f907595fe1ce09caba04e9af95fd0c2cfe9043fe5','qp':'','host':'geo.captcha-delivery.com','cookie':'sHKts9IbmUsWcFVU6Sn2okvzQlkkHp3Hqo3KZJF6yCWpEaciZN
+2026-03-15 17:34:07,072 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 17:34:07,072 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/world/
+2026-03-15 17:34:07,072 WARNING: Failed to fetch Reuters world page
+2026-03-15 17:34:07,072 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
+2026-03-15 17:34:07,072 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:08,728 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes)
+2026-03-15 17:34:08,728 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAXtG4axPcQIwANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'093dfcbed3169476c87e0faf318e6e47c067ec80cbffdf39f205c5e8787f38ab168d186af0b3aa2b53e8d371fa44c5c7','qp':'','host':'geo.captcha-delivery.com','cookie':'Li6ObpS_faby_Kt~a36DNeCHQWFzDXnW5vV8GGXlT7fkpi38iB
+2026-03-15 17:34:08,728 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 17:34:08,728 DEBUG: Killing existing BotBrowser (pid 3881)
+2026-03-15 17:34:08,747 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 17:34:08,748 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:09,249 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:09,250 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 17:34:09,251 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 17:34:11,251 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:13,056 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes)
+2026-03-15 17:34:13,056 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAfFBANZ5ciL4ANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'ae2e25cee226e8db8e6ac6e46b0081d38d7ccb3063aa4a85a509e1906dd3d84d188f7d3c9920ac640fd2f8456f8b064e','qp':'','host':'geo.captcha-delivery.com','cookie':'ELo5NqjY~PWfxKXfRWdit2wsaWYlXfVn~6C5mahTSx0Y6D7IBW
+2026-03-15 17:34:13,056 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 17:34:13,056 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/commentary/
+2026-03-15 17:34:13,056 WARNING: Failed to fetch Reuters commentary page
+2026-03-15 17:34:13,056 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
+2026-03-15 17:34:13,057 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:14,708 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes)
+2026-03-15 17:34:14,708 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMA6ShDwRvbn8QANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'6fcd1c627badb572b167a805debb768152292210d6d7d491ed891f2724ba6e440ada195178da0aca5498e4e89c6023ee','qp':'','host':'geo.captcha-delivery.com','cookie':'0pyCmdbES3pTRE01RBgjOeLf_eHUksjKSIipLynwzo7qp7~LTz
+2026-03-15 17:34:14,708 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 17:34:14,708 DEBUG: Killing existing BotBrowser (pid 4145)
+2026-03-15 17:34:14,725 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 17:34:14,727 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:15,229 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:15,230 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 17:34:15,230 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 17:34:17,230 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:19,015 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes)
+2026-03-15 17:34:19,015 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAU7MyydJSdNcANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'81c4e33efe9f4475772222340000bbc2a5cda8fc88e632d4361c7f6d9d5b2404edf04fa2d3b249dfd216315cef895190','qp':'','host':'geo.captcha-delivery.com','cookie':'fJb4BAdQOrHb4epKf6SPGuRXyqoUdU_wijwDEKfVli2nKm_irs
+2026-03-15 17:34:19,015 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 17:34:19,015 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/energy/
+2026-03-15 17:34:19,016 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/energy/
+2026-03-15 17:34:19,016 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
+2026-03-15 17:34:19,016 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:20,675 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes)
+2026-03-15 17:34:20,675 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAYyZhFg8qiagANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'c1cb1a1821b885667dcce8eb408bf957e06e3be3fb3d4b073a8395c95ebe73739374c2ffdd46ca02aac0f5561894c059','qp':'','host':'geo.captcha-delivery.com','cookie':'MWm8IhJajerIw6Fdno2z3Zpo3wAMuy72IsH6IwzarXFyTkiDfv
+2026-03-15 17:34:20,676 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 17:34:20,676 DEBUG: Killing existing BotBrowser (pid 4416)
+2026-03-15 17:34:20,692 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 17:34:20,696 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:21,198 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:21,199 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 17:34:21,199 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 17:34:23,199 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:24,980 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes)
+2026-03-15 17:34:24,981 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAXUJNDaEXvGIANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':46743,'e':'f2e18fa29667913212451d64a5cf57f9438e4fabff25b5749643367206567d6f85b9fcba4ad1f37ba4eddae8cccd1e39','qp':'','host':'geo.captcha-delivery.com','cookie':'L2_K7ntqzwIMYO4nSaBxjtZ5QHPLujkvjextRoiy89UAghPXDP
+2026-03-15 17:34:24,981 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 17:34:24,981 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/environment/
+2026-03-15 17:34:24,981 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/environment/
+2026-03-15 17:34:24,981 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
+2026-03-15 17:34:24,981 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:26,625 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes)
+2026-03-15 17:34:26,625 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAzAfTvazxqXAANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'b3bf2e49f9e47cff94bf2ae77bc704f651cd65cd5b60d83c3e0a40dca32893630f92563226cceb6fe882156b424eab00','qp':'','host':'geo.captcha-delivery.com','cookie':'_UP64Z4x5dvKwBiFf_LoptupmyTaVb~mW0V2uvBovKx~Cd70Yd
+2026-03-15 17:34:26,625 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 17:34:26,626 DEBUG: Killing existing BotBrowser (pid 4685)
+2026-03-15 17:34:26,644 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 17:34:26,647 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:27,151 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:27,152 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 17:34:27,153 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 17:34:29,153 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:30,938 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes)
+2026-03-15 17:34:30,938 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAjVT4t7nfSXQANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'7a1ca21ae86c57e71e13fb8128032c9b18f5edc364a2cac4c84b3ce9adb786ce8213613512fe7592d2713d8a36003157','qp':'','host':'geo.captcha-delivery.com','cookie':'HnKDi0oARcf1wDjRsAi0ZEs8jR_QmmJSBuLXEIa~cQ73Ff9UeG
+2026-03-15 17:34:30,938 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 17:34:30,938 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/climate-energy/
+2026-03-15 17:34:30,939 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/climate-energy/
+2026-03-15 17:34:30,939 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-15 17:34:30,939 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:32,589 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes)
+2026-03-15 17:34:32,589 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMA3cshsiPUa0YANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'e4151afb80442c72113fdac6a796dbbadf87181d7821d37c5ed6ff3ef971c571548bba8f01f26915268cb65e0b5a6ca3','qp':'','host':'geo.captcha-delivery.com','cookie':'eOQdlDoWJixTQetYDd59hckGEji_~arR6zZa3KSgPrDaKHw3sL
+2026-03-15 17:34:32,589 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 17:34:32,589 DEBUG: Killing existing BotBrowser (pid 4953)
+2026-03-15 17:34:32,606 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 17:34:32,610 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:33,111 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 17:34:33,112 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 17:34:33,112 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 17:34:35,113 DEBUG: Using selector: EpollSelector
+2026-03-15 17:34:36,915 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes)
+2026-03-15 17:34:36,915 WARNING:   CAPTCHA snippet: <html lang="en"><head><title>reuters.com</title><style>#cmsg{animation: A 1.5s;}@keyframes A{0%{opacity:0;}99%{opacity:0;}100%{opacity:1;}}</style><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body style="margin:0"><script data-cfasync="false">var dd={'rt':'i','cid':'AHrlqAAAAAMAOySZ5ohe9x4ANKKJaA==','hsh':'2013457ADA70C67D6A4123E0A76873','b':1979720,'s':43909,'e':'db6603668d081b95f2be4d985e9e0edd2aa2fb1e20880aadb486bf0c69af302cd58633606bdf37829d5e468a15cfb648','qp':'','host':'geo.captcha-delivery.com','cookie':'H8OPwQ7v1H9JnT2V~mw2EE0dGXJH__WWyhWLyofsoHw4sLkQHW
+2026-03-15 17:34:36,915 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 17:34:36,915 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-15 17:34:36,915 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-15 17:34:36,915 INFO: Total Reuters articles after extra pages: 0
+2026-03-15 17:34:36,915 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
+2026-03-15 17:34:36,915 DEBUG: FlareSolverr GET: https://apnews.com/world-news
+2026-03-15 17:34:36,916 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 17:35:05,453 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1581975
+2026-03-15 17:35:05,467 DEBUG: FlareSolverr received 1505179 bytes for https://apnews.com/world-news
+2026-03-15 17:35:05,470 DEBUG: Saved HTML to apnews.html (1505179 bytes)
+2026-03-15 17:35:05,894 INFO: AP News primary selector matched 88 cards.
+2026-03-15 17:35:05,894 INFO: Found 88 AP News articles
+2026-03-15 17:35:05,894 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
+2026-03-15 17:35:05,894 DEBUG: FlareSolverr GET: https://www.france24.com/en/
+2026-03-15 17:35:05,895 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 17:35:07,441 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 901374
+2026-03-15 17:35:07,451 DEBUG: FlareSolverr received 876441 bytes for https://www.france24.com/en/
+2026-03-15 17:35:07,453 DEBUG: Saved HTML to france24.html (876441 bytes)
+2026-03-15 17:35:07,660 INFO: France24: kept 58 items, excluded 36
+2026-03-15 17:35:07,660 INFO: Total unique articles to process: 145
+2026-03-15 17:35:07,665 INFO: Loaded existing XML: pau.xml
+2026-03-15 17:35:07,674 INFO: Loaded existing XML: reuters.xml
+2026-03-15 17:35:07,675 INFO: Existing items in main feed: 500
+2026-03-15 17:35:07,675 INFO: Existing items in Reuters feed: 500
+2026-03-15 17:35:07,675 DEBUG: FlareSolverr GET: https://www.france24.com/en/voter-turnout-reaches-48-90-in-france-s-first-round-of-local-elections
+2026-03-15 17:35:07,676 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 17:35:09,059 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 474855
+2026-03-15 17:35:09,065 DEBUG: FlareSolverr received 463039 bytes for https://www.france24.com/en/voter-turnout-reaches-48-90-in-france-s-first-round-of-local-elections
+2026-03-15 17:35:09,211 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/d82d9d0c-208d-11f1-a151-005056bf30b7/w:1280/p:16x9/EN-20260315-171257-171452-CS.jpg
+2026-03-15 17:35:09,211 WARNING:   Empty description for: https://www.france24.com/en/voter-turnout-reaches-48-90-in-france-s-first-round-of-local-elections
+2026-03-15 17:35:09,257 WARNING:   Page title tag: <title>Voter turnout reaches 48.90% in France's first round of local elections - France 24</title>
+2026-03-15 17:35:09,257 WARNING:   Page snippet: <html dir="ltr" lang="en" class=" webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.786b4d6b5366f605cd76.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.c220d741e27778362f36.css">                                  <style>body [v-cloak]{display:none}bod
+2026-03-15 17:35:09,257 DEBUG: FlareSolverr GET: https://www.france24.com/en/trump-administration-threatens-media-outlets-over-iran-war-coverage
+2026-03-15 17:35:09,258 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 17:35:09,982 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 473440
+2026-03-15 17:35:09,986 DEBUG: FlareSolverr received 461716 bytes for https://www.france24.com/en/trump-administration-threatens-media-outlets-over-iran-war-coverage
+2026-03-15 17:35:10,071 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/93ce1b74-208c-11f1-bc7b-005056a97e36/w:1280/p:16x9/EN-20260315-170621-171257-CS.jpg
+2026-03-15 17:35:10,071 WARNING:   Empty description for: https://www.france24.com/en/trump-administration-threatens-media-outlets-over-iran-war-coverage
+2026-03-15 17:35:10,120 WARNING:   Page title tag: <title>Trump administration threatens media outlets over Iran war coverage - France 24</title>
+2026-03-15 17:35:10,121 WARNING:   Page snippet: <html dir="ltr" lang="en" class="webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.786b4d6b5366f605cd76.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.c220d741e27778362f36.css">                                  <style>body [v-cloak]{display:none}body
+2026-03-15 17:35:10,121 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 17:35:10,289 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
+2026-03-15 17:35:10,289 DEBUG: Shutting down BotBrowser (pid 5221)
+2026-03-15 17:35:10,321 WARNING: No description for 'Voter turnout reaches 48.90% in France's first round of loca' — using title as fallback
+2026-03-15 17:35:10,321 WARNING: No description for 'Trump administration threatens media outlets over Iran war c' — using title as fallback
+2026-03-15 17:35:10,321 INFO: Added 5 new articles to main feed
+2026-03-15 17:35:10,321 INFO: Added 0 new articles to Reuters feed
+2026-03-15 17:35:10,321 INFO: Trimmed feed to 500 items
+2026-03-15 17:35:10,337 INFO: Done! Main feed saved to pau.xml
+2026-03-15 17:35:10,337 INFO: Done! Reuters feed saved to reuters.xml
+2026-03-15 17:35:10,337 INFO: Debug log saved to debug.log
