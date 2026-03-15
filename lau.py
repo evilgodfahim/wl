@@ -114,14 +114,7 @@ def _start_botbrowser() -> bool:
         warn("playwright is not installed.")
         return False
 
-    import tempfile
-    tmpdir = tempfile.mkdtemp(prefix="bb_")
-
-    args = [
-        "--no-sandbox",
-        "--disable-gpu",
-        f"--user-data-dir={tmpdir}",
-    ]
+    args = ["--no-sandbox", "--disable-gpu"]
     if BOTBROWSER_PROFILE:
         args.append(f"--bot-profile={BOTBROWSER_PROFILE}")
 
