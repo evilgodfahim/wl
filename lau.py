@@ -80,9 +80,6 @@ REUTERS_JUNK_TITLES = {
     "video", "live", "graphic", "graphics", "podcast",
 }
 
-# How many Reuters article fetches between BotBrowser hard restarts
-BOTBROWSER_RESTART_EVERY = 10
-
 # Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
 BOTBROWSER_FETCH_DELAY = 1.5
 
@@ -91,114 +88,121 @@ BOTBROWSER_FETCH_DELAY = 1.5
 # ------------------------------
 
 BOTBROWSER_BINARY   = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
-BOTBROWSER_CDP_PORT = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
 BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")
 
-_botbrowser_proc: subprocess.Popen | None = None
+# Persistent browser instance — launched once, reused across all fetches
+_pw_instance   = None
+_bb_browser    = None
 
 
 def _start_botbrowser() -> bool:
-    """Launch a fresh BotBrowser process and wait for CDP to be ready."""
-    global _botbrowser_proc
+    """Launch a fresh BotBrowser instance via chromium.launch (not CDP)."""
+    global _pw_instance, _bb_browser
 
-    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
-        debug("Killing existing BotBrowser (pid %d)", _botbrowser_proc.pid)
-        _botbrowser_proc.kill()
-        try:
-            _botbrowser_proc.wait(timeout=5)
-        except subprocess.TimeoutExpired:
-            pass
-        _botbrowser_proc = None
+    _stop_botbrowser()
 
     if not os.path.isfile(BOTBROWSER_BINARY):
         warn("BotBrowser binary not found at '%s'.", BOTBROWSER_BINARY)
         return False
 
-    cmd = [
-        BOTBROWSER_BINARY,
-        "--headless=new",
-        "--no-sandbox",
-        "--disable-gpu",
-        f"--remote-debugging-port={BOTBROWSER_CDP_PORT}",
-        "--remote-debugging-address=127.0.0.1",
-        "--disable-blink-features=AutomationControlled",
-    ]
-    if BOTBROWSER_PROFILE:
-        cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
+    if not BOTBROWSER_PROFILE:
+        warn("No BOTBROWSER_PROFILE set — BotBrowser will run without a profile.")
 
-    debug("Launching BotBrowser: %s", " ".join(cmd))
     try:
-        _botbrowser_proc = subprocess.Popen(
-            cmd,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-    except Exception as e:
-        warn("Failed to launch BotBrowser: %s", e)
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        warn("playwright is not installed.")
         return False
 
-    cdp_url = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}/json/version"
-    for _ in range(30):
+    import tempfile
+    tmpdir = tempfile.mkdtemp(prefix="bb_")
+
+    args = [
+        "--no-sandbox",
+        "--disable-gpu",
+        f"--user-data-dir={tmpdir}",
+    ]
+    if BOTBROWSER_PROFILE:
+        args.append(f"--bot-profile={BOTBROWSER_PROFILE}")
+
+    debug("Launching BotBrowser via chromium.launch: %s %s", BOTBROWSER_BINARY, " ".join(args))
+    try:
+        _pw_instance = sync_playwright().start()
+        _bb_browser  = _pw_instance.chromium.launch(
+            headless=True,
+            executable_path=BOTBROWSER_BINARY,
+            args=args,
+        )
+        debug("BotBrowser launched successfully")
+        return True
+    except Exception as e:
+        warn("Failed to launch BotBrowser: %s", e)
+        _stop_botbrowser()
+        return False
+
+
+def _stop_botbrowser():
+    global _pw_instance, _bb_browser
+    if _bb_browser is not None:
         try:
-            r = requests.get(cdp_url, timeout=2)
-            if r.status_code == 200:
-                debug("BotBrowser CDP ready on port %d", BOTBROWSER_CDP_PORT)
-                return True
+            _bb_browser.close()
         except Exception:
             pass
-        time.sleep(0.5)
-
-    warn("BotBrowser CDP did not become ready within 15 s")
-    return False
+        _bb_browser = None
+    if _pw_instance is not None:
+        try:
+            _pw_instance.stop()
+        except Exception:
+            pass
+        _pw_instance = None
 
 
 def _ensure_botbrowser_running() -> bool:
-    """Start BotBrowser if not already running."""
-    global _botbrowser_proc
-    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
-        return True
+    global _bb_browser
+    if _bb_browser is not None:
+        try:
+            # Check if still alive by listing contexts
+            _ = _bb_browser.contexts
+            return True
+        except Exception:
+            pass
     return _start_botbrowser()
 
 
 def _botbrowser_fetch_once(url: str) -> str | None:
-    """Single attempt to fetch a URL via BotBrowser + Playwright CDP."""
-    try:
-        from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
-    except ImportError:
-        warn("playwright is not installed.")
+    """Single attempt to fetch a URL via a persistent BotBrowser instance."""
+    global _bb_browser
+
+    if _bb_browser is None:
         return None
 
-    cdp_endpoint = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}"
+    try:
+        from playwright.sync_api import TimeoutError as PWTimeout
+    except ImportError:
+        return None
 
     try:
-        with sync_playwright() as pw:
-            browser = pw.chromium.connect_over_cdp(cdp_endpoint)
-            context = browser.new_context(
-                viewport={"width": 1280, "height": 800},
-                user_agent=(
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/124.0.0.0 Safari/537.36"
-                ),
-                locale="en-US",
-                java_script_enabled=True,
-            )
-            page = context.new_page()
+        page = _bb_browser.new_page()
 
-            try:
-                page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
-            except PWTimeout:
-                warn("BotBrowser navigation timed out for %s", url)
-                page.close(); context.close(); browser.close()
-                return None
+        # Remove Playwright's automation bindings — required per BotBrowser docs
+        page.add_init_script(
+            "delete window.__playwright__binding__; delete window.__pwInitScripts;"
+        )
 
-            try:
-                page.wait_for_load_state("networkidle", timeout=15_000)
-            except PWTimeout:
-                debug("networkidle timed out for %s (non-fatal)", url)
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+        except PWTimeout:
+            warn("BotBrowser navigation timed out for %s", url)
+            page.close()
+            return None
 
-            html = page.content()
-            page.close(); context.close(); browser.close()
+        try:
+            page.wait_for_load_state("networkidle", timeout=15_000)
+        except PWTimeout:
+            debug("networkidle timed out for %s (non-fatal)", url)
+
+        html = page.content()
+        page.close()
 
     except Exception as e:
         warn("BotBrowser Playwright error for %s: %s", url, e)
@@ -210,8 +214,7 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
     # Detect DataDome challenge page via its unique CSS keyframe
     if any(m in html for m in DATADOME_MARKERS):
-        warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes)", url, len(html))
-        warn("  CAPTCHA snippet: %s", html[:600].replace("\n", " "))
+        warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked", url, len(html))
         return None
 
     debug("BotBrowser received %d bytes for %s", len(html), url)
@@ -222,43 +225,22 @@ def botbrowser_get(url: str, retries: int = 2) -> str | None:
     for attempt in range(1, retries + 1):
         if not _ensure_botbrowser_running():
             warn("BotBrowser not available (attempt %d/%d)", attempt, retries)
-            time.sleep(2)
             continue
-
-        if _botbrowser_proc is None or _botbrowser_proc.poll() is not None:
-            warn("BotBrowser died before fetch attempt %d — restarting", attempt)
-            if not _start_botbrowser():
-                time.sleep(2)
-                continue
 
         result = _botbrowser_fetch_once(url)
         if result:
             return result
 
-        if _botbrowser_proc is not None and _botbrowser_proc.poll() is not None:
-            warn("BotBrowser process exited (code %d) after attempt %d — will restart",
-                 _botbrowser_proc.returncode, attempt)
-        else:
-            warn("BotBrowser fetch failed on attempt %d — restarting for retry", attempt)
-
+        warn("BotBrowser fetch failed on attempt %d/%d for %s", attempt, retries, url)
         if attempt < retries:
             _start_botbrowser()
-            time.sleep(2)
 
     warn("BotBrowser: all %d attempts failed for %s", retries, url)
     return None
 
 
 def _botbrowser_shutdown():
-    global _botbrowser_proc
-    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
-        debug("Shutting down BotBrowser (pid %d)", _botbrowser_proc.pid)
-        _botbrowser_proc.terminate()
-        try:
-            _botbrowser_proc.wait(timeout=5)
-        except subprocess.TimeoutExpired:
-            _botbrowser_proc.kill()
-        _botbrowser_proc = None
+    _stop_botbrowser()
 
 
 # ------------------------------
@@ -513,7 +495,8 @@ else:
 
     if primary_items:
         info("Primary world selector matched %d items.", len(primary_items))
-
+        for u, t in primary_items[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | %s", u, t)
         for url, title in primary_items:
             reuters_articles.append({"url": url, "title": title, "source": "Reuters"})
     else:
@@ -537,7 +520,8 @@ else:
                 fallback_items.append((full, title_text))
 
         info("Fallback anchor scan found %d candidates.", len(fallback_items))
-
+        for full, title in fallback_items[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | %s", full, title)
         if not fallback_items:
             warn("No world article candidates found. HTML snippet:\n%s",
                  html[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
@@ -580,7 +564,8 @@ else:
 
     if primary_cards:
         info("Primary commentary selector matched %d cards.", len(primary_cards))
-
+        for href, title, thumb in primary_cards[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - href=%s | title=%s", href, title)
         for href, title, thumb in primary_cards:
             url = build_full_url(href)
             if url:
@@ -639,7 +624,8 @@ for extra_url in REUTERS_EXTRA_URLS:
 
     if cards:
         info("Extra page %s: found %d cards.", extra_url, len(cards))
-
+        for c in cards[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | %s", c["url"], c["title"])
         reuters_articles.extend(cards)
     else:
         warn("Extra page %s: no cards matched — falling back to anchor scan.", extra_url)
@@ -732,7 +718,8 @@ else:
 
     if primary_ap:
         info("AP News primary selector matched %d cards.", len(primary_ap))
-
+        for u, t, th in primary_ap[:DEBUG_SAMPLE_LIMIT]:
+            debug("  - %s | thumb=%s | %s", u, th[:80] if th else "", t)
         for url, title, thumb in primary_ap:
             apnews_articles.append({
                 "url": url, "title": title, "source": "APNews", "thumb": thumb
@@ -935,7 +922,6 @@ for a in all_articles:
             a["desc"] = a.get("title", "")
         a["pub"] = now_utc()
 
-reuters_fetch_count = 0
 for i, a in enumerate(all_articles, 1):
     if a.get("source") == "APNews":
         continue
@@ -945,25 +931,9 @@ for i, a in enumerate(all_articles, 1):
     if a["url"] in (reuters_existing if is_reuters else existing):
         continue
 
-    if a.get("source") == "Reuters":
-        info("Processing %d/%d [Reuters]: %s", i, len(all_articles), a.get("title", "")[:80])
-
-    # Periodically restart BotBrowser to reset DataDome fingerprint.
-    if a.get("source") == "Reuters":
-        reuters_fetch_count += 1
-        if reuters_fetch_count > 1 and reuters_fetch_count % BOTBROWSER_RESTART_EVERY == 0:
-            info("DataDome prevention: restarting BotBrowser after %d Reuters fetches", reuters_fetch_count)
-            _start_botbrowser()
-            time.sleep(3)
+    info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
 
     page = fetch_page(a["url"])
-
-    # If BotBrowser returned None (DataDome blocked), do one immediate restart + retry
-    if page is None and a.get("source") == "Reuters":
-        warn("DataDome likely blocked %s — restarting BotBrowser and retrying once", a.get("url"))
-        if _start_botbrowser():
-            time.sleep(3)
-            page = fetch_page(a["url"])
 
     if page is None:
         warn("Failed to fetch: %s", a.get("url"))
@@ -986,9 +956,8 @@ for i, a in enumerate(all_articles, 1):
     desc_len = len(a["desc"])
     debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
     if desc_len == 0:
-        warn("  Empty description for: %s", a["url"])
-        warn("  Page title tag: %s", (BeautifulSoup(page, "html.parser").find("title") or "none"))
-        warn("  Page snippet: %s", page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+        warn("  Empty description for: %s\n  Page snippet: %s",
+             a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
 
     # Throttle BotBrowser requests to reduce DataDome rate-limiting
     if a.get("source") == "Reuters":
@@ -1036,7 +1005,7 @@ for art in all_articles:
         reuters_new_count += 1
     else:
         new_count += 1
-
+    debug("Added: %s", art["url"])
 
 info("Added %d new articles to main feed", new_count)
 info("Added %d new articles to Reuters feed", reuters_new_count)
