@@ -74,18 +74,14 @@ jobs:
 
       - name: Download BotBrowser bot-profile
         run: |
-          PROFILE_FILE=""
-          for profile_name in chrome136_win11_x64.enc chrome135_win11_x64.enc chrome134_win11_x64.enc; do
-            STATUS=$(curl -sLo "${profile_name}" -w "%{http_code}" "https://raw.githubusercontent.com/MiddleSchoolStudent/BotBrowser/main/profiles/${profile_name}")
-            if [ "$STATUS" = "200" ] && [ -s "${profile_name}" ]; then
-              echo "Downloaded profile: $profile_name"
-              PROFILE_FILE="$PWD/$profile_name"
-              break
-            else
-              rm -f "${profile_name}"
-            fi
-          done
+          git clone --depth=1 --no-checkout --filter=blob:none \
+            https://github.com/MiddleSchoolStudent/BotBrowser.git /tmp/botbrowser-repo
+          cd /tmp/botbrowser-repo
+          git sparse-checkout init --cone
+          git sparse-checkout set profiles
+          git checkout
 
+          PROFILE_FILE=$(ls /tmp/botbrowser-repo/profiles/*.enc 2>/dev/null | head -1 || true)
           if [ -n "$PROFILE_FILE" ]; then
             echo "BOTBROWSER_PROFILE=$PROFILE_FILE" >> $GITHUB_ENV
             echo "Using bot profile: $PROFILE_FILE"
