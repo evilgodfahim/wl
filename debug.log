@@ -1,155 +1,142 @@
-2026-03-14 23:33:53,672 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
-2026-03-14 23:33:53,672 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-14 23:33:53,674 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:33:54,175 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:33:54,677 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:33:55,179 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:33:55,680 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:33:55,687 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-14 23:33:55,688 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-14 23:33:56,168 DEBUG: Using selector: EpollSelector
-2026-03-14 23:33:57,588 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Target page, context or browser has been closed
+2026-03-15 02:48:33,626 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
+2026-03-15 02:48:33,626 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 02:48:33,627 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:34,129 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:34,631 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:34,637 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 02:48:34,640 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 02:48:34,963 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:36,561 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Target page, context or browser has been closed
 =========================== logs ===========================
 "load" event fired
 ============================================================
-2026-03-14 23:33:57,588 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-14 23:33:57,588 DEBUG: Killing existing BotBrowser (pid 3706)
-2026-03-14 23:33:57,604 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-14 23:33:57,606 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:33:58,107 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:33:58,108 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-14 23:33:58,108 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-14 23:34:00,109 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:01,914 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/world/ (1494 bytes) — treating as blocked
-2026-03-14 23:34:01,914 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-14 23:34:01,914 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/world/
-2026-03-14 23:34:01,914 WARNING: Failed to fetch Reuters world page
-2026-03-14 23:34:01,914 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
-2026-03-14 23:34:01,915 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:03,609 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes) — treating as blocked
-2026-03-14 23:34:03,610 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-14 23:34:03,610 DEBUG: Killing existing BotBrowser (pid 3889)
-2026-03-14 23:34:03,642 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-14 23:34:03,644 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:04,145 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:04,146 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-14 23:34:04,146 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-14 23:34:06,147 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:07,958 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes) — treating as blocked
-2026-03-14 23:34:07,958 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-14 23:34:07,958 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/commentary/
-2026-03-14 23:34:07,958 WARNING: Failed to fetch Reuters commentary page
-2026-03-14 23:34:07,958 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
-2026-03-14 23:34:07,958 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:09,635 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes) — treating as blocked
-2026-03-14 23:34:09,635 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-14 23:34:09,635 DEBUG: Killing existing BotBrowser (pid 4156)
-2026-03-14 23:34:09,654 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-14 23:34:09,655 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:10,157 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:10,158 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-14 23:34:10,158 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-14 23:34:12,158 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:13,977 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes) — treating as blocked
-2026-03-14 23:34:13,977 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-14 23:34:13,977 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/energy/
-2026-03-14 23:34:13,978 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/energy/
-2026-03-14 23:34:13,978 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
-2026-03-14 23:34:13,978 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:15,702 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes) — treating as blocked
-2026-03-14 23:34:15,703 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-14 23:34:15,703 DEBUG: Killing existing BotBrowser (pid 4427)
-2026-03-14 23:34:15,738 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-14 23:34:15,739 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:16,241 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:16,242 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-14 23:34:16,242 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-14 23:34:18,242 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:20,088 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes) — treating as blocked
-2026-03-14 23:34:20,089 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-14 23:34:20,089 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/environment/
-2026-03-14 23:34:20,089 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/environment/
-2026-03-14 23:34:20,089 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
-2026-03-14 23:34:20,089 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:21,816 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes) — treating as blocked
-2026-03-14 23:34:21,816 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-14 23:34:21,816 DEBUG: Killing existing BotBrowser (pid 4694)
-2026-03-14 23:34:21,835 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-14 23:34:21,838 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:22,341 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:22,342 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-14 23:34:22,342 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-14 23:34:24,343 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:26,205 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes) — treating as blocked
-2026-03-14 23:34:26,205 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-14 23:34:26,205 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/climate-energy/
-2026-03-14 23:34:26,205 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/climate-energy/
-2026-03-14 23:34:26,205 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-14 23:34:26,206 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:27,895 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes) — treating as blocked
-2026-03-14 23:34:27,895 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-14 23:34:27,896 DEBUG: Killing existing BotBrowser (pid 4968)
-2026-03-14 23:34:27,914 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
-2026-03-14 23:34:27,916 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:28,418 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-14 23:34:28,419 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-14 23:34:28,419 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-14 23:34:30,420 DEBUG: Using selector: EpollSelector
-2026-03-14 23:34:32,248 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes) — treating as blocked
-2026-03-14 23:34:32,249 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-14 23:34:32,249 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/reuters-impact/
-2026-03-14 23:34:32,249 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-14 23:34:32,249 INFO: Total Reuters articles after extra pages: 0
-2026-03-14 23:34:32,249 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
-2026-03-14 23:34:32,249 DEBUG: FlareSolverr GET: https://apnews.com/world-news
-2026-03-14 23:34:32,250 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-14 23:34:42,705 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1559897
-2026-03-14 23:34:42,719 DEBUG: FlareSolverr received 1484346 bytes for https://apnews.com/world-news
-2026-03-14 23:34:42,725 DEBUG: Saved HTML to apnews.html (1484346 bytes)
-2026-03-14 23:34:43,169 INFO: AP News primary selector matched 86 cards.
-2026-03-14 23:34:43,169 DEBUG:   - https://apnews.com/article/iran-iraq-us-trump-march-14-2026-oil-prices-a2399398b4c590995b814d7640362a11 | thumb=https://dims.apnews.com/dims4/default/e24f067/2147483647/strip/true/crop/7896x52 | Tehran claims the US attacked it from the UAE as Iran war enters its third week
-2026-03-14 23:34:43,169 DEBUG:   - https://apnews.com/article/refugees-iran-turkey-war-migration-0e036a109d7e5b819a0fd6db5a6f3ddd | thumb=https://dims.apnews.com/dims4/default/c5d7b6a/2147483647/strip/true/crop/6264x41 | Iranians grapple with whether to flee the country because of the war
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/article/turkey-foreign-minister-iran-5a1bf8a77a475e33adefb0c99c26547c | thumb=https://dims.apnews.com/dims4/default/0f2142b/2147483647/strip/true/crop/5316x35 | AP Exclusive: Turkey’s Foreign Minister Hakan Fidan talks diplomatic efforts as regional war rages
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/article/lebanon-israel-hezbollah-displacement-shelter-249cacd33642bb03b0b90f4704e82c49 | thumb=https://dims.apnews.com/dims4/default/830ba77/2147483647/strip/true/crop/7732x51 | War has already displaced nearly a million Lebanese, and aid groups warn of a humanitarian crisis
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/article/russia-ukraine-war-kyiv-attack-4aed3cc6ff151c82a474acaf1a3a05ff | thumb=https://dims.apnews.com/dims4/default/0e893f7/2147483647/strip/true/crop/7442x49 | Russian strike on Kyiv region kills 4 people and wounds 15 as peace talks are stalled
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/article/russia-ukraine-war-macron-oil-drones-a9330482d471ea67890a0e8ec1913db7 | thumb= | Zelenskyy says US 30-day waiver on Russian oil sanctions is ‘not the right decision’
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-03-12-2026 | thumb= | US military says a refueling aircraft went down in Iraq, rescue efforts are underway
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/article/us-iran-tanker-aircraft-crash-iraq-kc135-c337359a58be6280dc96fdbf1cb48a5b | thumb= | All 6 crew members on a US refueling plane that crashed in Iraq are dead, US military says
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-03-13-2026 | thumb= | Trump says US ‘obliterated’ military targets on Iran’s Kharg Island
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/article/iran-iraq-us-trump-march-14-2026-oil-prices-a2399398b4c590995b814d7640362a11 | thumb= | Tehran claims the US attacked it from the UAE as Iran war enters its third week
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/video/north-korean-leader-kim-jong-un-and-his-teenage-daughter-shoot-guns-on-visit-to-weapons-factory-13e9884d633b458294ac9e4dd6bea242 | thumb= | North Korean leader Kim Jong Un and his teenage daughter shoot guns on visit to weapons factory
-2026-03-14 23:34:43,170 DEBUG:   - https://apnews.com/video/casts-of-pompeii-victims-captured-at-the-time-of-their-death-goes-on-display-886e91c909e84cfa90ad00f18c6a1fdb | thumb= | Casts of Pompeii victims captured at the time of their death goes on display
-2026-03-14 23:34:43,170 INFO: Found 86 AP News articles
-2026-03-14 23:34:43,170 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
-2026-03-14 23:34:43,170 DEBUG: FlareSolverr GET: https://www.france24.com/en/
-2026-03-14 23:34:43,171 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-14 23:34:44,940 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 897418
-2026-03-14 23:34:44,949 DEBUG: FlareSolverr received 872678 bytes for https://www.france24.com/en/
-2026-03-14 23:34:44,953 DEBUG: Saved HTML to france24.html (872678 bytes)
-2026-03-14 23:34:45,214 INFO: France24: kept 63 items, excluded 32
-2026-03-14 23:34:45,214 INFO: Total unique articles to process: 146
-2026-03-14 23:34:45,221 INFO: Loaded existing XML: pau.xml
-2026-03-14 23:34:45,236 INFO: Loaded existing XML: reuters.xml
-2026-03-14 23:34:45,237 INFO: Existing items in main feed: 500
-2026-03-14 23:34:45,237 INFO: Existing items in Reuters feed: 500
-2026-03-14 23:34:45,238 INFO: Processing 123/146 [France24]: Iranian strikes, Hezbollah rockets make regular life in Israel ‘simply impossibl
-2026-03-14 23:34:45,238 DEBUG: FlareSolverr GET: https://www.france24.com/en/iranian-strikes-hezbollah-rockets-make-regular-life-in-israel-simply-impossible
-2026-03-14 23:34:45,239 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-14 23:34:46,192 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 471589
-2026-03-14 23:34:46,197 DEBUG: FlareSolverr received 459912 bytes for https://www.france24.com/en/iranian-strikes-hezbollah-rockets-make-regular-life-in-israel-simply-impossible
-2026-03-14 23:34:46,340 DEBUG:   desc length: 0, img: https://s.france24.com/media/display/e317d3fe-1fe3-11f1-99e8-005056bf30b7/w:1280/p:16x9/NW072044-O-01-20260314-01.jpg
-2026-03-14 23:34:46,341 WARNING:   Empty description for: https://www.france24.com/en/iranian-strikes-hezbollah-rockets-make-regular-life-in-israel-simply-impossible
-  Page snippet: <html dir="ltr" lang="en" class=" webp webp-alpha webp-animation webp-lossless"><head>         <meta charset="UTF-8">         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">                                                           <link rel="preconnect" href="https://tms.fmm.io" crossorigin="">                                                               <link rel="preload" as="style" href="/build/css/root.786b4d6b5366f605cd76.css">              <link rel="preload" href="/build/fonts/inter_latin.640b10a7966d94927c2ec64a71918e48.woff2" as="font" type="font/woff2" crossorigin="anonymous">          <link rel="preload" as="style" href="/build/css/video.c220d741e27778362f36.css">                                  <style>body [v-cloak]{display:none}bod
-2026-03-14 23:34:46,342 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-14 23:34:46,517 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
-2026-03-14 23:34:46,518 DEBUG: Shutting down BotBrowser (pid 5239)
-2026-03-14 23:34:46,550 DEBUG: Added: https://apnews.com/article/bangladesh-india-hadi-suspects-arrest-extradition-hasina-5d1f04a59601203c2e50c99116a9e217
-2026-03-14 23:34:46,550 DEBUG: Added: https://apnews.com/photo-gallery/pets-dogs-cats-costumes-expo-photos-3e1c1fc3947ee7616334de37abfd524d
-2026-03-14 23:34:46,550 WARNING: No description for 'Iranian strikes, Hezbollah rockets make regular life in Isra' — using title as fallback
-2026-03-14 23:34:46,550 DEBUG: Added: https://www.france24.com/en/iranian-strikes-hezbollah-rockets-make-regular-life-in-israel-simply-impossible
-2026-03-14 23:34:46,550 INFO: Added 3 new articles to main feed
-2026-03-14 23:34:46,550 INFO: Added 0 new articles to Reuters feed
-2026-03-14 23:34:46,550 INFO: Trimmed feed to 500 items
-2026-03-14 23:34:46,567 INFO: Done! Main feed saved to pau.xml
-2026-03-14 23:34:46,567 INFO: Done! Reuters feed saved to reuters.xml
-2026-03-14 23:34:46,567 INFO: Debug log saved to debug.log
+2026-03-15 02:48:36,562 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 02:48:36,562 DEBUG: Killing existing BotBrowser (pid 3729)
+2026-03-15 02:48:36,581 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 02:48:36,582 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:37,084 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:37,085 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 02:48:37,085 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 02:48:39,085 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:40,963 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/world/ (1494 bytes) — treating as blocked
+2026-03-15 02:48:40,963 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 02:48:40,963 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/world/
+2026-03-15 02:48:40,963 WARNING: Failed to fetch Reuters world page
+2026-03-15 02:48:40,963 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
+2026-03-15 02:48:40,963 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:42,759 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes) — treating as blocked
+2026-03-15 02:48:42,759 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 02:48:42,759 DEBUG: Killing existing BotBrowser (pid 3915)
+2026-03-15 02:48:42,776 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 02:48:42,778 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:43,280 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:43,280 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 02:48:43,281 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 02:48:45,281 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:47,199 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes) — treating as blocked
+2026-03-15 02:48:47,199 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 02:48:47,200 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/commentary/
+2026-03-15 02:48:47,200 WARNING: Failed to fetch Reuters commentary page
+2026-03-15 02:48:47,200 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
+2026-03-15 02:48:47,200 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:49,030 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes) — treating as blocked
+2026-03-15 02:48:49,030 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 02:48:49,030 DEBUG: Killing existing BotBrowser (pid 4193)
+2026-03-15 02:48:49,063 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 02:48:49,065 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:49,566 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:49,567 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 02:48:49,567 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 02:48:51,568 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:53,485 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes) — treating as blocked
+2026-03-15 02:48:53,485 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 02:48:53,485 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/energy/
+2026-03-15 02:48:53,485 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/energy/
+2026-03-15 02:48:53,485 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
+2026-03-15 02:48:53,486 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:55,354 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes) — treating as blocked
+2026-03-15 02:48:55,354 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 02:48:55,354 DEBUG: Killing existing BotBrowser (pid 4467)
+2026-03-15 02:48:55,371 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 02:48:55,376 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:55,877 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:48:55,878 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 02:48:55,879 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 02:48:57,879 DEBUG: Using selector: EpollSelector
+2026-03-15 02:48:59,824 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes) — treating as blocked
+2026-03-15 02:48:59,824 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 02:48:59,824 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/environment/
+2026-03-15 02:48:59,824 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/environment/
+2026-03-15 02:48:59,824 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
+2026-03-15 02:48:59,824 DEBUG: Using selector: EpollSelector
+2026-03-15 02:49:01,678 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes) — treating as blocked
+2026-03-15 02:49:01,678 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 02:49:01,679 DEBUG: Killing existing BotBrowser (pid 4747)
+2026-03-15 02:49:01,695 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 02:49:01,697 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:49:02,202 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:49:02,203 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 02:49:02,203 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 02:49:04,203 DEBUG: Using selector: EpollSelector
+2026-03-15 02:49:06,106 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes) — treating as blocked
+2026-03-15 02:49:06,106 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 02:49:06,107 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/climate-energy/
+2026-03-15 02:49:06,107 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/climate-energy/
+2026-03-15 02:49:06,107 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-15 02:49:06,107 DEBUG: Using selector: EpollSelector
+2026-03-15 02:49:07,925 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes) — treating as blocked
+2026-03-15 02:49:07,925 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
+2026-03-15 02:49:07,925 DEBUG: Killing existing BotBrowser (pid 5024)
+2026-03-15 02:49:07,941 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled
+2026-03-15 02:49:07,942 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:49:08,444 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-15 02:49:08,445 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-15 02:49:08,445 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-15 02:49:10,446 DEBUG: Using selector: EpollSelector
+2026-03-15 02:49:12,350 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes) — treating as blocked
+2026-03-15 02:49:12,350 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
+2026-03-15 02:49:12,350 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-15 02:49:12,350 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-15 02:49:12,350 INFO: Total Reuters articles after extra pages: 0
+2026-03-15 02:49:12,350 INFO: Fetching AP News world page via FlareSolverr: https://apnews.com/world-news
+2026-03-15 02:49:12,350 DEBUG: FlareSolverr GET: https://apnews.com/world-news
+2026-03-15 02:49:12,351 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 02:49:22,391 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1545774
+2026-03-15 02:49:22,405 DEBUG: FlareSolverr received 1470540 bytes for https://apnews.com/world-news
+2026-03-15 02:49:22,410 DEBUG: Saved HTML to apnews.html (1470540 bytes)
+2026-03-15 02:49:22,920 INFO: AP News primary selector matched 86 cards.
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/article/iran-iraq-us-trump-march-14-2026-oil-prices-a2399398b4c590995b814d7640362a11 | thumb=https://dims.apnews.com/dims4/default/e24f067/2147483647/strip/true/crop/7896x52 | Tehran claims the US attacked it from the UAE as Iran war enters its third week
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/article/refugees-iran-turkey-war-migration-0e036a109d7e5b819a0fd6db5a6f3ddd | thumb=https://dims.apnews.com/dims4/default/c5d7b6a/2147483647/strip/true/crop/6264x41 | Iranians grapple with whether to flee the country because of the war
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/article/turkey-foreign-minister-iran-5a1bf8a77a475e33adefb0c99c26547c | thumb=https://dims.apnews.com/dims4/default/0f2142b/2147483647/strip/true/crop/5316x35 | AP Exclusive: Turkey’s Foreign Minister Hakan Fidan talks diplomatic efforts as regional war rages
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/article/lebanon-israel-hezbollah-displacement-shelter-249cacd33642bb03b0b90f4704e82c49 | thumb=https://dims.apnews.com/dims4/default/830ba77/2147483647/strip/true/crop/7732x51 | War has already displaced nearly a million Lebanese, and aid groups warn of a humanitarian crisis
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/article/russia-ukraine-war-kyiv-attack-4aed3cc6ff151c82a474acaf1a3a05ff | thumb=https://dims.apnews.com/dims4/default/0e893f7/2147483647/strip/true/crop/7442x49 | Russian strike on Kyiv region kills 4 people and wounds 15 as peace talks are stalled
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/article/russia-ukraine-war-macron-oil-drones-a9330482d471ea67890a0e8ec1913db7 | thumb= | Zelenskyy says US 30-day waiver on Russian oil sanctions is ‘not the right decision’
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/article/us-iran-tanker-aircraft-crash-iraq-kc135-c337359a58be6280dc96fdbf1cb48a5b | thumb= | All 6 crew members on a US refueling plane that crashed in Iraq are dead, US military says
+2026-03-15 02:49:22,920 DEBUG:   - https://apnews.com/live/iran-war-israel-trump-03-13-2026 | thumb= | Trump says US ‘obliterated’ military targets on Iran’s Kharg Island
+2026-03-15 02:49:22,921 DEBUG:   - https://apnews.com/article/iran-iraq-us-trump-march-14-2026-oil-prices-a2399398b4c590995b814d7640362a11 | thumb= | Tehran claims the US attacked it from the UAE as Iran war enters its third week
+2026-03-15 02:49:22,921 DEBUG:   - https://apnews.com/article/iran-israel-us-march-12-2026-oil-prices-90e17dbf7354d1e9428994ab2a036506 | thumb= | Iran war disrupts energy supplies as Iran’s new leader resolves to keep fighting
+2026-03-15 02:49:22,921 DEBUG:   - https://apnews.com/video/north-korean-leader-kim-jong-un-and-his-teenage-daughter-shoot-guns-on-visit-to-weapons-factory-13e9884d633b458294ac9e4dd6bea242 | thumb= | North Korean leader Kim Jong Un and his teenage daughter shoot guns on visit to weapons factory
+2026-03-15 02:49:22,921 DEBUG:   - https://apnews.com/video/casts-of-pompeii-victims-captured-at-the-time-of-their-death-goes-on-display-886e91c909e84cfa90ad00f18c6a1fdb | thumb= | Casts of Pompeii victims captured at the time of their death goes on display
+2026-03-15 02:49:22,921 INFO: Found 86 AP News articles
+2026-03-15 02:49:22,921 INFO: Fetching France24 page via FlareSolverr: https://www.france24.com/en/
+2026-03-15 02:49:22,921 DEBUG: FlareSolverr GET: https://www.france24.com/en/
+2026-03-15 02:49:22,922 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 02:49:25,063 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 897138
+2026-03-15 02:49:25,072 DEBUG: FlareSolverr received 872417 bytes for https://www.france24.com/en/
+2026-03-15 02:49:25,075 DEBUG: Saved HTML to france24.html (872417 bytes)
+2026-03-15 02:49:25,242 INFO: France24: kept 62 items, excluded 32
+2026-03-15 02:49:25,242 INFO: Total unique articles to process: 145
+2026-03-15 02:49:25,247 INFO: Loaded existing XML: pau.xml
+2026-03-15 02:49:25,254 INFO: Loaded existing XML: reuters.xml
+2026-03-15 02:49:25,255 INFO: Existing items in main feed: 500
+2026-03-15 02:49:25,255 INFO: Existing items in Reuters feed: 500
+2026-03-15 02:49:25,256 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-15 02:49:25,419 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 144
+2026-03-15 02:49:25,419 DEBUG: Shutting down BotBrowser (pid 5303)
+2026-03-15 02:49:25,452 DEBUG: Added: https://apnews.com/article/north-korea-kim-daughter-missile-launches-d822ed5740333e255a7a562cf43f9e97
+2026-03-15 02:49:25,452 INFO: Added 1 new articles to main feed
+2026-03-15 02:49:25,452 INFO: Added 0 new articles to Reuters feed
+2026-03-15 02:49:25,452 INFO: Trimmed feed to 500 items
+2026-03-15 02:49:25,471 INFO: Done! Main feed saved to pau.xml
+2026-03-15 02:49:25,472 INFO: Done! Reuters feed saved to reuters.xml
+2026-03-15 02:49:25,472 INFO: Debug log saved to debug.log
