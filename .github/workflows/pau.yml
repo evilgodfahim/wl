@@ -73,40 +73,24 @@ jobs:
           echo "BOTBROWSER_PATH=$BB_BIN" >> $GITHUB_ENV
 
       - name: Download BotBrowser bot-profile
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LATEST="${{ env.BOTBROWSER_TAG }}"
-
-          # First try: get demo profiles directly from the BotBrowser repo profiles/ directory
           PROFILE_FILE=""
           for profile_name in chrome136_win11_x64.enc chrome135_win11_x64.enc chrome134_win11_x64.enc; do
-            curl -sfL -H "Authorization: Bearer $GH_TOKEN" \
-              "https://raw.githubusercontent.com/MiddleSchoolStudent/BotBrowser/main/profiles/${profile_name}" \
-              -o "${profile_name}" 2>/dev/null && {
-              echo "Downloaded demo profile from repo: $profile_name"
+            STATUS=$(curl -sLo "${profile_name}" -w "%{http_code}" "https://raw.githubusercontent.com/MiddleSchoolStudent/BotBrowser/main/profiles/${profile_name}")
+            if [ "$STATUS" = "200" ] && [ -s "${profile_name}" ]; then
+              echo "Downloaded profile: $profile_name"
               PROFILE_FILE="$PWD/$profile_name"
               break
-            }
-          done
-
-          # Second try: look in release assets
-          if [ -z "$PROFILE_FILE" ]; then
-            PROFILE_ASSET=$(grep -i "linux.*enc.zip\|linux.*profile\|win.*enc" /tmp/bb_assets.txt | head -1 || true)
-            if [ -n "$PROFILE_ASSET" ]; then
-              PROFILE_URL="https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${LATEST}/${PROFILE_ASSET}"
-              echo "Downloading profile from release: $PROFILE_URL"
-              curl -fL -H "Authorization: Bearer $GH_TOKEN" "$PROFILE_URL" -o botprofile.zip && unzip -o botprofile.zip || true
-              PROFILE_FILE=$(ls *.enc 2>/dev/null | head -1 || true)
-              [ -n "$PROFILE_FILE" ] && PROFILE_FILE="$PWD/$PROFILE_FILE"
+            else
+              rm -f "${profile_name}"
             fi
-          fi
+          done
 
           if [ -n "$PROFILE_FILE" ]; then
             echo "BOTBROWSER_PROFILE=$PROFILE_FILE" >> $GITHUB_ENV
             echo "Using bot profile: $PROFILE_FILE"
           else
-            echo "No profile file found — BotBrowser will run without a profile"
+            echo "No profile found — BotBrowser will run without a profile"
           fi
 
       - name: Start FlareSolverr
