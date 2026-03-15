@@ -127,6 +127,7 @@ def _start_botbrowser() -> bool:
             args=args,
         )
         debug("BotBrowser launched successfully")
+        time.sleep(3)  # Allow BotBrowser to finish profile initialization
         return True
     except Exception as e:
         warn("Failed to launch BotBrowser: %s", e)
@@ -216,6 +217,7 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
 def botbrowser_get(url: str, retries: int = 2) -> str | None:
     for attempt in range(1, retries + 1):
+        # Only restart if browser is dead, not on every retry
         if not _ensure_botbrowser_running():
             warn("BotBrowser not available (attempt %d/%d)", attempt, retries)
             continue
@@ -225,7 +227,8 @@ def botbrowser_get(url: str, retries: int = 2) -> str | None:
             return result
 
         warn("BotBrowser fetch failed on attempt %d/%d for %s", attempt, retries, url)
-        if attempt < retries:
+        # Only restart if browser actually died
+        if attempt < retries and not _ensure_botbrowser_running():
             _start_botbrowser()
 
     warn("BotBrowser: all %d attempts failed for %s", retries, url)
