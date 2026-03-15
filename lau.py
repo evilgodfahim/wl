@@ -210,7 +210,8 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
     # Detect DataDome challenge page via its unique CSS keyframe
     if any(m in html for m in DATADOME_MARKERS):
-        warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked", url, len(html))
+        warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes)", url, len(html))
+        warn("  CAPTCHA snippet: %s", html[:600].replace("\n", " "))
         return None
 
     debug("BotBrowser received %d bytes for %s", len(html), url)
@@ -512,8 +513,7 @@ else:
 
     if primary_items:
         info("Primary world selector matched %d items.", len(primary_items))
-        for u, t in primary_items[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | %s", u, t)
+
         for url, title in primary_items:
             reuters_articles.append({"url": url, "title": title, "source": "Reuters"})
     else:
@@ -537,8 +537,7 @@ else:
                 fallback_items.append((full, title_text))
 
         info("Fallback anchor scan found %d candidates.", len(fallback_items))
-        for full, title in fallback_items[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | %s", full, title)
+
         if not fallback_items:
             warn("No world article candidates found. HTML snippet:\n%s",
                  html[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
@@ -581,8 +580,7 @@ else:
 
     if primary_cards:
         info("Primary commentary selector matched %d cards.", len(primary_cards))
-        for href, title, thumb in primary_cards[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - href=%s | title=%s", href, title)
+
         for href, title, thumb in primary_cards:
             url = build_full_url(href)
             if url:
@@ -641,8 +639,7 @@ for extra_url in REUTERS_EXTRA_URLS:
 
     if cards:
         info("Extra page %s: found %d cards.", extra_url, len(cards))
-        for c in cards[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | %s", c["url"], c["title"])
+
         reuters_articles.extend(cards)
     else:
         warn("Extra page %s: no cards matched — falling back to anchor scan.", extra_url)
@@ -735,8 +732,7 @@ else:
 
     if primary_ap:
         info("AP News primary selector matched %d cards.", len(primary_ap))
-        for u, t, th in primary_ap[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | thumb=%s | %s", u, th[:80] if th else "", t)
+
         for url, title, thumb in primary_ap:
             apnews_articles.append({
                 "url": url, "title": title, "source": "APNews", "thumb": thumb
@@ -949,7 +945,8 @@ for i, a in enumerate(all_articles, 1):
     if a["url"] in (reuters_existing if is_reuters else existing):
         continue
 
-    info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
+    if a.get("source") == "Reuters":
+        info("Processing %d/%d [Reuters]: %s", i, len(all_articles), a.get("title", "")[:80])
 
     # Periodically restart BotBrowser to reset DataDome fingerprint.
     if a.get("source") == "Reuters":
@@ -989,8 +986,9 @@ for i, a in enumerate(all_articles, 1):
     desc_len = len(a["desc"])
     debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
     if desc_len == 0:
-        warn("  Empty description for: %s\n  Page snippet: %s",
-             a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+        warn("  Empty description for: %s", a["url"])
+        warn("  Page title tag: %s", (BeautifulSoup(page, "html.parser").find("title") or "none"))
+        warn("  Page snippet: %s", page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
 
     # Throttle BotBrowser requests to reduce DataDome rate-limiting
     if a.get("source") == "Reuters":
@@ -1038,7 +1036,7 @@ for art in all_articles:
         reuters_new_count += 1
     else:
         new_count += 1
-    debug("Added: %s", art["url"])
+
 
 info("Added %d new articles to main feed", new_count)
 info("Added %d new articles to Reuters feed", reuters_new_count)
