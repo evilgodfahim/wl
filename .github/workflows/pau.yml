@@ -74,17 +74,11 @@ jobs:
 
       - name: Download BotBrowser bot-profile
         run: |
-          git clone --depth=1 --no-checkout --filter=blob:none \
-            https://github.com/MiddleSchoolStudent/BotBrowser.git /tmp/botbrowser-repo
-          cd /tmp/botbrowser-repo
-          git sparse-checkout init --cone
-          git sparse-checkout set profiles
-          git checkout
-
-          PROFILE_FILE=$(ls /tmp/botbrowser-repo/profiles/*.enc 2>/dev/null | head -1 || true)
-          if [ -n "$PROFILE_FILE" ]; then
-            echo "BOTBROWSER_PROFILE=$PROFILE_FILE" >> $GITHUB_ENV
-            echo "Using bot profile: $PROFILE_FILE"
+          curl -sLo chrome146_win11_x64.enc \
+            "https://raw.githubusercontent.com/botswin/BotBrowser/main/profiles/stable/chrome146_win11_x64.enc"
+          if [ -s chrome146_win11_x64.enc ]; then
+            echo "BOTBROWSER_PROFILE=$PWD/chrome146_win11_x64.enc" >> $GITHUB_ENV
+            echo "Using bot profile: chrome146_win11_x64.enc"
           else
             echo "No profile found — BotBrowser will run without a profile"
           fi
