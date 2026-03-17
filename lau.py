@@ -1,66 +1,137 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""Resilient APNews scraper with FlareSolverr + requests fallback.
+Drop-in replacement for lau.py — continues if FlareSolverr returns errors.
+"""
 
+from __future__ import annotations
 import sys
 import os
 import logging
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+import json
 
 import requests
 from bs4 import BeautifulSoup
 
 # ------------------------------
-# DEBUG / CONFIG
+# CONFIG
 # ------------------------------
-
 DEBUG = True
-DEBUG_HTML_SNIPPET_LEN = 800
-DEBUG_SAMPLE_LIMIT = 12
-
 LOG_FILENAME = "debug.log"
+FLARESOLVERR_URL = os.environ.get("FLARESOLVERR_URL", "http://localhost:8191/v1")
+APNEWS_URL = "https://apnews.com/world-news"
+APNEWS_BASE = "https://apnews.com"
+XML_FILE = "pau.xml"
+APNEWS_HTML_FILE = "apnews.html"
+MAX_ITEMS = 500
+
+# retries/backoff
+FLARE_RETRIES = 2
+FLARE_BACKOFF = 2.0
+SIMPLE_RETRIES = 3
+SIMPLE_BACKOFF = 1.5
+SIMPLE_TIMEOUT = 20
+
+# ------------------------------
+# LOGGING
+# ------------------------------
 logging.basicConfig(
     level=logging.DEBUG if DEBUG else logging.INFO,
     format="%(asctime)s %(levelname)s: %(message)s",
-    handlers=[
-        logging.StreamHandler(sys.stdout),
-        logging.FileHandler(LOG_FILENAME, mode="w", encoding="utf-8")
-    ]
+    handlers=[logging.StreamHandler(sys.stdout), logging.FileHandler(LOG_FILENAME, mode="w", encoding="utf-8")],
 )
 log = logging.getLogger("scraper")
 
-# ------------------------------
-# CONFIGURATION
-# ------------------------------
-
-FLARESOLVERR_URL        = "http://localhost:8191/v1"
-APNEWS_URL              = "https://apnews.com/world-news"
-APNEWS_BASE             = "https://apnews.com"
-HTML_FILE               = "opinin.html"
-APNEWS_HTML_FILE        = "apnews.html"
-XML_FILE                = "pau.xml"
-MAX_ITEMS               = 500
-TIMEOUT_MS              = 120000
+def debug(msg, *args): log.debug(msg, *args)
+def info(msg, *args): log.info(msg, *args)
+def warn(msg, *args): log.warning(msg, *args)
+def now_utc(): return datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 # ------------------------------
-# Helpers
+# HTTP helpers
 # ------------------------------
+def simple_get(url: str, timeout: int = SIMPLE_TIMEOUT) -> str | None:
+    headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117 Safari/537.36"}
+    try:
+        r = requests.get(url, timeout=timeout, headers=headers)
+    except Exception as e:
+        debug("simple_get exception for %s : %s", url, e)
+        return None
+    if r.status_code != 200:
+        debug("simple_get: HTTP %s for %s", r.status_code, url)
+        return None
+    return r.text
 
-def debug(msg, *args):
-    if DEBUG:
-        log.debug(msg, *args)
+_flare_session_id = "scraper_session_1"
 
-def info(msg, *args):
-    log.info(msg, *args)
+def flare_get(url: str, timeout_ms: int = 120000) -> str | None:
+    payload = {"cmd": "request.get", "url": url, "maxTimeout": timeout_ms, "session": _flare_session_id}
+    debug("FlareSolverr GET -> %s", url)
+    try:
+        r = requests.post(FLARESOLVERR_URL, json=payload, timeout=(timeout_ms // 1000) + 15)
+    except Exception as e:
+        debug("FlareSolverr request exception: %s", e)
+        return None
 
-def warn(msg, *args):
-    log.warning(msg, *args)
+    if r.status_code != 200:
+        # log truncated body for diagnosis
+        body = (r.text or "")[:2000]
+        warn("FlareSolverr returned HTTP %s for %s | body (truncated): %s", r.status_code, url, body)
+        return None
 
-def now_utc():
-    return datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+    try:
+        data = r.json()
+    except Exception as e:
+        warn("FlareSolverr returned non-json response for %s: %s | body (truncated): %s", url, e, (r.text or "")[:2000])
+        return None
 
-def save_debug_html(path, html):
+    status = data.get("status", "")
+    if status != "ok":
+        warn("FlareSolverr status=%s for %s | message: %s | response (truncated): %s",
+             status, url, data.get("message", ""), str(data)[:4000])
+        return None
+
+    sol = data.get("solution", {}) or {}
+    html = sol.get("response") or ""
+    if isinstance(html, dict):
+        # some versions return nested fields
+        html = html.get("data") or html.get("body") or html.get("html") or ""
+
+    if not html:
+        warn("FlareSolverr returned empty HTML for %s", url)
+        return None
+
+    return html
+
+def fetch_page(url: str) -> str | None:
+    # Try FlareSolverr first (if reachable), with retries/backoff, then fallback to requests
+    for attempt in range(1, FLARE_RETRIES + 1):
+        html = flare_get(url)
+        if html and len(html) > 200:
+            debug("fetch_page: got HTML from FlareSolverr (attempt %d)", attempt)
+            return html
+        debug("fetch_page: FlareSolverr attempt %d failed for %s", attempt, url)
+        time.sleep(FLARE_BACKOFF * attempt)
+
+    # fallback: try direct requests with retries/backoff
+    for attempt in range(1, SIMPLE_RETRIES + 1):
+        html = simple_get(url, timeout=SIMPLE_TIMEOUT)
+        if html and len(html) > 200:
+            debug("fetch_page: got HTML from simple_get (attempt %d)", attempt)
+            return html
+        debug("fetch_page: simple_get attempt %d failed for %s", attempt, url)
+        time.sleep(SIMPLE_BACKOFF * attempt)
+
+    warn("fetch_page: all attempts failed for %s", url)
+    return None
+
+# ------------------------------
+# Parsing helpers
+# ------------------------------
+def save_debug_html(path: str, html: str) -> None:
     try:
         with open(path, "w", encoding="utf-8") as f:
             f.write(html)
@@ -68,7 +139,7 @@ def save_debug_html(path, html):
     except Exception as e:
         warn("Failed saving HTML %s: %s", path, e)
 
-def build_full_url(href, base=APNEWS_BASE):
+def build_full_url(href: str, base: str = APNEWS_BASE) -> str | None:
     href = (href or "").strip()
     if href.startswith("http"):
         return href
@@ -76,86 +147,7 @@ def build_full_url(href, base=APNEWS_BASE):
         return base + href
     return None
 
-# ------------------------------
-# FlareSolverr (used for fetching)
-# ------------------------------
-
-_flare_session_id = "scraper_session_1"
-
-def flare_get(url):
-    payload = {
-        "cmd": "request.get",
-        "url": url,
-        "maxTimeout": TIMEOUT_MS,
-        "session": _flare_session_id,
-    }
-    debug("FlareSolverr GET: %s", url)
-    try:
-        r = requests.post(FLARESOLVERR_URL, json=payload, timeout=TIMEOUT_MS // 1000 + 30)
-    except Exception as e:
-        warn("FlareSolverr request error: %s", e)
-        return None
-
-    if r.status_code != 200:
-        warn("FlareSolverr returned HTTP %s for %s", r.status_code, url)
-        return None
-
-    try:
-        data = r.json()
-    except Exception as e:
-        warn("Invalid JSON from FlareSolverr: %s", e)
-        return None
-
-    status = data.get("status", "")
-    if status != "ok":
-        warn("FlareSolverr status=%s for %s | message: %s", status, url, data.get("message", ""))
-        return None
-
-    sol = data.get("solution", {})
-    html = sol.get("response") or ""
-
-    if isinstance(html, dict):
-        html = html.get("data") or html.get("body") or html.get("html") or ""
-
-    if not html:
-        warn("Empty HTML from FlareSolverr for %s", url)
-        return None
-
-    debug("FlareSolverr received %d bytes for %s", len(html), url)
-    return html
-
-def flare_session_destroy():
-    try:
-        requests.post(FLARESOLVERR_URL, json={"cmd": "sessions.destroy", "session": _flare_session_id}, timeout=10)
-    except Exception:
-        pass
-
-def fetch_page(url: str) -> str | None:
-    return flare_get(url)
-
-# ------------------------------
-# Extractors
-# ------------------------------
-
-def extract_full_text_generic(article_html):
-    s = BeautifulSoup(article_html, "html.parser")
-
-    container = s.find("article") or s.find("div", {"role": "main"})
-    parts = []
-    if container:
-        for p in container.find_all("p"):
-            text = p.get_text(" ", strip=True)
-            if text:
-                parts.append(text)
-    if parts:
-        return "\n\n".join(parts)
-
-    # fallback: any paragraphs
-    blocks = s.select("p")
-    parts = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
-    return "\n\n".join(parts)
-
-def extract_image_url(soup_page):
+def extract_image_url(soup_page: BeautifulSoup) -> str:
     meta_og = soup_page.find("meta", property="og:image")
     if meta_og and meta_og.get("content"):
         return meta_og["content"].strip()
@@ -164,133 +156,14 @@ def extract_image_url(soup_page):
         return link_img["href"].strip()
     for img in soup_page.find_all("img"):
         src = img.get("src") or img.get("data-src") or img.get("data-lazy-src")
-        if src and src.strip():
+        if src and src.strip() and not src.strip().startswith("data:"):
             return src.strip()
     return ""
 
 # ------------------------------
-# 1. FETCH AP NEWS WORLD
+# Feed XML helpers
 # ------------------------------
-
-info("Fetching AP News world page via FlareSolverr: %s", APNEWS_URL)
-apnews_html = fetch_page(APNEWS_URL)
-apnews_articles = []
-
-if apnews_html is None:
-    warn("Failed to fetch AP News world page")
-else:
-    save_debug_html(APNEWS_HTML_FILE, apnews_html)
-    apsoup = BeautifulSoup(apnews_html, "html.parser")
-
-    primary_ap = []
-    try:
-        for card in apsoup.select("div.PagePromo"):
-            title_el = card.select_one("h3.PagePromo-title a.Link")
-            if not title_el:
-                title_el = card.select_one("h2.PagePromo-title a.Link")
-            if not title_el:
-                continue
-
-            title = title_el.get_text(" ", strip=True)
-            href  = title_el.get("href", "").strip()
-
-            media_link = card.select_one("div.PagePromo-media > a.Link")
-            if not href and media_link:
-                href = media_link.get("href", "").strip()
-
-            url = build_full_url(href, base=APNEWS_BASE)
-            if not url or not title:
-                continue
-
-            thumb = ""
-            img_el = card.select_one("div.PagePromo-media img")
-            if img_el:
-                raw = (
-                    img_el.get("src", "")
-                    or img_el.get("data-src", "")
-                    or img_el.get("data-lazy-src", "")
-                    or img_el.get("data-original", "")
-                    or ""
-                ).strip()
-                if raw and not raw.startswith("data:") and len(raw) > 20:
-                    thumb = raw
-                if not thumb:
-                    srcset = img_el.get("srcset", "").strip()
-                    if srcset:
-                        thumb = srcset.split()[0].rstrip(",").strip()
-            if not thumb:
-                picture = card.select_one("div.PagePromo-media picture")
-                if picture:
-                    for src_el in picture.find_all("source"):
-                        ss = src_el.get("srcset", "").strip()
-                        if ss:
-                            thumb = ss.split()[0].rstrip(",").strip()
-                            break
-
-            primary_ap.append((url, title, thumb))
-
-    except Exception as e:
-        warn("Exception in AP News primary selector: %s", e)
-
-    if primary_ap:
-        info("AP News primary selector matched %d cards.", len(primary_ap))
-        for u, t, th in primary_ap[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | thumb=%s | %s", u, th[:80] if th else "", t)
-        for url, title, thumb in primary_ap:
-            apnews_articles.append({
-                "url": url, "title": title, "source": "APNews", "thumb": thumb
-            })
-    else:
-        warn("AP News primary selector found nothing — falling back to anchor scan")
-        seen_ap = set()
-        for a in apsoup.find_all("a", href=True):
-            href = a["href"].strip()
-            if "/article/" not in href:
-                continue
-            title_text = a.get_text(" ", strip=True)
-            if not title_text:
-                continue
-            full = build_full_url(href, base=APNEWS_BASE)
-            if not full or full in seen_ap:
-                continue
-            seen_ap.add(full)
-            thumb = ""
-            parent = a.find_parent()
-            if parent:
-                img = parent.find("img")
-                if img:
-                    thumb = (img.get("src") or img.get("data-src") or "").strip()
-            apnews_articles.append({
-                "url": full, "title": title_text, "source": "APNews", "thumb": thumb
-            })
-
-        info("AP News fallback anchor scan found %d candidates.", len(apnews_articles))
-        if not apnews_articles:
-            warn("No AP News candidates found. HTML snippet:\n%s",
-                 apnews_html[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
-
-    info("Found %d AP News articles", len(apnews_articles))
-
-# ------------------------------
-# 2. COMBINE & DEDUPE
-# ------------------------------
-
-combined, seen_combined = [], set()
-for item in apnews_articles:
-    u = item.get("url")
-    if not u or u in seen_combined:
-        continue
-    seen_combined.add(u)
-    combined.append(item)
-
-all_articles = combined
-info("Total unique articles to process: %d", len(all_articles))
-
-# ------------------------------
-# 3. LOAD XML (to skip already-known articles)
-# ------------------------------
-
-def load_or_create_xml(path, title, link, description):
+def load_or_create_xml(path: str, title: str, link: str, description: str):
     if os.path.exists(path):
         try:
             tree = ET.parse(path)
@@ -308,120 +181,145 @@ def load_or_create_xml(path, title, link, description):
     channel = root.find("channel")
     if channel is None:
         channel = ET.SubElement(root, "channel")
-        ET.SubElement(channel, "title").text       = title
-        ET.SubElement(channel, "link").text        = link
+        ET.SubElement(channel, "title").text = title
+        ET.SubElement(channel, "link").text = link
         ET.SubElement(channel, "description").text = description
 
     return tree, root, channel
 
-tree, root, channel = load_or_create_xml(
-    XML_FILE,
-    "AP News Feed",
-    "https://example.local/apnews/",
-    "Scraped articles from AP News",
-)
-
-existing = {
-    item.find("link").text.strip()
-    for item in channel.findall("item")
-    if item.find("link") is not None and item.find("link").text
-}
-info("Existing items in feed: %d", len(existing))
-
 # ------------------------------
-# 4. FETCH FULL TEXT
+# Main scraping logic
 # ------------------------------
+def main():
+    info("Fetching AP News world page: %s", APNEWS_URL)
+    apnews_html = fetch_page(APNEWS_URL)
+    apnews_articles = []
 
-for a in all_articles:
-    if a.get("source") == "APNews":
-        thumb = a.get("thumb", "") or ""
-        a["img"] = thumb
-        if thumb:
-            a["desc"] = '<img src="{}" alt="" style="max-width:100%"/><br/>{}'.format(thumb, a.get("title", ""))
+    if not apnews_html:
+        warn("Failed to fetch AP News world page; proceeding with empty list")
+    else:
+        save_debug_html(APNEWS_HTML_FILE, apnews_html)
+        apsoup = BeautifulSoup(apnews_html, "html.parser")
+        primary_ap = []
+        try:
+            for card in apsoup.select("div.PagePromo"):
+                title_el = card.select_one("h3.PagePromo-title a.Link") or card.select_one("h2.PagePromo-title a.Link")
+                if not title_el:
+                    continue
+                title = title_el.get_text(" ", strip=True)
+                href = title_el.get("href", "").strip()
+                media_link = card.select_one("div.PagePromo-media > a.Link")
+                if not href and media_link:
+                    href = media_link.get("href", "").strip()
+                url = build_full_url(href, base=APNEWS_BASE)
+                if not url or not title:
+                    continue
+                thumb = ""
+                img_el = card.select_one("div.PagePromo-media img")
+                if img_el:
+                    raw = (img_el.get("src") or img_el.get("data-src") or img_el.get("data-lazy-src") or img_el.get("data-original") or "").strip()
+                    if raw and not raw.startswith("data:") and len(raw) > 20:
+                        thumb = raw
+                    elif img_el.get("srcset"):
+                        thumb = img_el.get("srcset").split()[0].rstrip(",").strip()
+                if not thumb:
+                    picture = card.select_one("div.PagePromo-media picture")
+                    if picture:
+                        for src_el in picture.find_all("source"):
+                            ss = src_el.get("srcset", "").strip()
+                            if ss:
+                                thumb = ss.split()[0].rstrip(",").strip()
+                                break
+                primary_ap.append((url, title, thumb))
+        except Exception as e:
+            warn("Exception in AP News primary selector: %s", e)
+
+        if primary_ap:
+            info("AP News primary selector matched %d cards.", len(primary_ap))
+            for url, title, thumb in primary_ap:
+                apnews_articles.append({"url": url, "title": title, "source": "APNews", "thumb": thumb})
         else:
-            a["desc"] = a.get("title", "")
-        a["pub"] = now_utc()
+            # fallback anchor scan
+            seen = set()
+            for a in apsoup.find_all("a", href=True):
+                href = a["href"].strip()
+                if "/article/" not in href:
+                    continue
+                title_text = a.get_text(" ", strip=True)
+                if not title_text:
+                    continue
+                full = build_full_url(href, base=APNEWS_BASE)
+                if not full or full in seen:
+                    continue
+                seen.add(full)
+                thumb = ""
+                parent = a.find_parent()
+                if parent:
+                    img = parent.find("img")
+                    if img:
+                        thumb = (img.get("src") or img.get("data-src") or "").strip()
+                apnews_articles.append({"url": full, "title": title_text, "source": "APNews", "thumb": thumb})
+            info("AP News fallback anchor scan found %d candidates.", len(apnews_articles))
 
-for i, a in enumerate(all_articles, 1):
-    if a.get("source") == "APNews":
-        # already have a description above
-        continue
+    # combine / dedupe
+    combined = []
+    seen_combined = set()
+    for item in apnews_articles:
+        u = item.get("url")
+        if not u or u in seen_combined:
+            continue
+        seen_combined.add(u)
+        combined.append(item)
 
-    if a["url"] in existing:
-        continue
+    info("Total unique articles to process: %d", len(combined))
 
-    info("Processing %d/%d [%s]: %s", i, len(all_articles), a.get("source"), a.get("title", "")[:80])
+    # load xml
+    tree, root, channel = load_or_create_xml(XML_FILE, "AP News Feed", "https://example.local/apnews/", "Scraped articles from AP News")
+    existing = {
+        item.find("link").text.strip()
+        for item in channel.findall("item")
+        if item.find("link") is not None and item.find("link").text
+    }
+    info("Existing items in feed: %d", len(existing))
 
-    page = fetch_page(a["url"])
-    if page is None:
-        warn("Failed to fetch: %s", a.get("url"))
-        a["desc"] = ""
-        a["img"]  = a.get("thumb", "") or ""
-        a["pub"]  = now_utc()
-        continue
+    # prepare entries (APNews cards already include title/thumb; we don't need to fetch article pages)
+    new_count = 0
+    for art in combined:
+        if art["url"] in existing:
+            continue
+        title = (art.get("title") or "").strip()
+        thumb = art.get("thumb", "") or ""
+        if thumb:
+            desc = f'<img src="{thumb}" alt="" style="max-width:100%"/><br/>{title}'
+        else:
+            desc = title or ""
+        if not title and not desc:
+            warn("Skipping (no title or description): %s", art.get("url"))
+            continue
+        item = ET.SubElement(channel, "item")
+        ET.SubElement(item, "title").text = title
+        ET.SubElement(item, "link").text = art["url"]
+        ET.SubElement(item, "description").text = desc
+        ET.SubElement(item, "pubDate").text = now_utc()
+        if thumb:
+            ET.SubElement(item, "enclosure", url=thumb, type="image/jpeg")
+        new_count += 1
+        debug("Added: %s", art["url"])
 
-    a["desc"] = extract_full_text_generic(page) or ""
-    soup_page = BeautifulSoup(page, "html.parser")
-    a["img"] = extract_image_url(soup_page) or a.get("thumb", "") or ""
-    a["pub"] = now_utc()
+    info("Added %d new articles to main feed", new_count)
 
-    desc_len = len(a["desc"])
-    debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
-    if desc_len == 0:
-        warn("  Empty description for: %s\n  Page snippet: %s",
-             a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
+    # trim
+    all_items = channel.findall("item")
+    if len(all_items) > MAX_ITEMS:
+        for old in all_items[:-MAX_ITEMS]:
+            channel.remove(old)
+        info("Trimmed feed to %d items", MAX_ITEMS)
 
-# Cleanup
-flare_session_destroy()
+    # save
+    os.makedirs(os.path.dirname(XML_FILE) or ".", exist_ok=True)
+    tree.write(XML_FILE, encoding="utf-8", xml_declaration=True)
+    info("Done! Main feed saved to %s", XML_FILE)
+    info("Debug log saved to %s", LOG_FILENAME)
 
-# ------------------------------
-# 5. ADD NEW ARTICLES
-# ------------------------------
-
-new_count = 0
-for art in all_articles:
-    if art["url"] in existing:
-        continue
-
-    title = (art.get("title") or "").strip()
-    desc  = (art.get("desc")  or "").strip()
-
-    if not title and not desc:
-        warn("Skipping (no title or description): %s", art["url"])
-        continue
-
-    if not desc:
-        warn("No description for '%s' — using title as fallback", title[:60])
-        desc = title
-
-    item = ET.SubElement(channel, "item")
-    ET.SubElement(item, "title").text       = title
-    ET.SubElement(item, "link").text        = art["url"]
-    ET.SubElement(item, "description").text = desc
-    ET.SubElement(item, "pubDate").text     = art["pub"]
-    if art.get("img"):
-        ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
-
-    new_count += 1
-    debug("Added: %s", art["url"])
-
-info("Added %d new articles to main feed", new_count)
-
-# ------------------------------
-# 6. TRIM OLD ITEMS
-# ------------------------------
-
-all_items = channel.findall("item")
-if len(all_items) > MAX_ITEMS:
-    for old in all_items[:-MAX_ITEMS]:
-        channel.remove(old)
-    info("Trimmed feed to %d items", MAX_ITEMS)
-
-# ------------------------------
-# 7. SAVE XML
-# ------------------------------
-
-os.makedirs(os.path.dirname(XML_FILE) or ".", exist_ok=True)
-tree.write(XML_FILE, encoding="utf-8", xml_declaration=True)
-info("Done! Main feed saved to %s", XML_FILE)
-info("Debug log saved to %s", LOG_FILENAME)
+if __name__ == "__main__":
+    main()
