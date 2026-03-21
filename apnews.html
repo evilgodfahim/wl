@@ -1395,27 +1395,20 @@ freestar.queue.push(function() {
 <script>
     window['BSP-app'] = false;
     window['BSP-view-mode'] = false;
-</script><link rel="preconnect" href="https://connect.facebook.net">
+</script><meta
+        name="vf:container_id"
+        content="bb2d2c5f441a452cb24bb511a2ab5eea-subject"
+/>
+<script type="text/javascript" src="https://s.ntv.io/serve/load.js" async id="nativo-head"></script>
+
 <script>
-  window.fbAsyncInit = function() {
-      FB.init({
-          
-              appId : '870613919693099',
-          
-          xfbml : true,
-          version : 'v2.9'
-      });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+    window.ntvConfig = window.ntvConfig || {};
+    window.ntvConfig.keyValues = window.ntvConfig.keyValues || {};
+    var segs = localStorage.getItem('_pnativo');
+    if (segs) {
+        window.ntvConfig.keyValues.permutive = JSON.parse(segs).join(",");
+    }
 </script>
-
 <meta name="permutive-dataLayer" content="{
   &quot;category&quot; : &quot;World News&quot;,
   &quot;dfp_kv&quot; : {
@@ -1472,7 +1465,54 @@ freestar.queue.push(function() {
                 "type": "web"
             }
     });
-</script><script type="text/javascript" id="freestar-head-data">
+</script><script id="taboola-newsroom-head">
+    window._newsroom=window._newsroom||[];window._newsroom.push({pageTemplate:'World News'});
+    window._newsroom.push({pageDashboard:'World News'});
+    window._newsroom.push('auditClicks');
+    window._newsroom.push('trackPage');if (!location.pathname.includes('/hub/noticias')) {
+    !function(e,f,u){e.async=1;e.src=u;f.parentNode.insertBefore(e,f);}(document.createElement('script'),document.getElementsByTagName('script')[0],'//c2.taboola.com/nr/associatedpress-apnews/newsroom.js');
+    }
+</script><script id="taboola-recommendation-module-head">
+  
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    category :'auto'
+  });
+  !function (e, f, u, i) {
+    if (!document.getElementById(i)){
+      e.async = 1;
+      e.src = u;
+      e.id = i;
+      f.parentNode.insertBefore(e, f);
+    }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/associatedpress-apnews/loader.js',
+  'tb_loader_script');
+
+  if(window.performance && typeof window.performance.mark == 'function')
+    {window.performance.mark('tbl_ic');}
+</script><link rel="preconnect" href="https://connect.facebook.net">
+<script>
+  window.fbAsyncInit = function() {
+      FB.init({
+          
+              appId : '870613919693099',
+          
+          xfbml : true,
+          version : 'v2.9'
+      });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript" id="freestar-head-data">
   (function () {
     'use strict'; // Add strict mode
 
@@ -1551,47 +1591,7 @@ freestar.queue.push(function() {
       console.error("Freestar init error:", scriptErr.message);
     }
   })();
-</script><script type="text/javascript" src="https://s.ntv.io/serve/load.js" async id="nativo-head"></script>
-
-<script>
-    window.ntvConfig = window.ntvConfig || {};
-    window.ntvConfig.keyValues = window.ntvConfig.keyValues || {};
-    var segs = localStorage.getItem('_pnativo');
-    if (segs) {
-        window.ntvConfig.keyValues.permutive = JSON.parse(segs).join(",");
-    }
-</script><script id="taboola-newsroom-head">
-    window._newsroom=window._newsroom||[];window._newsroom.push({pageTemplate:'World News'});
-    window._newsroom.push({pageDashboard:'World News'});
-    window._newsroom.push('auditClicks');
-    window._newsroom.push('trackPage');if (!location.pathname.includes('/hub/noticias')) {
-    !function(e,f,u){e.async=1;e.src=u;f.parentNode.insertBefore(e,f);}(document.createElement('script'),document.getElementsByTagName('script')[0],'//c2.taboola.com/nr/associatedpress-apnews/newsroom.js');
-    }
-</script><script id="taboola-recommendation-module-head">
-  
-  window._taboola = window._taboola || [];
-  _taboola.push({
-    category :'auto'
-  });
-  !function (e, f, u, i) {
-    if (!document.getElementById(i)){
-      e.async = 1;
-      e.src = u;
-      e.id = i;
-      f.parentNode.insertBefore(e, f);
-    }
-  }(document.createElement('script'),
-  document.getElementsByTagName('script')[0],
-  '//cdn.taboola.com/libtrc/associatedpress-apnews/loader.js',
-  'tb_loader_script');
-
-  if(window.performance && typeof window.performance.mark == 'function')
-    {window.performance.mark('tbl_ic');}
-</script><meta
-        name="vf:container_id"
-        content="bb2d2c5f441a452cb24bb511a2ab5eea-subject"
-/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <script>
         var link = document.createElement('link');
@@ -2268,7 +2268,7 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran targets British-US base and its main nuclear enrichment site is struck again</a>
+                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Dozens injured in Israel after Iranian missile strikes target areas near nuclear research center</a>
                 </li>
                 
                 
@@ -2760,12 +2760,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/chuck-norris-reaction-3457e7ca6cb67be920c506206933e295'>Sylvester Stallone, Jean-Claude Van Damme, Lee Majors and more react to the death of Chuck Norris</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/noah-wyle-film-production-hearing-warner-paramount-b8553d8d31f64c8da1b533d25cd6041b'>Noah Wyle tells hearing that 'The Pitt' shows TV and film production in the US can be revived</a>
                 </li>
                 
@@ -2777,7 +2771,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
+                <li>
+                    <a href='https://apnews.com/article/bts-arirang-review-kpop-4ad4bcd4ade73c51db78e033c4e60c7c'>Music Review: BTS’ long-awaited comeback album ‘ARIRANG’ is an exciting experiment</a>
+                </li>
                 
                 
                 
@@ -3005,13 +3001,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
+                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
+                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
                 </li>
                 
                 
@@ -3228,13 +3224,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
+                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
+                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
                 </li>
                 
                 
@@ -3533,13 +3529,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
+                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
+                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
                 </li>
                 
                 
@@ -5938,7 +5934,7 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran targets British-US base and its main nuclear enrichment site is struck again</a>
+                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Dozens injured in Israel after Iranian missile strikes target areas near nuclear research center</a>
                 </li>
                 
                 
@@ -6671,12 +6667,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/chuck-norris-reaction-3457e7ca6cb67be920c506206933e295'>Sylvester Stallone, Jean-Claude Van Damme, Lee Majors and more react to the death of Chuck Norris</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/noah-wyle-film-production-hearing-warner-paramount-b8553d8d31f64c8da1b533d25cd6041b'>Noah Wyle tells hearing that 'The Pitt' shows TV and film production in the US can be revived</a>
                 </li>
                 
@@ -6688,7 +6678,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
+                <li>
+                    <a href='https://apnews.com/article/bts-arirang-review-kpop-4ad4bcd4ade73c51db78e033c4e60c7c'>Music Review: BTS’ long-awaited comeback album ‘ARIRANG’ is an exciting experiment</a>
+                </li>
                 
                 
                 
@@ -7012,13 +7004,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
+                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
+                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
                 </li>
                 
                 
@@ -7317,13 +7309,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
+                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
+                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
                 </li>
                 
                 
@@ -7694,13 +7686,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
+                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
+                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
                 </li>
                 
                 
@@ -9067,7 +9059,7 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran targets British-US base and its main nuclear enrichment site is struck again</a>
+                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Dozens injured in Israel after Iranian missile strikes target areas near nuclear research center</a>
                 </li>
                 
                 
@@ -9559,12 +9551,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/chuck-norris-reaction-3457e7ca6cb67be920c506206933e295'>Sylvester Stallone, Jean-Claude Van Damme, Lee Majors and more react to the death of Chuck Norris</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/noah-wyle-film-production-hearing-warner-paramount-b8553d8d31f64c8da1b533d25cd6041b'>Noah Wyle tells hearing that 'The Pitt' shows TV and film production in the US can be revived</a>
                 </li>
                 
@@ -9576,7 +9562,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
+                <li>
+                    <a href='https://apnews.com/article/bts-arirang-review-kpop-4ad4bcd4ade73c51db78e033c4e60c7c'>Music Review: BTS’ long-awaited comeback album ‘ARIRANG’ is an exciting experiment</a>
+                </li>
                 
                 
                 
@@ -9804,13 +9792,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
+                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
+                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
                 </li>
                 
                 
@@ -10027,13 +10015,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
+                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
+                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
                 </li>
                 
                 
@@ -10332,13 +10320,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
+                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
+                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
                 </li>
                 
                 
@@ -12731,7 +12719,7 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran targets British-US base and its main nuclear enrichment site is struck again</a>
+                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Dozens injured in Israel after Iranian missile strikes target areas near nuclear research center</a>
                 </li>
                 
                 
@@ -13464,12 +13452,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/chuck-norris-reaction-3457e7ca6cb67be920c506206933e295'>Sylvester Stallone, Jean-Claude Van Damme, Lee Majors and more react to the death of Chuck Norris</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/noah-wyle-film-production-hearing-warner-paramount-b8553d8d31f64c8da1b533d25cd6041b'>Noah Wyle tells hearing that 'The Pitt' shows TV and film production in the US can be revived</a>
                 </li>
                 
@@ -13481,7 +13463,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
+                <li>
+                    <a href='https://apnews.com/article/bts-arirang-review-kpop-4ad4bcd4ade73c51db78e033c4e60c7c'>Music Review: BTS’ long-awaited comeback album ‘ARIRANG’ is an exciting experiment</a>
+                </li>
                 
                 
                 
@@ -13805,13 +13789,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
+                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/otters-video-snow-storm-slides-baltimore-aquarium-97c075e88a33789e9bf54257eb150f8d'>Otters enjoy a snow day in Maryland during winter storm</a>
+                    <a href='https://apnews.com/article/las-vegas-toucan-flying-caught-rescue-ffb7646519535114b98b5f9a5108c6e4'>Toucan seen flying around Sin City has been rescued</a>
                 </li>
                 
                 
@@ -14110,13 +14094,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
+                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/2025-picasso-art-blind-italy-extraordinary-photo'>Inspired by Picasso, an AP photographer visualizes a blind person ‘seeing’ art</a>
+                    <a href='https://apnews.com/article/iran-pollution-one-extraordinary-photo'>A photo captures black spots on clothespins that reveal the environmental toll of conflict in Tehran</a>
                 </li>
                 
                 
@@ -14487,13 +14471,13 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
+                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
                 </li>
                 
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/elon-musk-twitter-shareholders-class-action-trial-8cee8350cc041459ef23dd1efb41ace0'>Twitter shareholder case accusing Musk of driving down stock goes to jury</a>
+                    <a href='https://apnews.com/article/musk-xai-grok-child-sexual-abuse-59e58fa581e4f53138738e8936b7c59f'>Teenagers sue Musk's xAI claiming image-generator made sexually explicit images of them as minors</a>
                 </li>
                 
                 
@@ -15956,13 +15940,13 @@ freestar.queue.push(function() {
                 
                     
                         <div class="PagePromo"
- data-gtm-region="Iran targets British-US base and its main nuclear enrichment site is struck again"
- data-gtm-topic="No Value" data-tb-region-item  data-posted-date-timestamp="1774070334000" data-updated-date-timestamp="1774128137000">
+ data-gtm-region="Dozens injured in Israel after Iranian missile strikes target areas near nuclear research center"
+ data-gtm-topic="No Value" data-tb-region-item  data-posted-date-timestamp="1774070334000" data-updated-date-timestamp="1774130076000">
    
     
         
             
-    <div class="PagePromo-media"><a class="Link" aria-label="Iran targets British-US base and its main nuclear enrichment site is struck again" href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e" >
+    <div class="PagePromo-media"><a class="Link" aria-label="Dozens injured in Israel after Iranian missile strikes target areas near nuclear research center" href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e" >
       
    
 
@@ -16057,7 +16041,7 @@ freestar.queue.push(function() {
             <h3 class="PagePromo-title">
                 
                 
-                <a class="Link " href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e"><span class="PagePromoContentIcons-text">Iran targets British-US base and its main nuclear enrichment site is struck again</span></a>
+                <a class="Link " href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e"><span class="PagePromoContentIcons-text">Dozens injured in Israel after Iranian missile strikes target areas near nuclear research center</span></a>
             </h3>
         </bsp-custom-headline>
     
@@ -16072,7 +16056,7 @@ freestar.queue.push(function() {
 
 
     <div class="PagePromo-description">
-        <a class="Link " href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e"><span class="PagePromoContentIcons-text">Iran has fired missiles at the U.K.-U.S. air base on Diego Garcia in the Indian Ocean, though officials report no damage.</span></a>
+        <a class="Link " href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e"><span class="PagePromoContentIcons-text">Iran struck two communities near Israel’s main nuclear research site, leaving several people seriously injured.</span></a>
     </div>
 
 
@@ -16091,7 +16075,7 @@ freestar.queue.push(function() {
                 <div class="PagePromo-byline">
                             
                                 <div class="PagePromo-date">
-                                    <bsp-timestamp data-timestamp="1774128137000" data-recent-thresholdinhours="1">
+                                    <bsp-timestamp data-timestamp="1774130076000" data-recent-thresholdinhours="1">
                                         
                                         
                                             <template data-date-tpl-minago><span class="Timestamp-template-now">[deltaMinutes] mins ago</span></template>
@@ -16113,7 +16097,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">453</span>
+<span class="CommentCount-template">454</span>
 </a>
         
     </div>
@@ -16605,7 +16589,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/diego-garcia-iran-missiles-what-to-know-d51bd9c3bcd83ee0300288221bff5614"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">19</span>
+<span class="CommentCount-template">21</span>
 </a>
         
     </div>
@@ -17298,7 +17282,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/france-aircraft-carrier-sailor-sports-app-location-acbd3595a2317c2b8068dc42082c3d51"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">83</span>
+<span class="CommentCount-template">84</span>
 </a>
         
     </div>
@@ -17415,7 +17399,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/france-russia-tanker-intercepted-shadow-fleet-e8a24c4cebf73bc2f7097ef3ae6c344d"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">30</span>
+<span class="CommentCount-template">31</span>
 </a>
         
     </div>
@@ -17557,7 +17541,7 @@ freestar.queue.push(function() {
         
         
         data-is-force-vpaid-controls>
-        <video class="jwvideoplayer" id="player-zZglCBUP-761639" data-video-pauseads="true" data-media-id="zZglCBUP" data-player="NkmgitGd" data-embed="default"></video>
+        <video class="jwvideoplayer" id="player-zZglCBUP-179822" data-video-pauseads="true" data-media-id="zZglCBUP" data-player="NkmgitGd" data-embed="default"></video>
         
             
                 <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="https://dims.apnews.com/dims4/default/a6266a2/2147483647/strip/true/crop/960x540+0+0/resize/960x540!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fbe%2Fd4%2F114275554b4a8e2980e1a777a97f%2Fdr-cover-photos-2026-03-20t151436-992.png">
@@ -18167,7 +18151,7 @@ freestar.queue.push(function() {
     <a class="PagePromo-commentCount " href="https://apnews.com/article/trump-iran-war-oil-sanctions-troops-contradictions-eb10ac163be642ad4d738bab9f0ae2a6"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">92</span>
+<span class="CommentCount-template">113</span>
 </a>
     
     </div>
@@ -18383,7 +18367,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/iran-war-powers-exit-strategy-congress-trump-781ef538fbb493cf0973c6a89698f36e"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">136</span>
+<span class="CommentCount-template">140</span>
 </a>
         
     </div>
@@ -20472,7 +20456,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/diego-garcia-iran-missiles-what-to-know-d51bd9c3bcd83ee0300288221bff5614"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">19</span>
+<span class="CommentCount-template">21</span>
 </a>
         
     </div>
@@ -20705,6 +20689,12 @@ freestar.queue.push(function() {
         
         
         
+        
+            <a class="PagePromo-commentCount " href="https://apnews.com/article/russia-protest-internet-telegram-war-ukraine-f1c191b4de568cf29e0f94cbf7f80cfc"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
+</svg>
+<span class="CommentCount-template">11</span>
+</a>
         
     </div>
     
@@ -21045,7 +21035,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/tokyo-us-trump-takaichi-japan-pearl-harbor-iran-war-9b3a60e02d384d1e024094e49c1e7f5e"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">293</span>
+<span class="CommentCount-template">303</span>
 </a>
         
     </div>
@@ -22390,7 +22380,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/south-africa-initiation-circumcision-deaths-eada8249280e1096338ca81c5f9cd11b"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">35</span>
+<span class="CommentCount-template">37</span>
 </a>
         
     </div>
@@ -23226,6 +23216,117 @@ freestar.queue.push(function() {
                         >
                         
                                 <div class="PagePromo"
+ data-gtm-region="Detained immigrant children still face concerning conditions at Texas facility, lawyers say"
+ data-gtm-topic="No Value" data-no-media data-tb-region-item  data-posted-date-timestamp="1774129840000" data-updated-date-timestamp="1774130031000">
+   
+    
+        
+            
+
+        
+    
+
+    <div class="PagePromo-content">
+        
+        
+        
+        
+
+        
+    
+        
+
+
+    
+
+
+  
+    
+        <bsp-custom-headline custom-headline="h3" >
+            <h3 class="PagePromo-title">
+                
+                
+                <a class="Link " href="https://apnews.com/article/detained-immigrant-children-dilley-texas-facility-1fb596b4327bb8ce126991b5d7a3e8c5"><span class="PagePromoContentIcons-text">Detained immigrant children still face concerning conditions at Texas facility, lawyers say</span></a>
+            </h3>
+        </bsp-custom-headline>
+    
+      
+
+
+
+
+
+        
+
+
+
+
+        
+        
+
+    
+    
+    
+    
+    <div class="PagePromo-byline-container">
+        
+        
+            
+            
+                <div class="PagePromo-byline">
+                            
+                                <div class="PagePromo-date">
+                                    <bsp-timestamp data-timestamp="1774130031000" data-recent-thresholdinhours="1">
+                                        
+                                        
+                                            <template data-date-tpl-minago><span class="Timestamp-template-now">[deltaMinutes] mins ago</span></template>
+                                            <template data-date-tpl-now><span class="Timestamp-template-now">Now</span></template>
+                                        
+                                        <span data-date>&nbsp;</span>
+                                    </bsp-timestamp>
+                                </div>
+                            
+                        </div>
+            
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+    
+    
+    
+
+
+        
+
+        
+
+
+        
+
+        
+
+        
+    </div>
+
+    
+</div>
+                        
+                    </li>
+                    
+                
+
+                    
+                    <li class="PageList-items-item"
+                        
+                        >
+                        
+                                <div class="PagePromo"
  data-gtm-region="Feds move to dismiss charges against officers accused of falsifying warrant in Breonna Taylor raid"
  data-gtm-topic="No Value" data-no-media data-tb-region-item  data-posted-date-timestamp="1774031056000" data-updated-date-timestamp="1774039875000">
    
@@ -23310,117 +23411,6 @@ freestar.queue.push(function() {
 </svg>
 <span class="CommentCount-template">59</span>
 </a>
-        
-    </div>
-    
-    
-    
-    
-
-
-        
-
-        
-
-
-        
-
-        
-
-        
-    </div>
-
-    
-</div>
-                        
-                    </li>
-                    
-                
-
-                    
-                    <li class="PageList-items-item"
-                        
-                        >
-                        
-                                <div class="PagePromo"
- data-gtm-region="Extreme heat continues to strike Southwest US and even Nebraska needs a cold drink"
- data-gtm-topic="No Value" data-no-media data-tb-region-item  data-posted-date-timestamp="1774119658000" data-updated-date-timestamp="1774119658000">
-   
-    
-        
-            
-
-        
-    
-
-    <div class="PagePromo-content">
-        
-        
-        
-        
-
-        
-    
-        
-
-
-    
-
-
-  
-    
-        <bsp-custom-headline custom-headline="h3" >
-            <h3 class="PagePromo-title">
-                
-                
-                <a class="Link " href="https://apnews.com/article/extreme-heat-arizona-southwest-nebraska-23f776d71f1b46f20cdbe251a61456cb"><span class="PagePromoContentIcons-text">Extreme heat continues to strike Southwest US and even Nebraska needs a cold drink</span></a>
-            </h3>
-        </bsp-custom-headline>
-    
-      
-
-
-
-
-
-        
-
-
-
-
-        
-        
-
-    
-    
-    
-    
-    <div class="PagePromo-byline-container">
-        
-        
-            
-            
-                <div class="PagePromo-byline">
-                            
-                                <div class="PagePromo-date">
-                                    <bsp-timestamp data-timestamp="1774119658000" data-recent-thresholdinhours="1">
-                                        
-                                        
-                                            <template data-date-tpl-minago><span class="Timestamp-template-now">[deltaMinutes] mins ago</span></template>
-                                            <template data-date-tpl-now><span class="Timestamp-template-now">Now</span></template>
-                                        
-                                        <span data-date>&nbsp;</span>
-                                    </bsp-timestamp>
-                                </div>
-                            
-                        </div>
-            
-        
-        
-        
-        
-        
-        
         
     </div>
     
@@ -25919,7 +25909,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/cuba-fuel-embassy-trump-blockade-dd5a11ac933daf258d3f689e7cbb822d"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">157</span>
+<span class="CommentCount-template">165</span>
 </a>
         
     </div>
