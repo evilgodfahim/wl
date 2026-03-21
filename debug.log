@@ -1,22 +1,25 @@
-2026-03-21 08:39:25,522 INFO: Fetching AP News world page: https://apnews.com/world-news
-2026-03-21 08:39:25,522 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-21 08:39:25,523 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-21 08:41:25,951 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-03-21 08:41:25,951 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774082365524, "endTimestamp": 1774082485949, "version": "3.4.6"}
-2026-03-21 08:41:25,951 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-03-21 08:41:27,951 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-21 08:41:27,952 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-21 08:43:28,053 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-03-21 08:43:28,053 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774082487954, "endTimestamp": 1774082608052, "version": "3.4.6"}
-2026-03-21 08:43:28,053 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
-2026-03-21 08:43:32,054 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-03-21 08:43:32,108 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
-2026-03-21 08:43:32,163 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
-2026-03-21 08:43:32,165 DEBUG: Saved HTML to apnews.html (1296908 bytes)
-2026-03-21 08:43:32,553 INFO: AP News primary selector matched 89 cards.
-2026-03-21 08:43:32,553 INFO: Total unique articles to process: 86
-2026-03-21 08:43:32,557 INFO: Loaded existing XML: pau.xml
-2026-03-21 08:43:32,557 INFO: Existing items in feed: 500
-2026-03-21 08:43:32,557 INFO: Added 0 new articles to main feed
-2026-03-21 08:43:32,563 INFO: Done! Main feed saved to pau.xml
-2026-03-21 08:43:32,563 INFO: Debug log saved to debug.log
+2026-03-21 09:37:11,099 INFO: Fetching AP News world page: https://apnews.com/world-news
+2026-03-21 09:37:11,099 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-21 09:37:11,101 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-21 09:39:11,513 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-21 09:39:11,514 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774085831102, "endTimestamp": 1774085951512, "version": "3.4.6"}
+2026-03-21 09:39:11,514 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-03-21 09:39:13,514 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-21 09:39:13,515 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-21 09:41:13,590 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-21 09:41:13,590 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774085953516, "endTimestamp": 1774086073589, "version": "3.4.6"}
+2026-03-21 09:41:13,591 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-03-21 09:41:17,591 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-03-21 09:41:17,759 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
+2026-03-21 09:41:17,806 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-03-21 09:41:17,809 DEBUG: Saved HTML to apnews.html (1294193 bytes)
+2026-03-21 09:41:18,169 INFO: AP News primary selector matched 88 cards.
+2026-03-21 09:41:18,169 INFO: Total unique articles to process: 86
+2026-03-21 09:41:18,173 INFO: Loaded existing XML: pau.xml
+2026-03-21 09:41:18,174 INFO: Existing items in feed: 500
+2026-03-21 09:41:18,174 DEBUG: Added: https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e
+2026-03-21 09:41:18,174 DEBUG: Added: https://apnews.com/article/peace-talks-ukraine-russia-zelenskyy-drones-861a4bc4ebccd55aa00715917d060036
+2026-03-21 09:41:18,174 INFO: Added 2 new articles to main feed
+2026-03-21 09:41:18,174 INFO: Trimmed feed to 500 items
+2026-03-21 09:41:18,180 INFO: Done! Main feed saved to pau.xml
+2026-03-21 09:41:18,180 INFO: Debug log saved to debug.log
