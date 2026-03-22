@@ -1395,64 +1395,31 @@ freestar.queue.push(function() {
 <script>
     window['BSP-app'] = false;
     window['BSP-view-mode'] = false;
-</script>
-<meta name="permutive-dataLayer" content="{
-  &quot;category&quot; : &quot;World News&quot;,
-  &quot;dfp_kv&quot; : {
-    &quot;page_type&quot; : &quot;Hub&quot;
-  },
-  &quot;tags&quot; : [ &quot;World News&quot; ],
-  &quot;page_type&quot; : &quot;Hub&quot;,
-  &quot;publication_date&quot; : &quot;2023-06-05T21:52:09.000Z&quot;,
-  &quot;item_id&quot; : &quot;bb2d2c5f441a452cb24bb511a2ab5eea-subject&quot;,
-  &quot;headline&quot; : null,
-  &quot;authors&quot; : [ ],
-  &quot;proximic_video_segments&quot; : [ ],
-  &quot;proximic_video_source_url&quot; : &quot;&quot;
-}"><script>
-    let dataValue = undefined;
-    (function () {
-        dataValue = document.head.querySelector('meta[name="permutive-dataLayer"]')?.content;
-        if (dataValue) {
-            dataValue = JSON.parse(dataValue);
-        }
-    })();
-    if (!dataValue) {
-        dataValue = {}
-    }
+</script><link rel="preconnect" href="https://connect.facebook.net">
+<script>
+  window.fbAsyncInit = function() {
+      FB.init({
+          
+              appId : '870613919693099',
+          
+          xfbml : true,
+          version : 'v2.9'
+      });
+  };
 
-    !function (e, o, n, i) { if (!e) { e = e || {}, window.permutive = e, e.q = []; var t = function () { return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, function (e) { return (e ^ (window.crypto || window.msCrypto).getRandomValues(new Uint8Array(1))[0] & 15 >> e / 4).toString(16) }) }; e.config = i || {}, e.config.apiKey = o, e.config.workspaceId = n, e.config.environment = e.config.environment || "production", (window.crypto || window.msCrypto) && (e.config.viewId = t()); for (var g = ["addon", "identify", "track", "trigger", "query", "segment", "segments", "ready", "on", "once", "user", "consent"], r = 0; r < g.length; r++) { var w = g[r]; e[w] = function (o) { return function () { var n = Array.prototype.slice.call(arguments, 0); e.q.push({ functionName: o, arguments: n }) } }(w) } } }(window.permutive, "8dce728a-278c-4ac4-9b6b-884b0190015b", "507b28fb-2ef1-4c34-8bda-ba32030bb199", { "consentRequired": true });
-    window.googletag = window.googletag || {}, window.googletag.cmd = window.googletag.cmd || [], window.googletag.cmd.push(function () {
-        if (0 === window.googletag.pubads().getTargeting("permutive").length) {
-            var e = window.localStorage.getItem("_pdfps");
-            window.googletag.pubads().setTargeting("permutive", e ? JSON.parse(e) : []);
-            var o = window.localStorage.getItem("permutive-id");
-            o && (window.googletag.pubads().setTargeting("puid", o), window.googletag.pubads().setTargeting("ptime", Date.now().toString())), window.permutive.config.viewId && window.googletag.pubads().setTargeting("prmtvvid", window.permutive.config.viewId), window.permutive.config.workspaceId && window.googletag.pubads().setTargeting("prmtvwid", window.permutive.config.workspaceId)
-        }
-    });
-    permutive.addon('web', {
-        "page": {
-            "classifications_watson": {
-                "categories": "$alchemy_taxonomy",
-                "concepts": "$alchemy_concepts",
-                "emotion": "$alchemy_document_emotion",
-                "entities": "$alchemy_entities",
-                "keywords": "$alchemy_keywords",
-                "sentiment": "$alchemy_document_sentiment",
-                "taxonomy_labels": "$alchemy_taxonomy_labels"
-            },
-            "publishedAt": dataValue.publication_date, // "2021-11-09T16:20:05.063Z"
-            "title": dataValue.headline, // "text"
-            "page_type": dataValue.page_type, // "text"
-            "category": dataValue.category, // "text"
-            "authors": dataValue.authors, // ["list", "of", "strings"]
-            "tags": dataValue.tags // ["list", "of", "strings"]
-        },
-            "client": {
-                "type": "web"
-            }
-    });
-</script><script type="text/javascript" id="freestar-head-data">
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<meta
+        name="vf:container_id"
+        content="bb2d2c5f441a452cb24bb511a2ab5eea-subject"
+/>
+<script type="text/javascript" id="freestar-head-data">
   (function () {
     'use strict'; // Add strict mode
 
@@ -1531,31 +1498,7 @@ freestar.queue.push(function() {
       console.error("Freestar init error:", scriptErr.message);
     }
   })();
-</script><meta
-        name="vf:container_id"
-        content="bb2d2c5f441a452cb24bb511a2ab5eea-subject"
-/>
-<link rel="preconnect" href="https://connect.facebook.net">
-<script>
-  window.fbAsyncInit = function() {
-      FB.init({
-          
-              appId : '870613919693099',
-          
-          xfbml : true,
-          version : 'v2.9'
-      });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-<script type="text/javascript" src="https://s.ntv.io/serve/load.js" async id="nativo-head"></script>
+</script><script type="text/javascript" src="https://s.ntv.io/serve/load.js" async id="nativo-head"></script>
 
 <script>
     window.ntvConfig = window.ntvConfig || {};
@@ -1564,6 +1507,63 @@ freestar.queue.push(function() {
     if (segs) {
         window.ntvConfig.keyValues.permutive = JSON.parse(segs).join(",");
     }
+</script>
+<meta name="permutive-dataLayer" content="{
+  &quot;category&quot; : &quot;World News&quot;,
+  &quot;dfp_kv&quot; : {
+    &quot;page_type&quot; : &quot;Hub&quot;
+  },
+  &quot;tags&quot; : [ &quot;World News&quot; ],
+  &quot;page_type&quot; : &quot;Hub&quot;,
+  &quot;publication_date&quot; : &quot;2023-06-05T21:52:09.000Z&quot;,
+  &quot;item_id&quot; : &quot;bb2d2c5f441a452cb24bb511a2ab5eea-subject&quot;,
+  &quot;headline&quot; : null,
+  &quot;authors&quot; : [ ],
+  &quot;proximic_video_segments&quot; : [ ],
+  &quot;proximic_video_source_url&quot; : &quot;&quot;
+}"><script>
+    let dataValue = undefined;
+    (function () {
+        dataValue = document.head.querySelector('meta[name="permutive-dataLayer"]')?.content;
+        if (dataValue) {
+            dataValue = JSON.parse(dataValue);
+        }
+    })();
+    if (!dataValue) {
+        dataValue = {}
+    }
+
+    !function (e, o, n, i) { if (!e) { e = e || {}, window.permutive = e, e.q = []; var t = function () { return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, function (e) { return (e ^ (window.crypto || window.msCrypto).getRandomValues(new Uint8Array(1))[0] & 15 >> e / 4).toString(16) }) }; e.config = i || {}, e.config.apiKey = o, e.config.workspaceId = n, e.config.environment = e.config.environment || "production", (window.crypto || window.msCrypto) && (e.config.viewId = t()); for (var g = ["addon", "identify", "track", "trigger", "query", "segment", "segments", "ready", "on", "once", "user", "consent"], r = 0; r < g.length; r++) { var w = g[r]; e[w] = function (o) { return function () { var n = Array.prototype.slice.call(arguments, 0); e.q.push({ functionName: o, arguments: n }) } }(w) } } }(window.permutive, "8dce728a-278c-4ac4-9b6b-884b0190015b", "507b28fb-2ef1-4c34-8bda-ba32030bb199", { "consentRequired": true });
+    window.googletag = window.googletag || {}, window.googletag.cmd = window.googletag.cmd || [], window.googletag.cmd.push(function () {
+        if (0 === window.googletag.pubads().getTargeting("permutive").length) {
+            var e = window.localStorage.getItem("_pdfps");
+            window.googletag.pubads().setTargeting("permutive", e ? JSON.parse(e) : []);
+            var o = window.localStorage.getItem("permutive-id");
+            o && (window.googletag.pubads().setTargeting("puid", o), window.googletag.pubads().setTargeting("ptime", Date.now().toString())), window.permutive.config.viewId && window.googletag.pubads().setTargeting("prmtvvid", window.permutive.config.viewId), window.permutive.config.workspaceId && window.googletag.pubads().setTargeting("prmtvwid", window.permutive.config.workspaceId)
+        }
+    });
+    permutive.addon('web', {
+        "page": {
+            "classifications_watson": {
+                "categories": "$alchemy_taxonomy",
+                "concepts": "$alchemy_concepts",
+                "emotion": "$alchemy_document_emotion",
+                "entities": "$alchemy_entities",
+                "keywords": "$alchemy_keywords",
+                "sentiment": "$alchemy_document_sentiment",
+                "taxonomy_labels": "$alchemy_taxonomy_labels"
+            },
+            "publishedAt": dataValue.publication_date, // "2021-11-09T16:20:05.063Z"
+            "title": dataValue.headline, // "text"
+            "page_type": dataValue.page_type, // "text"
+            "category": dataValue.category, // "text"
+            "authors": dataValue.authors, // ["list", "of", "strings"]
+            "tags": dataValue.tags // ["list", "of", "strings"]
+        },
+            "client": {
+                "type": "web"
+            }
+    });
 </script><script id="taboola-newsroom-head">
     window._newsroom=window._newsroom||[];window._newsroom.push({pageTemplate:'World News'});
     window._newsroom.push({pageDashboard:'World News'});
@@ -2268,12 +2268,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran strikes near Israeli nuclear research center as Trump threatens attacks on Iranian power plants</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/tokyo-us-trump-takaichi-japan-pearl-harbor-iran-war-9b3a60e02d384d1e024094e49c1e7f5e'>Surprise, embarrassment, unease in Japan after Trump uses Pearl Harbor to defend Iran war</a>
                 </li>
                 
@@ -2285,9 +2279,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
-                
-                
+                <li>
+                    <a href='https://apnews.com/article/israel-iran-netanyahu-election-72ca7119827c289e127d6464119d3761'>As Netanyahu prepares for elections, his foes in Iran and Lebanon could get a vote</a>
+                </li>
                 
                 
             </ul>
@@ -2645,6 +2639,8 @@ freestar.queue.push(function() {
                 
                 
                 
+                
+                
             </ul>
             
         </div>
@@ -2825,12 +2821,6 @@ freestar.queue.push(function() {
             <div class='Subheader-Title'>TOP STORIES</div>
             
             <ul>
-                
-                
-                <li>
-                    <a href='https://apnews.com/article/iran-chips-semiconductor-helium-exports-war-fe934332f7c83bb722ca87db22cd57d0'>Iran war halts Qatar helium output, threatening global tech supply chains</a>
-                </li>
-                
                 
                 
                 <li>
@@ -5896,12 +5886,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran strikes near Israeli nuclear research center as Trump threatens attacks on Iranian power plants</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/tokyo-us-trump-takaichi-japan-pearl-harbor-iran-war-9b3a60e02d384d1e024094e49c1e7f5e'>Surprise, embarrassment, unease in Japan after Trump uses Pearl Harbor to defend Iran war</a>
                 </li>
                 
@@ -5913,9 +5897,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
-                
-                
+                <li>
+                    <a href='https://apnews.com/article/israel-iran-netanyahu-election-72ca7119827c289e127d6464119d3761'>As Netanyahu prepares for elections, his foes in Iran and Lebanon could get a vote</a>
+                </li>
                 
                 
             </ul>
@@ -6464,6 +6448,8 @@ freestar.queue.push(function() {
                 
                 
                 
+                
+                
             </ul>
             
         </div>
@@ -6738,12 +6724,6 @@ freestar.queue.push(function() {
             <div class='Subheader-Title'>TOP STORIES</div>
             
             <ul>
-                
-                
-                <li>
-                    <a href='https://apnews.com/article/iran-chips-semiconductor-helium-exports-war-fe934332f7c83bb722ca87db22cd57d0'>Iran war halts Qatar helium output, threatening global tech supply chains</a>
-                </li>
-                
                 
                 
                 <li>
@@ -8983,12 +8963,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran strikes near Israeli nuclear research center as Trump threatens attacks on Iranian power plants</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/tokyo-us-trump-takaichi-japan-pearl-harbor-iran-war-9b3a60e02d384d1e024094e49c1e7f5e'>Surprise, embarrassment, unease in Japan after Trump uses Pearl Harbor to defend Iran war</a>
                 </li>
                 
@@ -9000,9 +8974,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
-                
-                
+                <li>
+                    <a href='https://apnews.com/article/israel-iran-netanyahu-election-72ca7119827c289e127d6464119d3761'>As Netanyahu prepares for elections, his foes in Iran and Lebanon could get a vote</a>
+                </li>
                 
                 
             </ul>
@@ -9360,6 +9334,8 @@ freestar.queue.push(function() {
                 
                 
                 
+                
+                
             </ul>
             
         </div>
@@ -9540,12 +9516,6 @@ freestar.queue.push(function() {
             <div class='Subheader-Title'>TOP STORIES</div>
             
             <ul>
-                
-                
-                <li>
-                    <a href='https://apnews.com/article/iran-chips-semiconductor-helium-exports-war-fe934332f7c83bb722ca87db22cd57d0'>Iran war halts Qatar helium output, threatening global tech supply chains</a>
-                </li>
-                
                 
                 
                 <li>
@@ -12605,12 +12575,6 @@ freestar.queue.push(function() {
                 
                 
                 <li>
-                    <a href='https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e'>Iran strikes near Israeli nuclear research center as Trump threatens attacks on Iranian power plants</a>
-                </li>
-                
-                
-                
-                <li>
                     <a href='https://apnews.com/article/tokyo-us-trump-takaichi-japan-pearl-harbor-iran-war-9b3a60e02d384d1e024094e49c1e7f5e'>Surprise, embarrassment, unease in Japan after Trump uses Pearl Harbor to defend Iran war</a>
                 </li>
                 
@@ -12622,9 +12586,9 @@ freestar.queue.push(function() {
                 
                 
                 
-                
-                
-                
+                <li>
+                    <a href='https://apnews.com/article/israel-iran-netanyahu-election-72ca7119827c289e127d6464119d3761'>As Netanyahu prepares for elections, his foes in Iran and Lebanon could get a vote</a>
+                </li>
                 
                 
             </ul>
@@ -13173,6 +13137,8 @@ freestar.queue.push(function() {
                 
                 
                 
+                
+                
             </ul>
             
         </div>
@@ -13447,12 +13413,6 @@ freestar.queue.push(function() {
             <div class='Subheader-Title'>TOP STORIES</div>
             
             <ul>
-                
-                
-                <li>
-                    <a href='https://apnews.com/article/iran-chips-semiconductor-helium-exports-war-fe934332f7c83bb722ca87db22cd57d0'>Iran war halts Qatar helium output, threatening global tech supply chains</a>
-                </li>
-                
                 
                 
                 <li>
@@ -15789,7 +15749,7 @@ freestar.queue.push(function() {
                     
                         <div class="PagePromo"
  data-gtm-region="Trump threatens attacks on Iranian power plants if Tehran fails to open the Strait of Hormuz"
- data-gtm-topic="No Value" data-tb-region-item  data-posted-date-timestamp="1774155190000" data-updated-date-timestamp="1774169136000">
+ data-gtm-topic="No Value" data-tb-region-item  data-posted-date-timestamp="1774155190000" data-updated-date-timestamp="1774172202000">
    
     
         
@@ -15923,7 +15883,7 @@ freestar.queue.push(function() {
                 <div class="PagePromo-byline">
                             
                                 <div class="PagePromo-date">
-                                    <bsp-timestamp data-timestamp="1774169136000" data-recent-thresholdinhours="1">
+                                    <bsp-timestamp data-timestamp="1774172202000" data-recent-thresholdinhours="1">
                                         
                                         
                                             <template data-date-tpl-minago><span class="Timestamp-template-now">[deltaMinutes] mins ago</span></template>
@@ -15945,7 +15905,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-22-2026-16cc60862529b873666ce4c1f6529d78"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">26</span>
+<span class="CommentCount-template">33</span>
 </a>
         
     </div>
@@ -17383,7 +17343,7 @@ freestar.queue.push(function() {
         
         
         data-is-force-vpaid-controls>
-        <video class="jwvideoplayer" id="player-zZglCBUP-357665" data-video-pauseads="true" data-media-id="zZglCBUP" data-player="NkmgitGd" data-embed="default"></video>
+        <video class="jwvideoplayer" id="player-zZglCBUP-966728" data-video-pauseads="true" data-media-id="zZglCBUP" data-player="NkmgitGd" data-embed="default"></video>
         
             
                 <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="https://dims.apnews.com/dims4/default/a6266a2/2147483647/strip/true/crop/960x540+0+0/resize/960x540!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fbe%2Fd4%2F114275554b4a8e2980e1a777a97f%2Fdr-cover-photos-2026-03-20t151436-992.png">
@@ -18656,7 +18616,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/iran-war-powers-exit-strategy-congress-trump-781ef538fbb493cf0973c6a89698f36e"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">249</span>
+<span class="CommentCount-template">250</span>
 </a>
         
     </div>
@@ -21102,7 +21062,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/tokyo-us-trump-takaichi-japan-pearl-harbor-iran-war-9b3a60e02d384d1e024094e49c1e7f5e"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">417</span>
+<span class="CommentCount-template">418</span>
 </a>
         
     </div>
@@ -22426,7 +22386,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/south-africa-initiation-circumcision-deaths-eada8249280e1096338ca81c5f9cd11b"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">38</span>
+<span class="CommentCount-template">39</span>
 </a>
         
     </div>
@@ -23116,7 +23076,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/heat-southwest-warming-climate-disasters-extreme-deadly-0c3ef415241d3275fd9c260d57ccc3e5"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">50</span>
+<span class="CommentCount-template">52</span>
 </a>
         
     </div>
@@ -26858,7 +26818,7 @@ freestar.queue.push(function() {
             <a class="PagePromo-commentCount " href="https://apnews.com/article/iran-us-israel-trump-lebanon-march-21-2026-260bac76e5554ff31aaf5a3a30c92a2e"><svg class="CommentCount-icon" xmlns="http://www.w3.org/2000/svg" fill="none">
     <path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" />
 </svg>
-<span class="CommentCount-template">653</span>
+<span class="CommentCount-template">663</span>
 </a>
         
     </div>
@@ -29920,7 +29880,7 @@ freestar.queue.push(function() {
     
         <div class="PageList-nextPage" data-module data-gtm-region="Load More Button" data-event-name="load_more" data-list-loadmore-pagination>
             <span class="PageList-nextPage-loading"></span>
-            <a class="Button" data-style="pill" href="?p=2" rel="nofollow">Load More</a>
+            <a class="Button" data-style="pill" href="?output=rss&amp;p=2" rel="nofollow">Load More</a>
         </div>
     
 
