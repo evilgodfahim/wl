@@ -1,25 +1,22 @@
-2026-03-23 14:38:49,902 INFO: Fetching AP News world page: https://apnews.com/world-news
-2026-03-23 14:38:49,903 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-23 14:38:49,904 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-23 14:40:50,334 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-03-23 14:40:50,335 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774276729905, "endTimestamp": 1774276850333, "version": "3.4.6"}
-2026-03-23 14:40:50,335 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-03-23 14:40:52,335 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-23 14:40:52,336 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-23 14:42:52,440 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-03-23 14:42:52,440 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774276852337, "endTimestamp": 1774276972439, "version": "3.4.6"}
-2026-03-23 14:42:52,440 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
-2026-03-23 14:42:56,442 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-03-23 14:42:56,515 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
-2026-03-23 14:42:56,560 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
-2026-03-23 14:42:56,564 DEBUG: Saved HTML to apnews.html (1288219 bytes)
-2026-03-23 14:42:56,947 INFO: AP News primary selector matched 88 cards.
-2026-03-23 14:42:56,948 INFO: Total unique articles to process: 87
-2026-03-23 14:42:56,951 INFO: Loaded existing XML: pau.xml
-2026-03-23 14:42:56,951 INFO: Existing items in feed: 500
-2026-03-23 14:42:56,951 DEBUG: Added: https://apnews.com/article/europe-mercosur-brussels-south-america-trade-1eb86fde1637fb4e89c3d2c2a031f62b
-2026-03-23 14:42:56,951 DEBUG: Added: https://apnews.com/article/puerto-rico-boat-drugs-seized-8b7e5f5d5f9c5903235a3385404fbff2
-2026-03-23 14:42:56,951 INFO: Added 2 new articles to main feed
-2026-03-23 14:42:56,952 INFO: Trimmed feed to 500 items
-2026-03-23 14:42:56,957 INFO: Done! Main feed saved to pau.xml
-2026-03-23 14:42:56,957 INFO: Debug log saved to debug.log
+2026-03-23 16:03:01,585 INFO: Fetching AP News world page: https://apnews.com/world-news
+2026-03-23 16:03:01,585 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-23 16:03:01,586 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-23 16:04:10,038 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1624999
+2026-03-23 16:04:10,050 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-03-23 16:04:10,054 DEBUG: Saved HTML to apnews.html (1546883 bytes)
+2026-03-23 16:04:10,482 INFO: AP News primary selector matched 88 cards.
+2026-03-23 16:04:10,482 INFO: Total unique articles to process: 87
+2026-03-23 16:04:10,485 INFO: Loaded existing XML: pau.xml
+2026-03-23 16:04:10,486 INFO: Existing items in feed: 500
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/article/orban-opponent-calls-alleged-russian-backchannel-treason-014af62a374215d3feceec5f9b2db7ad
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/live/iran-war-israel-trump-03-22-2026
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/article/italy-referendum-justice-meloni-4d2092517ce3fff84b35a99c81b75fff
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/article/supreme-court-trump-elections-mailed-ballots-a516e60209e68642f4d74947fa06017f
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/photo-gallery/airports-tsa-federal-immigration-agents-ice-police-b2cefb8141675e315243e97caed351d4
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/article/nigeria-us-drones-reaper-attacks-boko-haram-d6ddd0d779b9411a1fea34e30802209f
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/article/nigeria-deadly-explosion-kwara-muslim-militants-c592a8910b015fc58da24c42793cb595
+2026-03-23 16:04:10,486 DEBUG: Added: https://apnews.com/article/south-africa-khoi-san-remains-reburials-museums-e24fdaf956357d9325c448cc0b5d363d
+2026-03-23 16:04:10,486 INFO: Added 8 new articles to main feed
+2026-03-23 16:04:10,487 INFO: Trimmed feed to 500 items
+2026-03-23 16:04:10,492 INFO: Done! Main feed saved to pau.xml
+2026-03-23 16:04:10,492 INFO: Debug log saved to debug.log
