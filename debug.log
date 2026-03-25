@@ -1,19 +1,31 @@
-2026-03-25 16:42:42,650 INFO: Fetching AP News world page: https://apnews.com/world-news
-2026-03-25 16:42:42,650 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-25 16:42:42,652 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-25 16:43:14,914 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1637680
-2026-03-25 16:43:14,926 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-03-25 16:43:14,930 DEBUG: Saved HTML to apnews.html (1559727 bytes)
-2026-03-25 16:43:15,355 INFO: AP News primary selector matched 88 cards.
-2026-03-25 16:43:15,356 INFO: Total unique articles to process: 84
-2026-03-25 16:43:15,359 INFO: Loaded existing XML: pau.xml
-2026-03-25 16:43:15,359 INFO: Existing items in feed: 500
-2026-03-25 16:43:15,359 DEBUG: Added: https://apnews.com/article/airport-wait-times-shutdown-dhs-congress-tsa-391cbd731bed2e8433ab7f1a96ca9663
-2026-03-25 16:43:15,359 DEBUG: Added: https://apnews.com/article/va-museum-schiaparelli-fashion-exhibition-2b509cd0f3df9c7dc19bcc6b57dad220
-2026-03-25 16:43:15,359 DEBUG: Added: https://apnews.com/article/air-canada-ceo-french-crash-carney-laguardia-944ea1e6a7a6c3ee0ce47b6a1b816f86
-2026-03-25 16:43:15,359 DEBUG: Added: https://apnews.com/article/uk-political-donations-cryptocurrency-ban-4deae8e71d664a042363fa79d617a2f3
-2026-03-25 16:43:15,360 DEBUG: Added: https://apnews.com/article/mexico-migrants-caravan-tapachula-us-2f3fdc43b431dccdc1f7c01ac2bafc3f
-2026-03-25 16:43:15,360 INFO: Added 5 new articles to main feed
-2026-03-25 16:43:15,360 INFO: Trimmed feed to 500 items
-2026-03-25 16:43:15,365 INFO: Done! Main feed saved to pau.xml
-2026-03-25 16:43:15,365 INFO: Debug log saved to debug.log
+2026-03-25 18:01:16,708 INFO: Fetching AP News world page: https://apnews.com/world-news
+2026-03-25 18:01:16,708 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-25 18:01:16,709 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-25 18:03:17,136 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-25 18:03:17,136 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774461676710, "endTimestamp": 1774461797135, "version": "3.4.6"}
+2026-03-25 18:03:17,136 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-03-25 18:03:19,137 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-25 18:03:19,138 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-25 18:04:43,221 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1634964
+2026-03-25 18:04:43,234 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-03-25 18:04:43,238 DEBUG: Saved HTML to apnews.html (1556380 bytes)
+2026-03-25 18:04:43,682 INFO: AP News primary selector matched 88 cards.
+2026-03-25 18:04:43,683 INFO: Total unique articles to process: 86
+2026-03-25 18:04:43,686 INFO: Loaded existing XML: pau.xml
+2026-03-25 18:04:43,686 INFO: Existing items in feed: 500
+2026-03-25 18:04:43,686 DEBUG: Added: https://apnews.com/article/brazil-bolsonaro-discharged-hospital-pneumonia-95ef5be70f9b035bfea675ab91746756
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/un-vote-africa-slavery-trafficking-reparations-a7497cdb7d24a89eedb50beb683adc0f
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/live/iran-war-israel-trump-03-25-2026
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/venezuela-oil-delcy-rodriguez-investors-trump-maduro-4f3b38841ca46910e35cf3208b312977
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/mexico-cuba-doctors-trump-33b9459c0dabdc6d8ef50cf782096e98
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/afcon-title-senegal-morocco-cas-appeal-b9606694538c2fd6077eae3e9c87854a
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/artificial-intelligence-deepfake-lancaster-ai-5eccb10ae81244fe475a32867f9ca2c9
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/trump-china-trip-iran-war-401c4c33a01b2acce72e96eb8058f8cc
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/womens-nonfiction-book-prize-finalists-66e384b12ec469ff07120cabcceb256b
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/photo-gallery/photos-iran-war-trump-travel-delays-cuba-blackouts-dc57b424c0eda46cec12e8bea7515011
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/social-media-addiction-trial-la-5e54075023d837ccdc76c4ca512e925d
+2026-03-25 18:04:43,687 DEBUG: Added: https://apnews.com/article/nigeria-kebbi-attack-militants-giron-masa-236fa65e7cd1531a465aadb6fcee46e4
+2026-03-25 18:04:43,687 INFO: Added 12 new articles to main feed
+2026-03-25 18:04:43,687 INFO: Trimmed feed to 500 items
+2026-03-25 18:04:43,695 INFO: Done! Main feed saved to pau.xml
+2026-03-25 18:04:43,695 INFO: Debug log saved to debug.log
