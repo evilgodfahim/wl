@@ -1,17 +1,26 @@
-2026-03-26 16:14:32,945 INFO: Fetching AP News world page: https://apnews.com/world-news
-2026-03-26 16:14:32,945 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-26 16:14:32,946 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-26 16:14:40,636 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1616084
-2026-03-26 16:14:40,647 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-03-26 16:14:40,650 DEBUG: Saved HTML to apnews.html (1539135 bytes)
-2026-03-26 16:14:41,005 INFO: AP News primary selector matched 86 cards.
-2026-03-26 16:14:41,005 INFO: Total unique articles to process: 84
-2026-03-26 16:14:41,009 INFO: Loaded existing XML: pau.xml
-2026-03-26 16:14:41,009 INFO: Existing items in feed: 500
-2026-03-26 16:14:41,009 DEBUG: Added: https://apnews.com/video/white-house-says-trump-prepared-to-unleash-hell-on-iran-while-denying-ceasefire-talks-are-stalled-ace5ea050fb44c378364827f84423d14
-2026-03-26 16:14:41,009 DEBUG: Added: https://apnews.com/article/kenya-kericho-mass-grave-915b6f8e7a870d54718888eec12e3e3d
-2026-03-26 16:14:41,009 DEBUG: Added: https://apnews.com/article/cherry-blossoms-washington-japan-a6b183d5907bbfb6e0c4d816bfc88966
-2026-03-26 16:14:41,009 INFO: Added 3 new articles to main feed
-2026-03-26 16:14:41,009 INFO: Trimmed feed to 500 items
-2026-03-26 16:14:41,014 INFO: Done! Main feed saved to pau.xml
-2026-03-26 16:14:41,014 INFO: Debug log saved to debug.log
+2026-03-26 17:36:27,937 INFO: Fetching AP News world page: https://apnews.com/world-news
+2026-03-26 17:36:27,937 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-26 17:36:27,938 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-26 17:38:28,353 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-26 17:38:28,354 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774546587940, "endTimestamp": 1774546708352, "version": "3.4.6"}
+2026-03-26 17:38:28,354 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-03-26 17:38:30,354 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-26 17:38:30,355 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-26 17:39:22,017 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1645184
+2026-03-26 17:39:22,027 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-03-26 17:39:22,030 DEBUG: Saved HTML to apnews.html (1566779 bytes)
+2026-03-26 17:39:22,433 INFO: AP News primary selector matched 87 cards.
+2026-03-26 17:39:22,433 INFO: Total unique articles to process: 86
+2026-03-26 17:39:22,436 INFO: Loaded existing XML: pau.xml
+2026-03-26 17:39:22,436 INFO: Existing items in feed: 500
+2026-03-26 17:39:22,436 DEBUG: Added: https://apnews.com/article/africa-un-slavery-reparations-ghana-e957e864e402e6ce16fd878b7ec89653
+2026-03-26 17:39:22,437 DEBUG: Added: https://apnews.com/article/iran-war-environmental-destruction-health-risks-8a2fd4fa7e2f96686bc6559e2dade93c
+2026-03-26 17:39:22,437 DEBUG: Added: https://apnews.com/article/explosive-macdill-air-force-base-china-a43f420596cda346d15ab32ae5bbf6a7
+2026-03-26 17:39:22,437 DEBUG: Added: https://apnews.com/article/donald-trump-suburbs-no-kings-resistance-7f42979bbd254f3e4e5d79ec252e0cc2
+2026-03-26 17:39:22,437 DEBUG: Added: https://apnews.com/article/laguardia-airport-plane-fire-truck-crash-new-york-b32cfa572be79c830224dca1a370310a
+2026-03-26 17:39:22,437 DEBUG: Added: https://apnews.com/article/two-prosecutors-movie-review-4ecc1a644032395fe84096f5e1ec0538
+2026-03-26 17:39:22,437 DEBUG: Added: https://apnews.com/article/treasury-trump-belarus-sanctions-lukashenko-farmers-fertilizer-48a742dbf2e4176a04f308d3020c0b4a
+2026-03-26 17:39:22,437 INFO: Added 7 new articles to main feed
+2026-03-26 17:39:22,437 INFO: Trimmed feed to 500 items
+2026-03-26 17:39:22,443 INFO: Done! Main feed saved to pau.xml
+2026-03-26 17:39:22,443 INFO: Debug log saved to debug.log
