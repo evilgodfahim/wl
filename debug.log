@@ -1,18 +1,22 @@
-2026-03-27 05:11:34,842 INFO: Fetching AP News world page: https://apnews.com/world-news
-2026-03-27 05:11:34,843 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-27 05:11:34,844 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-27 05:11:44,623 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1614634
-2026-03-27 05:11:44,635 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-03-27 05:11:44,638 DEBUG: Saved HTML to apnews.html (1538370 bytes)
-2026-03-27 05:11:45,181 INFO: AP News primary selector matched 86 cards.
-2026-03-27 05:11:45,181 INFO: Total unique articles to process: 84
-2026-03-27 05:11:45,184 INFO: Loaded existing XML: pau.xml
-2026-03-27 05:11:45,184 INFO: Existing items in feed: 500
-2026-03-27 05:11:45,184 DEBUG: Added: https://apnews.com/article/nepal-new-prime-minister-oath-astrology-19047838815c73ad4ac21d46c04fc24b
-2026-03-27 05:11:45,184 DEBUG: Added: https://apnews.com/article/g7-france-rubio-iran-war-allies-trump-63a8ee21dcca5ecce0c6b1cb900a8c16
-2026-03-27 05:11:45,184 DEBUG: Added: https://apnews.com/photo-gallery/colombia-plane-crash-caravan-mexico-photos-0bfbb1a459bfc2e5fd88455f217c6f9d
-2026-03-27 05:11:45,185 DEBUG: Added: https://apnews.com/article/stock-markets-trump-iran-war-894e6adadff8cb4be04b05fce819461a
-2026-03-27 05:11:45,185 INFO: Added 4 new articles to main feed
-2026-03-27 05:11:45,185 INFO: Trimmed feed to 500 items
-2026-03-27 05:11:45,191 INFO: Done! Main feed saved to pau.xml
-2026-03-27 05:11:45,191 INFO: Debug log saved to debug.log
+2026-03-27 06:46:41,612 INFO: Fetching AP News world page: https://apnews.com/world-news
+2026-03-27 06:46:41,613 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-27 06:46:41,614 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-27 06:48:42,045 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-27 06:48:42,046 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774594001615, "endTimestamp": 1774594122044, "version": "3.4.6"}
+2026-03-27 06:48:42,046 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-03-27 06:48:44,046 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-27 06:48:44,047 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-27 06:49:28,765 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1641921
+2026-03-27 06:49:28,776 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-03-27 06:49:28,778 DEBUG: Saved HTML to apnews.html (1563538 bytes)
+2026-03-27 06:49:29,209 INFO: AP News primary selector matched 87 cards.
+2026-03-27 06:49:29,209 INFO: Total unique articles to process: 85
+2026-03-27 06:49:29,212 INFO: Loaded existing XML: pau.xml
+2026-03-27 06:49:29,213 INFO: Existing items in feed: 500
+2026-03-27 06:49:29,213 DEBUG: Added: https://apnews.com/article/iran-us-israel-trump-lebanon-march-27-2026-195444c54cbb7545d0a77f8ffbc0e4c0
+2026-03-27 06:49:29,213 DEBUG: Added: https://apnews.com/article/somalia-hungry-children-unicef-iran-war-6783d2d4b41318f88e3d21ae6fb95973
+2026-03-27 06:49:29,213 DEBUG: Added: https://apnews.com/article/vatican-monaco-pope-albert-prince-e69085c49a37833ea183ea3cb8f18e47
+2026-03-27 06:49:29,213 INFO: Added 3 new articles to main feed
+2026-03-27 06:49:29,213 INFO: Trimmed feed to 500 items
+2026-03-27 06:49:29,218 INFO: Done! Main feed saved to pau.xml
+2026-03-27 06:49:29,218 INFO: Debug log saved to debug.log
