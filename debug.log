@@ -1,13 +1,29 @@
-2026-03-27 14:56:00,980 INFO: Fetching AP News world page: https://apnews.com/world-news
-2026-03-27 14:56:00,980 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-27 14:56:00,981 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-27 14:56:09,855 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1623665
-2026-03-27 14:56:09,866 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-03-27 14:56:09,870 DEBUG: Saved HTML to apnews.html (1546850 bytes)
-2026-03-27 14:56:10,376 INFO: AP News primary selector matched 88 cards.
-2026-03-27 14:56:10,376 INFO: Total unique articles to process: 85
-2026-03-27 14:56:10,381 INFO: Loaded existing XML: pau.xml
-2026-03-27 14:56:10,381 INFO: Existing items in feed: 500
-2026-03-27 14:56:10,381 INFO: Added 0 new articles to main feed
-2026-03-27 14:56:10,390 INFO: Done! Main feed saved to pau.xml
-2026-03-27 14:56:10,390 INFO: Debug log saved to debug.log
+2026-03-27 15:58:17,230 INFO: Fetching AP News world page: https://apnews.com/world-news
+2026-03-27 15:58:17,230 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-27 15:58:17,231 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-27 16:00:17,651 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-27 16:00:17,652 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774627097233, "endTimestamp": 1774627217650, "version": "3.4.6"}
+2026-03-27 16:00:17,652 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-03-27 16:00:19,652 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-27 16:00:19,653 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-27 16:01:00,084 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1649626
+2026-03-27 16:01:00,094 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-03-27 16:01:00,096 DEBUG: Saved HTML to apnews.html (1571299 bytes)
+2026-03-27 16:01:00,502 INFO: AP News primary selector matched 87 cards.
+2026-03-27 16:01:00,502 INFO: Total unique articles to process: 84
+2026-03-27 16:01:00,505 INFO: Loaded existing XML: pau.xml
+2026-03-27 16:01:00,505 INFO: Existing items in feed: 500
+2026-03-27 16:01:00,505 DEBUG: Added: https://apnews.com/article/iran-us-israel-war-analysis-23fb5978ef583308f0da4228a9a02c66
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/gaza-hamas-disarmament-israel-trump-weapons-ceasefire-a2cb4dc8c6f6af4a61d7102a29974a87
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/video/just-in-case-any-enemies-show-up-kim-jong-un-given-rifle-by-president-of-belarus-276cae70e4b747b6b65473b368b81a4a
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/cuba-aid-missing-sailboats-mexico-search-9bfabff8fcd47fb5dd067c254556edcd
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/savannah-guthrie-mom-kidnapped-636c9effdd2b0004db6230c87a3cc0c6
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/china-byd-ev-sales-tesla-c2fe8ed6647f245161b7648cd7407a51
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/patel-iran-hacking-cyberscurity-9237ca30d1c85f237d7d83e6798d97f0
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/yahoo-artificial-intelligence-search-comeback-a9ec7ff0f7af72662b6d98ddd9c5280d
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/mongolia-prime-minister-resign-zandanshatar-boycott-687a953be2131d06c2a459699fd23fe1
+2026-03-27 16:01:00,506 DEBUG: Added: https://apnews.com/article/arctic-sea-ice-record-shattering-warming-86a91afa7be96d8821c7bbfed9e5a623
+2026-03-27 16:01:00,506 INFO: Added 10 new articles to main feed
+2026-03-27 16:01:00,506 INFO: Trimmed feed to 500 items
+2026-03-27 16:01:00,512 INFO: Done! Main feed saved to pau.xml
+2026-03-27 16:01:00,512 INFO: Debug log saved to debug.log
