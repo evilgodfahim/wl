@@ -87,6 +87,36 @@ BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")
 
 _botbrowser_proc: subprocess.Popen | None = None
 
+# ------------------------------
+# Proxy Manager (swiftshadow)
+# ------------------------------
+
+_proxy_manager = None
+_current_proxy = ""
+
+def _init_proxy_manager():
+    global _proxy_manager
+    try:
+        from swiftshadow.classes import ProxyInterface
+        _proxy_manager = ProxyInterface(protocol="http", autoRotate=True)
+        info("Proxy manager initialized")
+    except Exception as e:
+        warn("Failed to initialize proxy manager: %s", e)
+        _proxy_manager = None
+
+def _get_next_proxy() -> str:
+    global _current_proxy
+    if _proxy_manager is None:
+        return ""
+    try:
+        proxy = _proxy_manager.get()
+        _current_proxy = proxy.as_string()
+        info("Using proxy: %s", _current_proxy)
+        return _current_proxy
+    except Exception as e:
+        warn("Failed to get proxy: %s", e)
+        return ""
+
 
 def _start_botbrowser() -> bool:
     """Launch a fresh BotBrowser process and wait for CDP to be ready."""
@@ -116,6 +146,10 @@ def _start_botbrowser() -> bool:
     ]
     if BOTBROWSER_PROFILE:
         cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
+
+    proxy = _get_next_proxy()
+    if proxy:
+        cmd.append(f"--proxy-server={proxy}")
 
     debug("Launching BotBrowser: %s", " ".join(cmd))
     try:
@@ -381,6 +415,8 @@ def extract_reuters_extra_cards(soup, page_url):
 # ------------------------------
 # 1. FETCH REUTERS WORLD  (BotBrowser)
 # ------------------------------
+
+_init_proxy_manager()
 
 info("Fetching Reuters world page via BotBrowser: %s", REUTERS_URL)
 html = botbrowser_get(REUTERS_URL)
