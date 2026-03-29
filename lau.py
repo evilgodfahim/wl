@@ -7,6 +7,7 @@ Scrapes multiple AP News sections and merges into a single RSS feed.
 from __future__ import annotations
 import sys
 import os
+import hashlib
 import logging
 import time
 import xml.etree.ElementTree as ET
@@ -63,6 +64,10 @@ def now_utc():
 def normalize_title(title: str) -> str:
     """Lowercase + strip for case-insensitive title dedup."""
     return title.lower().strip()
+
+def title_guid(title: str) -> str:
+    """Stable guid derived from the normalized title (SHA-1 hex)."""
+    return hashlib.sha1(normalize_title(title).encode("utf-8")).hexdigest()
 
 # ------------------------------
 # HTTP helpers
@@ -350,12 +355,15 @@ def main():
         link="https://apnews.com",
         description="Scraped articles from AP News (world news + climate)",
     )
-    existing_titles: set[str] = {
-        normalize_title(item.find("title").text)
+
+    # Existing items keyed by guid (title hash) — RSS readers use <guid> as
+    # the canonical identity key, NOT <link>, so same-URL/new-title = new item.
+    existing_guids: set[str] = {
+        item.find("guid").text.strip()
         for item in channel.findall("item")
-        if item.find("title") is not None and item.find("title").text
+        if item.find("guid") is not None and item.find("guid").text
     }
-    info("Existing items in feed: %d", len(existing_titles))
+    info("Existing items in feed: %d", len(existing_guids))
 
     # ── 4. Insert new items ───────────────────────────────────────────────────
     new_count = 0
@@ -364,7 +372,9 @@ def main():
         if not title:
             warn("Skipping (no title): %s", art.get("url"))
             continue
-        if normalize_title(title) in existing_titles:
+
+        guid = title_guid(title)
+        if guid in existing_guids:
             continue
 
         thumb = (art.get("thumb") or "").strip()
@@ -378,11 +388,14 @@ def main():
         ET.SubElement(item_el, "link").text        = art["url"]
         ET.SubElement(item_el, "description").text = desc
         ET.SubElement(item_el, "pubDate").text     = now_utc()
+        guid_el = ET.SubElement(item_el, "guid")
+        guid_el.text = guid
+        guid_el.set("isPermaLink", "false")
         if thumb:
             ET.SubElement(item_el, "enclosure", url=thumb, type="image/jpeg")
 
         new_count += 1
-        debug("Added: %s", art["url"])
+        debug("Added: [%s] %s", guid[:8], art["url"])
 
     info("Added %d new articles to feed", new_count)
 
