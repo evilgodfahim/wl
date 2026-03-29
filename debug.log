@@ -1,154 +1,208 @@
-2026-03-29 09:48:09,130 INFO: No cache found, will be created after update.
-2026-03-29 09:48:09,130 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:09,132 DEBUG: Starting new HTTPS connection (1): api.proxyscrape.com:443
-2026-03-29 09:48:09,418 DEBUG: https://api.proxyscrape.com:443 "GET /v3/free-proxy-list/get?request=displayproxies&protocol=http&proxy_format=ipport&format=json&country=all HTTP/1.1" 200 None
-2026-03-29 09:48:15,130 INFO: Proxy manager initialized
-2026-03-29 09:48:15,130 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
-2026-03-29 09:48:15,130 INFO: Using proxy: http://172.200.72.48:80
-2026-03-29 09:48:15,130 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc --proxy-server=http://172.200.72.48:80
-2026-03-29 09:48:15,131 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:15,632 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:16,133 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:16,635 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:17,137 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:17,141 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-29 09:48:17,143 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-29 09:48:17,255 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:18,322 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/world/
-Call log:
-  - navigating to "https://www.reuters.com/world/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:18,322 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-29 09:48:18,322 DEBUG: Killing existing BotBrowser (pid 3214)
-2026-03-29 09:48:18,340 INFO: Using proxy: http://116.171.106.15:3000
-2026-03-29 09:48:18,341 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc --proxy-server=http://116.171.106.15:3000
-2026-03-29 09:48:18,342 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:18,845 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:18,850 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-29 09:48:18,850 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-29 09:48:20,850 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:24,572 WARNING: BotBrowser Playwright error for https://www.reuters.com/world/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/world/
-Call log:
-  - navigating to "https://www.reuters.com/world/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:24,572 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-29 09:48:24,574 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/world/
-2026-03-29 09:48:24,576 WARNING: Failed to fetch Reuters world page
-2026-03-29 09:48:24,577 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
-2026-03-29 09:48:24,577 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:28,731 WARNING: BotBrowser Playwright error for https://www.reuters.com/commentary/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/commentary/
-Call log:
-  - navigating to "https://www.reuters.com/commentary/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:28,731 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-29 09:48:28,731 DEBUG: Killing existing BotBrowser (pid 3393)
-2026-03-29 09:48:28,745 INFO: Using proxy: http://8.219.191.219:8118
-2026-03-29 09:48:28,745 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc --proxy-server=http://8.219.191.219:8118
-2026-03-29 09:48:28,746 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:29,248 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:29,254 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-29 09:48:29,262 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-29 09:48:31,263 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:32,845 WARNING: BotBrowser Playwright error for https://www.reuters.com/commentary/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/commentary/
-Call log:
-  - navigating to "https://www.reuters.com/commentary/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:32,845 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-29 09:48:32,845 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/commentary/
-2026-03-29 09:48:32,846 WARNING: Failed to fetch Reuters commentary page
-2026-03-29 09:48:32,846 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
-2026-03-29 09:48:32,846 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:34,462 WARNING: BotBrowser Playwright error for https://www.reuters.com/business/energy/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/business/energy/
-Call log:
-  - navigating to "https://www.reuters.com/business/energy/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:34,462 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-29 09:48:34,463 DEBUG: Killing existing BotBrowser (pid 3588)
-2026-03-29 09:48:34,483 INFO: Using proxy: http://173.245.49.91:80
-2026-03-29 09:48:34,483 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc --proxy-server=http://173.245.49.91:80
-2026-03-29 09:48:34,485 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:34,989 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:35,005 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-29 09:48:35,006 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-29 09:48:37,006 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:37,756 WARNING: BotBrowser Playwright error for https://www.reuters.com/business/energy/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/business/energy/
-Call log:
-  - navigating to "https://www.reuters.com/business/energy/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:37,756 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-29 09:48:37,756 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/energy/
-2026-03-29 09:48:37,757 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/energy/
-2026-03-29 09:48:37,757 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
-2026-03-29 09:48:37,757 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:38,581 WARNING: BotBrowser Playwright error for https://www.reuters.com/business/environment/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/business/environment/
-Call log:
-  - navigating to "https://www.reuters.com/business/environment/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:38,581 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-29 09:48:38,581 DEBUG: Killing existing BotBrowser (pid 3796)
-2026-03-29 09:48:38,599 INFO: Using proxy: http://120.50.10.109:5555
-2026-03-29 09:48:38,599 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc --proxy-server=http://120.50.10.109:5555
-2026-03-29 09:48:38,600 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:39,102 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:48:39,107 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-29 09:48:39,108 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-29 09:48:41,108 DEBUG: Using selector: EpollSelector
-2026-03-29 09:48:49,845 WARNING: BotBrowser Playwright error for https://www.reuters.com/business/environment/: Page.goto: net::ERR_TIMED_OUT at https://www.reuters.com/business/environment/
-Call log:
-  - navigating to "https://www.reuters.com/business/environment/", waiting until "domcontentloaded"
-
-2026-03-29 09:48:49,845 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-29 09:48:49,845 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/business/environment/
-2026-03-29 09:48:49,845 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/environment/
-2026-03-29 09:48:49,845 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
-2026-03-29 09:48:49,846 DEBUG: Using selector: EpollSelector
-2026-03-29 09:49:06,601 WARNING: BotBrowser Playwright error for https://www.reuters.com/sustainability/climate-energy/: Page.goto: net::ERR_TIMED_OUT at https://www.reuters.com/sustainability/climate-energy/
-Call log:
-  - navigating to "https://www.reuters.com/sustainability/climate-energy/", waiting until "domcontentloaded"
-
-2026-03-29 09:49:06,601 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-29 09:49:06,601 DEBUG: Killing existing BotBrowser (pid 3999)
-2026-03-29 09:49:06,634 INFO: Using proxy: http://181.78.195.137:999
-2026-03-29 09:49:06,634 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc --proxy-server=http://181.78.195.137:999
-2026-03-29 09:49:06,635 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:49:07,136 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:49:07,144 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-29 09:49:07,144 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-29 09:49:09,144 DEBUG: Using selector: EpollSelector
-2026-03-29 09:49:27,887 WARNING: BotBrowser Playwright error for https://www.reuters.com/sustainability/climate-energy/: Page.goto: net::ERR_TIMED_OUT at https://www.reuters.com/sustainability/climate-energy/
-Call log:
-  - navigating to "https://www.reuters.com/sustainability/climate-energy/", waiting until "domcontentloaded"
-
-2026-03-29 09:49:27,888 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-29 09:49:27,888 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/climate-energy/
-2026-03-29 09:49:27,888 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/climate-energy/
-2026-03-29 09:49:27,888 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-29 09:49:27,888 DEBUG: Using selector: EpollSelector
-2026-03-29 09:49:42,170 WARNING: BotBrowser Playwright error for https://www.reuters.com/sustainability/reuters-impact/: Page.goto: net::ERR_TIMED_OUT at https://www.reuters.com/sustainability/reuters-impact/
-Call log:
-  - navigating to "https://www.reuters.com/sustainability/reuters-impact/", waiting until "domcontentloaded"
-
-2026-03-29 09:49:42,172 WARNING: BotBrowser fetch failed on attempt 1 — restarting for retry
-2026-03-29 09:49:42,172 DEBUG: Killing existing BotBrowser (pid 4245)
-2026-03-29 09:49:42,184 INFO: Using proxy: http://172.200.72.48:80
-2026-03-29 09:49:42,184 DEBUG: Launching BotBrowser: /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc --proxy-server=http://172.200.72.48:80
-2026-03-29 09:49:42,187 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:49:42,693 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
-2026-03-29 09:49:42,700 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
-2026-03-29 09:49:42,700 DEBUG: BotBrowser CDP ready on port 9222
-2026-03-29 09:49:44,700 DEBUG: Using selector: EpollSelector
-2026-03-29 09:49:45,549 WARNING: BotBrowser Playwright error for https://www.reuters.com/sustainability/reuters-impact/: Page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://www.reuters.com/sustainability/reuters-impact/
-Call log:
-  - navigating to "https://www.reuters.com/sustainability/reuters-impact/", waiting until "domcontentloaded"
-
-2026-03-29 09:49:45,549 WARNING: BotBrowser fetch failed on attempt 2 — restarting for retry
-2026-03-29 09:49:45,549 WARNING: BotBrowser: all 2 attempts failed for https://www.reuters.com/sustainability/reuters-impact/
-2026-03-29 09:49:45,549 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/reuters-impact/
-2026-03-29 09:49:45,549 INFO: Total Reuters articles after extra pages: 0
-2026-03-29 09:49:45,549 INFO: Total unique Reuters articles: 0
-2026-03-29 09:49:45,571 INFO: Loaded existing XML: reuters.xml
-2026-03-29 09:49:45,572 INFO: Existing items in Reuters feed: 500
-2026-03-29 09:49:45,572 DEBUG: Shutting down BotBrowser (pid 4449)
-2026-03-29 09:49:45,588 INFO: Added 0 new articles to Reuters feed
-2026-03-29 09:49:45,598 INFO: Done! Reuters feed saved to reuters.xml
-2026-03-29 09:49:45,598 INFO: Debug log saved to debug.log
+2026-03-29 10:02:17,339 DEBUG: Starting new HTTPS connection (1): cdn.jsdelivr.net:443
+2026-03-29 10:02:17,465 DEBUG: https://cdn.jsdelivr.net:443 "GET /gh/proxifly/free-proxy-list@main/proxies/protocols/http/data.json HTTP/1.1" 200 15650
+2026-03-29 10:02:17,470 INFO: proxifly: 1070 total proxies, 0 support HTTPS CONNECT — pool ready
+2026-03-29 10:02:17,471 INFO: Fetching Reuters world page via BotBrowser: https://www.reuters.com/world/
+2026-03-29 10:02:17,471 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:17,472 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:17,473 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:17,976 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:18,042 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:18,043 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:18,794 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:21,425 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/world/ (1494 bytes) — treating as blocked
+2026-03-29 10:02:21,426 WARNING: BotBrowser fetch failed (attempt 1/3) via direct for https://www.reuters.com/world/
+2026-03-29 10:02:22,426 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:22,426 DEBUG: Killing existing BotBrowser (pid 3300)
+2026-03-29 10:02:22,444 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:22,447 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:22,951 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:22,955 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:22,955 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:22,956 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:25,868 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/world/ (1494 bytes) — treating as blocked
+2026-03-29 10:02:25,868 WARNING: BotBrowser fetch failed (attempt 2/3) via direct for https://www.reuters.com/world/
+2026-03-29 10:02:26,868 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:26,868 DEBUG: Killing existing BotBrowser (pid 3525)
+2026-03-29 10:02:26,887 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:26,890 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:27,394 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:27,404 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:27,405 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:27,405 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:30,054 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/world/ (1494 bytes) — treating as blocked
+2026-03-29 10:02:30,054 WARNING: BotBrowser fetch failed (attempt 3/3) via direct for https://www.reuters.com/world/
+2026-03-29 10:02:31,054 WARNING: BotBrowser: all 3 attempts exhausted for https://www.reuters.com/world/
+2026-03-29 10:02:31,054 WARNING: Failed to fetch Reuters world page
+2026-03-29 10:02:31,054 INFO: Fetching Reuters commentary page via BotBrowser: https://www.reuters.com/commentary/
+2026-03-29 10:02:31,054 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:31,054 DEBUG: Killing existing BotBrowser (pid 3756)
+2026-03-29 10:02:31,072 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:31,077 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:31,580 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:31,589 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:31,589 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:31,590 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:34,292 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes) — treating as blocked
+2026-03-29 10:02:34,292 WARNING: BotBrowser fetch failed (attempt 1/3) via direct for https://www.reuters.com/commentary/
+2026-03-29 10:02:35,292 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:35,293 DEBUG: Killing existing BotBrowser (pid 3948)
+2026-03-29 10:02:35,308 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:35,312 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:35,817 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:35,826 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:35,826 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:35,826 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:38,504 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes) — treating as blocked
+2026-03-29 10:02:38,504 WARNING: BotBrowser fetch failed (attempt 2/3) via direct for https://www.reuters.com/commentary/
+2026-03-29 10:02:39,504 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:39,504 DEBUG: Killing existing BotBrowser (pid 4133)
+2026-03-29 10:02:39,521 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:39,526 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:40,030 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:40,036 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:40,037 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:40,037 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:42,693 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/commentary/ (1499 bytes) — treating as blocked
+2026-03-29 10:02:42,693 WARNING: BotBrowser fetch failed (attempt 3/3) via direct for https://www.reuters.com/commentary/
+2026-03-29 10:02:43,693 WARNING: BotBrowser: all 3 attempts exhausted for https://www.reuters.com/commentary/
+2026-03-29 10:02:43,693 WARNING: Failed to fetch Reuters commentary page
+2026-03-29 10:02:43,693 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/energy/
+2026-03-29 10:02:43,694 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:43,694 DEBUG: Killing existing BotBrowser (pid 4322)
+2026-03-29 10:02:43,710 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:43,713 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:44,219 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:44,234 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:44,235 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:44,236 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:47,622 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes) — treating as blocked
+2026-03-29 10:02:47,622 WARNING: BotBrowser fetch failed (attempt 1/3) via direct for https://www.reuters.com/business/energy/
+2026-03-29 10:02:48,622 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:48,623 DEBUG: Killing existing BotBrowser (pid 4517)
+2026-03-29 10:02:48,646 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:48,648 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:49,154 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:49,157 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:49,159 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:49,162 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:51,814 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes) — treating as blocked
+2026-03-29 10:02:51,814 WARNING: BotBrowser fetch failed (attempt 2/3) via direct for https://www.reuters.com/business/energy/
+2026-03-29 10:02:52,815 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:52,815 DEBUG: Killing existing BotBrowser (pid 4755)
+2026-03-29 10:02:52,831 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:52,834 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:53,341 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:53,347 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:53,347 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:53,348 DEBUG: Using selector: EpollSelector
+2026-03-29 10:02:55,976 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/energy/ (1506 bytes) — treating as blocked
+2026-03-29 10:02:55,976 WARNING: BotBrowser fetch failed (attempt 3/3) via direct for https://www.reuters.com/business/energy/
+2026-03-29 10:02:56,977 WARNING: BotBrowser: all 3 attempts exhausted for https://www.reuters.com/business/energy/
+2026-03-29 10:02:56,977 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/energy/
+2026-03-29 10:02:56,977 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/business/environment/
+2026-03-29 10:02:56,977 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:02:56,977 DEBUG: Killing existing BotBrowser (pid 4947)
+2026-03-29 10:02:56,993 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:02:56,996 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:57,498 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:02:57,510 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:02:57,511 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:02:57,511 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:00,843 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes) — treating as blocked
+2026-03-29 10:03:00,843 WARNING: BotBrowser fetch failed (attempt 1/3) via direct for https://www.reuters.com/business/environment/
+2026-03-29 10:03:01,844 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:01,844 DEBUG: Killing existing BotBrowser (pid 5139)
+2026-03-29 10:03:01,860 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:01,863 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:02,369 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:02,370 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:02,371 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:02,372 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:05,075 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes) — treating as blocked
+2026-03-29 10:03:05,075 WARNING: BotBrowser fetch failed (attempt 2/3) via direct for https://www.reuters.com/business/environment/
+2026-03-29 10:03:06,075 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:06,075 DEBUG: Killing existing BotBrowser (pid 5378)
+2026-03-29 10:03:06,091 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:06,094 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:06,595 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:06,611 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:06,612 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:06,612 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:09,302 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/business/environment/ (1511 bytes) — treating as blocked
+2026-03-29 10:03:09,302 WARNING: BotBrowser fetch failed (attempt 3/3) via direct for https://www.reuters.com/business/environment/
+2026-03-29 10:03:10,302 WARNING: BotBrowser: all 3 attempts exhausted for https://www.reuters.com/business/environment/
+2026-03-29 10:03:10,302 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/business/environment/
+2026-03-29 10:03:10,302 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/climate-energy/
+2026-03-29 10:03:10,303 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:10,303 DEBUG: Killing existing BotBrowser (pid 5565)
+2026-03-29 10:03:10,320 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:10,323 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:10,829 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:10,847 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:10,847 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:10,847 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:13,503 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes) — treating as blocked
+2026-03-29 10:03:13,504 WARNING: BotBrowser fetch failed (attempt 1/3) via direct for https://www.reuters.com/sustainability/climate-energy/
+2026-03-29 10:03:14,504 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:14,504 DEBUG: Killing existing BotBrowser (pid 5759)
+2026-03-29 10:03:14,520 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:14,522 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:15,030 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:15,033 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:15,034 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:15,034 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:17,685 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes) — treating as blocked
+2026-03-29 10:03:17,685 WARNING: BotBrowser fetch failed (attempt 2/3) via direct for https://www.reuters.com/sustainability/climate-energy/
+2026-03-29 10:03:18,685 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:18,685 DEBUG: Killing existing BotBrowser (pid 5949)
+2026-03-29 10:03:18,704 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:18,706 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:19,207 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:19,211 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:19,212 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:19,214 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:22,214 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/climate-energy/ (1520 bytes) — treating as blocked
+2026-03-29 10:03:22,214 WARNING: BotBrowser fetch failed (attempt 3/3) via direct for https://www.reuters.com/sustainability/climate-energy/
+2026-03-29 10:03:23,214 WARNING: BotBrowser: all 3 attempts exhausted for https://www.reuters.com/sustainability/climate-energy/
+2026-03-29 10:03:23,214 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/climate-energy/
+2026-03-29 10:03:23,215 INFO: Fetching Reuters extra page via BotBrowser: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-29 10:03:23,215 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:23,215 DEBUG: Killing existing BotBrowser (pid 6141)
+2026-03-29 10:03:23,232 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:23,233 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:23,740 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:23,749 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:23,750 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:23,750 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:27,135 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes) — treating as blocked
+2026-03-29 10:03:27,135 WARNING: BotBrowser fetch failed (attempt 1/3) via direct for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-29 10:03:28,135 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:28,135 DEBUG: Killing existing BotBrowser (pid 6345)
+2026-03-29 10:03:28,155 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:28,157 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:28,661 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:28,675 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:28,675 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:28,675 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:31,297 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes) — treating as blocked
+2026-03-29 10:03:31,297 WARNING: BotBrowser fetch failed (attempt 2/3) via direct for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-29 10:03:32,297 WARNING: Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)
+2026-03-29 10:03:32,297 DEBUG: Killing existing BotBrowser (pid 6583)
+2026-03-29 10:03:32,313 DEBUG: Launching BotBrowser (no proxy): /usr/bin/chromium-browser-stable --headless=new --no-sandbox --disable-gpu --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --disable-blink-features=AutomationControlled --bot-profile=/home/runner/work/wl/wl/chrome146_win11_x64.enc
+2026-03-29 10:03:32,316 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:32,820 DEBUG: Starting new HTTP connection (1): 127.0.0.1:9222
+2026-03-29 10:03:32,827 DEBUG: http://127.0.0.1:9222 "GET /json/version HTTP/1.1" 200 405
+2026-03-29 10:03:32,828 DEBUG: BotBrowser CDP ready on port 9222
+2026-03-29 10:03:32,828 DEBUG: Using selector: EpollSelector
+2026-03-29 10:03:35,472 WARNING: BotBrowser received DataDome CAPTCHA for https://www.reuters.com/sustainability/reuters-impact/ (1520 bytes) — treating as blocked
+2026-03-29 10:03:35,472 WARNING: BotBrowser fetch failed (attempt 3/3) via direct for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-29 10:03:36,472 WARNING: BotBrowser: all 3 attempts exhausted for https://www.reuters.com/sustainability/reuters-impact/
+2026-03-29 10:03:36,472 WARNING: Failed to fetch Reuters extra page: https://www.reuters.com/sustainability/reuters-impact/
+2026-03-29 10:03:36,472 INFO: Total Reuters articles after extra pages: 0
+2026-03-29 10:03:36,473 INFO: Total unique Reuters articles: 0
+2026-03-29 10:03:36,481 INFO: Loaded existing XML: reuters.xml
+2026-03-29 10:03:36,481 INFO: Existing items in Reuters feed: 500
+2026-03-29 10:03:36,481 DEBUG: Shutting down BotBrowser (pid 6771)
+2026-03-29 10:03:36,497 INFO: Added 0 new articles to Reuters feed
+2026-03-29 10:03:36,511 INFO: Done! Reuters feed saved to reuters.xml
+2026-03-29 10:03:36,512 INFO: Debug log saved to debug.log
