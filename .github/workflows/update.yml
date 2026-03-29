@@ -89,7 +89,7 @@ jobs:
           BOTBROWSER_PROFILE: ${{ env.BOTBROWSER_PROFILE }}
           BOTBROWSER_CDP_PORT: "9222"
         run: |
-          python lau.py
+          python reuters.py
 
       - name: Commit and push changes
         run: |
