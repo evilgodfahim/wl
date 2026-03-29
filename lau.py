@@ -60,6 +60,10 @@ def warn(msg, *args):  log.warning(msg, *args)
 def now_utc():
     return datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
 
+def normalize_title(title: str) -> str:
+    """Lowercase + strip for case-insensitive title dedup."""
+    return title.lower().strip()
+
 # ------------------------------
 # HTTP helpers
 # ------------------------------
@@ -327,14 +331,14 @@ def main():
     for section_url in SOURCES:
         raw_articles.extend(scrape_section(section_url))
 
-    # ── 2. Global deduplication by article URL ────────────────────────────────
+    # ── 2. Global deduplication by title (case-insensitive) ───────────────────
     combined: list[dict] = []
-    seen_urls: set[str] = set()
+    seen_titles: set[str] = set()
     for item in raw_articles:
-        u = item.get("url", "")
-        if not u or u in seen_urls:
+        t = normalize_title(item.get("title", ""))
+        if not t or t in seen_titles:
             continue
-        seen_urls.add(u)
+        seen_titles.add(t)
         combined.append(item)
 
     info("Total unique articles across all sections: %d", len(combined))
@@ -346,27 +350,28 @@ def main():
         link="https://apnews.com",
         description="Scraped articles from AP News (world news + climate)",
     )
-    existing = {
-        item.find("link").text.strip()
+    existing_titles: set[str] = {
+        normalize_title(item.find("title").text)
         for item in channel.findall("item")
-        if item.find("link") is not None and item.find("link").text
+        if item.find("title") is not None and item.find("title").text
     }
-    info("Existing items in feed: %d", len(existing))
+    info("Existing items in feed: %d", len(existing_titles))
 
     # ── 4. Insert new items ───────────────────────────────────────────────────
     new_count = 0
     for art in combined:
-        if art["url"] in existing:
-            continue
         title = (art.get("title") or "").strip()
+        if not title:
+            warn("Skipping (no title): %s", art.get("url"))
+            continue
+        if normalize_title(title) in existing_titles:
+            continue
+
         thumb = (art.get("thumb") or "").strip()
         desc  = (
             f'<img src="{thumb}" alt="" style="max-width:100%"/><br/>{title}'
             if thumb else title
         )
-        if not title and not desc:
-            warn("Skipping (no title): %s", art.get("url"))
-            continue
 
         item_el = ET.SubElement(channel, "item")
         ET.SubElement(item_el, "title").text       = title
