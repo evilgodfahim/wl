@@ -4,6 +4,7 @@
 import sys
 import os
 import re
+import random
 import logging
 import subprocess
 import time
@@ -88,38 +89,68 @@ BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")
 _botbrowser_proc: subprocess.Popen | None = None
 
 # ------------------------------
-# Proxy Manager (swiftshadow)
+# Proxy Pool (proxifly)
 # ------------------------------
 
-_proxy_manager = None
-_current_proxy = ""
+PROXIFLY_HTTP_JSON = (
+    "https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main"
+    "/proxies/protocols/http/data.json"
+)
 
-def _init_proxy_manager():
-    global _proxy_manager
+_proxy_pool: list[str] = []
+_proxy_index: int = 0
+
+
+def init_proxy_pool() -> None:
+    """
+    Fetch proxifly's HTTP proxy list and keep only those that support
+    HTTPS CONNECT tunneling (required for reuters.com).
+    Shuffled so concurrent runs don't hammer the same IPs.
+    """
+    global _proxy_pool, _proxy_index
     try:
-        from swiftshadow.classes import ProxyInterface
-        _proxy_manager = ProxyInterface(protocol="http", autoRotate=True)
-        info("Proxy manager initialized")
+        r = requests.get(PROXIFLY_HTTP_JSON, timeout=20)
+        r.raise_for_status()
+        data = r.json()
     except Exception as e:
-        warn("Failed to initialize proxy manager: %s", e)
-        _proxy_manager = None
+        warn("proxifly: failed to fetch proxy list: %s", e)
+        _proxy_pool = []
+        return
 
-def _get_next_proxy() -> str:
-    global _current_proxy
-    if _proxy_manager is None:
+    # Only keep proxies verified to support HTTPS CONNECT tunneling
+    https_proxies = [p for p in data if p.get("https") is True and p.get("proxy")]
+
+    # Sort best score first, then shuffle so we spread the load
+    https_proxies.sort(key=lambda p: p.get("score", 0), reverse=True)
+    random.shuffle(https_proxies)
+
+    _proxy_pool = [p["proxy"] for p in https_proxies]
+    _proxy_index = 0
+
+    info(
+        "proxifly: %d total proxies, %d support HTTPS CONNECT — pool ready",
+        len(data),
+        len(_proxy_pool),
+    )
+
+
+def next_proxy() -> str:
+    global _proxy_index
+    if not _proxy_pool:
+        warn("Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)")
         return ""
-    try:
-        proxy = _proxy_manager.get()
-        _current_proxy = proxy.as_string()
-        info("Using proxy: %s", _current_proxy)
-        return _current_proxy
-    except Exception as e:
-        warn("Failed to get proxy: %s", e)
-        return ""
+    proxy = _proxy_pool[_proxy_index % len(_proxy_pool)]
+    _proxy_index += 1
+    info("Using proxy [%d/%d]: %s", _proxy_index, len(_proxy_pool), proxy)
+    return proxy
 
 
-def _start_botbrowser() -> bool:
-    """Launch a fresh BotBrowser process and wait for CDP to be ready."""
+# ------------------------------
+# BotBrowser launch / lifecycle
+# ------------------------------
+
+def _start_botbrowser(proxy: str = "") -> bool:
+    """Launch a fresh BotBrowser process with an optional proxy and wait for CDP."""
     global _botbrowser_proc
 
     if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
@@ -146,12 +177,15 @@ def _start_botbrowser() -> bool:
     ]
     if BOTBROWSER_PROFILE:
         cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
-
-    proxy = _get_next_proxy()
     if proxy:
         cmd.append(f"--proxy-server={proxy}")
 
-    debug("Launching BotBrowser: %s", " ".join(cmd))
+    debug(
+        "Launching BotBrowser%s: %s",
+        f" via {proxy}" if proxy else " (no proxy)",
+        " ".join(cmd),
+    )
+
     try:
         _botbrowser_proc = subprocess.Popen(
             cmd,
@@ -175,14 +209,6 @@ def _start_botbrowser() -> bool:
 
     warn("BotBrowser CDP did not become ready within 15 s")
     return False
-
-
-def _ensure_botbrowser_running() -> bool:
-    """Start BotBrowser if not already running."""
-    global _botbrowser_proc
-    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
-        return True
-    return _start_botbrowser()
 
 
 def _botbrowser_fetch_once(url: str) -> str | None:
@@ -234,41 +260,39 @@ def _botbrowser_fetch_once(url: str) -> str | None:
         return None
 
     if any(m in html for m in DATADOME_MARKERS):
-        warn("BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked", url, len(html))
+        warn(
+            "BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked",
+            url, len(html),
+        )
         return None
 
     debug("BotBrowser received %d bytes for %s", len(html), url)
     return html
 
 
-def botbrowser_get(url: str, retries: int = 2) -> str | None:
+def botbrowser_get(url: str, retries: int = 3) -> str | None:
+    """Fetch a URL via BotBrowser, rotating through the proxy pool on each attempt."""
     for attempt in range(1, retries + 1):
-        if not _ensure_botbrowser_running():
-            warn("BotBrowser not available (attempt %d/%d)", attempt, retries)
-            time.sleep(2)
+        proxy = next_proxy()
+        if not _start_botbrowser(proxy=proxy):
+            warn(
+                "BotBrowser failed to start (attempt %d/%d, proxy=%s)",
+                attempt, retries, proxy or "direct",
+            )
+            time.sleep(1)
             continue
-
-        if _botbrowser_proc is None or _botbrowser_proc.poll() is not None:
-            warn("BotBrowser died before fetch attempt %d — restarting", attempt)
-            if not _start_botbrowser():
-                time.sleep(2)
-                continue
 
         result = _botbrowser_fetch_once(url)
         if result:
             return result
 
-        if _botbrowser_proc is not None and _botbrowser_proc.poll() is not None:
-            warn("BotBrowser process exited (code %d) after attempt %d — will restart",
-                 _botbrowser_proc.returncode, attempt)
-        else:
-            warn("BotBrowser fetch failed on attempt %d — restarting for retry", attempt)
+        warn(
+            "BotBrowser fetch failed (attempt %d/%d) via %s for %s",
+            attempt, retries, proxy or "direct", url,
+        )
+        time.sleep(1)
 
-        if attempt < retries:
-            _start_botbrowser()
-            time.sleep(2)
-
-    warn("BotBrowser: all %d attempts failed for %s", retries, url)
+    warn("BotBrowser: all %d attempts exhausted for %s", retries, url)
     return None
 
 
@@ -413,10 +437,14 @@ def extract_reuters_extra_cards(soup, page_url):
 
 
 # ------------------------------
-# 1. FETCH REUTERS WORLD  (BotBrowser)
+# INIT
 # ------------------------------
 
-_init_proxy_manager()
+init_proxy_pool()
+
+# ------------------------------
+# 1. FETCH REUTERS WORLD  (BotBrowser)
+# ------------------------------
 
 info("Fetching Reuters world page via BotBrowser: %s", REUTERS_URL)
 html = botbrowser_get(REUTERS_URL)
@@ -672,16 +700,10 @@ for i, a in enumerate(all_articles, 1):
     reuters_fetch_count += 1
     if reuters_fetch_count > 1 and reuters_fetch_count % BOTBROWSER_RESTART_EVERY == 0:
         info("DataDome prevention: restarting BotBrowser after %d Reuters fetches", reuters_fetch_count)
-        _start_botbrowser()
+        _start_botbrowser(proxy=next_proxy())
         time.sleep(3)
 
     page = botbrowser_get(a["url"])
-
-    if page is None and a.get("source") == "Reuters":
-        warn("DataDome likely blocked %s — restarting BotBrowser and retrying once", a.get("url"))
-        if _start_botbrowser():
-            time.sleep(3)
-            page = botbrowser_get(a["url"])
 
     if page is None:
         warn("Failed to fetch: %s", a.get("url"))
