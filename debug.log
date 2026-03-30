@@ -1,26 +1,37 @@
-2026-03-30 22:04:20,080 INFO: Fetching section: https://apnews.com/world-news
-2026-03-30 22:04:20,080 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-03-30 22:04:20,081 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-30 22:04:29,269 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1592472
-2026-03-30 22:04:29,280 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-03-30 22:04:29,283 DEBUG: Saved HTML to apnews.html (1516195 bytes)
-2026-03-30 22:04:29,628 INFO: Section https://apnews.com/world-news — card selector matched 86 articles
-2026-03-30 22:04:29,628 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-03-30 22:04:29,628 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-03-30 22:04:29,629 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-03-30 22:04:43,009 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2173977
-2026-03-30 22:04:43,021 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-03-30 22:04:43,024 DEBUG: Saved HTML to apnews.html (2091321 bytes)
-2026-03-30 22:04:43,430 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-03-30 22:04:43,431 INFO: Total unique articles across all sections: 174
-2026-03-30 22:04:43,434 INFO: Loaded existing XML: pau.xml
-2026-03-30 22:04:43,434 INFO: Existing items in feed: 265
-2026-03-30 22:04:43,434 DEBUG: Added: [81f830e2] https://apnews.com/article/trump-iran-saudi-arabia-mbs-gulf-war-uae-89f690b952fe28d3140c537b70fa5051
-2026-03-30 22:04:43,435 DEBUG: Added: [8494c948] https://apnews.com/live/iran-war-israel-trump-03-30-2026
-2026-03-30 22:04:43,435 DEBUG: Added: [c6725073] https://apnews.com/photo-gallery/holy-week-catholic-easter-christian-palm-sunday-ed3a76e5e93246f6257d90c7dc874d1d
-2026-03-30 22:04:43,435 DEBUG: Added: [e46893bc] https://apnews.com/article/bolivia-clowns-protest-streets-education-decree-6063408d58c342f071813a0724f8bc37
-2026-03-30 22:04:43,435 DEBUG: Added: [b5ff4d6d] https://apnews.com/article/suriname-president-dies-chandrikapersad-santokhi-137f8a008bac38cb4459c9f5ef8107a5
-2026-03-30 22:04:43,435 INFO: Added 5 new articles to feed
-2026-03-30 22:04:43,435 INFO: Trimmed feed to 500 items
-2026-03-30 22:04:43,441 INFO: Done! Feed saved to pau.xml
-2026-03-30 22:04:43,441 INFO: Debug log saved to debug.log
+2026-03-30 23:04:46,306 INFO: Fetching section: https://apnews.com/world-news
+2026-03-30 23:04:46,307 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-03-30 23:04:46,308 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-30 23:05:53,480 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1618284
+2026-03-30 23:05:53,491 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-03-30 23:05:53,494 DEBUG: Saved HTML to apnews.html (1540677 bytes)
+2026-03-30 23:05:53,895 INFO: Section https://apnews.com/world-news — card selector matched 86 articles
+2026-03-30 23:05:53,895 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-03-30 23:05:53,895 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-03-30 23:05:53,896 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-30 23:07:53,980 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-30 23:07:53,981 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774911953898, "endTimestamp": 1774912073979, "version": "3.4.6"}
+2026-03-30 23:07:53,981 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-03-30 23:07:55,981 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-03-30 23:07:55,982 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-03-30 23:09:56,085 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-03-30 23:09:56,086 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1774912075983, "endTimestamp": 1774912196084, "version": "3.4.6"}
+2026-03-30 23:09:56,086 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/climate-and-environment
+2026-03-30 23:10:00,087 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-03-30 23:10:00,218 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 200 None
+2026-03-30 23:10:00,239 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-03-30 23:10:00,244 DEBUG: Saved HTML to apnews.html (1949042 bytes)
+2026-03-30 23:10:00,697 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-03-30 23:10:00,698 INFO: Total unique articles across all sections: 173
+2026-03-30 23:10:00,701 INFO: Loaded existing XML: pau.xml
+2026-03-30 23:10:00,701 INFO: Existing items in feed: 270
+2026-03-30 23:10:00,702 DEBUG: Added: [739daf83] https://apnews.com/article/trump-iran-threat-desalination-plants-war-f624bed66bee79f68454d581ae1d624a
+2026-03-30 23:10:00,702 DEBUG: Added: [bdf85adc] https://apnews.com/video/leavitt-insists-us-military-will-act-within-law-as-trump-threatens-irans-energy-sites-fd420440c4144eb89c3b2e005f9139c7
+2026-03-30 23:10:00,702 DEBUG: Added: [725cc301] https://apnews.com/video/white-house-says-the-iranian-officials-are-appearing-more-reasonable-behind-the-scenes-in-talks-f1ec4809668b41529b40379a62dd90f0
+2026-03-30 23:10:00,702 DEBUG: Added: [348b7e53] https://apnews.com/video/sky-turned-red-ahead-of-tropical-cyclone-in-western-australia-89eb5264b83f4865aed87d6271b61079
+2026-03-30 23:10:00,702 DEBUG: Added: [19f0dc21] https://apnews.com/article/texas-high-school-student-teacher-shot-ff3dccd4cf6c1d7221ad2239ecf8ca60
+2026-03-30 23:10:00,702 DEBUG: Added: [19bd9961] https://apnews.com/article/onetaste-orgasmic-meditation-founder-daedone-sentenced-1fdbf1d4b23078128c7c4f030983d52f
+2026-03-30 23:10:00,702 DEBUG: Added: [dbb8ea24] https://apnews.com/article/yemeni-lawmaker-assassination-attempt-uae-spear-operations-c627ad64f9a90a76349fcadfdfe7a17a
+2026-03-30 23:10:00,702 INFO: Added 7 new articles to feed
+2026-03-30 23:10:00,703 INFO: Trimmed feed to 500 items
+2026-03-30 23:10:00,710 INFO: Done! Feed saved to pau.xml
+2026-03-30 23:10:00,710 INFO: Debug log saved to debug.log
