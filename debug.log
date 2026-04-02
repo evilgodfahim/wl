@@ -1,33 +1,37 @@
-2026-04-02 17:26:05,281 INFO: Fetching section: https://apnews.com/world-news
-2026-04-02 17:26:05,281 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-04-02 17:26:05,283 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-02 17:26:36,731 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1487792
-2026-04-02 17:26:36,741 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-02 17:26:36,744 DEBUG: Saved HTML to apnews.html (1414204 bytes)
-2026-04-02 17:26:37,059 INFO: Section https://apnews.com/world-news — card selector matched 89 articles
-2026-04-02 17:26:37,059 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-04-02 17:26:37,059 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-04-02 17:26:37,060 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-02 17:26:51,137 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2163942
-2026-04-02 17:26:51,150 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-02 17:26:51,153 DEBUG: Saved HTML to apnews.html (2081206 bytes)
-2026-04-02 17:26:51,539 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-04-02 17:26:51,539 INFO: Total unique articles across all sections: 168
-2026-04-02 17:26:51,543 INFO: Loaded existing XML: pau.xml
-2026-04-02 17:26:51,544 INFO: Existing items in feed: 500
-2026-04-02 17:26:51,544 DEBUG: Added: [28863ba0] https://apnews.com/article/hormuz-strait-shipping-summit-uk-iran-ca2c6af551df98c81a39f2137e417856
-2026-04-02 17:26:51,544 DEBUG: Added: [87fa566a] https://apnews.com/article/icc-prosecutor-karim-khan-investigation-united-nations-4f01c8ce5259dc726a565ce9a7f0a37b
-2026-04-02 17:26:51,544 DEBUG: Added: [dcb56b15] https://apnews.com/article/russia-cuba-oil-tanker-us-energy-blockade-cfbe8565b665fa99117b449112621dfd
-2026-04-02 17:26:51,544 DEBUG: Added: [2a5a51de] https://apnews.com/article/stock-markets-war-oil-trump-iran-6fc90a2e50b1252cde130fc3e0ce0da3
-2026-04-02 17:26:51,544 DEBUG: Added: [362805e6] https://apnews.com/article/exoneration-india-pennsylvania-murder-deportation-0bd9d1020fb60e23983d23111dc14e12
-2026-04-02 17:26:51,544 DEBUG: Added: [9a577e23] https://apnews.com/article/mpox-disease-health-congo-africa-outbreak-f1219ae63e5675aa74d1202e21b9035b
-2026-04-02 17:26:51,544 DEBUG: Added: [74a76432] https://apnews.com/article/tiger-woods-crash-bodycam-video-footage-528d9a41a1a2c1ece24967192b52b621
-2026-04-02 17:26:51,544 DEBUG: Added: [fa70da8b] https://apnews.com/article/ipl-takeovers-american-investors-cricket-34500a7918876c0e6c0bb9f7a4de45e0
-2026-04-02 17:26:51,544 DEBUG: Added: [d58e0e81] https://apnews.com/article/middle-east-wars-renewable-energy-asia-4b5fe0693ce5816472c905db85f7da6e
-2026-04-02 17:26:51,544 DEBUG: Added: [b0ff6a50] https://apnews.com/article/anthony-lukas-prizes-census-india-d31f5e237a641a28ebf9e4d070d60773
-2026-04-02 17:26:51,544 DEBUG: Added: [cc172089] https://apnews.com/article/oldest-tortoise-death-hoax-jonathan-22e2960833b112c3b873e1ce4b089c20
-2026-04-02 17:26:51,545 DEBUG: Added: [f97428da] https://apnews.com/article/greece-storm-floods-rain-dust-6e2bacde1370183d4841adceeb5b0004
-2026-04-02 17:26:51,545 INFO: Added 12 new articles to feed
-2026-04-02 17:26:51,545 INFO: Trimmed feed to 500 items
-2026-04-02 17:26:51,552 INFO: Done! Feed saved to pau.xml
-2026-04-02 17:26:51,552 INFO: Debug log saved to debug.log
+2026-04-02 18:10:07,501 INFO: Fetching section: https://apnews.com/world-news
+2026-04-02 18:10:07,501 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-02 18:10:07,502 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-02 18:11:07,679 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 1029
+2026-04-02 18:11:07,680 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Message: session not created: cannot connect to chrome at 127.0.0.1:56999\\nfrom chrome not reachable; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception\\nStacktrace:\\n#0 0x55d353b56dce <unknown>\\n#1 0x55d3535ac962 <unknown>\\n#2 0x55d35359bf6a <unknown>\\n#3 0x55d3535e8316 <unknown>\\n#4 0x55d3535df7f9 <unknown>\\n#5 0x55d353629f1f <unknown>\\n#6 0x55d35361b383 <unknown>\\n#7 0x55d3535ebe69 <unknown>\\n#8 0x55d3535ec9d1 <unknown>\\n#9 0x55d353b21000 <unknown>\\n#10 0x55d353b24421 <unknown>\\n#11 0x55d353b23eb8 <unknown>\\n#12 0x55d353b248c5 <unknown>\\n#13 0x55d353b0abec <unknown>\\n#14 0x55d353b24c41 <unknown>\\n#15 0x55d353af3caa <unknown>\\n#16 0x55d353b43b05 <unknown>\\n#17 0x55d353b43cfe <unknown>\\n#18 0x55d353b55895 <unknown>\\n#19 0x7ff65493f1f5 <unknown>\\n", "startTimestamp": 1775153407504, "endTimestamp": 1775153467678, "version": "3.4.6"}
+2026-04-02 18:11:07,680 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-04-02 18:11:09,680 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-02 18:11:09,681 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-02 18:11:29,941 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1481385
+2026-04-02 18:11:29,950 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-04-02 18:11:29,953 DEBUG: Saved HTML to apnews.html (1408003 bytes)
+2026-04-02 18:11:30,350 INFO: Section https://apnews.com/world-news — card selector matched 89 articles
+2026-04-02 18:11:30,350 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-04-02 18:11:30,350 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-02 18:11:30,351 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-02 18:13:30,448 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-04-02 18:13:30,448 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1775153490352, "endTimestamp": 1775153610447, "version": "3.4.6"}
+2026-04-02 18:13:30,449 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-04-02 18:13:32,449 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-02 18:13:32,450 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-02 18:13:59,852 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2160212
+2026-04-02 18:13:59,865 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-04-02 18:13:59,868 DEBUG: Saved HTML to apnews.html (2077755 bytes)
+2026-04-02 18:14:00,432 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-04-02 18:14:00,432 INFO: Total unique articles across all sections: 168
+2026-04-02 18:14:00,436 INFO: Loaded existing XML: pau.xml
+2026-04-02 18:14:00,436 INFO: Existing items in feed: 500
+2026-04-02 18:14:00,437 DEBUG: Added: [916eea26] https://apnews.com/article/pakistan-afghanistan-china-talks-fighting-urumqi-fe6135ac3b986a5362a0b951f66ec5c1
+2026-04-02 18:14:00,437 DEBUG: Added: [f2308dbd] https://apnews.com/article/fossil-animals-evolution-science-china-bizarre-a56a123cbad480e2c35f2356181d32d7
+2026-04-02 18:14:00,437 DEBUG: Added: [1463be4e] https://apnews.com/article/belarus-lgbtq-crackdown-lukashenko-gay-rights-d11b2b1341479d6925b1036b4ddfea68
+2026-04-02 18:14:00,437 DEBUG: Added: [4b8df640] https://apnews.com/article/congo-adf-attack-islamic-state-cc6839296f82a4268ba743124db3e383
+2026-04-02 18:14:00,437 DEBUG: Added: [4e9da304] https://apnews.com/article/pope-holy-thursday-washing-feet-leo-261952cb4d9eb65c6d171263cdc10d64
+2026-04-02 18:14:00,437 DEBUG: Added: [42b5ddbb] https://apnews.com/article/epa-microplastics-pharmaceuticals-drinking-water-zeldin-kennedy-a90f9e00f29ad171b0154d4f7bc4baba
+2026-04-02 18:14:00,437 INFO: Added 6 new articles to feed
+2026-04-02 18:14:00,437 INFO: Trimmed feed to 500 items
+2026-04-02 18:14:00,444 INFO: Done! Feed saved to pau.xml
+2026-04-02 18:14:00,444 INFO: Debug log saved to debug.log
