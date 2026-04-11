@@ -1,22 +1,31 @@
-2026-04-11 00:00:57,067 INFO: Fetching section: https://apnews.com/world-news
-2026-04-11 00:00:57,067 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-04-11 00:00:57,069 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-11 00:01:05,580 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1470525
-2026-04-11 00:01:05,593 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-11 00:01:05,596 DEBUG: Saved HTML to apnews.html (1398108 bytes)
-2026-04-11 00:01:06,115 INFO: Section https://apnews.com/world-news — card selector matched 86 articles
-2026-04-11 00:01:06,115 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-04-11 00:01:06,115 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-04-11 00:01:06,116 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-11 00:01:18,672 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2154625
-2026-04-11 00:01:18,685 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-11 00:01:18,688 DEBUG: Saved HTML to apnews.html (2072320 bytes)
-2026-04-11 00:01:19,164 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-04-11 00:01:19,165 INFO: Total unique articles across all sections: 171
-2026-04-11 00:01:19,168 INFO: Loaded existing XML: pau.xml
-2026-04-11 00:01:19,169 INFO: Existing items in feed: 500
-2026-04-11 00:01:19,169 DEBUG: Added: [e93ff925] https://apnews.com/article/offshore-wind-energy-climate-vineyard-wind-d4af076fa15263c3e6a4611f3f7b109b
-2026-04-11 00:01:19,169 INFO: Added 1 new articles to feed
-2026-04-11 00:01:19,169 INFO: Trimmed feed to 500 items
-2026-04-11 00:01:19,178 INFO: Done! Feed saved to pau.xml
-2026-04-11 00:01:19,178 INFO: Debug log saved to debug.log
+2026-04-11 03:25:34,497 INFO: Fetching section: https://apnews.com/world-news
+2026-04-11 03:25:34,497 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-11 03:25:34,498 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-11 03:27:34,941 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-04-11 03:27:34,941 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1775877934499, "endTimestamp": 1775878054939, "version": "3.4.6"}
+2026-04-11 03:27:34,942 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-04-11 03:27:36,942 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-11 03:27:36,943 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-11 03:28:09,817 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1466238
+2026-04-11 03:28:09,827 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-04-11 03:28:09,829 DEBUG: Saved HTML to apnews.html (1393323 bytes)
+2026-04-11 03:28:10,212 INFO: Section https://apnews.com/world-news — card selector matched 86 articles
+2026-04-11 03:28:10,212 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-04-11 03:28:10,212 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-11 03:28:10,213 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-11 03:28:16,081 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2152094
+2026-04-11 03:28:16,096 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-04-11 03:28:16,098 DEBUG: Saved HTML to apnews.html (2069666 bytes)
+2026-04-11 03:28:16,562 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-04-11 03:28:16,563 INFO: Total unique articles across all sections: 171
+2026-04-11 03:28:16,567 INFO: Loaded existing XML: pau.xml
+2026-04-11 03:28:16,567 INFO: Existing items in feed: 500
+2026-04-11 03:28:16,567 DEBUG: Added: [a95ffbd7] https://apnews.com/article/north-korea-china-kim-yi-meeting-606b660fdd504641adbd805d7fcb1407
+2026-04-11 03:28:16,567 DEBUG: Added: [63d8bdb7] https://apnews.com/article/ai-iran-war-animation-video-china-8b74148007a3906cef85534eead1d7c8
+2026-04-11 03:28:16,567 DEBUG: Added: [ee0a3a0f] https://apnews.com/article/nasa-artemis-astronauts-moon-splashdown-16adc5450f0127a0743292ef30b239f1
+2026-04-11 03:28:16,568 DEBUG: Added: [dc88b2ae] https://apnews.com/article/california-governor-eric-swalwell-sexual-assault-allegations-3b13ddbea678b4886fc9f513dbd0d1c2
+2026-04-11 03:28:16,568 DEBUG: Added: [dea54000] https://apnews.com/article/un-global-gap-financial-imf-world-bank-9c4b03b02a6cf3e1081656bfaea2e057
+2026-04-11 03:28:16,568 INFO: Added 5 new articles to feed
+2026-04-11 03:28:16,568 INFO: Trimmed feed to 500 items
+2026-04-11 03:28:16,575 INFO: Done! Feed saved to pau.xml
+2026-04-11 03:28:16,575 INFO: Debug log saved to debug.log
