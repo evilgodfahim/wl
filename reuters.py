@@ -9,7 +9,6 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
-import requests
 from bs4 import BeautifulSoup
 
 # ------------------------------
@@ -77,19 +76,6 @@ BOTBROWSER_BINARY      = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/bo
 BOTBROWSER_PROFILE_DIR = os.environ.get("BOTBROWSER_PROFILE_DIR", "")
 BOTBROWSER_PROFILE     = os.environ.get("BOTBROWSER_PROFILE", "")
 
-# ------------------------------
-# BotBrowser — Playwright-native launch
-#
-# THE FIX:
-# BotBrowser must be launched BY Playwright via pw.chromium.launch(executable_path=...).
-# The previous approach — launching BotBrowser as a subprocess, waiting for CDP,
-# then connecting via connect_over_cdp() — caused BotBrowser's own anti-detection
-# layer to identify the external CDP session as hostile and shut itself down
-# (~2 seconds after startup, every time).
-#
-# With pw.chromium.launch(), Playwright owns the full lifecycle and BotBrowser
-# operates exactly as its authors intended.
-# ------------------------------
 
 def _build_launch_args() -> list[str]:
     args = [
@@ -112,7 +98,18 @@ def _build_launch_args() -> list[str]:
 def botbrowser_get(url: str, retries: int = 3) -> str | None:
     """
     Fetch *url* using BotBrowser launched directly by Playwright.
-    Each attempt opens a fresh browser, navigates, captures HTML, then closes.
+
+    THE KEY FIX:
+    Reuters.com is behind DataDome. DataDome serves a challenge page that loads
+    quickly (~1-2 s) and whose JavaScript causes BotBrowser to close the browser
+    shortly after the "load" event fires. The HTML is available at that moment —
+    we just weren't capturing it in time.
+
+    Solution: register a page.on("load", ...) handler that grabs
+    document.documentElement.outerHTML the instant the load event fires.
+    Even if the browser closes a millisecond later, we already have the HTML.
+    The networkidle wait is removed entirely — it was the gap that let the
+    browser close before we could call page.content().
     """
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
@@ -128,6 +125,10 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
 
     for attempt in range(1, retries + 1):
         debug("BotBrowser attempt %d/%d for %s", attempt, retries, url)
+
+        # Use a list so the nested handler can mutate it (no nonlocal needed).
+        captured = [None]
+
         try:
             with sync_playwright() as pw:
                 browser = pw.chromium.launch(
@@ -142,39 +143,61 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                 )
                 page = context.new_page()
 
+                # Capture HTML the moment "load" fires — before BotBrowser
+                # has any chance to close the browser.
+                def on_load(pg):
+                    try:
+                        captured[0] = pg.evaluate(
+                            "() => document.documentElement.outerHTML"
+                        )
+                        debug(
+                            "on_load handler captured %d bytes for %s",
+                            len(captured[0]), url,
+                        )
+                    except Exception as e:
+                        debug("on_load capture failed: %s", e)
+
+                page.on("load", on_load)
+
                 try:
-                    page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+                    page.goto(url, wait_until="load", timeout=TIMEOUT_MS)
+                    # goto returned normally — get content if handler missed it.
+                    if captured[0] is None:
+                        captured[0] = page.content()
+                        debug("Captured HTML via page.content(): %d bytes", len(captured[0]))
                 except PWTimeout:
                     warn("Navigation timed out for %s (attempt %d/%d)", url, attempt, retries)
-                    browser.close()
-                    time.sleep(1)
-                    continue
-
-                try:
-                    page.wait_for_load_state("networkidle", timeout=15_000)
-                except PWTimeout:
-                    debug("networkidle timed out for %s (non-fatal)", url)
-
-                html = page.content()
-                browser.close()
+                except Exception as e:
+                    # Browser may have closed right after load — that's OK if
+                    # the handler already captured the HTML.
+                    debug(
+                        "goto/content error (handler may have captured content): %s", e
+                    )
+                finally:
+                    try:
+                        browser.close()
+                    except Exception:
+                        pass
 
         except Exception as e:
-            warn("BotBrowser error for %s (attempt %d/%d): %s", url, attempt, retries, e)
+            warn("BotBrowser outer error for %s (attempt %d/%d): %s",
+                 url, attempt, retries, e)
             time.sleep(1)
             continue
 
+        html = captured[0]
+
         if not html or len(html) < 500:
-            warn("Suspiciously short HTML (%d bytes) for %s (attempt %d/%d)",
-                 len(html) if html else 0, url, attempt, retries)
+            warn("No usable HTML captured for %s (attempt %d/%d)", url, attempt, retries)
             time.sleep(1)
             continue
 
         if any(m in html for m in DATADOME_MARKERS):
-            warn("DataDome CAPTCHA detected for %s (attempt %d/%d)", url, attempt, retries)
+            warn("DataDome CAPTCHA for %s (attempt %d/%d)", url, attempt, retries)
             time.sleep(2)
             continue
 
-        debug("BotBrowser received %d bytes for %s", len(html), url)
+        debug("BotBrowser: %d bytes for %s", len(html), url)
         return html
 
     warn("BotBrowser: all %d attempts exhausted for %s", retries, url)
