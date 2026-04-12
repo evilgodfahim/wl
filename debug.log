@@ -1,29 +1,23 @@
-2026-04-11 23:39:44,629 INFO: Fetching section: https://apnews.com/world-news
-2026-04-11 23:39:44,629 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-04-11 23:39:44,630 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-11 23:41:45,055 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-04-11 23:41:45,055 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1775950784632, "endTimestamp": 1775950905053, "version": "3.4.6"}
-2026-04-11 23:41:45,055 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-04-11 23:41:47,055 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-04-11 23:41:47,056 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-11 23:43:47,159 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-04-11 23:43:47,159 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1775950907058, "endTimestamp": 1775951027158, "version": "3.4.6"}
-2026-04-11 23:43:47,159 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
-2026-04-11 23:43:51,160 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-04-11 23:43:51,304 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
-2026-04-11 23:43:51,329 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
-2026-04-11 23:43:51,331 DEBUG: Saved HTML to apnews.html (1242651 bytes)
-2026-04-11 23:43:51,714 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-04-11 23:43:51,714 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-04-11 23:43:51,714 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-04-11 23:43:51,715 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-11 23:44:55,956 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2150820
-2026-04-11 23:44:55,970 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-11 23:44:55,973 DEBUG: Saved HTML to apnews.html (2068844 bytes)
-2026-04-11 23:44:56,436 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-04-11 23:44:56,436 INFO: Total unique articles across all sections: 172
-2026-04-11 23:44:56,440 INFO: Loaded existing XML: pau.xml
-2026-04-11 23:44:56,440 INFO: Existing items in feed: 500
-2026-04-11 23:44:56,441 INFO: Added 0 new articles to feed
-2026-04-11 23:44:56,447 INFO: Done! Feed saved to pau.xml
-2026-04-11 23:44:56,447 INFO: Debug log saved to debug.log
+2026-04-12 02:57:34,806 INFO: Fetching section: https://apnews.com/world-news
+2026-04-12 02:57:34,806 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-12 02:57:34,807 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-12 02:57:43,391 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1456114
+2026-04-12 02:57:43,402 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-04-12 02:57:43,404 DEBUG: Saved HTML to apnews.html (1384323 bytes)
+2026-04-12 02:57:43,717 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-04-12 02:57:43,718 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-04-12 02:57:43,718 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-12 02:57:43,719 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-12 02:57:51,014 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2151920
+2026-04-12 02:57:51,029 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-04-12 02:57:51,032 DEBUG: Saved HTML to apnews.html (2070166 bytes)
+2026-04-12 02:57:51,428 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-04-12 02:57:51,428 INFO: Total unique articles across all sections: 172
+2026-04-12 02:57:51,432 INFO: Loaded existing XML: pau.xml
+2026-04-12 02:57:51,433 INFO: Existing items in feed: 500
+2026-04-12 02:57:51,433 DEBUG: Added: [dcd147c8] https://apnews.com/article/iran-us-israel-trump-lebanon-april-11-2026-2be904aee3f804892336730279e054b9
+2026-04-12 02:57:51,433 DEBUG: Added: [dffe47d0] https://apnews.com/live/iran-war-israel-trump-04-11-2026
+2026-04-12 02:57:51,433 INFO: Added 2 new articles to feed
+2026-04-12 02:57:51,433 INFO: Trimmed feed to 500 items
+2026-04-12 02:57:51,440 INFO: Done! Feed saved to pau.xml
+2026-04-12 02:57:51,440 INFO: Debug log saved to debug.log
