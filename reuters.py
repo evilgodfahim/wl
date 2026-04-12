@@ -4,7 +4,6 @@
 import sys
 import os
 import re
-import random
 import logging
 import subprocess
 import time
@@ -72,7 +71,9 @@ REUTERS_JUNK_TITLES = {
     "video", "live", "graphic", "graphics", "podcast",
 }
 
-# How many Reuters article fetches between BotBrowser hard restarts
+# How many Reuters article fetches between BotBrowser hard restarts.
+# Each restart picks a fresh random profile from BOTBROWSER_PROFILE_DIR,
+# giving natural fingerprint rotation without a proxy pool.
 BOTBROWSER_RESTART_EVERY = 10
 
 # Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
@@ -82,75 +83,31 @@ BOTBROWSER_FETCH_DELAY = 1.5
 # BotBrowser Configuration
 # ------------------------------
 
-BOTBROWSER_BINARY   = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
-BOTBROWSER_CDP_PORT = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
-BOTBROWSER_PROFILE  = os.environ.get("BOTBROWSER_PROFILE", "")
+BOTBROWSER_BINARY      = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
+BOTBROWSER_CDP_PORT    = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
+
+# Profile strategy (mutually exclusive; dir takes priority):
+#   BOTBROWSER_PROFILE_DIR — directory of .enc files; BotBrowser picks one at random each start.
+#   BOTBROWSER_PROFILE     — single .enc file, used only when no dir is configured.
+BOTBROWSER_PROFILE_DIR = os.environ.get("BOTBROWSER_PROFILE_DIR", "")
+BOTBROWSER_PROFILE     = os.environ.get("BOTBROWSER_PROFILE", "")
 
 _botbrowser_proc: subprocess.Popen | None = None
-
-# ------------------------------
-# Proxy Pool (proxifly)
-# ------------------------------
-
-PROXIFLY_HTTP_JSON = (
-    "https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main"
-    "/proxies/protocols/http/data.json"
-)
-
-_proxy_pool: list[str] = []
-_proxy_index: int = 0
-
-
-def init_proxy_pool() -> None:
-    """
-    Fetch proxifly's HTTP proxy list and keep only those that support
-    HTTPS CONNECT tunneling (required for reuters.com).
-    Shuffled so concurrent runs don't hammer the same IPs.
-    """
-    global _proxy_pool, _proxy_index
-    try:
-        r = requests.get(PROXIFLY_HTTP_JSON, timeout=20)
-        r.raise_for_status()
-        data = r.json()
-    except Exception as e:
-        warn("proxifly: failed to fetch proxy list: %s", e)
-        _proxy_pool = []
-        return
-
-    # Only keep proxies verified to support HTTPS CONNECT tunneling
-    https_proxies = [p for p in data if p.get("https") is True and p.get("proxy")]
-
-    # Sort best score first, then shuffle so we spread the load
-    https_proxies.sort(key=lambda p: p.get("score", 0), reverse=True)
-    random.shuffle(https_proxies)
-
-    _proxy_pool = [p["proxy"] for p in https_proxies]
-    _proxy_index = 0
-
-    info(
-        "proxifly: %d total proxies, %d support HTTPS CONNECT — pool ready",
-        len(data),
-        len(_proxy_pool),
-    )
-
-
-def next_proxy() -> str:
-    global _proxy_index
-    if not _proxy_pool:
-        warn("Proxy pool is empty — will attempt direct connection (likely blocked by DataDome)")
-        return ""
-    proxy = _proxy_pool[_proxy_index % len(_proxy_pool)]
-    _proxy_index += 1
-    info("Using proxy [%d/%d]: %s", _proxy_index, len(_proxy_pool), proxy)
-    return proxy
-
 
 # ------------------------------
 # BotBrowser launch / lifecycle
 # ------------------------------
 
-def _start_botbrowser(proxy: str = "") -> bool:
-    """Launch a fresh BotBrowser process with an optional proxy and wait for CDP."""
+def _start_botbrowser() -> bool:
+    """
+    Launch a fresh BotBrowser process and wait for CDP.
+
+    Profile selection:
+      - If BOTBROWSER_PROFILE_DIR is set, pass --bot-profile-dir so BotBrowser
+        randomly picks one .enc profile on each startup (built-in fingerprint rotation).
+      - Otherwise fall back to --bot-profile with a single file.
+      - If neither is set, BotBrowser uses its default built-in profile.
+    """
     global _botbrowser_proc
 
     if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
@@ -175,16 +132,17 @@ def _start_botbrowser(proxy: str = "") -> bool:
         "--remote-debugging-address=127.0.0.1",
         "--disable-blink-features=AutomationControlled",
     ]
-    if BOTBROWSER_PROFILE:
-        cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
-    if proxy:
-        cmd.append(f"--proxy-server={proxy}")
 
-    debug(
-        "Launching BotBrowser%s: %s",
-        f" via {proxy}" if proxy else " (no proxy)",
-        " ".join(cmd),
-    )
+    if BOTBROWSER_PROFILE_DIR:
+        cmd.append(f"--bot-profile-dir={BOTBROWSER_PROFILE_DIR}")
+        debug("Profile mode: random from dir '%s'", BOTBROWSER_PROFILE_DIR)
+    elif BOTBROWSER_PROFILE:
+        cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
+        debug("Profile mode: single file '%s'", BOTBROWSER_PROFILE)
+    else:
+        debug("Profile mode: BotBrowser default")
+
+    debug("Launching BotBrowser: %s", " ".join(cmd))
 
     try:
         _botbrowser_proc = subprocess.Popen(
@@ -271,14 +229,10 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
 
 def botbrowser_get(url: str, retries: int = 3) -> str | None:
-    """Fetch a URL via BotBrowser, rotating through the proxy pool on each attempt."""
+    """Fetch a URL via BotBrowser, restarting (with a fresh random profile) on each attempt."""
     for attempt in range(1, retries + 1):
-        proxy = next_proxy()
-        if not _start_botbrowser(proxy=proxy):
-            warn(
-                "BotBrowser failed to start (attempt %d/%d, proxy=%s)",
-                attempt, retries, proxy or "direct",
-            )
+        if not _start_botbrowser():
+            warn("BotBrowser failed to start (attempt %d/%d)", attempt, retries)
             time.sleep(1)
             continue
 
@@ -286,10 +240,7 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
         if result:
             return result
 
-        warn(
-            "BotBrowser fetch failed (attempt %d/%d) via %s for %s",
-            attempt, retries, proxy or "direct", url,
-        )
+        warn("BotBrowser fetch failed (attempt %d/%d) for %s", attempt, retries, url)
         time.sleep(1)
 
     warn("BotBrowser: all %d attempts exhausted for %s", retries, url)
@@ -440,7 +391,7 @@ def extract_reuters_extra_cards(soup, page_url):
 # INIT
 # ------------------------------
 
-init_proxy_pool()
+# No proxy pool — fingerprint diversity comes from --bot-profile-dir rotation.
 
 # ------------------------------
 # 1. FETCH REUTERS WORLD  (BotBrowser)
@@ -699,8 +650,9 @@ for i, a in enumerate(all_articles, 1):
 
     reuters_fetch_count += 1
     if reuters_fetch_count > 1 and reuters_fetch_count % BOTBROWSER_RESTART_EVERY == 0:
-        info("DataDome prevention: restarting BotBrowser after %d Reuters fetches", reuters_fetch_count)
-        _start_botbrowser(proxy=next_proxy())
+        # Hard restart picks a fresh random profile from the dir on next botbrowser_get call.
+        info("Fingerprint rotation: restarting BotBrowser after %d Reuters fetches", reuters_fetch_count)
+        _botbrowser_shutdown()
         time.sleep(3)
 
     page = botbrowser_get(a["url"])
