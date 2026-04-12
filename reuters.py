@@ -100,10 +100,6 @@ def _build_launch_args() -> list[str]:
 
 
 def botbrowser_get(url: str, retries: int = 3) -> str | None:
-    """
-    Fetch *url* using BotBrowser launched directly by Playwright.
-    Waits for primary React/Next.js content to render rather than capturing blindly.
-    """
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
     except ImportError:
@@ -135,10 +131,7 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                 page = context.new_page()
 
                 try:
-                    # Wait for DOM content to finish loading
                     page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
-                    
-                    # Try to wait for actual content elements (articles or cards)
                     try:
                         page.wait_for_selector(
                             '[data-testid="Title"], [data-testid="Body"], article, [data-testid="StoryCard"]', 
@@ -170,7 +163,6 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
             time.sleep(1)
             continue
 
-        # DataDome check using expanded markers
         html_lower = html.lower()
         if any(m.lower() in html_lower for m in DATADOME_MARKERS):
             warn("DataDome CAPTCHA for %s (attempt %d/%d)", url, attempt, retries)
@@ -210,7 +202,6 @@ def save_debug_html(path, html):
         warn("Failed saving HTML %s: %s", path, e)
 
 def build_full_url(href, base=REUTERS_BASE):
-    """Safely builds full URLs, accounting for protocol-relative paths."""
     href = (href or "").strip()
     if not href:
         return None
@@ -222,14 +213,44 @@ def build_full_url(href, base=REUTERS_BASE):
         return base + href
     return None
 
+def is_valid_article_url(url, title=""):
+    """
+    Globally filters out category pages, index hubs, and non-article links.
+    """
+    if not url:
+        return False
+    if not re.match(r'https?://(?:www\.)?reuters\.com/', url):
+        return False
+        
+    url_path = url.split("reuters.com", 1)[-1].split("?")[0]
+    
+    if any(url_path.startswith(p) for p in REUTERS_SKIP_PATHS):
+        return False
+        
+    if title and title.strip().lower() in REUTERS_JUNK_TITLES:
+        return False
+        
+    last_segment = url_path.strip("/").split("/")[-1]
+    
+    if not last_segment:
+        return False
+        
+    # Real article slugs almost always have 3+ hyphens (e.g., /biden-says-this-thing-today/)
+    if last_segment.count('-') >= 3:
+        return True
+        
+    # Fallbacks for very short titles that end in standard Reuters date/ID formats
+    if re.search(r'-\d{4}-\d{2}-\d{2}$', last_segment):
+        return True
+    if re.search(r'-id[A-Z0-9]{5,}$', last_segment, re.IGNORECASE):
+        return True
+        
+    return False
 
 def extract_full_text_reuters(article_html):
-    """Extracts article text, utilizing regex to bypass brittle CSS hashes."""
     s = BeautifulSoup(article_html, "html.parser")
-
-    # Match the base class name, ignoring the dynamically generated hash
     container = s.find("div", class_=re.compile(r"article-body-module__content__"))
-    
+
     if container:
         parts = []
         for p in container.find_all(attrs={"data-testid": True}):
@@ -240,11 +261,9 @@ def extract_full_text_reuters(article_html):
         if parts:
             return "\n\n".join(parts)
 
-    # Fallbacks
     blocks = s.select('div[data-testid="Body"] p') or s.select("article p")
     parts  = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
     return "\n\n".join(parts)
-
 
 def extract_image_url(soup_page):
     meta_og = soup_page.find("meta", property="og:image")
@@ -259,29 +278,16 @@ def extract_image_url(soup_page):
             return src.strip()
     return ""
 
-
 def extract_reuters_extra_cards(soup, page_url):
     results = []
     seen = set()
-
-    def _is_valid(url, title):
-        if not url or not title:
-            return False
-        if not re.match(r'https?://(?:www\.)?reuters\.com/', url):
-            return False
-        parsed_path = url.split("reuters.com", 1)[-1]
-        if any(parsed_path.startswith(p) for p in REUTERS_SKIP_PATHS):
-            return False
-        if title.strip().lower() in REUTERS_JUNK_TITLES:
-            return False
-        return True
 
     def _add(href, title, thumb=""):
         url = build_full_url(href)
         title = (title or "").strip()
         if not url or url in seen:
             return
-        if not _is_valid(url, title):
+        if not is_valid_article_url(url, title):
             return
         seen.add(url)
         results.append({"url": url, "title": title, "source": "Reuters", "thumb": thumb})
@@ -338,55 +344,35 @@ else:
     primary_items = []
     try:
         nodes = soup.select('div[data-testid="Title"] a[data-testid="TitleLink"]')
-        debug("Primary selector nodes found: %d", len(nodes))
         for blk in nodes:
             href  = blk.get("href", "").strip()
             url   = build_full_url(href)
-            if not url:
-                continue
             span  = blk.select_one('span[data-testid="TitleHeading"]')
             title = span.get_text(" ", strip=True) if span else blk.get_text(" ", strip=True)
-            if title:
+            if is_valid_article_url(url, title):
                 primary_items.append((url, title))
     except Exception as e:
         warn("Exception in primary world selector: %s", e)
 
     if primary_items:
         info("Primary world selector matched %d items.", len(primary_items))
-        for u, t in primary_items[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | %s", u, t)
         for url, title in primary_items:
             reuters_articles.append({"url": url, "title": title, "source": "Reuters"})
     else:
         seen, fallback_items = set(), []
         for a in soup.find_all("a", href=True):
             href = a["href"].strip()
-            if re.search(
-                r'^/(world|article|business|markets|breakingviews|technology|investigations|commentary)/',
-                href
-            ) or '/article/' in href:
-                title_text = a.get_text(" ", strip=True)
-                if not title_text:
-                    parent = a.find_parent()
-                    title_text = parent.get_text(" ", strip=True) if parent else ""
-                if not title_text:
-                    continue
+            if re.search(r'^/(world|article|business|markets|breakingviews|technology|investigations|commentary)/', href) or '/article/' in href:
+                title_text = a.get_text(" ", strip=True) or (a.find_parent().get_text(" ", strip=True) if a.find_parent() else "")
                 full = build_full_url(href)
-                if not full or full in seen:
-                    continue
-                seen.add(full)
-                fallback_items.append((full, title_text))
+                if full and full not in seen and is_valid_article_url(full, title_text):
+                    seen.add(full)
+                    fallback_items.append((full, title_text))
 
         info("Fallback anchor scan found %d candidates.", len(fallback_items))
-        for full, title in fallback_items[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | %s", full, title)
-        if not fallback_items:
-            warn("No world article candidates found. HTML snippet:\n%s",
-                 html[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
         for url, title in fallback_items:
             reuters_articles.append({"url": url, "title": title, "source": "Reuters"})
 
-    info("Found %d Reuters world articles", len(reuters_articles))
 
 # ------------------------------
 # 1B. FETCH REUTERS COMMENTARY
@@ -410,57 +396,36 @@ else:
                 continue
             title = title_el.get_text(" ", strip=True)
             href  = link_el.get("href", "").strip()
-            thumb_el = card.select_one(
-                '[data-testid="MediaImageLink"] [data-testid="EagerImageContainer"] img[data-testid="EagerImage"]'
-            )
-            thumb = ""
-            if thumb_el:
-                thumb = (thumb_el.get("src") or thumb_el.get("data-src") or "").strip()
+            thumb_el = card.select_one('[data-testid="MediaImageLink"] [data-testid="EagerImageContainer"] img[data-testid="EagerImage"]')
+            thumb = (thumb_el.get("src") or thumb_el.get("data-src") or "").strip() if thumb_el else ""
             primary_cards.append((href, title, thumb))
     except Exception as e:
         warn("Exception in primary commentary selector: %s", e)
 
     if primary_cards:
-        info("Primary commentary selector matched %d cards.", len(primary_cards))
-        for href, title, thumb in primary_cards[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - href=%s | title=%s", href, title)
         for href, title, thumb in primary_cards:
             url = build_full_url(href)
-            if url:
+            if is_valid_article_url(url, title):
                 reuters_articles.append({"url": url, "title": title, "source": "Reuters", "thumb": thumb})
     else:
         seen, fallback_cards = set(), []
         for a in csoup.find_all("a", href=True):
             href = a["href"].strip()
-            if re.search(
-                r'^/(commentary|breakingviews|article|business|world|opinions)/', href
-            ) or '/article/' in href:
-                title_text = a.get_text(" ", strip=True)
-                if not title_text:
-                    parent = a.find_parent()
-                    title_text = parent.get_text(" ", strip=True) if parent else ""
-                if not title_text:
-                    continue
+            if re.search(r'^/(commentary|breakingviews|article|business|world|opinions)/', href) or '/article/' in href:
+                title_text = a.get_text(" ", strip=True) or (a.find_parent().get_text(" ", strip=True) if a.find_parent() else "")
                 full = build_full_url(href)
-                if not full or full in seen:
-                    continue
-                seen.add(full)
-                thumb = ""
-                parent = a.find_parent()
-                if parent:
-                    img = parent.find("img")
-                    if img:
+                if full and full not in seen and is_valid_article_url(full, title_text):
+                    seen.add(full)
+                    thumb = ""
+                    parent = a.find_parent()
+                    if parent and parent.find("img"):
+                        img = parent.find("img")
                         thumb = (img.get("src") or img.get("data-src") or "").strip()
-                fallback_cards.append((full, title_text, thumb))
+                    fallback_cards.append((full, title_text, thumb))
 
-        info("Fallback commentary scan found %d candidates.", len(fallback_cards))
-        if not fallback_cards:
-            warn("No commentary candidates found. HTML snippet:\n%s",
-                 commentary_html[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
         for full, title, thumb in fallback_cards:
             reuters_articles.append({"url": full, "title": title, "source": "Reuters", "thumb": thumb})
 
-    info("Total Reuters articles (world + commentary): %d", len(reuters_articles))
 
 # ------------------------------
 # 1C. FETCH REUTERS EXTRA SECTION PAGES
@@ -471,42 +436,23 @@ for extra_url in REUTERS_EXTRA_URLS:
     extra_html = botbrowser_get(extra_url)
 
     if extra_html is None:
-        warn("Failed to fetch Reuters extra page: %s", extra_url)
         continue
-
-    slug = extra_url.rstrip("/").split("/")[-1] or extra_url.rstrip("/").split("/")[-2]
-    save_debug_html(f"reuters_extra_{slug}.html", extra_html)
 
     extra_soup = BeautifulSoup(extra_html, "html.parser")
     cards = extract_reuters_extra_cards(extra_soup, extra_url)
 
     if cards:
-        info("Extra page %s: found %d cards.", extra_url, len(cards))
-        for c in cards[:DEBUG_SAMPLE_LIMIT]:
-            debug("  - %s | %s", c["url"], c["title"])
         reuters_articles.extend(cards)
     else:
-        warn("Extra page %s: no cards matched — falling back to anchor scan.", extra_url)
         seen_extra = set()
         for a in extra_soup.find_all("a", href=True):
             href = a["href"].strip()
-            if re.search(
-                r'^/(world|article|business|markets|breakingviews|technology|'
-                r'investigations|commentary|sustainability)/',
-                href
-            ) or '/article/' in href:
-                title_text = a.get_text(" ", strip=True)
-                if not title_text:
-                    parent = a.find_parent()
-                    title_text = parent.get_text(" ", strip=True) if parent else ""
-                if not title_text:
-                    continue
+            if re.search(r'^/(world|article|business|markets|breakingviews|technology|investigations|commentary|sustainability)/', href) or '/article/' in href:
+                title_text = a.get_text(" ", strip=True) or (a.find_parent().get_text(" ", strip=True) if a.find_parent() else "")
                 full = build_full_url(href)
-                if not full or full in seen_extra:
-                    continue
-                seen_extra.add(full)
-                reuters_articles.append({"url": full, "title": title_text, "source": "Reuters"})
-        info("Extra page %s: fallback anchor scan found %d candidates.", extra_url, len(seen_extra))
+                if full and full not in seen_extra and is_valid_article_url(full, title_text):
+                    seen_extra.add(full)
+                    reuters_articles.append({"url": full, "title": title_text, "source": "Reuters"})
 
 info("Total Reuters articles after extra pages: %d", len(reuters_articles))
 
@@ -531,15 +477,12 @@ def load_or_create_xml(path, title, link, description):
         try:
             tree = ET.parse(path)
             root = tree.getroot()
-            info("Loaded existing XML: %s", path)
-        except ET.ParseError as e:
-            warn("XML parse error (%s) — creating new: %s", e, path)
+        except ET.ParseError:
             root = ET.Element("rss", version="2.0")
             tree = ET.ElementTree(root)
     else:
         root = ET.Element("rss", version="2.0")
         tree = ET.ElementTree(root)
-        info("Created new XML root: %s", path)
 
     channel = root.find("channel")
     if channel is None:
@@ -549,7 +492,6 @@ def load_or_create_xml(path, title, link, description):
         ET.SubElement(channel, "description").text = description
 
     return tree, root, channel
-
 
 reuters_tree, reuters_root, reuters_channel = load_or_create_xml(
     REUTERS_XML_FILE,
@@ -563,7 +505,6 @@ reuters_existing = {
     for item in reuters_channel.findall("item")
     if item.find("link") is not None and item.find("link").text
 }
-info("Existing items in Reuters feed: %d", len(reuters_existing))
 
 # ------------------------------
 # FETCH FULL TEXT
@@ -573,29 +514,18 @@ for i, a in enumerate(all_articles, 1):
     if a["url"] in reuters_existing:
         continue
 
-    info("Processing %d/%d [Reuters]: %s", i, len(all_articles), a.get("title", "")[:80])
-
     page = botbrowser_get(a["url"])
 
     if page is None:
-        warn("Failed to fetch: %s", a.get("url"))
         a["desc"] = ""
         a["img"]  = a.get("thumb", "") or ""
         a["pub"]  = now_utc()
         continue
 
-    a["desc"] = extract_full_text_reuters(page)
-    a["desc"] = a["desc"] or ""
-
+    a["desc"] = extract_full_text_reuters(page) or ""
     soup_page = BeautifulSoup(page, "html.parser")
     a["img"] = extract_image_url(soup_page) or a.get("thumb", "") or ""
     a["pub"] = now_utc()
-
-    desc_len = len(a["desc"])
-    debug("  desc length: %d, img: %s", desc_len, (a["img"] or "")[:120])
-    if desc_len == 0:
-        warn("  Empty description for: %s\n  Page snippet: %s",
-             a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
 
     time.sleep(BOTBROWSER_FETCH_DELAY)
 
@@ -612,11 +542,9 @@ for art in all_articles:
     desc  = (art.get("desc")  or "").strip()
 
     if not title and not desc:
-        warn("Skipping (no title or description): %s", art["url"])
         continue
 
     if not desc:
-        warn("No description for '%s' — using title as fallback", title[:60])
         desc = title
 
     item = ET.SubElement(reuters_channel, "item")
@@ -628,9 +556,6 @@ for art in all_articles:
         ET.SubElement(item, "enclosure", url=art["img"], type="image/jpeg")
 
     new_count += 1
-    debug("Added: %s", art["url"])
-
-info("Added %d new articles to Reuters feed", new_count)
 
 # ------------------------------
 # TRIM & SAVE
@@ -640,9 +565,7 @@ all_items = reuters_channel.findall("item")
 if len(all_items) > MAX_ITEMS:
     for old in all_items[:-MAX_ITEMS]:
         reuters_channel.remove(old)
-    info("Trimmed feed to %d items", MAX_ITEMS)
 
 os.makedirs(os.path.dirname(REUTERS_XML_FILE) or ".", exist_ok=True)
 reuters_tree.write(REUTERS_XML_FILE, encoding="utf-8", xml_declaration=True)
 info("Done! Reuters feed saved to %s", REUTERS_XML_FILE)
-info("Debug log saved to %s", LOG_FILENAME)
