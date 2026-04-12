@@ -72,8 +72,6 @@ REUTERS_JUNK_TITLES = {
 }
 
 # How many Reuters article fetches between BotBrowser hard restarts.
-# Each restart picks a fresh random profile from BOTBROWSER_PROFILE_DIR,
-# giving natural fingerprint rotation without a proxy pool.
 BOTBROWSER_RESTART_EVERY = 10
 
 # Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
@@ -87,7 +85,7 @@ BOTBROWSER_BINARY      = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/bo
 BOTBROWSER_CDP_PORT    = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
 
 # Profile strategy (mutually exclusive; dir takes priority):
-#   BOTBROWSER_PROFILE_DIR — directory of .enc files; BotBrowser picks one at random each start.
+#   BOTBROWSER_PROFILE_DIR — directory of .enc files; one is picked at random each start.
 #   BOTBROWSER_PROFILE     — single .enc file, used only when no dir is configured.
 BOTBROWSER_PROFILE_DIR = os.environ.get("BOTBROWSER_PROFILE_DIR", "")
 BOTBROWSER_PROFILE     = os.environ.get("BOTBROWSER_PROFILE", "")
@@ -98,18 +96,35 @@ _botbrowser_proc: subprocess.Popen | None = None
 # BotBrowser launch / lifecycle
 # ------------------------------
 
+def _is_botbrowser_alive() -> bool:
+    """Return True if the BotBrowser process is running AND CDP responds."""
+    global _botbrowser_proc
+    if _botbrowser_proc is None or _botbrowser_proc.poll() is not None:
+        return False
+    cdp_url = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}/json/version"
+    try:
+        r = requests.get(cdp_url, timeout=2)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
 def _start_botbrowser() -> bool:
     """
     Launch a fresh BotBrowser process and wait for CDP.
 
+    Critical flags for GitHub Actions / Linux CI:
+      --disable-dev-shm-usage   Prevents crashes caused by /dev/shm exhaustion
+                                (default size is only 64 MB on most runners).
+
     Profile selection:
-      - If BOTBROWSER_PROFILE_DIR is set, pass --bot-profile-dir so BotBrowser
-        randomly picks one .enc profile on each startup (built-in fingerprint rotation).
-      - Otherwise fall back to --bot-profile with a single file.
-      - If neither is set, BotBrowser uses its default built-in profile.
+      - BOTBROWSER_PROFILE_DIR → --bot-profile-dir (random .enc per startup)
+      - BOTBROWSER_PROFILE     → --bot-profile (single file)
+      - neither                → BotBrowser built-in default
     """
     global _botbrowser_proc
 
+    # Kill any stale process first.
     if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
         debug("Killing existing BotBrowser (pid %d)", _botbrowser_proc.pid)
         _botbrowser_proc.kill()
@@ -128,6 +143,9 @@ def _start_botbrowser() -> bool:
         "--headless=new",
         "--no-sandbox",
         "--disable-gpu",
+        # FIX 1: Prevents Chromium from using /dev/shm (only 64 MB on GHA runners),
+        # which causes silent crashes a few seconds after startup.
+        "--disable-dev-shm-usage",
         f"--remote-debugging-port={BOTBROWSER_CDP_PORT}",
         "--remote-debugging-address=127.0.0.1",
         "--disable-blink-features=AutomationControlled",
@@ -159,7 +177,8 @@ def _start_botbrowser() -> bool:
         try:
             r = requests.get(cdp_url, timeout=2)
             if r.status_code == 200:
-                debug("BotBrowser CDP ready on port %d", BOTBROWSER_CDP_PORT)
+                debug("BotBrowser CDP ready on port %d (pid %d)",
+                      BOTBROWSER_CDP_PORT, _botbrowser_proc.pid)
                 return True
         except Exception:
             pass
@@ -170,7 +189,14 @@ def _start_botbrowser() -> bool:
 
 
 def _botbrowser_fetch_once(url: str) -> str | None:
-    """Single attempt to fetch a URL via BotBrowser + Playwright CDP."""
+    """
+    Single attempt to fetch a URL via BotBrowser + Playwright CDP.
+
+    FIX 2: Use browser.disconnect() instead of browser.close().
+    When connected via connect_over_cdp(), calling browser.close() terminates
+    the remote BotBrowser *process*. disconnect() drops only the CDP session,
+    leaving the process alive for the next fetch.
+    """
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
     except ImportError:
@@ -198,7 +224,9 @@ def _botbrowser_fetch_once(url: str) -> str | None:
                 page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
             except PWTimeout:
                 warn("BotBrowser navigation timed out for %s", url)
-                page.close(); context.close(); browser.close()
+                page.close()
+                context.close()
+                browser.disconnect()   # FIX 2: disconnect, not close
                 return None
 
             try:
@@ -207,14 +235,17 @@ def _botbrowser_fetch_once(url: str) -> str | None:
                 debug("networkidle timed out for %s (non-fatal)", url)
 
             html = page.content()
-            page.close(); context.close(); browser.close()
+            page.close()
+            context.close()
+            browser.disconnect()       # FIX 2: disconnect, not close
 
     except Exception as e:
         warn("BotBrowser Playwright error for %s: %s", url, e)
         return None
 
     if not html or len(html) < 500:
-        warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s", len(html), url)
+        warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s",
+             len(html) if html else 0, url)
         return None
 
     if any(m in html for m in DATADOME_MARKERS):
@@ -229,18 +260,28 @@ def _botbrowser_fetch_once(url: str) -> str | None:
 
 
 def botbrowser_get(url: str, retries: int = 3) -> str | None:
-    """Fetch a URL via BotBrowser, restarting (with a fresh random profile) on each attempt."""
+    """
+    Fetch a URL via BotBrowser.
+
+    Keeps the BotBrowser process alive between calls (avoids the startup cost
+    and the fingerprint-reset on every request).  Only restarts when the
+    process is found dead or a fetch fails.
+    """
     for attempt in range(1, retries + 1):
-        if not _start_botbrowser():
-            warn("BotBrowser failed to start (attempt %d/%d)", attempt, retries)
-            time.sleep(1)
-            continue
+        # Start (or restart) only if the process is not alive.
+        if not _is_botbrowser_alive():
+            if not _start_botbrowser():
+                warn("BotBrowser failed to start (attempt %d/%d)", attempt, retries)
+                time.sleep(1)
+                continue
 
         result = _botbrowser_fetch_once(url)
         if result:
             return result
 
+        # Fetch failed — force a restart for the next attempt.
         warn("BotBrowser fetch failed (attempt %d/%d) for %s", attempt, retries, url)
+        _botbrowser_shutdown()
         time.sleep(1)
 
     warn("BotBrowser: all %d attempts exhausted for %s", retries, url)
@@ -386,12 +427,6 @@ def extract_reuters_extra_cards(soup, page_url):
     debug("extract_reuters_extra_cards: %d items from %s", len(results), page_url)
     return results
 
-
-# ------------------------------
-# INIT
-# ------------------------------
-
-# No proxy pool — fingerprint diversity comes from --bot-profile-dir rotation.
 
 # ------------------------------
 # 1. FETCH REUTERS WORLD  (BotBrowser)
@@ -650,8 +685,8 @@ for i, a in enumerate(all_articles, 1):
 
     reuters_fetch_count += 1
     if reuters_fetch_count > 1 and reuters_fetch_count % BOTBROWSER_RESTART_EVERY == 0:
-        # Hard restart picks a fresh random profile from the dir on next botbrowser_get call.
-        info("Fingerprint rotation: restarting BotBrowser after %d Reuters fetches", reuters_fetch_count)
+        info("Fingerprint rotation: restarting BotBrowser after %d Reuters fetches",
+             reuters_fetch_count)
         _botbrowser_shutdown()
         time.sleep(3)
 
