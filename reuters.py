@@ -5,7 +5,6 @@ import sys
 import os
 import re
 import logging
-import subprocess
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -51,13 +50,11 @@ MAX_ITEMS               = 500
 REUTERS_BASE            = "https://www.reuters.com"
 TIMEOUT_MS              = 120000
 
-# DataDome CAPTCHA challenge page unique CSS — never present in real pages.
 DATADOME_MARKERS = [
     "#cmsg{animation: A 1.5s;}",
     "#cmsg{animation:A 1.5s}",
 ]
 
-# URL path prefixes that are never fetchable articles on reuters.com
 REUTERS_SKIP_PATHS = (
     "/newsletters/",
     "/graphics/",
@@ -66,15 +63,10 @@ REUTERS_SKIP_PATHS = (
     "/video/",
 )
 
-# Titles that are purely UI labels / non-article cards.
 REUTERS_JUNK_TITLES = {
     "video", "live", "graphic", "graphics", "podcast",
 }
 
-# How many Reuters article fetches between BotBrowser hard restarts.
-BOTBROWSER_RESTART_EVERY = 10
-
-# Seconds to sleep between BotBrowser article fetches (reduces DataDome score)
 BOTBROWSER_FETCH_DELAY = 1.5
 
 # ------------------------------
@@ -82,120 +74,45 @@ BOTBROWSER_FETCH_DELAY = 1.5
 # ------------------------------
 
 BOTBROWSER_BINARY      = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
-BOTBROWSER_CDP_PORT    = int(os.environ.get("BOTBROWSER_CDP_PORT", "9222"))
-
-# Profile strategy (mutually exclusive; dir takes priority):
-#   BOTBROWSER_PROFILE_DIR — directory of .enc files; one is picked at random each start.
-#   BOTBROWSER_PROFILE     — single .enc file, used only when no dir is configured.
 BOTBROWSER_PROFILE_DIR = os.environ.get("BOTBROWSER_PROFILE_DIR", "")
 BOTBROWSER_PROFILE     = os.environ.get("BOTBROWSER_PROFILE", "")
 
-_botbrowser_proc: subprocess.Popen | None = None
-
 # ------------------------------
-# BotBrowser launch / lifecycle
+# BotBrowser — Playwright-native launch
+#
+# THE FIX:
+# BotBrowser must be launched BY Playwright via pw.chromium.launch(executable_path=...).
+# The previous approach — launching BotBrowser as a subprocess, waiting for CDP,
+# then connecting via connect_over_cdp() — caused BotBrowser's own anti-detection
+# layer to identify the external CDP session as hostile and shut itself down
+# (~2 seconds after startup, every time).
+#
+# With pw.chromium.launch(), Playwright owns the full lifecycle and BotBrowser
+# operates exactly as its authors intended.
 # ------------------------------
 
-def _is_botbrowser_alive() -> bool:
-    """Return True if the BotBrowser process is running AND CDP responds."""
-    global _botbrowser_proc
-    if _botbrowser_proc is None or _botbrowser_proc.poll() is not None:
-        return False
-    cdp_url = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}/json/version"
-    try:
-        r = requests.get(cdp_url, timeout=2)
-        return r.status_code == 200
-    except Exception:
-        return False
-
-
-def _start_botbrowser() -> bool:
-    """
-    Launch a fresh BotBrowser process and wait for CDP.
-
-    Critical flags for GitHub Actions / Linux CI:
-      --disable-dev-shm-usage   Prevents crashes caused by /dev/shm exhaustion
-                                (default size is only 64 MB on most runners).
-
-    Profile selection:
-      - BOTBROWSER_PROFILE_DIR → --bot-profile-dir (random .enc per startup)
-      - BOTBROWSER_PROFILE     → --bot-profile (single file)
-      - neither                → BotBrowser built-in default
-    """
-    global _botbrowser_proc
-
-    # Kill any stale process first.
-    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
-        debug("Killing existing BotBrowser (pid %d)", _botbrowser_proc.pid)
-        _botbrowser_proc.kill()
-        try:
-            _botbrowser_proc.wait(timeout=5)
-        except subprocess.TimeoutExpired:
-            pass
-        _botbrowser_proc = None
-
-    if not os.path.isfile(BOTBROWSER_BINARY):
-        warn("BotBrowser binary not found at '%s'.", BOTBROWSER_BINARY)
-        return False
-
-    cmd = [
-        BOTBROWSER_BINARY,
-        "--headless=new",
+def _build_launch_args() -> list[str]:
+    args = [
         "--no-sandbox",
         "--disable-gpu",
-        # FIX 1: Prevents Chromium from using /dev/shm (only 64 MB on GHA runners),
-        # which causes silent crashes a few seconds after startup.
         "--disable-dev-shm-usage",
-        f"--remote-debugging-port={BOTBROWSER_CDP_PORT}",
-        "--remote-debugging-address=127.0.0.1",
         "--disable-blink-features=AutomationControlled",
     ]
-
     if BOTBROWSER_PROFILE_DIR:
-        cmd.append(f"--bot-profile-dir={BOTBROWSER_PROFILE_DIR}")
-        debug("Profile mode: random from dir '%s'", BOTBROWSER_PROFILE_DIR)
+        args.append(f"--bot-profile-dir={BOTBROWSER_PROFILE_DIR}")
+        debug("BotBrowser profile: random from dir '%s'", BOTBROWSER_PROFILE_DIR)
     elif BOTBROWSER_PROFILE:
-        cmd.append(f"--bot-profile={BOTBROWSER_PROFILE}")
-        debug("Profile mode: single file '%s'", BOTBROWSER_PROFILE)
+        args.append(f"--bot-profile={BOTBROWSER_PROFILE}")
+        debug("BotBrowser profile: '%s'", BOTBROWSER_PROFILE)
     else:
-        debug("Profile mode: BotBrowser default")
-
-    debug("Launching BotBrowser: %s", " ".join(cmd))
-
-    try:
-        _botbrowser_proc = subprocess.Popen(
-            cmd,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-    except Exception as e:
-        warn("Failed to launch BotBrowser: %s", e)
-        return False
-
-    cdp_url = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}/json/version"
-    for _ in range(30):
-        try:
-            r = requests.get(cdp_url, timeout=2)
-            if r.status_code == 200:
-                debug("BotBrowser CDP ready on port %d (pid %d)",
-                      BOTBROWSER_CDP_PORT, _botbrowser_proc.pid)
-                return True
-        except Exception:
-            pass
-        time.sleep(0.5)
-
-    warn("BotBrowser CDP did not become ready within 15 s")
-    return False
+        debug("BotBrowser profile: built-in default")
+    return args
 
 
-def _botbrowser_fetch_once(url: str) -> str | None:
+def botbrowser_get(url: str, retries: int = 3) -> str | None:
     """
-    Single attempt to fetch a URL via BotBrowser + Playwright CDP.
-
-    FIX 2: Use browser.disconnect() instead of browser.close().
-    When connected via connect_over_cdp(), calling browser.close() terminates
-    the remote BotBrowser *process*. disconnect() drops only the CDP session,
-    leaving the process alive for the next fetch.
+    Fetch *url* using BotBrowser launched directly by Playwright.
+    Each attempt opens a fresh browser, navigates, captures HTML, then closes.
     """
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
@@ -203,101 +120,65 @@ def _botbrowser_fetch_once(url: str) -> str | None:
         warn("playwright is not installed.")
         return None
 
-    cdp_endpoint = f"http://127.0.0.1:{BOTBROWSER_CDP_PORT}"
-
-    try:
-        with sync_playwright() as pw:
-            browser = pw.chromium.connect_over_cdp(cdp_endpoint)
-            context = browser.new_context(
-                viewport={"width": 1280, "height": 800},
-                user_agent=(
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/124.0.0.0 Safari/537.36"
-                ),
-                locale="en-US",
-                java_script_enabled=True,
-            )
-            page = context.new_page()
-
-            try:
-                page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
-            except PWTimeout:
-                warn("BotBrowser navigation timed out for %s", url)
-                page.close()
-                context.close()
-                browser.disconnect()   # FIX 2: disconnect, not close
-                return None
-
-            try:
-                page.wait_for_load_state("networkidle", timeout=15_000)
-            except PWTimeout:
-                debug("networkidle timed out for %s (non-fatal)", url)
-
-            html = page.content()
-            page.close()
-            context.close()
-            browser.disconnect()       # FIX 2: disconnect, not close
-
-    except Exception as e:
-        warn("BotBrowser Playwright error for %s: %s", url, e)
+    if not os.path.isfile(BOTBROWSER_BINARY):
+        warn("BotBrowser binary not found at '%s'.", BOTBROWSER_BINARY)
         return None
 
-    if not html or len(html) < 500:
-        warn("BotBrowser returned suspiciously short HTML (%d bytes) for %s",
-             len(html) if html else 0, url)
-        return None
+    launch_args = _build_launch_args()
 
-    if any(m in html for m in DATADOME_MARKERS):
-        warn(
-            "BotBrowser received DataDome CAPTCHA for %s (%d bytes) — treating as blocked",
-            url, len(html),
-        )
-        return None
-
-    debug("BotBrowser received %d bytes for %s", len(html), url)
-    return html
-
-
-def botbrowser_get(url: str, retries: int = 3) -> str | None:
-    """
-    Fetch a URL via BotBrowser.
-
-    Keeps the BotBrowser process alive between calls (avoids the startup cost
-    and the fingerprint-reset on every request).  Only restarts when the
-    process is found dead or a fetch fails.
-    """
     for attempt in range(1, retries + 1):
-        # Start (or restart) only if the process is not alive.
-        if not _is_botbrowser_alive():
-            if not _start_botbrowser():
-                warn("BotBrowser failed to start (attempt %d/%d)", attempt, retries)
-                time.sleep(1)
-                continue
+        debug("BotBrowser attempt %d/%d for %s", attempt, retries, url)
+        try:
+            with sync_playwright() as pw:
+                browser = pw.chromium.launch(
+                    executable_path=BOTBROWSER_BINARY,
+                    headless=True,
+                    args=launch_args,
+                )
+                context = browser.new_context(
+                    viewport={"width": 1280, "height": 800},
+                    locale="en-US",
+                    java_script_enabled=True,
+                )
+                page = context.new_page()
 
-        result = _botbrowser_fetch_once(url)
-        if result:
-            return result
+                try:
+                    page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+                except PWTimeout:
+                    warn("Navigation timed out for %s (attempt %d/%d)", url, attempt, retries)
+                    browser.close()
+                    time.sleep(1)
+                    continue
 
-        # Fetch failed — force a restart for the next attempt.
-        warn("BotBrowser fetch failed (attempt %d/%d) for %s", attempt, retries, url)
-        _botbrowser_shutdown()
-        time.sleep(1)
+                try:
+                    page.wait_for_load_state("networkidle", timeout=15_000)
+                except PWTimeout:
+                    debug("networkidle timed out for %s (non-fatal)", url)
+
+                html = page.content()
+                browser.close()
+
+        except Exception as e:
+            warn("BotBrowser error for %s (attempt %d/%d): %s", url, attempt, retries, e)
+            time.sleep(1)
+            continue
+
+        if not html or len(html) < 500:
+            warn("Suspiciously short HTML (%d bytes) for %s (attempt %d/%d)",
+                 len(html) if html else 0, url, attempt, retries)
+            time.sleep(1)
+            continue
+
+        if any(m in html for m in DATADOME_MARKERS):
+            warn("DataDome CAPTCHA detected for %s (attempt %d/%d)", url, attempt, retries)
+            time.sleep(2)
+            continue
+
+        debug("BotBrowser received %d bytes for %s", len(html), url)
+        return html
 
     warn("BotBrowser: all %d attempts exhausted for %s", retries, url)
     return None
-
-
-def _botbrowser_shutdown():
-    global _botbrowser_proc
-    if _botbrowser_proc is not None and _botbrowser_proc.poll() is None:
-        debug("Shutting down BotBrowser (pid %d)", _botbrowser_proc.pid)
-        _botbrowser_proc.terminate()
-        try:
-            _botbrowser_proc.wait(timeout=5)
-        except subprocess.TimeoutExpired:
-            _botbrowser_proc.kill()
-        _botbrowser_proc = None
 
 
 # ------------------------------
@@ -429,10 +310,10 @@ def extract_reuters_extra_cards(soup, page_url):
 
 
 # ------------------------------
-# 1. FETCH REUTERS WORLD  (BotBrowser)
+# 1. FETCH REUTERS WORLD
 # ------------------------------
 
-info("Fetching Reuters world page via BotBrowser: %s", REUTERS_URL)
+info("Fetching Reuters world page: %s", REUTERS_URL)
 html = botbrowser_get(REUTERS_URL)
 reuters_articles = []
 
@@ -496,10 +377,10 @@ else:
     info("Found %d Reuters world articles", len(reuters_articles))
 
 # ------------------------------
-# 1B. FETCH REUTERS COMMENTARY  (BotBrowser)
+# 1B. FETCH REUTERS COMMENTARY
 # ------------------------------
 
-info("Fetching Reuters commentary page via BotBrowser: %s", REUTERS_COMMENTARY_URL)
+info("Fetching Reuters commentary page: %s", REUTERS_COMMENTARY_URL)
 commentary_html = botbrowser_get(REUTERS_COMMENTARY_URL)
 
 if commentary_html is None:
@@ -570,11 +451,11 @@ else:
     info("Total Reuters articles (world + commentary): %d", len(reuters_articles))
 
 # ------------------------------
-# 1C. FETCH REUTERS EXTRA SECTION PAGES  (BotBrowser)
+# 1C. FETCH REUTERS EXTRA SECTION PAGES
 # ------------------------------
 
 for extra_url in REUTERS_EXTRA_URLS:
-    info("Fetching Reuters extra page via BotBrowser: %s", extra_url)
+    info("Fetching Reuters extra page: %s", extra_url)
     extra_html = botbrowser_get(extra_url)
 
     if extra_html is None:
@@ -676,19 +557,11 @@ info("Existing items in Reuters feed: %d", len(reuters_existing))
 # FETCH FULL TEXT
 # ------------------------------
 
-reuters_fetch_count = 0
 for i, a in enumerate(all_articles, 1):
     if a["url"] in reuters_existing:
         continue
 
     info("Processing %d/%d [Reuters]: %s", i, len(all_articles), a.get("title", "")[:80])
-
-    reuters_fetch_count += 1
-    if reuters_fetch_count > 1 and reuters_fetch_count % BOTBROWSER_RESTART_EVERY == 0:
-        info("Fingerprint rotation: restarting BotBrowser after %d Reuters fetches",
-             reuters_fetch_count)
-        _botbrowser_shutdown()
-        time.sleep(3)
 
     page = botbrowser_get(a["url"])
 
@@ -713,8 +586,6 @@ for i, a in enumerate(all_articles, 1):
              a["url"], page[:DEBUG_HTML_SNIPPET_LEN].replace("\n", " "))
 
     time.sleep(BOTBROWSER_FETCH_DELAY)
-
-_botbrowser_shutdown()
 
 # ------------------------------
 # ADD NEW ARTICLES
