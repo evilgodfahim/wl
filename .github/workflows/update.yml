@@ -96,14 +96,23 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add reuters.xml opinin.html commentary.html debug.log || true
+          # 1. ONLY stage the feed. This is the only file we care about saving.
+          git add reuters.xml
 
+          # 2. Check if the XML actually changed. If not, exit cleanly.
           if git diff --cached --quiet; then
             echo "Nothing to commit"
             exit 0
           fi
 
+          # 3. Commit the new feed data
           git commit -m "Auto update Reuters RSS [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          git checkout -- debug.log 2>/dev/null || true
+
+          # 4. CRITICAL FIX: Discard uncommitted changes to tracked files (like debug.log) 
+          # so they don't block the rebase.
+          git restore . 
+          git clean -fd
+
+          # 5. Safely sync and push to the web
           git pull --rebase origin main
           git push origin main
