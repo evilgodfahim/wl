@@ -49,9 +49,13 @@ MAX_ITEMS               = 500
 REUTERS_BASE            = "https://www.reuters.com"
 TIMEOUT_MS              = 120000
 
+# Expanded DataDome & Captcha Markers
 DATADOME_MARKERS = [
     "#cmsg{animation: A 1.5s;}",
     "#cmsg{animation:A 1.5s}",
+    "captcha-delivery",
+    "<title>Just a moment...</title>",
+    "datadome"
 ]
 
 REUTERS_SKIP_PATHS = (
@@ -98,18 +102,7 @@ def _build_launch_args() -> list[str]:
 def botbrowser_get(url: str, retries: int = 3) -> str | None:
     """
     Fetch *url* using BotBrowser launched directly by Playwright.
-
-    THE KEY FIX:
-    Reuters.com is behind DataDome. DataDome serves a challenge page that loads
-    quickly (~1-2 s) and whose JavaScript causes BotBrowser to close the browser
-    shortly after the "load" event fires. The HTML is available at that moment —
-    we just weren't capturing it in time.
-
-    Solution: register a page.on("load", ...) handler that grabs
-    document.documentElement.outerHTML the instant the load event fires.
-    Even if the browser closes a millisecond later, we already have the HTML.
-    The networkidle wait is removed entirely — it was the gap that let the
-    browser close before we could call page.content().
+    Waits for primary React/Next.js content to render rather than capturing blindly.
     """
     try:
         from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
@@ -125,9 +118,7 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
 
     for attempt in range(1, retries + 1):
         debug("BotBrowser attempt %d/%d for %s", attempt, retries, url)
-
-        # Use a list so the nested handler can mutate it (no nonlocal needed).
-        captured = [None]
+        html = None
 
         try:
             with sync_playwright() as pw:
@@ -143,36 +134,25 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                 )
                 page = context.new_page()
 
-                # Capture HTML the moment "load" fires — before BotBrowser
-                # has any chance to close the browser.
-                def on_load(pg):
-                    try:
-                        captured[0] = pg.evaluate(
-                            "() => document.documentElement.outerHTML"
-                        )
-                        debug(
-                            "on_load handler captured %d bytes for %s",
-                            len(captured[0]), url,
-                        )
-                    except Exception as e:
-                        debug("on_load capture failed: %s", e)
-
-                page.on("load", on_load)
-
                 try:
-                    page.goto(url, wait_until="load", timeout=TIMEOUT_MS)
-                    # goto returned normally — get content if handler missed it.
-                    if captured[0] is None:
-                        captured[0] = page.content()
-                        debug("Captured HTML via page.content(): %d bytes", len(captured[0]))
+                    # Wait for DOM content to finish loading
+                    page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+                    
+                    # Try to wait for actual content elements (articles or cards)
+                    try:
+                        page.wait_for_selector(
+                            '[data-testid="Title"], [data-testid="Body"], article, [data-testid="StoryCard"]', 
+                            timeout=5000
+                        )
+                    except PWTimeout:
+                        debug("Timeout waiting for specific content selectors. Proceeding with current DOM.")
+
+                    html = page.content()
+
                 except PWTimeout:
                     warn("Navigation timed out for %s (attempt %d/%d)", url, attempt, retries)
                 except Exception as e:
-                    # Browser may have closed right after load — that's OK if
-                    # the handler already captured the HTML.
-                    debug(
-                        "goto/content error (handler may have captured content): %s", e
-                    )
+                    debug("goto/content error: %s", e)
                 finally:
                     try:
                         browser.close()
@@ -185,14 +165,14 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
             time.sleep(1)
             continue
 
-        html = captured[0]
-
         if not html or len(html) < 500:
             warn("No usable HTML captured for %s (attempt %d/%d)", url, attempt, retries)
             time.sleep(1)
             continue
 
-        if any(m in html for m in DATADOME_MARKERS):
+        # DataDome check using expanded markers
+        html_lower = html.lower()
+        if any(m.lower() in html_lower for m in DATADOME_MARKERS):
             warn("DataDome CAPTCHA for %s (attempt %d/%d)", url, attempt, retries)
             time.sleep(2)
             continue
@@ -230,18 +210,26 @@ def save_debug_html(path, html):
         warn("Failed saving HTML %s: %s", path, e)
 
 def build_full_url(href, base=REUTERS_BASE):
+    """Safely builds full URLs, accounting for protocol-relative paths."""
     href = (href or "").strip()
+    if not href:
+        return None
     if href.startswith("http"):
         return href
+    if href.startswith("//"):
+        return "https:" + href
     if href.startswith("/"):
         return base + href
     return None
 
 
 def extract_full_text_reuters(article_html):
+    """Extracts article text, utilizing regex to bypass brittle CSS hashes."""
     s = BeautifulSoup(article_html, "html.parser")
 
-    container = s.find("div", class_="article-body-module__content__bnXL1")
+    # Match the base class name, ignoring the dynamically generated hash
+    container = s.find("div", class_=re.compile(r"article-body-module__content__"))
+    
     if container:
         parts = []
         for p in container.find_all(attrs={"data-testid": True}):
@@ -252,6 +240,7 @@ def extract_full_text_reuters(article_html):
         if parts:
             return "\n\n".join(parts)
 
+    # Fallbacks
     blocks = s.select('div[data-testid="Body"] p') or s.select("article p")
     parts  = [p.get_text(" ", strip=True) for p in blocks if p.get_text(" ", strip=True)]
     return "\n\n".join(parts)
@@ -290,7 +279,7 @@ def extract_reuters_extra_cards(soup, page_url):
     def _add(href, title, thumb=""):
         url = build_full_url(href)
         title = (title or "").strip()
-        if url in seen:
+        if not url or url in seen:
             return
         if not _is_valid(url, title):
             return
