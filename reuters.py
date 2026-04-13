@@ -270,13 +270,13 @@ def extract_reuters_extra_cards(soup, page_url: str) -> list[dict]:
         ns = el.select_one("noscript > img[src]")
         return ns.get("src", "").strip() if ns else ""
 
-    # Single pass — specific container variant is a strict subset of the general selector,
-    # so one selector covers both; seen set handles any overlap with MediaCard selectors.
+    # BasicCard layout (environment, sustainability pages)
     for card in soup.select('[data-testid="BasicCard"]'):
         link_el = card.select_one('a[data-testid="Title"]')
         if link_el:
             _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
 
+    # TalkingPointsCell / MediaCard layout
     for cell in soup.select('li[data-testid="TalkingPointsCell"] > a[data-testid="MediaCard"]'):
         heading = cell.select_one('span[data-testid="MediaCardHeading"]')
         if heading:
@@ -286,6 +286,13 @@ def extract_reuters_extra_cards(soup, page_url: str) -> list[dict]:
         heading = card.select_one('span[data-testid="MediaCardHeading"]')
         if heading:
             _add(card.get("href", ""), heading.get_text(" ", strip=True), _noscript_image(card))
+
+    # StoryCard + FeedListItem layout (energy page and other section pages)
+    for card in soup.select('[data-testid="StoryCard"], [data-testid="FeedListItem"]'):
+        link_el  = card.select_one('a[data-testid="TitleLink"]')
+        title_el = card.select_one('[data-testid="TitleHeading"]')
+        if link_el and title_el:
+            _add(link_el.get("href", ""), title_el.get_text(" ", strip=True), _eager_image(card))
 
     log.debug("extract_reuters_extra_cards: %d items from %s", len(results), page_url)
     return results
