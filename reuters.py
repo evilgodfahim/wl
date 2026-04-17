@@ -127,20 +127,29 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                 )
                 page = context.new_page()
                 try:
+                    # 1. Goto page
                     page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+
+                    # 2. EAGER CAPTURE: Grab HTML immediately before anti-bot scripts can crash the page
+                    html = page.content()
+
+                    # 3. Wait for DOM nodes, but fail gracefully if the browser closes
                     try:
+                        page.wait_for_timeout(1000)  # Give anti-bot scripts a moment to settle
                         page.wait_for_selector(
                             '[data-testid="Title"], [data-testid="Body"], '
                             'article, [data-testid="StoryCard"]',
                             timeout=5000,
                         )
-                    except PWTimeout:
-                        log.debug("Timeout waiting for content selectors. Proceeding.")
-                    html = page.content()
-                except PWTimeout:
-                    log.warning("Navigation timed out for %s (attempt %d/%d)", url, attempt, retries)
+                        # Update HTML if the wait succeeds and context is still open
+                        html = page.content()
+                    except Exception as inner_e:
+                        # Catch ALL exceptions here (including 'browser closed' errors),
+                        # so we can fall back to the eagerly captured HTML.
+                        log.debug("Selector wait interrupted. Proceeding with eager HTML. Reason: %s", inner_e)
+
                 except Exception as e:
-                    log.debug("goto/content error: %s", e)
+                    log.debug("goto error: %s", e)
                 finally:
                     try:
                         browser.close()
