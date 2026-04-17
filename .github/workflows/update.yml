@@ -1,3 +1,5 @@
+name: Update Reuters RSS
+
 on:
   schedule:
     - cron: "*/30 * * * *"
@@ -5,7 +7,7 @@ on:
 
 env:
   BB_VERSION: "147.0.7727.56"
-  BB_TAG: "147.0.7727.56"   # FIX: removed 'v'
+  BB_TAG: "147.0.7727.56"
   BB_PROFILE: "chrome146_win11_x64.enc"
   BB_CACHE_DIR: "bb_cache"
 
@@ -27,7 +29,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
@@ -37,9 +39,6 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
 
-      # ------------------------------
-      # Cache BotBrowser
-      # ------------------------------
       - name: Restore BotBrowser cache
         id: cache-bb
         uses: actions/cache@v4
@@ -47,9 +46,6 @@ jobs:
           path: ${{ env.BB_CACHE_DIR }}
           key: botbrowser-${{ env.BB_VERSION }}
 
-      # ------------------------------
-      # Download BotBrowser (only if cache miss)
-      # ------------------------------
       - name: Download BotBrowser assets
         if: steps.cache-bb.outputs.cache-hit != 'true'
         env:
@@ -58,86 +54,75 @@ jobs:
           set -e
           mkdir -p "$BB_CACHE_DIR"
 
-          echo "Fetching release asset list for tag: $BB_TAG"
+          echo "Fetching release assets for tag: $BB_TAG"
 
           gh release view "$BB_TAG" \
             --repo MiddleSchoolStudent/BotBrowser \
             --json assets \
-            --jq '.assets[].name' > /tmp/bb_assets.txt || {
-              echo "ERROR: release not found. Listing available tags..."
-              gh release list --repo MiddleSchoolStudent/BotBrowser | head -20
-              exit 1
-            }
-
-          echo "Available assets:"
-          cat /tmp/bb_assets.txt
+            --jq '.assets[].name' > /tmp/bb_assets.txt
 
           DEB_ASSET=$(grep -E "_x64\.deb|_amd64\.deb" /tmp/bb_assets.txt | head -1)
 
           if [ -z "$DEB_ASSET" ]; then
-            echo "ERROR: No suitable .deb found"
+            echo "ERROR: no x64/amd64 .deb found for $BB_TAG"
+            cat /tmp/bb_assets.txt
             exit 1
           fi
 
-          echo "Downloading: $DEB_ASSET"
-
+          echo "Downloading deb: $DEB_ASSET"
           curl -fL \
             -H "Authorization: Bearer $GH_TOKEN" \
             "https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${BB_TAG}/${DEB_ASSET}" \
             -o "$BB_CACHE_DIR/botbrowser.deb"
 
-          # ---- profile ----
           echo "Downloading profile: $BB_PROFILE"
-
           curl -fsSLo "$BB_CACHE_DIR/$BB_PROFILE" \
             "https://raw.githubusercontent.com/botswin/BotBrowser/main/profiles/stable/${BB_PROFILE}" || true
 
           if [ ! -s "$BB_CACHE_DIR/$BB_PROFILE" ]; then
-            echo "No profile downloaded, continuing without profile"
+            echo "WARNING: profile download empty — continuing without profile"
             rm -f "$BB_CACHE_DIR/$BB_PROFILE"
           fi
 
-      # ------------------------------
-      # Install BotBrowser
-      # ------------------------------
-      - name: Install BotBrowser
+      - name: Install BotBrowser from cache
         run: |
+          set -e
+
           sudo dpkg -i "$BB_CACHE_DIR/botbrowser.deb" || sudo apt-get install -f -y
 
-          # Find binary
-          for p in \
+          BB_BIN=""
+          for candidate in \
             /usr/bin/chromium-browser-stable \
             /usr/bin/chromium-browser \
             /opt/chromium.org/chromium/chromium \
             /usr/bin/botbrowser; do
-            if [ -x "$p" ]; then
-              echo "Found browser: $p"
-              echo "BOTBROWSER_PATH=$p" >> $GITHUB_ENV
+            if [ -x "$candidate" ]; then
+              BB_BIN="$candidate"
               break
             fi
           done
 
-          if [ -z "$BOTBROWSER_PATH" ]; then
-            echo "ERROR: Browser not found"
+          if [ -z "$BB_BIN" ]; then
+            echo "ERROR: could not find installed browser binary"
             exit 1
           fi
 
-          # Profile (optional)
+          echo "BotBrowser binary: $BB_BIN"
+          "$BB_BIN" --version || true
+          echo "BOTBROWSER_PATH=$BB_BIN" >> "$GITHUB_ENV"
+
           PROFILE_PATH="$BB_CACHE_DIR/$BB_PROFILE"
           if [ -s "$PROFILE_PATH" ]; then
-            echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_PATH" >> $GITHUB_ENV
+            echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_PATH" >> "$GITHUB_ENV"
+            echo "Using bot profile: $PROFILE_PATH"
+          else
+            echo "No profile available — running without one"
           fi
 
-      # ------------------------------
-      # Run scraper
-      # ------------------------------
       - name: Run scraper
         run: python reuters.py
 
-      # ------------------------------
-      # Commit changes
-      # ------------------------------
-      - name: Commit and push
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
@@ -145,11 +130,10 @@ jobs:
           git add reuters.xml
 
           if git diff --cached --quiet; then
-            echo "No changes"
+            echo "Nothing to commit"
             exit 0
           fi
 
           git commit -m "Auto update Reuters RSS [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-
           git pull --rebase origin main
           git push origin main
