@@ -1,14 +1,12 @@
-name: Update Reuters RSS
-
 on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
 
 env:
-  BB_VERSION:  "147.0.7727.56"
-  BB_TAG:      "v147.0.7727.56"
-  BB_PROFILE:  "chrome146_win11_x64.enc"
+  BB_VERSION: "147.0.7727.56"
+  BB_TAG: "147.0.7727.56"   # FIX: removed 'v'
+  BB_PROFILE: "chrome146_win11_x64.enc"
   BB_CACHE_DIR: "bb_cache"
 
 jobs:
@@ -29,7 +27,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Python dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
@@ -39,10 +37,9 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
 
-      # --------------------------------------------------------
-      # Cache: key is the pinned BB_VERSION — never expires
-      # unless you bump the version string above.
-      # --------------------------------------------------------
+      # ------------------------------
+      # Cache BotBrowser
+      # ------------------------------
       - name: Restore BotBrowser cache
         id: cache-bb
         uses: actions/cache@v4
@@ -50,97 +47,109 @@ jobs:
           path: ${{ env.BB_CACHE_DIR }}
           key: botbrowser-${{ env.BB_VERSION }}
 
-      # Only runs when the cache is cold (first run or version bump).
+      # ------------------------------
+      # Download BotBrowser (only if cache miss)
+      # ------------------------------
       - name: Download BotBrowser assets
         if: steps.cache-bb.outputs.cache-hit != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e
           mkdir -p "$BB_CACHE_DIR"
 
-          # --- .deb ---
-          # List assets for the pinned release and pick the x64/amd64 deb.
+          echo "Fetching release asset list for tag: $BB_TAG"
+
           gh release view "$BB_TAG" \
             --repo MiddleSchoolStudent/BotBrowser \
             --json assets \
-            --jq '.assets[].name' > /tmp/bb_assets.txt
+            --jq '.assets[].name' > /tmp/bb_assets.txt || {
+              echo "ERROR: release not found. Listing available tags..."
+              gh release list --repo MiddleSchoolStudent/BotBrowser | head -20
+              exit 1
+            }
+
+          echo "Available assets:"
+          cat /tmp/bb_assets.txt
 
           DEB_ASSET=$(grep -E "_x64\.deb|_amd64\.deb" /tmp/bb_assets.txt | head -1)
+
           if [ -z "$DEB_ASSET" ]; then
-            echo "ERROR: no x64/amd64 .deb found for $BB_TAG:"
-            cat /tmp/bb_assets.txt
+            echo "ERROR: No suitable .deb found"
             exit 1
           fi
-          echo "Downloading deb: $DEB_ASSET"
+
+          echo "Downloading: $DEB_ASSET"
+
           curl -fL \
             -H "Authorization: Bearer $GH_TOKEN" \
             "https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${BB_TAG}/${DEB_ASSET}" \
             -o "$BB_CACHE_DIR/botbrowser.deb"
 
-          # --- profile ---
+          # ---- profile ----
           echo "Downloading profile: $BB_PROFILE"
+
           curl -fsSLo "$BB_CACHE_DIR/$BB_PROFILE" \
-            "https://raw.githubusercontent.com/botswin/BotBrowser/main/profiles/stable/${BB_PROFILE}"
+            "https://raw.githubusercontent.com/botswin/BotBrowser/main/profiles/stable/${BB_PROFILE}" || true
+
           if [ ! -s "$BB_CACHE_DIR/$BB_PROFILE" ]; then
-            echo "WARNING: profile download empty — continuing without profile"
+            echo "No profile downloaded, continuing without profile"
             rm -f "$BB_CACHE_DIR/$BB_PROFILE"
           fi
 
-      - name: Install BotBrowser from cache
+      # ------------------------------
+      # Install BotBrowser
+      # ------------------------------
+      - name: Install BotBrowser
         run: |
           sudo dpkg -i "$BB_CACHE_DIR/botbrowser.deb" || sudo apt-get install -f -y
 
-          BB_BIN=""
-          for candidate in \
+          # Find binary
+          for p in \
             /usr/bin/chromium-browser-stable \
             /usr/bin/chromium-browser \
             /opt/chromium.org/chromium/chromium \
             /usr/bin/botbrowser; do
-            if [ -f "$candidate" ] && [ -x "$candidate" ]; then
-              BB_BIN="$candidate"
+            if [ -x "$p" ]; then
+              echo "Found browser: $p"
+              echo "BOTBROWSER_PATH=$p" >> $GITHUB_ENV
               break
             fi
           done
 
-          if [ -z "$BB_BIN" ]; then
-            echo "ERROR: could not find installed browser binary"
+          if [ -z "$BOTBROWSER_PATH" ]; then
+            echo "ERROR: Browser not found"
             exit 1
           fi
 
-          echo "BotBrowser binary: $BB_BIN"
-          "$BB_BIN" --version || true
-          echo "BOTBROWSER_PATH=$BB_BIN" >> "$GITHUB_ENV"
-
+          # Profile (optional)
           PROFILE_PATH="$BB_CACHE_DIR/$BB_PROFILE"
           if [ -s "$PROFILE_PATH" ]; then
-            echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_PATH" >> "$GITHUB_ENV"
-            echo "Using bot profile: $PROFILE_PATH"
-          else
-            echo "No profile available — running without one"
+            echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_PATH" >> $GITHUB_ENV
           fi
 
+      # ------------------------------
+      # Run scraper
+      # ------------------------------
       - name: Run scraper
-        env:
-          BOTBROWSER_PATH:    ${{ env.BOTBROWSER_PATH }}
-          BOTBROWSER_PROFILE: ${{ env.BOTBROWSER_PROFILE }}
         run: python reuters.py
 
-      - name: Commit and push changes
+      # ------------------------------
+      # Commit changes
+      # ------------------------------
+      - name: Commit and push
         run: |
-          git config user.name  "github-actions"
+          git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
           git add reuters.xml
 
           if git diff --cached --quiet; then
-            echo "Nothing to commit"
+            echo "No changes"
             exit 0
           fi
 
           git commit -m "Auto update Reuters RSS [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-
-          git restore .
-          git clean -fd
 
           git pull --rebase origin main
           git push origin main
