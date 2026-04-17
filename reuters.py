@@ -48,7 +48,6 @@ REUTERS_BASE           = "https://www.reuters.com"
 TIMEOUT_MS             = 120000
 BOTBROWSER_FETCH_DELAY = 1.5
 
-# Pre-lowercased once — checked in a hot retry loop
 DATADOME_MARKERS_LOWER = [
     "#cmsg{animation: a 1.5s;}",
     "#cmsg{animation:a 1.5s}",
@@ -60,7 +59,6 @@ DATADOME_MARKERS_LOWER = [
 REUTERS_SKIP_PATHS  = ("/newsletters/", "/graphics/", "/live-blog/", "/podcast/", "/video/")
 REUTERS_JUNK_TITLES = {"video", "live", "graphic", "graphics", "podcast"}
 
-# Compiled once at module level
 _ARTICLE_HREF_RE = re.compile(
     r"^/(world|article|business|markets|breakingviews|technology"
     r"|investigations|commentary|sustainability)/"
@@ -127,29 +125,20 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                 )
                 page = context.new_page()
                 try:
-                    # 1. Goto page
                     page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
-
-                    # 2. EAGER CAPTURE: Grab HTML immediately before anti-bot scripts can crash the page
-                    html = page.content()
-
-                    # 3. Wait for DOM nodes, but fail gracefully if the browser closes
                     try:
-                        page.wait_for_timeout(1000)  # Give anti-bot scripts a moment to settle
                         page.wait_for_selector(
                             '[data-testid="Title"], [data-testid="Body"], '
                             'article, [data-testid="StoryCard"]',
                             timeout=5000,
                         )
-                        # Update HTML if the wait succeeds and context is still open
-                        html = page.content()
-                    except Exception as inner_e:
-                        # Catch ALL exceptions here (including 'browser closed' errors),
-                        # so we can fall back to the eagerly captured HTML.
-                        log.debug("Selector wait interrupted. Proceeding with eager HTML. Reason: %s", inner_e)
-
+                    except PWTimeout:
+                        log.debug("Timeout waiting for content selectors. Proceeding.")
+                    html = page.content()
+                except PWTimeout:
+                    log.warning("Navigation timed out for %s (attempt %d/%d)", url, attempt, retries)
                 except Exception as e:
-                    log.debug("goto error: %s", e)
+                    log.debug("goto/content error: %s", e)
                 finally:
                     try:
                         browser.close()
@@ -279,13 +268,11 @@ def extract_reuters_extra_cards(soup, page_url: str) -> list[dict]:
         ns = el.select_one("noscript > img[src]")
         return ns.get("src", "").strip() if ns else ""
 
-    # BasicCard layout (environment, sustainability pages)
     for card in soup.select('[data-testid="BasicCard"]'):
         link_el = card.select_one('a[data-testid="Title"]')
         if link_el:
             _add(link_el.get("href", ""), link_el.get_text(" ", strip=True), _eager_image(card))
 
-    # TalkingPointsCell / MediaCard layout
     for cell in soup.select('li[data-testid="TalkingPointsCell"] > a[data-testid="MediaCard"]'):
         heading = cell.select_one('span[data-testid="MediaCardHeading"]')
         if heading:
@@ -296,7 +283,6 @@ def extract_reuters_extra_cards(soup, page_url: str) -> list[dict]:
         if heading:
             _add(card.get("href", ""), heading.get_text(" ", strip=True), _noscript_image(card))
 
-    # StoryCard + FeedListItem layout (energy page and other section pages)
     for card in soup.select('[data-testid="StoryCard"], [data-testid="FeedListItem"]'):
         link_el  = card.select_one('a[data-testid="TitleLink"]')
         title_el = card.select_one('[data-testid="TitleHeading"]')
@@ -308,7 +294,6 @@ def extract_reuters_extra_cards(soup, page_url: str) -> list[dict]:
 
 
 def _fallback_anchor_scan(soup, href_pattern, seen: set) -> list[dict]:
-    """Generic anchor fallback shared by world and extra pages."""
     items = []
     for a in soup.find_all("a", href=True):
         href = a["href"].strip()
@@ -478,7 +463,6 @@ def scrape_extra_pages() -> list[dict]:
 # ------------------------------
 
 def main():
-    # Collect all articles with a single global dedup pass
     seen_global  = set()
     all_articles = []
 
@@ -538,7 +522,6 @@ def main():
         new_count += 1
         time.sleep(BOTBROWSER_FETCH_DELAY)
 
-    # Trim to cap
     all_items = reuters_channel.findall("item")
     for old in all_items[:-MAX_ITEMS]:
         reuters_channel.remove(old)
