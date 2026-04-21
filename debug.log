@@ -1,29 +1,39 @@
-2026-04-21 03:52:30,651 INFO: Fetching section: https://apnews.com/world-news
-2026-04-21 03:52:30,651 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-04-21 03:52:30,652 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-21 03:53:13,936 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1468724
-2026-04-21 03:53:13,945 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-21 03:53:13,949 DEBUG: Saved HTML to apnews.html (1395808 bytes)
-2026-04-21 03:53:14,345 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-04-21 03:53:14,345 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-04-21 03:53:14,345 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-04-21 03:53:14,346 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-21 03:53:20,709 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2105850
-2026-04-21 03:53:20,723 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-21 03:53:20,726 DEBUG: Saved HTML to apnews.html (2024008 bytes)
-2026-04-21 03:53:21,248 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-04-21 03:53:21,249 INFO: Total unique articles across all sections: 173
-2026-04-21 03:53:21,253 INFO: Loaded existing XML: pau.xml
-2026-04-21 03:53:21,253 INFO: Existing items in feed: 500
-2026-04-21 03:53:21,253 DEBUG: Added: [277fd389] https://apnews.com/article/mexico-sheinbaum-chihuahua-us-officials-deaths-646664d05452ddbad7b39b9d480fd46e
-2026-04-21 03:53:21,253 DEBUG: Added: [153894af] https://apnews.com/article/shooting-teotihuacuan-pyramid-canadian-killed-cfb0ee81bf45ab5df335a17363631296
-2026-04-21 03:53:21,254 DEBUG: Added: [33968866] https://apnews.com/article/japan-lethal-weapons-export-takaichi-767250e58084ea3d585ab736372deeac
-2026-04-21 03:53:21,254 DEBUG: Added: [baf8228f] https://apnews.com/article/japan-earthquake-tsunami-0746aebae49fc6cc37e20836ca37d570
-2026-04-21 03:53:21,254 DEBUG: Added: [0a2e8f43] https://apnews.com/article/south-korea-bang-hybe-arrest-bts-00e181bfbe471c541118d67f7ccad7bd
-2026-04-21 03:53:21,254 DEBUG: Added: [203fe2e3] https://apnews.com/article/new-zealand-luxon-6dd3049deae8673ec17b381b386cb4c4
-2026-04-21 03:53:21,254 DEBUG: Added: [33d09ccb] https://apnews.com/article/saipan-missing-ship-typhoon-sinlaku-06386f4a15356f275b67070e0be489a6
-2026-04-21 03:53:21,254 DEBUG: Added: [80319891] https://apnews.com/article/stocks-markets-iran-oil-trump-2a433707e09976e2e77f2eba3a225f3d
-2026-04-21 03:53:21,254 INFO: Added 8 new articles to feed
-2026-04-21 03:53:21,254 INFO: Trimmed feed to 500 items
-2026-04-21 03:53:21,266 INFO: Done! Feed saved to pau.xml
-2026-04-21 03:53:21,266 INFO: Debug log saved to debug.log
+2026-04-21 06:06:30,847 INFO: Fetching section: https://apnews.com/world-news
+2026-04-21 06:06:30,847 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-21 06:06:30,848 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-21 06:06:30,849 DEBUG: FlareSolverr request exception: HTTPConnectionPool(host='localhost', port=8191): Max retries exceeded with url: /v1 (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8191): Failed to establish a new connection: [Errno 111] Connection refused"))
+2026-04-21 06:06:30,849 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-04-21 06:06:32,849 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-21 06:06:32,850 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-21 06:06:32,850 DEBUG: FlareSolverr request exception: HTTPConnectionPool(host='localhost', port=8191): Max retries exceeded with url: /v1 (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8191): Failed to establish a new connection: [Errno 111] Connection refused"))
+2026-04-21 06:06:32,850 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-04-21 06:06:36,851 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-04-21 06:06:37,111 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
+2026-04-21 06:06:37,133 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-04-21 06:06:37,136 DEBUG: Saved HTML to apnews.html (1248139 bytes)
+2026-04-21 06:06:37,466 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-04-21 06:06:37,466 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-04-21 06:06:37,466 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-21 06:06:37,467 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-21 06:06:37,468 DEBUG: FlareSolverr request exception: HTTPConnectionPool(host='localhost', port=8191): Max retries exceeded with url: /v1 (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8191): Failed to establish a new connection: [Errno 111] Connection refused"))
+2026-04-21 06:06:37,468 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-04-21 06:06:39,468 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-21 06:06:39,469 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-21 06:06:39,469 DEBUG: FlareSolverr request exception: HTTPConnectionPool(host='localhost', port=8191): Max retries exceeded with url: /v1 (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8191): Failed to establish a new connection: [Errno 111] Connection refused"))
+2026-04-21 06:06:39,469 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/climate-and-environment
+2026-04-21 06:06:43,470 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-04-21 06:06:43,612 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 200 None
+2026-04-21 06:06:43,635 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-04-21 06:06:43,638 DEBUG: Saved HTML to apnews.html (1891902 bytes)
+2026-04-21 06:06:44,031 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-04-21 06:06:44,032 INFO: Total unique articles across all sections: 173
+2026-04-21 06:06:44,035 INFO: Loaded existing XML: pau.xml
+2026-04-21 06:06:44,036 INFO: Existing items in feed: 500
+2026-04-21 06:06:44,036 DEBUG: Added: [a24439a7] https://apnews.com/article/queen-elizabeth-ii-centenary-king-charles-iii-b8bd95ffd4632d298b0740527503a4fb
+2026-04-21 06:06:44,036 DEBUG: Added: [8f2e4333] https://apnews.com/article/france-wildlife-hospital-fox-cub-9848e300cf7338761efb764f993106d5
+2026-04-21 06:06:44,036 DEBUG: Added: [240472dc] https://apnews.com/article/africa-pope-equatorial-guinea-0134a6982c295c125259c5fa4eb73395
+2026-04-21 06:06:44,036 DEBUG: Added: [cf36108e] https://apnews.com/article/pittsburgh-post-gazette-newspaper-shutdown-media-478142b7e1c8c8870d5859204749ec99
+2026-04-21 06:06:44,037 INFO: Added 4 new articles to feed
+2026-04-21 06:06:44,037 INFO: Trimmed feed to 500 items
+2026-04-21 06:06:44,043 INFO: Done! Feed saved to pau.xml
+2026-04-21 06:06:44,043 INFO: Debug log saved to debug.log
