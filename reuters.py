@@ -74,6 +74,8 @@ _COMMENTARY_HREF_RE = re.compile(
 BOTBROWSER_BINARY      = os.environ.get("BOTBROWSER_PATH", "./BotBrowser/dist/botbrowser")
 BOTBROWSER_PROFILE_DIR = os.environ.get("BOTBROWSER_PROFILE_DIR", "")
 BOTBROWSER_PROFILE     = os.environ.get("BOTBROWSER_PROFILE", "")
+# Default to False because running inside Xvfb prevents anti-bot crashes
+HEADLESS_MODE          = os.environ.get("HEADLESS", "false").lower() == "true"
 
 
 def _build_launch_args() -> list[str]:
@@ -115,8 +117,9 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
             with sync_playwright() as pw:
                 browser = pw.chromium.launch(
                     executable_path=BOTBROWSER_BINARY,
-                    headless=True,
+                    headless=HEADLESS_MODE, 
                     args=launch_args,
+                    ignore_default_args=["--enable-automation"] # Strips standard Playwright flags
                 )
                 context = browser.new_context(
                     viewport={"width": 1280, "height": 800},
@@ -130,7 +133,7 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                         page.wait_for_selector(
                             '[data-testid="Title"], [data-testid="Body"], '
                             'article, [data-testid="StoryCard"]',
-                            timeout=5000,
+                            timeout=15000, # Increased timeout to give the page time to clear initial checks
                         )
                     except PWTimeout:
                         log.debug("Timeout waiting for content selectors. Proceeding.")
