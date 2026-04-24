@@ -6,8 +6,6 @@ on:
   workflow_dispatch:
 
 env:
-  BB_VERSION: "147.0.7727.56"
-  BB_TAG: "147.0.7727.56"
   BB_PROFILE: "chrome146_win11_x64.enc"
   BB_CACHE_DIR: "bb_cache"
 
@@ -24,13 +22,24 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get latest BotBrowser tag
+        id: bb-tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Dynamically fetch the latest tag so it never breaks on new releases
+          LATEST_TAG=$(gh release view --repo MiddleSchoolStudent/BotBrowser --json tagName --jq .tagName)
+          echo "BB_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          echo "Latest tag found: $LATEST_TAG"
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install Python dependencies
+      - name: Install Python dependencies & Xvfb
         run: |
+          sudo apt-get update && sudo apt-get install -y xvfb
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 playwright
 
@@ -44,7 +53,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.BB_CACHE_DIR }}
-          key: botbrowser-${{ env.BB_VERSION }}
+          key: botbrowser-${{ env.BB_TAG }}
 
       - name: Download BotBrowser assets
         if: steps.cache-bb.outputs.cache-hit != 'true'
@@ -119,8 +128,8 @@ jobs:
             echo "No profile available — running without one"
           fi
 
-      - name: Run scraper
-        run: python reuters.py
+      - name: Run scraper via Xvfb
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x800x24" python reuters.py
 
       - name: Commit and push changes
         run: |
