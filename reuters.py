@@ -79,10 +79,13 @@ HEADLESS_MODE          = os.environ.get("HEADLESS", "false").lower() == "true"
 
 
 def _build_launch_args() -> list[str]:
+    # Added extra flags to ensure stability in Xvfb/GitHub Actions environments
     args = [
         "--no-sandbox",
+        "--disable-setuid-sandbox",
         "--disable-gpu",
         "--disable-dev-shm-usage",
+        "--disable-software-rasterizer",
         "--disable-blink-features=AutomationControlled",
     ]
     if BOTBROWSER_PROFILE_DIR:
@@ -119,7 +122,7 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                     executable_path=BOTBROWSER_BINARY,
                     headless=HEADLESS_MODE, 
                     args=launch_args,
-                    ignore_default_args=["--enable-automation"] # Strips standard Playwright flags
+                    ignore_default_args=["--enable-automation"]
                 )
                 context = browser.new_context(
                     viewport={"width": 1280, "height": 800},
@@ -128,20 +131,27 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                 )
                 page = context.new_page()
                 try:
-                    page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+                    # Wait until 'commit' instead of 'domcontentloaded' to survive immediate DataDome redirects
+                    page.goto(url, wait_until="commit", timeout=TIMEOUT_MS)
+                    
+                    # Hard sleep to allow anti-bot JS challenges to execute without crashing Playwright's execution context
+                    page.wait_for_timeout(5000) 
+                    
                     try:
                         page.wait_for_selector(
                             '[data-testid="Title"], [data-testid="Body"], '
                             'article, [data-testid="StoryCard"]',
-                            timeout=15000, # Increased timeout to give the page time to clear initial checks
+                            timeout=8000, 
                         )
-                    except PWTimeout:
-                        log.debug("Timeout waiting for content selectors. Proceeding.")
-                    html = page.content()
-                except PWTimeout:
-                    log.warning("Navigation timed out for %s (attempt %d/%d)", url, attempt, retries)
+                    except Exception as wait_err:
+                        # Catch all exceptions here so a crashed context doesn't kill the whole attempt
+                        log.debug("Selector wait timed out or page redirected: %s", wait_err)
+                    
+                    # Attempt to grab HTML if the page is still alive
+                    if not page.is_closed():
+                        html = page.content()
                 except Exception as e:
-                    log.debug("goto/content error: %s", e)
+                    log.warning("Navigation error for %s (attempt %d/%d): %s", url, attempt, retries, e)
                 finally:
                     try:
                         browser.close()
@@ -149,18 +159,18 @@ def botbrowser_get(url: str, retries: int = 3) -> str | None:
                         pass
         except Exception as e:
             log.warning("BotBrowser outer error for %s (attempt %d/%d): %s", url, attempt, retries, e)
-            time.sleep(1)
+            time.sleep(2)
             continue
 
         if not html or len(html) < 500:
             log.warning("No usable HTML for %s (attempt %d/%d)", url, attempt, retries)
-            time.sleep(1)
+            time.sleep(2)
             continue
 
         html_lower = html.lower()
         if any(m in html_lower for m in DATADOME_MARKERS_LOWER):
             log.warning("DataDome CAPTCHA for %s (attempt %d/%d)", url, attempt, retries)
-            time.sleep(2)
+            time.sleep(3)
             continue
 
         log.debug("BotBrowser: %d bytes for %s", len(html), url)
