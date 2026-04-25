@@ -1,28 +1,32 @@
-2026-04-25 19:00:09,661 INFO: Fetching section: https://apnews.com/world-news
-2026-04-25 19:00:09,661 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-04-25 19:00:09,662 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-25 19:00:19,781 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1461216
-2026-04-25 19:00:19,795 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-25 19:00:19,798 DEBUG: Saved HTML to apnews.html (1388662 bytes)
-2026-04-25 19:00:20,313 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
-2026-04-25 19:00:20,314 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-04-25 19:00:20,314 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-04-25 19:00:20,315 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-25 19:00:26,484 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2154008
-2026-04-25 19:00:26,499 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-25 19:00:26,503 DEBUG: Saved HTML to apnews.html (2071810 bytes)
-2026-04-25 19:00:26,946 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-04-25 19:00:26,946 INFO: Total unique articles across all sections: 172
-2026-04-25 19:00:26,950 INFO: Loaded existing XML: pau.xml
-2026-04-25 19:00:26,951 INFO: Existing items in feed: 500
-2026-04-25 19:00:26,951 DEBUG: Added: [2cac23af] https://apnews.com/article/mali-gunfire-airport-96f93a72f4766d538e0c98d9e6afa912
-2026-04-25 19:00:26,951 DEBUG: Added: [4ac29262] https://apnews.com/article/palestinian-local-elections-gaza-west-bank-75e9a23f30efaf567f1ac0c65cc9f320
-2026-04-25 19:00:26,951 DEBUG: Added: [93351bb6] https://apnews.com/live/iran-war-israel-trump-04-25-2026
-2026-04-25 19:00:26,951 DEBUG: Added: [443c6471] https://apnews.com/article/hungary-orban-not-take-seat-parliament-164be0a9a221f25db0e66385c9420d23
-2026-04-25 19:00:26,951 DEBUG: Added: [6ed2ed84] https://apnews.com/article/hospital-shooting-chicago-police-9a41435244a3a5d119a37eb667cc576a
-2026-04-25 19:00:26,951 DEBUG: Added: [f2a61808] https://apnews.com/article/georgia-florida-wildfires-drought-912b4f7844f4d26296b39036816d1f09
-2026-04-25 19:00:26,951 DEBUG: Added: [b0eb6a7c] https://apnews.com/article/colombia-attacks-police-drones-cali-palmira-934ae0da6de9d751941e5971e8de0f17
-2026-04-25 19:00:26,952 INFO: Added 7 new articles to feed
-2026-04-25 19:00:26,952 INFO: Trimmed feed to 500 items
-2026-04-25 19:00:26,958 INFO: Done! Feed saved to pau.xml
-2026-04-25 19:00:26,959 INFO: Debug log saved to debug.log
+2026-04-25 19:50:54,170 INFO: Fetching section: https://apnews.com/world-news
+2026-04-25 19:50:54,170 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-25 19:50:54,171 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-25 19:52:54,627 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-04-25 19:52:54,627 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1777146654173, "endTimestamp": 1777146774626, "version": "3.4.6"}
+2026-04-25 19:52:54,627 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-04-25 19:52:56,628 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-25 19:52:56,629 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-25 19:53:24,892 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1455150
+2026-04-25 19:53:24,901 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-04-25 19:53:24,904 DEBUG: Saved HTML to apnews.html (1382965 bytes)
+2026-04-25 19:53:25,295 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
+2026-04-25 19:53:25,295 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-04-25 19:53:25,295 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-25 19:53:25,296 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-25 19:55:25,400 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-04-25 19:55:25,400 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1777146805297, "endTimestamp": 1777146925399, "version": "3.4.6"}
+2026-04-25 19:55:25,400 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-04-25 19:55:27,400 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-25 19:55:27,401 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-25 19:56:01,512 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2141526
+2026-04-25 19:56:01,525 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-04-25 19:56:01,529 DEBUG: Saved HTML to apnews.html (2059205 bytes)
+2026-04-25 19:56:02,002 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-04-25 19:56:02,002 INFO: Total unique articles across all sections: 172
+2026-04-25 19:56:02,006 INFO: Loaded existing XML: pau.xml
+2026-04-25 19:56:02,006 INFO: Existing items in feed: 500
+2026-04-25 19:56:02,007 DEBUG: Added: [5299ab9b] https://apnews.com/article/idaho-kempthorne-interior-endangered-species-f46d872d26378c033053da0198b14bab
+2026-04-25 19:56:02,007 INFO: Added 1 new articles to feed
+2026-04-25 19:56:02,007 INFO: Trimmed feed to 500 items
+2026-04-25 19:56:02,014 INFO: Done! Feed saved to pau.xml
+2026-04-25 19:56:02,014 INFO: Debug log saved to debug.log
