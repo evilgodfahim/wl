@@ -1,23 +1,46 @@
-2026-04-29 07:25:50,759 INFO: Fetching section: https://apnews.com/world-news
-2026-04-29 07:25:50,759 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-04-29 07:25:50,760 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-29 07:26:00,275 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1464181
-2026-04-29 07:26:00,291 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-29 07:26:00,295 DEBUG: Saved HTML to apnews.html (1391333 bytes)
-2026-04-29 07:26:00,674 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
-2026-04-29 07:26:00,674 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-04-29 07:26:00,674 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-04-29 07:26:00,675 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-04-29 07:26:08,153 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2139537
-2026-04-29 07:26:08,166 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-04-29 07:26:08,169 DEBUG: Saved HTML to apnews.html (2057182 bytes)
-2026-04-29 07:26:08,550 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-04-29 07:26:08,551 INFO: Total unique articles across all sections: 168
-2026-04-29 07:26:08,555 INFO: Loaded existing XML: pau.xml
-2026-04-29 07:26:08,555 INFO: Existing items in feed: 500
-2026-04-29 07:26:08,555 DEBUG: Added: [44a8b7d4] https://apnews.com/article/sudan-mines-war-children-66261ba53ba429d9982dc84c41fc1e7d
-2026-04-29 07:26:08,555 DEBUG: Added: [4b6fcc43] https://apnews.com/article/kenya-mountain-bongos-endangered-czech-44caa80a9e3cd562a107984480cf77b9
-2026-04-29 07:26:08,555 INFO: Added 2 new articles to feed
-2026-04-29 07:26:08,556 INFO: Trimmed feed to 500 items
-2026-04-29 07:26:08,563 INFO: Done! Feed saved to pau.xml
-2026-04-29 07:26:08,563 INFO: Debug log saved to debug.log
+2026-04-29 09:35:07,265 INFO: Fetching section: https://apnews.com/world-news
+2026-04-29 09:35:07,265 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-29 09:35:07,266 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-29 09:37:07,696 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-04-29 09:37:07,696 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1777455307267, "endTimestamp": 1777455427695, "version": "3.4.6"}
+2026-04-29 09:37:07,696 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-04-29 09:37:09,697 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-04-29 09:37:09,698 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-29 09:37:34,132 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1459271
+2026-04-29 09:37:34,141 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-04-29 09:37:34,143 DEBUG: Saved HTML to apnews.html (1386382 bytes)
+2026-04-29 09:37:34,546 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
+2026-04-29 09:37:34,547 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-04-29 09:37:34,547 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-29 09:37:34,548 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-29 09:39:34,651 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-04-29 09:39:34,651 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1777455454549, "endTimestamp": 1777455574650, "version": "3.4.6"}
+2026-04-29 09:39:34,652 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-04-29 09:39:36,652 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-04-29 09:39:36,653 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-04-29 09:40:02,267 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2136889
+2026-04-29 09:40:02,281 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-04-29 09:40:02,284 DEBUG: Saved HTML to apnews.html (2054662 bytes)
+2026-04-29 09:40:02,739 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-04-29 09:40:02,740 INFO: Total unique articles across all sections: 167
+2026-04-29 09:40:02,743 INFO: Loaded existing XML: pau.xml
+2026-04-29 09:40:02,743 INFO: Existing items in feed: 500
+2026-04-29 09:40:02,743 DEBUG: Added: [f21b86bf] https://apnews.com/article/powell-warsh-trump-federal-reserve-inflation-4e09e4cdb25856635c94abe0021fc1d3
+2026-04-29 09:40:02,744 DEBUG: Added: [11f44146] https://apnews.com/article/stock-markets-opec-trump-oil-iran-rates-16286a529f0fbb34ed213005ffda74b2
+2026-04-29 09:40:02,744 DEBUG: Added: [1e0df9a5] https://apnews.com/article/income-tax-repeal-missouri-sales-ballot-9d0e1d42d8b8bdea2703ce363eee0926
+2026-04-29 09:40:02,744 DEBUG: Added: [39f4cd03] https://apnews.com/article/russia-victory-day-parade-3c0e2619140194148dd94c730775ee3f
+2026-04-29 09:40:02,744 DEBUG: Added: [c89d0fcb] https://apnews.com/article/indonesia-military-court-acid-attack-86f27489fa7797b0694f4c9b7dfecd4e
+2026-04-29 09:40:02,744 DEBUG: Added: [8d1ecf26] https://apnews.com/article/south-korea-yoon-appeals-court-martial-law-d621b69fc88c699ce327654e9c7cfc36
+2026-04-29 09:40:02,744 DEBUG: Added: [055b4695] https://apnews.com/article/colombia-hippos-magdalena-river-7fb1d991ddaf2690edcb31d04f7891fe
+2026-04-29 09:40:02,744 DEBUG: Added: [87f76204] https://apnews.com/article/school-shootings-prevention-sandy-hook-8e4a1b99f2ebb7689a6893a110c22dfe
+2026-04-29 09:40:02,744 DEBUG: Added: [a520143a] https://apnews.com/article/texas-storms-buildings-flattened-mineral-wells-66a830d170533935d23f8926692621fd
+2026-04-29 09:40:02,744 DEBUG: Added: [9490ceb4] https://apnews.com/article/europol-crime-violence-arrests-europe-b5087b3a5b489ec42319ef8f5d86fa05
+2026-04-29 09:40:02,744 DEBUG: Added: [0bb5deaa] https://apnews.com/article/germany-russia-defense-intelligence-kazakh-sergei-b85b87874760bdd687082be450cff89b
+2026-04-29 09:40:02,745 DEBUG: Added: [df53037a] https://apnews.com/article/ferragamo-sustainable-fashion-italy-leather-2c68927c33dfc5bd147af3d0fe1701bc
+2026-04-29 09:40:02,745 DEBUG: Added: [ea030e96] https://apnews.com/article/kosovo-snap-election-crisis-c49ceec2da5ad92f51acacbca98e27cf
+2026-04-29 09:40:02,745 DEBUG: Added: [b8249db0] https://apnews.com/article/meta-instagram-facebook-european-union-digital-e8fdaa4173a363f2b968e59ee441fb84
+2026-04-29 09:40:02,745 DEBUG: Added: [df8c6047] https://apnews.com/photo-gallery/photos-mobile-trump-4abda033a1010743c310aeb43c0475cb
+2026-04-29 09:40:02,745 INFO: Added 15 new articles to feed
+2026-04-29 09:40:02,745 INFO: Trimmed feed to 500 items
+2026-04-29 09:40:02,752 INFO: Done! Feed saved to pau.xml
+2026-04-29 09:40:02,752 INFO: Debug log saved to debug.log
