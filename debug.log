@@ -1,22 +1,28 @@
-2026-05-02 19:06:33,388 INFO: Fetching section: https://apnews.com/world-news
-2026-05-02 19:06:33,388 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-05-02 19:06:33,390 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-02 19:06:43,500 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1472825
-2026-05-02 19:06:43,517 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-05-02 19:06:43,521 DEBUG: Saved HTML to apnews.html (1399677 bytes)
-2026-05-02 19:06:43,955 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
-2026-05-02 19:06:43,955 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-05-02 19:06:43,955 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-05-02 19:06:43,956 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-02 19:06:51,277 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2149893
-2026-05-02 19:06:51,294 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-05-02 19:06:51,297 DEBUG: Saved HTML to apnews.html (2067314 bytes)
-2026-05-02 19:06:51,805 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-05-02 19:06:51,805 INFO: Total unique articles across all sections: 169
-2026-05-02 19:06:51,810 INFO: Loaded existing XML: pau.xml
-2026-05-02 19:06:51,810 INFO: Existing items in feed: 500
-2026-05-02 19:06:51,810 DEBUG: Added: [85821a58] https://apnews.com/article/spirit-airlines-trump-bailout-bankruptcy-37a4818e1b71c0905d022f669d85948c
-2026-05-02 19:06:51,811 INFO: Added 1 new articles to feed
-2026-05-02 19:06:51,811 INFO: Trimmed feed to 500 items
-2026-05-02 19:06:51,818 INFO: Done! Feed saved to pau.xml
-2026-05-02 19:06:51,818 INFO: Debug log saved to debug.log
+2026-05-02 20:05:06,844 INFO: Fetching section: https://apnews.com/world-news
+2026-05-02 20:05:06,844 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-05-02 20:05:06,845 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-02 20:05:15,711 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1464137
+2026-05-02 20:05:15,721 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-05-02 20:05:15,723 DEBUG: Saved HTML to apnews.html (1391449 bytes)
+2026-05-02 20:05:16,145 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
+2026-05-02 20:05:16,146 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-05-02 20:05:16,146 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-05-02 20:05:16,147 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-02 20:07:16,251 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-05-02 20:07:16,251 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1777752316148, "endTimestamp": 1777752436250, "version": "3.4.6"}
+2026-05-02 20:07:16,251 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-05-02 20:07:18,252 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-05-02 20:07:18,253 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-02 20:07:49,986 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2147255
+2026-05-02 20:07:49,999 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-05-02 20:07:50,002 DEBUG: Saved HTML to apnews.html (2064763 bytes)
+2026-05-02 20:07:50,493 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-05-02 20:07:50,494 INFO: Total unique articles across all sections: 170
+2026-05-02 20:07:50,497 INFO: Loaded existing XML: pau.xml
+2026-05-02 20:07:50,498 INFO: Existing items in feed: 500
+2026-05-02 20:07:50,498 DEBUG: Added: [06f7e31f] https://apnews.com/article/brazil-copacabana-shakira-169e027a205c27dd113afe75368448a3
+2026-05-02 20:07:50,498 DEBUG: Added: [fde92550] https://apnews.com/article/lebanon-israel-hezbollah-airstrikes-ceasefire-f1eee1a81a4b1eb846efa1f400537c30
+2026-05-02 20:07:50,498 INFO: Added 2 new articles to feed
+2026-05-02 20:07:50,499 INFO: Trimmed feed to 500 items
+2026-05-02 20:07:50,505 INFO: Done! Feed saved to pau.xml
+2026-05-02 20:07:50,505 INFO: Debug log saved to debug.log
