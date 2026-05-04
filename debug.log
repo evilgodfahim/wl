@@ -1,26 +1,37 @@
-2026-05-04 03:36:46,499 INFO: Fetching section: https://apnews.com/world-news
-2026-05-04 03:36:46,499 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-05-04 03:36:46,500 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-04 03:36:56,127 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1453618
-2026-05-04 03:36:56,139 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-05-04 03:36:56,142 DEBUG: Saved HTML to apnews.html (1380944 bytes)
-2026-05-04 03:36:56,755 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-05-04 03:36:56,755 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-05-04 03:36:56,755 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-05-04 03:36:56,756 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-04 03:37:03,917 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2131763
-2026-05-04 03:37:03,935 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-05-04 03:37:03,939 DEBUG: Saved HTML to apnews.html (2049932 bytes)
-2026-05-04 03:37:04,413 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-05-04 03:37:04,414 INFO: Total unique articles across all sections: 171
-2026-05-04 03:37:04,453 INFO: Loaded existing XML: pau.xml
-2026-05-04 03:37:04,453 INFO: Existing items in feed: 500
-2026-05-04 03:37:04,454 DEBUG: Added: [a10164b9] https://apnews.com/article/hantavirus-south-africa-cruise-ship-who-4c9215a2bd7cd34a743b2a31323c7e18
-2026-05-04 03:37:04,454 DEBUG: Added: [a8d5c0b0] https://apnews.com/article/rudy-giuliani-hospitalized-c8a595d6be154208c10c5dde5f1351fc
-2026-05-04 03:37:04,454 DEBUG: Added: [adde147e] https://apnews.com/article/united-flight-strikes-light-pole-jersey-turnpike-74bf3bf4960d9342c09b02d8b896d1e9
-2026-05-04 03:37:04,454 DEBUG: Added: [8ca85599] https://apnews.com/article/what-to-know-hantavirus-cruise-ship-366c781ff168656ff47ae9796965daaa
-2026-05-04 03:37:04,454 DEBUG: Added: [211ae862] https://apnews.com/article/stocks-markets-rates-oil-iran-f49473018bee5fb6f2af85495fa045f8
-2026-05-04 03:37:04,454 INFO: Added 5 new articles to feed
-2026-05-04 03:37:04,454 INFO: Trimmed feed to 500 items
-2026-05-04 03:37:04,462 INFO: Done! Feed saved to pau.xml
-2026-05-04 03:37:04,462 INFO: Debug log saved to debug.log
+2026-05-04 06:42:39,437 INFO: Fetching section: https://apnews.com/world-news
+2026-05-04 06:42:39,437 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-05-04 06:42:39,438 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-04 06:44:39,861 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-05-04 06:44:39,862 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1777876959440, "endTimestamp": 1777877079860, "version": "3.4.6"}
+2026-05-04 06:44:39,862 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-05-04 06:44:41,862 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-05-04 06:44:41,863 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-04 06:45:10,603 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1443494
+2026-05-04 06:45:10,613 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-05-04 06:45:10,615 DEBUG: Saved HTML to apnews.html (1371477 bytes)
+2026-05-04 06:45:11,027 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-05-04 06:45:11,027 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-05-04 06:45:11,027 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-05-04 06:45:11,028 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-04 06:45:18,225 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2132577
+2026-05-04 06:45:18,239 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-05-04 06:45:18,242 DEBUG: Saved HTML to apnews.html (2050737 bytes)
+2026-05-04 06:45:18,674 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-05-04 06:45:18,675 INFO: Total unique articles across all sections: 170
+2026-05-04 06:45:18,712 INFO: Loaded existing XML: pau.xml
+2026-05-04 06:45:18,713 INFO: Existing items in feed: 500
+2026-05-04 06:45:18,713 DEBUG: Added: [a715e66e] https://apnews.com/article/iran-us-war-ceasefire-negotiations-strait-a4857f28d9b47e0170b65ced19451a25
+2026-05-04 06:45:18,713 DEBUG: Added: [6b060a6a] https://apnews.com/article/iran-war-economy-asia-migrant-workers-af7df2adfab5dc17fbd07a040e5c4edf
+2026-05-04 06:45:18,713 DEBUG: Added: [82f1250f] https://apnews.com/article/nato-germany-trump-defense-military-russia-ukraine-edb9c28be9dd023fd33b6e1c293e3b29
+2026-05-04 06:45:18,713 DEBUG: Added: [d713ffaa] https://apnews.com/article/surrey-hybrid-working-england-oval-d0b5673b8e5f2149e7fc24c23060c3b5
+2026-05-04 06:45:18,713 DEBUG: Added: [03f442d1] https://apnews.com/article/mayon-volcano-philippines-albay-province-ae152c7f9bd208273cafea80cee9d33d
+2026-05-04 06:45:18,714 DEBUG: Added: [045bee58] https://apnews.com/article/japan-australia-cooperation-takaichi-albanese-energy-agreements-aca28a3fecc19306381d83382fd23abf
+2026-05-04 06:45:18,714 DEBUG: Added: [8c443e28] https://apnews.com/article/meta-new-mexico-social-media-child-safety-0ee254c8e8b37c9c28cea591d661cbc4
+2026-05-04 06:45:18,714 DEBUG: Added: [161cb314] https://apnews.com/article/donald-trump-supreme-court-redistricting-democracy-d8fcd9fd2dd60cb2233e8003fadc6300
+2026-05-04 06:45:18,714 DEBUG: Added: [5732a5e9] https://apnews.com/article/north-korea-women-soccer-south-korea-suwon-abe227212b818b4a752fdda7411e1fe4
+2026-05-04 06:45:18,714 DEBUG: Added: [816d77b8] https://apnews.com/article/stocks-markets-rates-oil-iran-f49473018bee5fb6f2af85495fa045f8
+2026-05-04 06:45:18,714 DEBUG: Added: [cee79224] https://apnews.com/article/black-hills-tribes-mining-exploration-protest-cd7b175dbedf750889e26db3689d6398
+2026-05-04 06:45:18,714 INFO: Added 11 new articles to feed
+2026-05-04 06:45:18,715 INFO: Trimmed feed to 500 items
+2026-05-04 06:45:18,721 INFO: Done! Feed saved to pau.xml
+2026-05-04 06:45:18,722 INFO: Debug log saved to debug.log
