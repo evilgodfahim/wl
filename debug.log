@@ -1,31 +1,33 @@
-2026-05-05 22:31:18,819 INFO: Fetching section: https://apnews.com/world-news
-2026-05-05 22:31:18,819 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-05-05 22:31:18,820 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-05 22:31:27,166 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1446233
-2026-05-05 22:31:27,176 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-05-05 22:31:27,179 DEBUG: Saved HTML to apnews.html (1373728 bytes)
-2026-05-05 22:31:27,531 INFO: Section https://apnews.com/world-news — card selector matched 90 articles
-2026-05-05 22:31:27,532 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-05-05 22:31:27,532 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-05-05 22:31:27,533 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-05 22:31:34,088 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2147878
-2026-05-05 22:31:34,100 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-05-05 22:31:34,103 DEBUG: Saved HTML to apnews.html (2065533 bytes)
-2026-05-05 22:31:34,569 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-05-05 22:31:34,570 INFO: Total unique articles across all sections: 175
-2026-05-05 22:31:34,576 INFO: Loaded existing XML: pau.xml
-2026-05-05 22:31:34,577 INFO: Existing items in feed: 500
-2026-05-05 22:31:34,577 DEBUG: Added: [cd994d26] https://apnews.com/article/un-us-iran-gulf-resolution-strait-hormuz-fb9532308885dd260bf8f44353d51b0a
-2026-05-05 22:31:34,577 DEBUG: Added: [ea21e330] https://apnews.com/video/passenger-says-atmosphere-on-board-ship-at-centre-of-hantavirus-outbreak-is-relatively-good-1be8aa92fb81452581097de9aaac1883
-2026-05-05 22:31:34,577 DEBUG: Added: [b07463e0] https://apnews.com/video/macron-sings-aznavour-classic-at-yerevan-state-dinner-with-pashinyan-on-drums-5938e97e03ef4308a2ae648d750cf907
-2026-05-05 22:31:34,580 DEBUG: Added: [f777000b] https://apnews.com/article/redistricting-trump-voting-rights-tennessee-louisiana-alabama-ca32807b41e348253080ae333937be51
-2026-05-05 22:31:34,580 DEBUG: Added: [c47bb368] https://apnews.com/article/brazil-acre-amazon-school-shooting-e6a45ecae12b4fade0c2d90661389a99
-2026-05-05 22:31:34,580 DEBUG: Added: [c227d638] https://apnews.com/article/italy-venice-biennale-art-exhibition-b8da8788c21f12b6b0b2ad61b1c37adf
-2026-05-05 22:31:34,581 DEBUG: Added: [b1acfb48] https://apnews.com/article/rolling-stones-new-album-foreign-tongues-aae39555f9610a5f7d96c431a94bcd41
-2026-05-05 22:31:34,581 DEBUG: Added: [96ab4820] https://apnews.com/article/produce-storage-fresh-reduce-food-waste-grocery-8eb3ec0339897d26c0785da338ff3191
-2026-05-05 22:31:34,581 DEBUG: Added: [f675888e] https://apnews.com/article/mobile-homes-water-drinking-safety-health-12adbeeb1d880644b0fc85957b083fcd
-2026-05-05 22:31:34,581 DEBUG: Added: [2aa85eeb] https://apnews.com/article/trump-east-wing-debris-golf-course-a78abeefed782423d70bd03a44d0b740
-2026-05-05 22:31:34,581 INFO: Added 10 new articles to feed
-2026-05-05 22:31:34,581 INFO: Trimmed feed to 500 items
-2026-05-05 22:31:34,592 INFO: Done! Feed saved to pau.xml
-2026-05-05 22:31:34,592 INFO: Debug log saved to debug.log
+2026-05-05 23:53:13,336 INFO: Fetching section: https://apnews.com/world-news
+2026-05-05 23:53:13,336 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-05-05 23:53:13,337 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-05 23:55:13,795 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-05-05 23:55:13,795 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1778025193338, "endTimestamp": 1778025313793, "version": "3.4.6"}
+2026-05-05 23:55:13,795 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-05-05 23:55:15,796 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-05-05 23:55:15,797 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-05 23:57:15,900 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-05-05 23:57:15,901 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1778025315798, "endTimestamp": 1778025435899, "version": "3.4.6"}
+2026-05-05 23:57:15,901 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-05-05 23:57:19,902 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-05-05 23:57:19,987 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
+2026-05-05 23:57:19,995 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-05-05 23:57:19,997 DEBUG: Saved HTML to apnews.html (1232069 bytes)
+2026-05-05 23:57:20,381 INFO: Section https://apnews.com/world-news — card selector matched 90 articles
+2026-05-05 23:57:20,382 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-05-05 23:57:20,382 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-05-05 23:57:20,382 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-05 23:57:59,863 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2146672
+2026-05-05 23:57:59,877 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-05-05 23:57:59,881 DEBUG: Saved HTML to apnews.html (2064260 bytes)
+2026-05-05 23:58:00,376 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-05-05 23:58:00,377 INFO: Total unique articles across all sections: 175
+2026-05-05 23:58:00,380 INFO: Loaded existing XML: pau.xml
+2026-05-05 23:58:00,381 INFO: Existing items in feed: 500
+2026-05-05 23:58:00,381 DEBUG: Added: [9194f6cc] https://apnews.com/article/iran-us-war-ceasefire-negotiations-strait-hormuz-b8a77d16945085e5a5039032a55b3a90
+2026-05-05 23:58:00,381 DEBUG: Added: [e442a6b1] https://apnews.com/article/trump-xi-iran-rubio-hormuz-b8fd7a1f890b4bb88b47b52ebad04dde
+2026-05-05 23:58:00,381 DEBUG: Added: [94e4cb79] https://apnews.com/article/trump-brazil-lula-bolsonaro-546d068d5f0efedf69eca939026e0815
+2026-05-05 23:58:00,382 INFO: Added 3 new articles to feed
+2026-05-05 23:58:00,382 INFO: Trimmed feed to 500 items
+2026-05-05 23:58:00,389 INFO: Done! Feed saved to pau.xml
+2026-05-05 23:58:00,389 INFO: Debug log saved to debug.log
