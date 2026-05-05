@@ -2,12 +2,8 @@ name: Update Reuters RSS
 
 on:
   schedule:
-    - cronhsh: "*/30 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
-
-env:
-  BB_PROFILE: "chrome146_win11_x64.enc"
-  BB_CACHE_DIR: "bb_cache"
 
 jobs:
   update:
@@ -22,113 +18,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get latest BotBrowser tag
-        id: bb-tag
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Dynamically fetch the latest tag so it never breaks on new releases
-          LATEST_TAG=$(gh release view --repo MiddleSchoolStudent/BotBrowser --json tagName --jq .tagName)
-          echo "BB_TAG=$LATEST_TAG" >> $GITHUB_ENV
-          echo "Latest tag found: $LATEST_TAG"
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install Python dependencies & Xvfb
+      - name: Install system dependencies
         run: |
-          sudo apt-get update && sudo apt-get install -y xvfb
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+
+      - name: Install Python dependencies
+        run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 playwright
+          pip install "scrapling[fetchers]"
 
-      - name: Install Playwright Chromium
-        run: |
-          playwright install chromium
-          playwright install-deps chromium
-
-      - name: Restore BotBrowser cache
-        id: cache-bb
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.BB_CACHE_DIR }}
-          key: botbrowser-${{ env.BB_TAG }}
-
-      - name: Download BotBrowser assets
-        if: steps.cache-bb.outputs.cache-hit != 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -e
-          mkdir -p "$BB_CACHE_DIR"
-
-          echo "Fetching release assets for tag: $BB_TAG"
-
-          gh release view "$BB_TAG" \
-            --repo MiddleSchoolStudent/BotBrowser \
-            --json assets \
-            --jq '.assets[].name' > /tmp/bb_assets.txt
-
-          DEB_ASSET=$(grep -E "_x64\.deb|_amd64\.deb" /tmp/bb_assets.txt | head -1)
-
-          if [ -z "$DEB_ASSET" ]; then
-            echo "ERROR: no x64/amd64 .deb found for $BB_TAG"
-            cat /tmp/bb_assets.txt
-            exit 1
-          fi
-
-          echo "Downloading deb: $DEB_ASSET"
-          curl -fL \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            "https://github.com/MiddleSchoolStudent/BotBrowser/releases/download/${BB_TAG}/${DEB_ASSET}" \
-            -o "$BB_CACHE_DIR/botbrowser.deb"
-
-          echo "Downloading profile: $BB_PROFILE"
-          curl -fsSLo "$BB_CACHE_DIR/$BB_PROFILE" \
-            "https://raw.githubusercontent.com/botswin/BotBrowser/main/profiles/stable/${BB_PROFILE}" || true
-
-          if [ ! -s "$BB_CACHE_DIR/$BB_PROFILE" ]; then
-            echo "WARNING: profile download empty — continuing without profile"
-            rm -f "$BB_CACHE_DIR/$BB_PROFILE"
-          fi
-
-      - name: Install BotBrowser from cache
-        run: |
-          set -e
-
-          sudo dpkg -i "$BB_CACHE_DIR/botbrowser.deb" || sudo apt-get install -f -y
-
-          BB_BIN=""
-          for candidate in \
-            /usr/bin/chromium-browser-stable \
-            /usr/bin/chromium-browser \
-            /opt/chromium.org/chromium/chromium \
-            /usr/bin/botbrowser; do
-            if [ -x "$candidate" ]; then
-              BB_BIN="$candidate"
-              break
-            fi
-          done
-
-          if [ -z "$BB_BIN" ]; then
-            echo "ERROR: could not find installed browser binary"
-            exit 1
-          fi
-
-          echo "BotBrowser binary: $BB_BIN"
-          "$BB_BIN" --version || true
-          echo "BOTBROWSER_PATH=$BB_BIN" >> "$GITHUB_ENV"
-
-          PROFILE_PATH="$BB_CACHE_DIR/$BB_PROFILE"
-          if [ -s "$PROFILE_PATH" ]; then
-            echo "BOTBROWSER_PROFILE=$PWD/$PROFILE_PATH" >> "$GITHUB_ENV"
-            echo "Using bot profile: $PROFILE_PATH"
-          else
-            echo "No profile available — running without one"
-          fi
+      - name: Install Scrapling browser (Camoufox)
+        run: scrapling install
 
       - name: Run scraper via Xvfb
+        env:
+          HEADLESS: "true"
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x800x24" python reuters.py
 
       - name: Commit and push changes
