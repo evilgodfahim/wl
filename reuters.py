@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Install: pip install "scrapling[fetchers]" && scrapling install
+# Install: pip install "scrapling[fetchers]" && python -m camoufox fetch
 
 import os
 import re
@@ -67,8 +67,6 @@ _COMMENTARY_HREF_RE = re.compile(
     r"^/(commentary|breakingviews|article|business|world|opinions)/"
 )
 
-# StealthyFetcher runs Camoufox (Firefox-based) — better DataDome bypass than Chromium.
-# HEADLESS=false can help on local if challenges still slip through.
 HEADLESS = os.environ.get("HEADLESS", "true").lower() == "true"
 
 
@@ -76,19 +74,19 @@ HEADLESS = os.environ.get("HEADLESS", "true").lower() == "true"
 # Scrapling fetch helper
 # ------------------------------
 
-def scrapling_get(url: str, session, retries: int = 3):
-    """Fetch URL via an active StealthySession. Returns a Scrapling page or None."""
+def scrapling_get(url: str, fetcher, retries: int = 3):
+    """Fetch URL via StealthyFetcher. Returns a Scrapling page or None."""
     for attempt in range(1, retries + 1):
         log.debug("Fetch attempt %d/%d: %s", attempt, retries, url)
         try:
-            page = session.fetch(url, timeout=TIMEOUT_MS)
+            page = fetcher.fetch(url, timeout=TIMEOUT_MS)
         except Exception as e:
             log.warning("Fetch error (%d/%d) %s: %s", attempt, retries, url, e)
             time.sleep(2)
             continue
 
-        if not page or len(page.html) < 500:
-            log.warning("Empty/tiny response (%d/%d): %s", attempt, retries, url)
+        if not page or not hasattr(page, "html") or len(page.html) < 500:
+            log.warning("Empty/tiny/invalid response (%d/%d): %s", attempt, retries, url)
             time.sleep(2)
             continue
 
@@ -182,7 +180,6 @@ def is_valid_article_url(url, title="") -> bool:
 # ------------------------------
 
 def extract_full_text_reuters(page) -> str:
-    # Primary: structured article body paragraphs
     paragraphs = page.css(
         'div[class*="article-body-module__content__"] [data-testid*="paragraph-"]'
     )
@@ -191,7 +188,6 @@ def extract_full_text_reuters(page) -> str:
         if parts:
             return "\n\n".join(parts)
 
-    # Fallback: generic body/article paragraphs
     blocks = page.css('div[data-testid="Body"] p') or page.css("article p")
     return "\n\n".join(_text(p) for p in blocks if _text(p))
 
@@ -302,9 +298,9 @@ def load_or_create_xml(path, title, link, description):
 # Section scrapers
 # ------------------------------
 
-def scrape_world_page(session) -> list[dict]:
+def scrape_world_page(fetcher) -> list[dict]:
     log.info("Fetching Reuters world: %s", REUTERS_URL)
-    page = scrapling_get(REUTERS_URL, session)
+    page = scrapling_get(REUTERS_URL, fetcher)
     if page is None:
         log.warning("Failed to fetch Reuters world page")
         return []
@@ -334,9 +330,9 @@ def scrape_world_page(session) -> list[dict]:
     return fallback
 
 
-def scrape_commentary_page(session) -> list[dict]:
+def scrape_commentary_page(fetcher) -> list[dict]:
     log.info("Fetching Reuters commentary: %s", REUTERS_COMMENTARY_URL)
-    page = scrapling_get(REUTERS_COMMENTARY_URL, session)
+    page = scrapling_get(REUTERS_COMMENTARY_URL, fetcher)
     if page is None:
         log.warning("Failed to fetch Reuters commentary page")
         return []
@@ -391,13 +387,13 @@ def scrape_commentary_page(session) -> list[dict]:
     return fallback
 
 
-def scrape_extra_pages(session) -> list[dict]:
+def scrape_extra_pages(fetcher) -> list[dict]:
     items = []
     seen  = set()
 
     for extra_url in REUTERS_EXTRA_URLS:
         log.info("Fetching extra page: %s", extra_url)
-        page = scrapling_get(extra_url, session)
+        page = scrapling_get(extra_url, fetcher)
         if page is None:
             continue
 
@@ -421,7 +417,7 @@ def scrape_extra_pages(session) -> list[dict]:
 # ------------------------------
 
 def main():
-    from scrapling.fetchers import StealthySession
+    from scrapling.fetchers import StealthyFetcher
 
     seen_global  = set()
     all_articles = []
@@ -433,59 +429,58 @@ def main():
                 seen_global.add(u)
                 all_articles.append(item)
 
-    # StealthySession keeps a single Camoufox (Firefox) browser alive for the
-    # entire run — one launch, many pages, consistent cookie/session state.
-    with StealthySession(headless=HEADLESS, network_idle=True) as session:
-        _add(scrape_world_page(session))
-        _add(scrape_commentary_page(session))
-        _add(scrape_extra_pages(session))
+    fetcher = StealthyFetcher(headless=HEADLESS, network_idle=True)
 
-        log.info("Total unique Reuters articles: %d", len(all_articles))
+    _add(scrape_world_page(fetcher))
+    _add(scrape_commentary_page(fetcher))
+    _add(scrape_extra_pages(fetcher))
 
-        reuters_tree, _, reuters_channel = load_or_create_xml(
-            REUTERS_XML_FILE,
-            "Reuters Feed",
-            "https://evilgodfahim.github.io/reur/reuters",
-            "Scraped articles from Reuters",
-        )
+    log.info("Total unique Reuters articles: %d", len(all_articles))
 
-        reuters_existing = {
-            item.find("link").text.strip()
-            for item in reuters_channel.findall("item")
-            if item.find("link") is not None and item.find("link").text
-        }
+    reuters_tree, _, reuters_channel = load_or_create_xml(
+        REUTERS_XML_FILE,
+        "Reuters Feed",
+        "https://evilgodfahim.github.io/reur/reuters",
+        "Scraped articles from Reuters",
+    )
 
-        new_count = 0
-        for art in all_articles:
-            if art["url"] in reuters_existing:
-                continue
+    reuters_existing = {
+        item.find("link").text.strip()
+        for item in reuters_channel.findall("item")
+        if item.find("link") is not None and item.find("link").text
+    }
 
-            page = scrapling_get(art["url"], session)
-            if page is not None:
-                art["desc"] = extract_full_text_reuters(page) or ""
-                art["img"]  = extract_image_url(page) or art.get("thumb", "") or ""
-            else:
-                art["desc"] = ""
-                art["img"]  = art.get("thumb", "") or ""
-            art["pub"] = now_utc()
+    new_count = 0
+    for art in all_articles:
+        if art["url"] in reuters_existing:
+            continue
 
-            title = (art.get("title") or "").strip()
-            desc  = (art.get("desc")  or "").strip() or title
-            if not title and not desc:
-                continue
+        page = scrapling_get(art["url"], fetcher)
+        if page is not None:
+            art["desc"] = extract_full_text_reuters(page) or ""
+            art["img"]  = extract_image_url(page) or art.get("thumb", "") or ""
+        else:
+            art["desc"] = ""
+            art["img"]  = art.get("thumb", "") or ""
+        art["pub"] = now_utc()
 
-            el = ET.SubElement(reuters_channel, "item")
-            ET.SubElement(el, "title").text       = title
-            ET.SubElement(el, "link").text        = art["url"]
-            ET.SubElement(el, "description").text = desc
-            ET.SubElement(el, "pubDate").text     = art["pub"]
-            if art.get("img"):
-                ET.SubElement(el, "enclosure", url=art["img"], type="image/jpeg")
+        title = (art.get("title") or "").strip()
+        desc  = (art.get("desc")  or "").strip() or title
+        if not title and not desc:
+            continue
 
-            new_count += 1
-            time.sleep(FETCH_DELAY)
+        el = ET.SubElement(reuters_channel, "item")
+        ET.SubElement(el, "title").text       = title
+        ET.SubElement(el, "link").text        = art["url"]
+        ET.SubElement(el, "description").text = desc
+        ET.SubElement(el, "pubDate").text     = art["pub"]
+        if art.get("img"):
+            ET.SubElement(el, "enclosure", url=art["img"], type="image/jpeg")
 
-    # Trim to rolling cap after browser is closed
+        new_count += 1
+        time.sleep(FETCH_DELAY)
+
+    # Trim to rolling cap
     all_items = reuters_channel.findall("item")
     for old in all_items[:-MAX_ITEMS]:
         reuters_channel.remove(old)
