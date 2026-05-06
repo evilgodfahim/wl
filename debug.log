@@ -1,33 +1,31 @@
-2026-05-05 23:53:13,336 INFO: Fetching section: https://apnews.com/world-news
-2026-05-05 23:53:13,336 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-05-05 23:53:13,337 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-05 23:55:13,795 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-05-05 23:55:13,795 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1778025193338, "endTimestamp": 1778025313793, "version": "3.4.6"}
-2026-05-05 23:55:13,795 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-05-05 23:55:15,796 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-05-05 23:55:15,797 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-05 23:57:15,900 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-05-05 23:57:15,901 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1778025315798, "endTimestamp": 1778025435899, "version": "3.4.6"}
-2026-05-05 23:57:15,901 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
-2026-05-05 23:57:19,902 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-05-05 23:57:19,987 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
-2026-05-05 23:57:19,995 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
-2026-05-05 23:57:19,997 DEBUG: Saved HTML to apnews.html (1232069 bytes)
-2026-05-05 23:57:20,381 INFO: Section https://apnews.com/world-news — card selector matched 90 articles
-2026-05-05 23:57:20,382 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-05-05 23:57:20,382 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-05-05 23:57:20,382 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-05-05 23:57:59,863 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2146672
-2026-05-05 23:57:59,877 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-05-05 23:57:59,881 DEBUG: Saved HTML to apnews.html (2064260 bytes)
-2026-05-05 23:58:00,376 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
-2026-05-05 23:58:00,377 INFO: Total unique articles across all sections: 175
-2026-05-05 23:58:00,380 INFO: Loaded existing XML: pau.xml
-2026-05-05 23:58:00,381 INFO: Existing items in feed: 500
-2026-05-05 23:58:00,381 DEBUG: Added: [9194f6cc] https://apnews.com/article/iran-us-war-ceasefire-negotiations-strait-hormuz-b8a77d16945085e5a5039032a55b3a90
-2026-05-05 23:58:00,381 DEBUG: Added: [e442a6b1] https://apnews.com/article/trump-xi-iran-rubio-hormuz-b8fd7a1f890b4bb88b47b52ebad04dde
-2026-05-05 23:58:00,381 DEBUG: Added: [94e4cb79] https://apnews.com/article/trump-brazil-lula-bolsonaro-546d068d5f0efedf69eca939026e0815
-2026-05-05 23:58:00,382 INFO: Added 3 new articles to feed
-2026-05-05 23:58:00,382 INFO: Trimmed feed to 500 items
-2026-05-05 23:58:00,389 INFO: Done! Feed saved to pau.xml
-2026-05-05 23:58:00,389 INFO: Debug log saved to debug.log
+2026-05-06 03:33:59,740 INFO: Fetching section: https://apnews.com/world-news
+2026-05-06 03:33:59,740 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-05-06 03:33:59,742 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-06 03:34:10,523 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1458076
+2026-05-06 03:34:10,537 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-05-06 03:34:10,541 DEBUG: Saved HTML to apnews.html (1384936 bytes)
+2026-05-06 03:34:10,986 INFO: Section https://apnews.com/world-news — card selector matched 90 articles
+2026-05-06 03:34:10,987 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-05-06 03:34:10,987 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-05-06 03:34:10,988 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-05-06 03:34:17,864 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2147656
+2026-05-06 03:34:17,884 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-05-06 03:34:17,887 DEBUG: Saved HTML to apnews.html (2065298 bytes)
+2026-05-06 03:34:18,538 INFO: Section https://apnews.com/climate-and-environment — card selector matched 90 articles
+2026-05-06 03:34:18,538 INFO: Total unique articles across all sections: 174
+2026-05-06 03:34:18,542 INFO: Loaded existing XML: pau.xml
+2026-05-06 03:34:18,542 INFO: Existing items in feed: 500
+2026-05-06 03:34:18,543 DEBUG: Added: [90e1fec5] https://apnews.com/article/iran-us-war-ceasefire-negotiations-strait-hormuz-b8a77d16945085e5a5039032a55b3a90
+2026-05-06 03:34:18,543 DEBUG: Added: [06e1310a] https://apnews.com/article/bondi-shooting-naveed-akram-hanukkah-jewish-sydney-0ba76941c60ed68950e69a59db722b3e
+2026-05-06 03:34:18,543 DEBUG: Added: [7da055a4] https://apnews.com/article/china-ai-us-tech-openclaw-0126a120113a92fa450ecb2e464b35bc
+2026-05-06 03:34:18,543 DEBUG: Added: [57f7a803] https://apnews.com/article/rodrigo-chaves-immunity-corruption-social-democratic-progress-party-97b9bc1675a8efe8e8cf9f14589b8608
+2026-05-06 03:34:18,543 DEBUG: Added: [72fb6775] https://apnews.com/article/antigua-barbuda-gaston-browne-reelection-4b114198dfdb66e79ba47b66959e3e3d
+2026-05-06 03:34:18,543 DEBUG: Added: [6d35433d] https://apnews.com/article/oklahoma-shooting-party-edmond-arcadia-lake-050db716b9c2b5a94c14d03e187fb7c9
+2026-05-06 03:34:18,543 DEBUG: Added: [ec32bbcc] https://apnews.com/photo-gallery/may-5-elections-indiana-ohio-michigan-cfd0a68aa2623eb03b0d4678ae750f4a
+2026-05-06 03:34:18,543 DEBUG: Added: [3eac509d] https://apnews.com/article/primaries-indiana-ohio-michigan-takeaways-722f8ee155920578db6964f54e910449
+2026-05-06 03:34:18,543 DEBUG: Added: [08912a34] https://apnews.com/article/trump-cartels-eastern-pacific-narco-drugs-5076ad244b8270b797f38c8ba51ed7d3
+2026-05-06 03:34:18,543 DEBUG: Added: [0dd5d088] https://apnews.com/article/cfp-college-football-playoff-afca-178a3073c8af41b21d61d1e01be2d530
+2026-05-06 03:34:18,544 INFO: Added 10 new articles to feed
+2026-05-06 03:34:18,544 INFO: Trimmed feed to 500 items
+2026-05-06 03:34:18,557 INFO: Done! Feed saved to pau.xml
+2026-05-06 03:34:18,557 INFO: Debug log saved to debug.log
