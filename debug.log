@@ -1,63 +1,30 @@
-2026-06-01 19:08:55,595 INFO: Fetching section: https://apnews.com/world-news
-2026-06-01 19:08:55,595 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-01 19:08:55,596 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-01 19:10:55,987 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-06-01 19:10:55,987 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780340935597, "endTimestamp": 1780341055986, "version": "3.5.0"}
-2026-06-01 19:10:55,987 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-06-01 19:10:57,988 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-01 19:10:57,988 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-01 19:12:58,092 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-06-01 19:12:58,092 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780341057989, "endTimestamp": 1780341178091, "version": "3.5.0"}
-2026-06-01 19:12:58,092 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
-2026-06-01 19:13:02,093 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-06-01 19:13:02,160 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
-2026-06-01 19:13:02,206 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
-2026-06-01 19:13:02,208 DEBUG: Saved HTML to apnews.html (1258126 bytes)
-2026-06-01 19:13:02,455 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-06-01 19:13:02,455 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-06-01 19:13:02,455 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-06-01 19:13:02,456 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-01 19:15:02,559 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-06-01 19:15:02,559 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780341182457, "endTimestamp": 1780341302558, "version": "3.5.0"}
-2026-06-01 19:15:02,560 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
-2026-06-01 19:15:04,560 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-06-01 19:15:04,560 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-01 19:17:04,638 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-06-01 19:17:04,639 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780341304561, "endTimestamp": 1780341424638, "version": "3.5.0"}
-2026-06-01 19:17:04,639 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/climate-and-environment
-2026-06-01 19:17:08,640 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-06-01 19:17:08,689 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 200 None
-2026-06-01 19:17:08,757 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
-2026-06-01 19:17:08,759 DEBUG: Saved HTML to apnews.html (1918195 bytes)
-2026-06-01 19:17:09,052 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
-2026-06-01 19:17:09,052 INFO: Total unique articles across all sections: 176
-2026-06-01 19:17:09,055 INFO: Loaded existing XML: pau.xml
-2026-06-01 19:17:09,055 INFO: Existing items in feed: 500
-2026-06-01 19:17:09,055 DEBUG: Added: [853a68bb] https://apnews.com/article/lebanon-israel-hezbollah-netanyahu-dahiyeh-rubio-ceasefire-airstrikes-a4708d5ed8d75f74463ba88c1cabca33
-2026-06-01 19:17:09,055 DEBUG: Added: [98184397] https://apnews.com/article/iran-us-irael-war-kuwait-strikes-88daa9f90b48baaa7beb18e35515c59d
-2026-06-01 19:17:09,055 DEBUG: Added: [2cccb5a6] https://apnews.com/article/trump-africa-visas-embassies-cutbacks-973e4458cc0770a0a7e83acf51e74df0
-2026-06-01 19:17:09,056 DEBUG: Added: [269c64c6] https://apnews.com/article/mandelson-epstein-documents-published-starmer-8de7ac27962b5bebc68d67a4480c23bf
-2026-06-01 19:17:09,056 DEBUG: Added: [a8aa1dad] https://apnews.com/article/abelardo-de-la-espriella-trump-colombia-petro-cepeda-election-crime-bukele-643a808af732c35e240949d69171d65f
-2026-06-01 19:17:09,056 DEBUG: Added: [015b6923] https://apnews.com/article/israel-jerusalem-netanyahu-ultraorthodox-military-14cd1975c831d22f35720a10ddc1cf28
-2026-06-01 19:17:09,056 DEBUG: Added: [1eff267f] https://apnews.com/article/egypt-antiquities-aphrodite-marble-head-pharaonic-furniture-e9e5eb074b67fb47b8eb36a911fba7ce
-2026-06-01 19:17:09,056 DEBUG: Added: [a0cc680e] https://apnews.com/article/anthropic-ai-claude-ipo-572bb6cc12053c7aa95f775285cf4b73
-2026-06-01 19:17:09,056 DEBUG: Added: [a99b7fa6] https://apnews.com/article/sam-altman-openai-lawsuit-florida-396d70c5a2d9bae7e95a8ee9adaef836
-2026-06-01 19:17:09,056 DEBUG: Added: [10d2766d] https://apnews.com/article/brazil-us-bolsonaro-lula-designations-crime-6ef4f1467c6afb55fc2daf45ae6d3875
-2026-06-01 19:17:09,056 DEBUG: Added: [42b8470a] https://apnews.com/article/congo-ebola-bunia-ituri-bundibugyo-2e3bd2b74ccce26dd82984f26dabc4c7
-2026-06-01 19:17:09,056 DEBUG: Added: [74e87555] https://apnews.com/article/ethiopia-election-abiy-ahmed-prosperity-party-fbe2744738ec2f011d46ad98b5bef0fa
-2026-06-01 19:17:09,056 DEBUG: Added: [879fa773] https://apnews.com/article/transgender-military-ban-trump-02c27819995ebfbea6aa45d2633028d3
-2026-06-01 19:17:09,056 DEBUG: Added: [b23ecc73] https://apnews.com/article/colorado-election-clerk-peters-prison-release-b974d394595c75a6db831962551d094f
-2026-06-01 19:17:09,056 DEBUG: Added: [41246d45] https://apnews.com/article/tyler-robinson-charlie-kirk-hearing-access-11f15eb6302ea6e3d2a0abe8da09f2e0
-2026-06-01 19:17:09,056 DEBUG: Added: [85338c7c] https://apnews.com/article/california-governor-los-angeles-mayor-bass-pratt-5e7dee3c97e6aef8bad1bf88b7beb322
-2026-06-01 19:17:09,056 DEBUG: Added: [f9e477b6] https://apnews.com/article/baltimore-key-bridge-collapse-trial-0ae428b24d3c1383d7eb173fceaca3c6
-2026-06-01 19:17:09,056 DEBUG: Added: [4804ae01] https://apnews.com/article/eu-balkans-bosnia-summit-enlargement-b0440a8bc6b5a5285e4b9a97280e4135
-2026-06-01 19:17:09,056 DEBUG: Added: [828becb4] https://apnews.com/photo-gallery/major-global-news-moments-may-ap-photos-b11cd19318724da0845c60f3a85e8cd5
-2026-06-01 19:17:09,056 DEBUG: Added: [e7d9e32a] https://apnews.com/article/uk-bars-hasan-piker-cenk-uygur-sxsw-6de2a1b51cc8e0a2828275620f6bc121
-2026-06-01 19:17:09,056 DEBUG: Added: [7e43ee16] https://apnews.com/article/myanmar-explosion-mining-tnla-398ac64b7af85c1916a4adc56b44d9f3
-2026-06-01 19:17:09,056 DEBUG: Added: [6dace148] https://apnews.com/article/nvidia-microsoft-ai-laptops-jensen-chip-c807f7333b93b9927b62b1240dcf65a1
-2026-06-01 19:17:09,056 DEBUG: Added: [d39e3103] https://apnews.com/article/stocks-markets-oil-iran-trump-hormuz-5045f5cc9eed81f1dec2006234e1337c
-2026-06-01 19:17:09,056 DEBUG: Added: [565edd92] https://apnews.com/article/wyoming-path-pronghorn-migration-protections-development-12cc9b5a85d227ff6a3910e6c927d674
-2026-06-01 19:17:09,057 INFO: Added 24 new articles to feed
-2026-06-01 19:17:09,057 INFO: Trimmed feed to 500 items
-2026-06-01 19:17:09,062 INFO: Done! Feed saved to pau.xml
-2026-06-01 19:17:09,062 INFO: Debug log saved to debug.log
+2026-06-01 22:21:09,826 INFO: Fetching section: https://apnews.com/world-news
+2026-06-01 22:21:09,826 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-01 22:21:09,827 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-01 22:21:20,690 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1474582
+2026-06-01 22:21:20,705 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-06-01 22:21:20,709 DEBUG: Saved HTML to apnews.html (1400496 bytes)
+2026-06-01 22:21:21,815 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-06-01 22:21:21,816 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-06-01 22:21:21,816 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-06-01 22:21:21,817 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-01 22:21:28,950 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2133718
+2026-06-01 22:21:28,975 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-06-01 22:21:28,981 DEBUG: Saved HTML to apnews.html (2048796 bytes)
+2026-06-01 22:21:29,584 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
+2026-06-01 22:21:29,584 INFO: Total unique articles across all sections: 177
+2026-06-01 22:21:29,588 INFO: Loaded existing XML: pau.xml
+2026-06-01 22:21:29,588 INFO: Existing items in feed: 500
+2026-06-01 22:21:29,589 DEBUG: Added: [45ba2f91] https://apnews.com/article/trump-military-boat-strikes-cocaine-pacific-d1f80c8ed5a393461afe6c62eb1d1dfa
+2026-06-01 22:21:29,589 DEBUG: Added: [931cce3e] https://apnews.com/article/peru-election-shaman-keiko-fujimori-sanchez-583a607a8b1bbc46529152c5e6a9b882
+2026-06-01 22:21:29,589 DEBUG: Added: [56d5fc6b] https://apnews.com/article/congo-ebola-bunia-ituri-bundibugyo-2e3bd2b74ccce26dd82984f26dabc4c7
+2026-06-01 22:21:29,589 DEBUG: Added: [d0776b3f] https://apnews.com/article/deputy-killed-virginia-arrest-north-carolina-f642fe5dcb02c9251c7d954b8e88fefe
+2026-06-01 22:21:29,589 DEBUG: Added: [73f3872f] https://apnews.com/article/cbs-bari-weiss-scott-pelley-60-minutes-5e00e86fe47440d86c036ed6e801c837
+2026-06-01 22:21:29,589 DEBUG: Added: [6a7e8270] https://apnews.com/article/tibet-president-penpa-tsering-dalai-lama-india-154a4effaf8a1f9bea8d7974bcb7c850
+2026-06-01 22:21:29,589 DEBUG: Added: [ec9a5839] https://apnews.com/article/hantavirus-cruise-ship-americans-nebraska-quarantine-d3f5ec2c6196f025f96e9fc63e8d3c2e
+2026-06-01 22:21:29,589 DEBUG: Added: [052c5ccf] https://apnews.com/photo-gallery/lebanese-hospital-ruins-people-flee-beirut-suburb-after-israel-s-threat-photos-603d06d9d52847fdba6080db0fed09c7
+2026-06-01 22:21:29,589 DEBUG: Added: [5d15def2] https://apnews.com/article/stocks-markets-oil-iran-trump-hormuz-5045f5cc9eed81f1dec2006234e1337c
+2026-06-01 22:21:29,590 INFO: Added 9 new articles to feed
+2026-06-01 22:21:29,590 INFO: Trimmed feed to 500 items
+2026-06-01 22:21:29,598 INFO: Done! Feed saved to pau.xml
+2026-06-01 22:21:29,598 INFO: Debug log saved to debug.log
