@@ -1,0 +1,41 @@
+name: Reuters Direct RSS
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes
+  workflow_dispatch:           # allow manual trigger from Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run feed builder
+        run: python reuters_feed.py
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add feed/reuters_direct.xml state/seen_guids.json
+          if git diff --cached --quiet; then
+            echo "Nothing new 鈥� skipping commit"
+          else
+            git commit -m "chore: update Reuters feed [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git push
+          fi
