@@ -14,7 +14,7 @@ from pathlib import Path
 
 import feedparser
 import requests
-from googlenewsdecoder import gnewsdecoder
+from googlenewsdecoder import new_decoderv1 as gnewsdecoder
 
 # ── Config ────────────────────────────────────────────────────────────────────
 FEED_URL     = "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
