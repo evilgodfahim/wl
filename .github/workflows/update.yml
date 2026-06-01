@@ -34,7 +34,7 @@ jobs:
           pip install "scrapling[fetchers]"
 
       - name: Install Scrapling browser (Camoufox)
-        run: python -m camoufox fetch
+        run: scrapling install
 
       - name: Run scraper via Xvfb
         env:
