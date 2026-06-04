@@ -2,7 +2,7 @@ name: Update Reuters RSS
 
 on:
   schedule:
-    - crohgn: "*/30 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install system dependencies (for Camoufox)
+      - name: Install system dependencies (Xvfb)
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
@@ -31,10 +31,10 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install "scrapling[fetchers]"
+          pip install git+https://github.com/feder-cr/invisible_playwright.git beautifulsoup4 lxml requests
 
-      - name: Install Scrapling browser (Camoufox)
-        run: scrapling install
+      - name: Fetch Invisible Playwright browser binary
+        run: python -m invisible_playwright fetch
 
       - name: Run scraper via Xvfb
         env:
