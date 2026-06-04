@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#
-# Install: pip install "scrapling[fetchers]" && python -m camoufox fetch
-# Run: xvfb-run python reuters.py
 
 import os
 import re
@@ -12,8 +9,9 @@ import time
 import random
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from bs4 import BeautifulSoup
 
-from scrapling.fetchers import StealthyFetcher
+from invisible_playwright import InvisiblePlaywright
 
 # ------------------------------
 # CONFIGURATION
@@ -44,7 +42,6 @@ REUTERS_URLS = [
 REUTERS_XML_FILE = "reuters.xml"
 MAX_ITEMS = 500
 REUTERS_BASE = "https://www.reuters.com"
-TIMEOUT_MS = 60_000
 
 REUTERS_SKIP_PATHS = ("/newsletters/", "/graphics/", "/live-blog/", "/podcast/", "/video/")
 REUTERS_JUNK_TITLES = {"video", "live", "graphic", "graphics", "podcast"}
@@ -99,55 +96,70 @@ def load_or_create_xml(path: str, title: str, link: str, description: str):
     ET.SubElement(channel, "description").text = description
     return tree, root, channel
 
-def fetch_page(fetcher, url: str, retries: int = 3):
-    """Fetch URL via Camoufox. Retries on failures or DataDome blocks."""
+def fetch_page_html(browser, url: str, retries: int = 3):
+    """Fetch URL via Invisible Playwright. Retries on failures or DataDome blocks."""
     for attempt in range(1, retries + 1):
         log.info(f"Fetching {url} (Attempt {attempt}/{retries})")
+        page = None
         try:
-            # Jitter to avoid predictable request patterns
+            # Jitter to avoid ML timing heuristics
             time.sleep(random.uniform(2.0, 5.0))
-            page = fetcher.fetch(url, timeout=TIMEOUT_MS)
             
-            if not page or not hasattr(page, "html"):
-                continue
-
-            # Check for standard DataDome block markers
-            if "datadome" in page.html.lower() or "just a moment..." in page.html.lower():
+            page = browser.new_page()
+            page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            
+            # Brief pause to let frontend JS frameworks mount
+            page.wait_for_timeout(3000) 
+            
+            html = page.content()
+            
+            if "datadome" in html.lower() or "just a moment..." in html.lower():
                 log.warning(f"DataDome block detected on {url}. Backing off...")
+                page.close()
                 time.sleep(attempt * 10)
                 continue
                 
-            return page
+            page.close()
+            return html
+            
         except Exception as e:
             log.warning(f"Fetch error: {e}")
+            if page:
+                try:
+                    page.close()
+                except:
+                    pass
             time.sleep(attempt * 5)
-    return None
+    return ""
 
 # ------------------------------
 # MAIN
 # ------------------------------
 
 def main():
-    log.info("Starting up Camoufox (Scrapling) pipeline...")
-    fetcher = StealthyFetcher(headless=HEADLESS, network_idle=True)
+    log.info("Starting up Invisible Playwright pipeline...")
     all_articles = {}
 
-    # 1. Fetch URLs and Extract Links
-    for page_url in REUTERS_URLS:
-        page = fetch_page(fetcher, page_url)
-        if not page:
-            continue
+    # Initialize the C++ patched anti-detect browser
+    with InvisiblePlaywright(headless=HEADLESS) as browser:
+        
+        # 1. Fetch URLs and Extract Links
+        for page_url in REUTERS_URLS:
+            html = fetch_page_html(browser, page_url)
+            if not html:
+                continue
+                
+            # Parse the extracted DOM with BeautifulSoup
+            soup = BeautifulSoup(html, "lxml")
             
-        # Get all anchor tags on the page
-        for a_tag in page.css("a[href]"):
-            raw_href = (a_tag.attrib.get("href") or "").strip()
-            raw_title = (a_tag.get_all_text(strip=True) or "").strip()
-            full_url = build_full_url(raw_href)
+            for a_tag in soup.find_all("a", href=True):
+                raw_href = a_tag.get("href", "").strip()
+                raw_title = a_tag.get_text(strip=True)
+                full_url = build_full_url(raw_href)
 
-            if is_valid_article_url(full_url, raw_title) and full_url not in all_articles:
-                # Only save if we actually got a text title
-                if len(raw_title) > 5: 
-                    all_articles[full_url] = raw_title
+                if is_valid_article_url(full_url, raw_title) and full_url not in all_articles:
+                    if len(raw_title) > 5: 
+                        all_articles[full_url] = raw_title
 
     log.info(f"Total unique Reuters articles found: {len(all_articles)}")
 
@@ -155,7 +167,7 @@ def main():
     reuters_tree, _, reuters_channel = load_or_create_xml(
         REUTERS_XML_FILE,
         "Reuters Feed",
-        "https://evilgodfahim.github.io/reur/reuters",
+        "https://evilgodfahim.github.io/wl/reuters",
         "Scraped articles from Reuters",
     )
 
