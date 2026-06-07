@@ -1,22 +1,45 @@
-2026-06-07 00:08:02,615 INFO: Fetching section: https://apnews.com/world-news
-2026-06-07 00:08:02,615 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-07 00:08:02,616 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-07 00:08:28,067 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1454557
-2026-06-07 00:08:28,077 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-07 00:08:28,080 DEBUG: Saved HTML to apnews.html (1381626 bytes)
-2026-06-07 00:08:28,487 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-06-07 00:08:28,487 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-06-07 00:08:28,488 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-06-07 00:08:28,488 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-07 00:08:35,966 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2137868
-2026-06-07 00:08:35,980 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-07 00:08:35,982 DEBUG: Saved HTML to apnews.html (2053239 bytes)
-2026-06-07 00:08:36,447 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
-2026-06-07 00:08:36,447 INFO: Total unique articles across all sections: 179
-2026-06-07 00:08:36,451 INFO: Loaded existing XML: pau.xml
-2026-06-07 00:08:36,451 INFO: Existing items in feed: 500
-2026-06-07 00:08:36,451 DEBUG: Added: [f31a3349] https://apnews.com/article/toledo-ohio-shooting-4fbc465161cf1d4e29f0f1b22d3fb9d3
-2026-06-07 00:08:36,452 INFO: Added 1 new articles to feed
-2026-06-07 00:08:36,452 INFO: Trimmed feed to 500 items
-2026-06-07 00:08:36,459 INFO: Done! Feed saved to pau.xml
-2026-06-07 00:08:36,459 INFO: Debug log saved to debug.log
+2026-06-07 05:08:25,155 INFO: Fetching section: https://apnews.com/world-news
+2026-06-07 05:08:25,155 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-07 05:08:25,157 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-07 05:10:25,624 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-07 05:10:25,624 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780808905158, "endTimestamp": 1780809025622, "version": "3.5.0"}
+2026-06-07 05:10:25,624 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-06-07 05:10:27,625 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-07 05:10:27,626 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-07 05:12:27,724 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-07 05:12:27,724 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780809027627, "endTimestamp": 1780809147723, "version": "3.5.0"}
+2026-06-07 05:12:27,725 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-06-07 05:12:31,726 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-06-07 05:12:31,796 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
+2026-06-07 05:12:31,850 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-06-07 05:12:31,852 DEBUG: Saved HTML to apnews.html (1239808 bytes)
+2026-06-07 05:12:32,157 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
+2026-06-07 05:12:32,158 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-06-07 05:12:32,158 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-06-07 05:12:32,158 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-07 05:14:32,262 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-07 05:14:32,263 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780809152160, "endTimestamp": 1780809272262, "version": "3.5.0"}
+2026-06-07 05:14:32,263 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-06-07 05:14:34,263 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-06-07 05:14:34,264 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-07 05:16:34,343 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-07 05:16:34,344 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780809274266, "endTimestamp": 1780809394342, "version": "3.5.0"}
+2026-06-07 05:16:34,344 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/climate-and-environment
+2026-06-07 05:16:38,345 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-06-07 05:16:38,401 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 200 None
+2026-06-07 05:16:38,467 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-06-07 05:16:38,470 DEBUG: Saved HTML to apnews.html (1919040 bytes)
+2026-06-07 05:16:38,852 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
+2026-06-07 05:16:38,852 INFO: Total unique articles across all sections: 178
+2026-06-07 05:16:38,856 INFO: Loaded existing XML: pau.xml
+2026-06-07 05:16:38,857 INFO: Existing items in feed: 500
+2026-06-07 05:16:38,857 DEBUG: Added: [bd1a6402] https://apnews.com/article/mideast-wars-gaza-toilet-tent-khan-younis-3d40ef89f092351ee385365e6b0db1d8
+2026-06-07 05:16:38,857 DEBUG: Added: [8f4c8499] https://apnews.com/article/north-korea-china-kim-jong-un-xi-jinping-8ce14ec5cb46a3c805f182f8e7511b30
+2026-06-07 05:16:38,857 DEBUG: Added: [424b316f] https://apnews.com/article/north-korea-kim-sister-nuclear-us-china-69ec6a91d30e069eac41d60350507b74
+2026-06-07 05:16:38,857 DEBUG: Added: [ca2e8a6e] https://apnews.com/article/toledo-ohio-shooting-4fbc465161cf1d4e29f0f1b22d3fb9d3
+2026-06-07 05:16:38,857 DEBUG: Added: [7b6e4eed] https://apnews.com/article/rob-sand-iowa-governor-democrat-andy-beshear-1cff6f090f71f248e42a9463f69a4d24
+2026-06-07 05:16:38,857 DEBUG: Added: [3bc55927] https://apnews.com/photo-gallery/pope-leo-xiv-s-visit-mainland-spain-canary-islands-photos-2625a7639059485697c70e78c104e1a8
+2026-06-07 05:16:38,857 INFO: Added 6 new articles to feed
+2026-06-07 05:16:38,858 INFO: Trimmed feed to 500 items
+2026-06-07 05:16:38,865 INFO: Done! Feed saved to pau.xml
+2026-06-07 05:16:38,865 INFO: Debug log saved to debug.log
