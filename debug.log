@@ -1,28 +1,35 @@
-2026-06-07 16:53:05,370 INFO: Fetching section: https://apnews.com/world-news
-2026-06-07 16:53:05,370 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-07 16:53:05,371 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-07 16:55:05,809 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-06-07 16:55:05,809 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780851185373, "endTimestamp": 1780851305807, "version": "3.5.0"}
-2026-06-07 16:55:05,809 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-06-07 16:55:07,809 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-07 16:55:07,811 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-07 16:56:09,807 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1455160
-2026-06-07 16:56:09,817 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-06-07 16:56:09,820 DEBUG: Saved HTML to apnews.html (1381440 bytes)
-2026-06-07 16:56:10,158 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-06-07 16:56:10,158 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-06-07 16:56:10,158 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-06-07 16:56:10,159 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-07 16:56:17,189 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2147329
-2026-06-07 16:56:17,205 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-07 16:56:17,208 DEBUG: Saved HTML to apnews.html (2062180 bytes)
-2026-06-07 16:56:17,613 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
-2026-06-07 16:56:17,614 INFO: Total unique articles across all sections: 178
-2026-06-07 16:56:17,618 INFO: Loaded existing XML: pau.xml
-2026-06-07 16:56:17,618 INFO: Existing items in feed: 500
-2026-06-07 16:56:17,619 DEBUG: Added: [de318d27] https://apnews.com/article/spain-pope-mass-eaf544d7638034cc3afa2bad9ab443cc
-2026-06-07 16:56:17,619 DEBUG: Added: [ed0a0b62] https://apnews.com/article/toledo-ohio-shooting-6fdbf9e7033b3eab21052070c9598e27
-2026-06-07 16:56:17,619 INFO: Added 2 new articles to feed
-2026-06-07 16:56:17,619 INFO: Trimmed feed to 500 items
-2026-06-07 16:56:17,626 INFO: Done! Feed saved to pau.xml
-2026-06-07 16:56:17,626 INFO: Debug log saved to debug.log
+2026-06-07 18:07:08,938 INFO: Fetching section: https://apnews.com/world-news
+2026-06-07 18:07:08,938 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-07 18:07:08,940 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-07 18:09:09,383 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-07 18:09:09,383 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780855628941, "endTimestamp": 1780855749382, "version": "3.5.0"}
+2026-06-07 18:09:09,383 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-06-07 18:09:11,384 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-07 18:09:11,385 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-07 18:11:11,466 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-07 18:11:11,467 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1780855751386, "endTimestamp": 1780855871465, "version": "3.5.0"}
+2026-06-07 18:11:11,467 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-06-07 18:11:15,468 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-06-07 18:11:15,607 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 200 None
+2026-06-07 18:11:15,658 DEBUG: fetch_page: got HTML from simple_get (attempt 1)
+2026-06-07 18:11:15,661 DEBUG: Saved HTML to apnews.html (1238892 bytes)
+2026-06-07 18:11:15,989 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-06-07 18:11:15,990 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-06-07 18:11:15,990 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-06-07 18:11:15,990 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-07 18:12:20,110 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2140502
+2026-06-07 18:12:20,124 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-06-07 18:12:20,127 DEBUG: Saved HTML to apnews.html (2055507 bytes)
+2026-06-07 18:12:20,504 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
+2026-06-07 18:12:20,505 INFO: Total unique articles across all sections: 178
+2026-06-07 18:12:20,508 INFO: Loaded existing XML: pau.xml
+2026-06-07 18:12:20,509 INFO: Existing items in feed: 500
+2026-06-07 18:12:20,509 DEBUG: Added: [00993d10] https://apnews.com/article/spain-pope-mass-eaf544d7638034cc3afa2bad9ab443cc
+2026-06-07 18:12:20,509 DEBUG: Added: [d5e89e01] https://apnews.com/article/pakistan-kashmir-court-refugee-seats-upcoming-elections-9dafaae025057b018f3afe7b30bb96d6
+2026-06-07 18:12:20,509 DEBUG: Added: [ec9bb799] https://apnews.com/article/peru-presidential-election-fujimori-sanchez-crime-mining-2b38123d0da9c2718c2d654aed64ff03
+2026-06-07 18:12:20,509 DEBUG: Added: [39035641] https://apnews.com/article/bob-packwood-obituary-ab7feaea89a34f1188f325ab1684d1f7
+2026-06-07 18:12:20,509 DEBUG: Added: [49cad05e] https://apnews.com/article/scary-movie-box-office-e50df318b505136cd8996aa0e02b2303
+2026-06-07 18:12:20,509 INFO: Added 5 new articles to feed
+2026-06-07 18:12:20,509 INFO: Trimmed feed to 500 items
+2026-06-07 18:12:20,516 INFO: Done! Feed saved to pau.xml
+2026-06-07 18:12:20,516 INFO: Debug log saved to debug.log
