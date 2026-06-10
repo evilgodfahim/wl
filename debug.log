@@ -1,43 +1,49 @@
-2026-06-10 08:59:17,216 INFO: Fetching section: https://apnews.com/world-news
-2026-06-10 08:59:17,216 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-10 08:59:17,218 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-10 09:01:17,640 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-06-10 09:01:17,641 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1781081957219, "endTimestamp": 1781082077639, "version": "3.5.0"}
-2026-06-10 09:01:17,641 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-06-10 09:01:19,641 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-10 09:01:19,642 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-10 09:01:45,748 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1464067
-2026-06-10 09:01:45,760 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-06-10 09:01:45,762 DEBUG: Saved HTML to apnews.html (1390372 bytes)
-2026-06-10 09:01:46,192 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-06-10 09:01:46,192 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-06-10 09:01:46,192 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-06-10 09:01:46,193 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-10 09:01:51,859 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2118403
-2026-06-10 09:01:51,873 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-10 09:01:51,876 DEBUG: Saved HTML to apnews.html (2033740 bytes)
-2026-06-10 09:01:52,366 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
-2026-06-10 09:01:52,366 INFO: Total unique articles across all sections: 176
-2026-06-10 09:01:52,370 INFO: Loaded existing XML: pau.xml
-2026-06-10 09:01:52,370 INFO: Existing items in feed: 500
-2026-06-10 09:01:52,370 DEBUG: Added: [179dbfc9] https://apnews.com/article/world-cup-referee-somalia-fifa-trump-visa-a73dfeb3a960a3ffa858a419bdb8a8f1
-2026-06-10 09:01:52,370 DEBUG: Added: [9f775671] https://apnews.com/article/iran-us-ceasefire-hezbollah-israel-10-june-2026-b7ec462890f3c2afa12bd5c0672f2b6b
-2026-06-10 09:01:52,370 DEBUG: Added: [90d73b16] https://apnews.com/article/hezbollah-lebanon-israel-spying-alaydi-7e2bf9f137f994e742d49ec1621225e3
-2026-06-10 09:01:52,371 DEBUG: Added: [9dedbfbf] https://apnews.com/video/us-and-iran-launch-strikes-after-trump-blames-tehran-for-helicopter-crash-4d8746f9c62149d295d45caa49fc6bab
-2026-06-10 09:01:52,371 DEBUG: Added: [88bd6513] https://apnews.com/article/stocks-markets-ai-tech-iran-us-716c67bff3b68ff08503d7fc4adef0f9
-2026-06-10 09:01:52,371 DEBUG: Added: [2d2967fb] https://apnews.com/article/spain-pope-leo-sagrada-familia-barcelona-gaudi-a1b69601917ab4709959c4628a4995b6
-2026-06-10 09:01:52,371 DEBUG: Added: [d0b1b2eb] https://apnews.com/article/northern-ireland-belfast-stabbing-violence-1d8b2331cfa33a0b39492ca9098c206f
-2026-06-10 09:01:52,371 DEBUG: Added: [c2b9d701] https://apnews.com/article/hong-kong-fire-charges-manslaughter-da496d389c7a08a43fdadfef92e3715b
-2026-06-10 09:01:52,371 DEBUG: Added: [a1d7f108] https://apnews.com/article/philippines-earthquake-general-santos-aftershocks-ccd4d55b334ecb11f54f514f2d96fdc2
-2026-06-10 09:01:52,371 DEBUG: Added: [f3d0938c] https://apnews.com/article/indonesia-military-court-acid-attack-b46233574b55c8fbca539268fdb3a5fb
-2026-06-10 09:01:52,371 DEBUG: Added: [395e824a] https://apnews.com/article/china-autos-evs-exports-cars-53fab0e0f9f5f87a90b419727e1f294d
-2026-06-10 09:01:52,371 DEBUG: Added: [df8c6047] https://apnews.com/photo-gallery/see-world-vertical-top-photos-ap-photojournalists-004502c809934778942fa06cceb2bcfd
-2026-06-10 09:01:52,371 DEBUG: Added: [186cd082] https://apnews.com/article/orange-world-cup-netherlands-soccer-fans-c6831a64883337297e49be9c7964fe61
-2026-06-10 09:01:52,371 DEBUG: Added: [205153be] https://apnews.com/article/mexico-city-world-cup-fifa-tensions-06fd8a8c293de1b4fb1e420a9bee02b2
-2026-06-10 09:01:52,371 DEBUG: Added: [a8fce58b] https://apnews.com/article/south-africa-johannesburg-cleveland-shooting-6cbc065fdae3983d93f3fe2fe499b928
-2026-06-10 09:01:52,372 DEBUG: Added: [511d9f02] https://apnews.com/article/switzerland-referendum-population-10-million-759c3e38d33b2dfee9561375eae25d39
-2026-06-10 09:01:52,372 DEBUG: Added: [09c09567] https://apnews.com/article/eu-ocean-monitoring-322dd6b8994b93d0e893f9d5c1b7e958
-2026-06-10 09:01:52,372 INFO: Added 17 new articles to feed
-2026-06-10 09:01:52,372 INFO: Trimmed feed to 500 items
-2026-06-10 09:01:52,379 INFO: Done! Feed saved to pau.xml
-2026-06-10 09:01:52,379 INFO: Debug log saved to debug.log
+2026-06-10 12:33:37,975 INFO: Fetching section: https://apnews.com/world-news
+2026-06-10 12:33:37,975 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-10 12:33:37,977 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-10 12:33:56,562 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1485774
+2026-06-10 12:33:56,574 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-06-10 12:33:56,578 DEBUG: Saved HTML to apnews.html (1411848 bytes)
+2026-06-10 12:33:57,017 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-06-10 12:33:57,018 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-06-10 12:33:57,018 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-06-10 12:33:57,019 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-10 12:34:04,573 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2134588
+2026-06-10 12:34:04,587 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-06-10 12:34:04,589 DEBUG: Saved HTML to apnews.html (2049931 bytes)
+2026-06-10 12:34:05,076 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
+2026-06-10 12:34:05,077 INFO: Total unique articles across all sections: 175
+2026-06-10 12:34:05,083 INFO: Loaded existing XML: pau.xml
+2026-06-10 12:34:05,083 INFO: Existing items in feed: 500
+2026-06-10 12:34:05,083 DEBUG: Added: [7e5a6ac5] https://apnews.com/article/iran-us-ceasefire-hezbollah-israel-10-june-2026-b7ec462890f3c2afa12bd5c0672f2b6b
+2026-06-10 12:34:05,083 DEBUG: Added: [be313444] https://apnews.com/article/hezbollah-lebanon-israel-spying-alaydi-7e2bf9f137f994e742d49ec1621225e3
+2026-06-10 12:34:05,084 DEBUG: Added: [97f5d560] https://apnews.com/article/northern-ireland-belfast-stabbing-violence-1d8b2331cfa33a0b39492ca9098c206f
+2026-06-10 12:34:05,084 DEBUG: Added: [8ff8a6f8] https://apnews.com/article/lebanon-israel-hezbollah-tyre-christian-district-a1282418d807aca60f0893d1f1b39684
+2026-06-10 12:34:05,084 DEBUG: Added: [4d8ac529] https://apnews.com/article/russia-ukraine-war-military-strikes-4a158f6273807683d48692dedb4121b8
+2026-06-10 12:34:05,084 DEBUG: Added: [2cbbc959] https://apnews.com/article/consumer-prices-inflation-war-gas-878f6759c93fcb078aeefffe19d4dfa5
+2026-06-10 12:34:05,084 DEBUG: Added: [0f912035] https://apnews.com/article/spacex-ipo-investors-elon-musk-robinhood-schwab-9babfe04305bd9cb45b3f7e89f162189
+2026-06-10 12:34:05,084 DEBUG: Added: [74553eef] https://apnews.com/article/ipo-prospectus-roadshow-lockup-price-discovery-spacex-0172c65d0dbc7021ca4e9e7c677786cf
+2026-06-10 12:34:05,084 DEBUG: Added: [1b4057e4] https://apnews.com/article/spain-pope-leo-sagrada-familia-barcelona-gaudi-a1b69601917ab4709959c4628a4995b6
+2026-06-10 12:34:05,084 DEBUG: Added: [268b8892] https://apnews.com/article/pakistan-military-helicopter-crash-kashmir-technical-fault-ead694987cabae2f7f4be9cdd5fabaec
+2026-06-10 12:34:05,084 DEBUG: Added: [c70dfe02] https://apnews.com/article/hong-kong-fire-charges-manslaughter-da496d389c7a08a43fdadfef92e3715b
+2026-06-10 12:34:05,084 DEBUG: Added: [1048fbba] https://apnews.com/article/latter-day-saint-mormon-church-military-christian-6bb5dd044603e656ba9befd33aa73ce4
+2026-06-10 12:34:05,084 DEBUG: Added: [8970c64e] https://apnews.com/article/trump-collins-maine-senate-republicans-reelection-5333d177cb972102d1d87c0124ef76d5
+2026-06-10 12:34:05,084 DEBUG: Added: [a176a1b1] https://apnews.com/article/test-scores-middle-school-reading-math-78dd0dadbebccc7ba35ed04bf4be66c4
+2026-06-10 12:34:05,084 DEBUG: Added: [4065b7e7] https://apnews.com/article/cross-burning-chicago-fire-department-e61c932c3633516f55e32da3fd294dec
+2026-06-10 12:34:05,084 DEBUG: Added: [97c74746] https://apnews.com/article/china-xinjiang-conference-development-prisons-uyghurs-bb917c05fc90a28e643ba42aaa203022
+2026-06-10 12:34:05,085 DEBUG: Added: [a8297a7a] https://apnews.com/article/taiwan-china-himars-artillery-rocket-defense-d2ec564c95466dd0332d0df32dbc1933
+2026-06-10 12:34:05,085 DEBUG: Added: [2460a7be] https://apnews.com/photo-gallery/top-photos-day-ap-photojournalists-77ee52e7376643f1897bc830ad1154b5
+2026-06-10 12:34:05,085 DEBUG: Added: [340cedcc] https://apnews.com/article/mali-junta-arrest-journalist-press-takiou-c331e7000ae40647cfd82e615bc1b9f3
+2026-06-10 12:34:05,085 DEBUG: Added: [827e474d] https://apnews.com/article/american-diplomat-death-myanmar-351aaa06a18570e93550300145d8d7a2
+2026-06-10 12:34:05,085 DEBUG: Added: [d1dd0f42] https://apnews.com/photo-gallery/photos-show-aftermath-anti-immigration-protests-northern-ireland-8f84fb94cc714e14a1cd7d566b45353d
+2026-06-10 12:34:05,085 DEBUG: Added: [655db22f] https://apnews.com/article/paraguay-world-cup-fans-c65d57ecec765aa89c185ab10777fe55
+2026-06-10 12:34:05,085 DEBUG: Added: [1d8939eb] https://apnews.com/article/south-africa-johannesburg-cleveland-shooting-6cbc065fdae3983d93f3fe2fe499b928
+2026-06-10 12:34:05,085 DEBUG: Added: [d6ba1d0a] https://apnews.com/article/stocks-markets-ai-tech-iran-us-716c67bff3b68ff08503d7fc4adef0f9
+2026-06-10 12:34:05,085 DEBUG: Added: [ae1a46d0] https://apnews.com/article/sustainable-fast-furniture-buy-nothing-558707fa46c4e0fce8cd12d084c3ff2b
+2026-06-10 12:34:05,085 DEBUG: Added: [9abb5139] https://apnews.com/article/wisconsin-pfas-lawsuit-chemical-marinette-c1114ef1878806cf8c40a5c659f6a562
+2026-06-10 12:34:05,086 DEBUG: Added: [8d606f4a] https://apnews.com/article/smog-wildfires-climate-change-ozone-artificial-intelligence-bc9cde6da8ae4019cc07b800c70106ad
+2026-06-10 12:34:05,086 DEBUG: Added: [14cca644] https://apnews.com/article/trump-coal-mining-power-plant-climate-electricity-0a7126d66de97b10f32eaa39b1af669f
+2026-06-10 12:34:05,086 INFO: Added 28 new articles to feed
+2026-06-10 12:34:05,086 INFO: Trimmed feed to 500 items
+2026-06-10 12:34:05,093 INFO: Done! Feed saved to pau.xml
+2026-06-10 12:34:05,093 INFO: Debug log saved to debug.log
