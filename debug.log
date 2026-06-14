@@ -1,23 +1,31 @@
-2026-06-14 01:55:41,078 INFO: Fetching section: https://apnews.com/world-news
-2026-06-14 01:55:41,078 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-14 01:55:41,080 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-14 01:55:52,492 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1454097
-2026-06-14 01:55:52,503 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-14 01:55:52,505 DEBUG: Saved HTML to apnews.html (1380778 bytes)
-2026-06-14 01:55:52,903 INFO: Section https://apnews.com/world-news — card selector matched 86 articles
-2026-06-14 01:55:52,903 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-06-14 01:55:52,904 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-06-14 01:55:52,905 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-14 01:55:59,435 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2100087
-2026-06-14 01:55:59,447 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-14 01:55:59,450 DEBUG: Saved HTML to apnews.html (2015793 bytes)
-2026-06-14 01:55:59,888 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
-2026-06-14 01:55:59,890 INFO: Total unique articles across all sections: 174
-2026-06-14 01:55:59,894 INFO: Loaded existing XML: pau.xml
-2026-06-14 01:55:59,895 INFO: Existing items in feed: 500
-2026-06-14 01:55:59,895 DEBUG: Added: [7e6a2c55] https://apnews.com/article/china-trump-g7-evian-trade-b17859e2c226e195e6a7f89e413d7432
-2026-06-14 01:55:59,895 DEBUG: Added: [0461c1a1] https://apnews.com/article/mexico-mayor-killed-oaxaca-joel-bravo-san-miguel-amatitlan-54739d9cc7b8913f246b2f76d0e5d886
-2026-06-14 01:55:59,895 INFO: Added 2 new articles to feed
-2026-06-14 01:55:59,895 INFO: Trimmed feed to 500 items
-2026-06-14 01:55:59,902 INFO: Done! Feed saved to pau.xml
-2026-06-14 01:55:59,903 INFO: Debug log saved to debug.log
+2026-06-14 06:45:17,758 INFO: Fetching section: https://apnews.com/world-news
+2026-06-14 06:45:17,758 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-14 06:45:17,760 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-14 06:47:18,201 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-14 06:47:18,201 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1781419517761, "endTimestamp": 1781419638199, "version": "3.5.0"}
+2026-06-14 06:47:18,201 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-06-14 06:47:20,202 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-14 06:47:20,203 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-14 06:47:52,693 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1457934
+2026-06-14 06:47:52,702 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-06-14 06:47:52,705 DEBUG: Saved HTML to apnews.html (1384258 bytes)
+2026-06-14 06:47:53,031 INFO: Section https://apnews.com/world-news — card selector matched 86 articles
+2026-06-14 06:47:53,031 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-06-14 06:47:53,031 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-06-14 06:47:53,032 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-14 06:47:59,144 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2105781
+2026-06-14 06:47:59,158 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-06-14 06:47:59,160 DEBUG: Saved HTML to apnews.html (2021320 bytes)
+2026-06-14 06:47:59,684 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
+2026-06-14 06:47:59,685 INFO: Total unique articles across all sections: 174
+2026-06-14 06:47:59,691 INFO: Loaded existing XML: pau.xml
+2026-06-14 06:47:59,692 INFO: Existing items in feed: 500
+2026-06-14 06:47:59,692 DEBUG: Added: [15eed92e] https://apnews.com/article/switzerland-france-g7-protests-trump-17a5c9c179914e58acecfdb791b824c4
+2026-06-14 06:47:59,692 DEBUG: Added: [1c59d314] https://apnews.com/article/china-trump-g7-evian-trade-b17859e2c226e195e6a7f89e413d7432
+2026-06-14 06:47:59,692 DEBUG: Added: [711d8a02] https://apnews.com/article/infant-botulism-byheart-formula-outbreak-90a0a08910d1162d77b9eb65d63ed667
+2026-06-14 06:47:59,692 DEBUG: Added: [e11ff330] https://apnews.com/article/switzerland-referendum-population-10-million-03b42363567cfa9ff29c0995bb4ff711
+2026-06-14 06:47:59,693 DEBUG: Added: [567c7cb3] https://apnews.com/article/protein-powder-shortage-prices-whey-concentrate-c5638b9d65b0fa5967488852993d76db
+2026-06-14 06:47:59,693 INFO: Added 5 new articles to feed
+2026-06-14 06:47:59,693 INFO: Trimmed feed to 500 items
+2026-06-14 06:47:59,704 INFO: Done! Feed saved to pau.xml
+2026-06-14 06:47:59,704 INFO: Debug log saved to debug.log
