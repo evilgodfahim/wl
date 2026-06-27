@@ -1,24 +1,30 @@
-2026-06-26 22:46:42,301 INFO: Fetching section: https://apnews.com/world-news
-2026-06-26 22:46:42,301 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-06-26 22:46:42,303 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-26 22:46:53,490 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1493851
-2026-06-26 22:46:53,505 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-26 22:46:53,508 DEBUG: Saved HTML to apnews.html (1418903 bytes)
-2026-06-26 22:46:54,031 INFO: Section https://apnews.com/world-news — card selector matched 91 articles
-2026-06-26 22:46:54,031 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-06-26 22:46:54,031 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-06-26 22:46:54,032 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-06-26 22:47:01,090 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2105371
-2026-06-26 22:47:01,104 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-06-26 22:47:01,107 DEBUG: Saved HTML to apnews.html (2020696 bytes)
-2026-06-26 22:47:01,539 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
-2026-06-26 22:47:01,540 INFO: Total unique articles across all sections: 175
-2026-06-26 22:47:01,544 INFO: Loaded existing XML: pau.xml
-2026-06-26 22:47:01,545 INFO: Existing items in feed: 500
-2026-06-26 22:47:01,545 DEBUG: Added: [eaa02ecc] https://apnews.com/article/iran-us-israel-war-hormuz-strait-june-26-2026-8c1a77eb82d25f00de814958114c7296
-2026-06-26 22:47:01,545 DEBUG: Added: [cc12683b] https://apnews.com/photo-gallery/photos-ashoura-bdddad83732cf87d0b517160ce237cc7
-2026-06-26 22:47:01,545 DEBUG: Added: [1b5686d2] https://apnews.com/article/climate-flooding-fema-insurance-dams-28d4e58f0987dcde946c71a88e6d6e21
-2026-06-26 22:47:01,546 INFO: Added 3 new articles to feed
-2026-06-26 22:47:01,546 INFO: Trimmed feed to 500 items
-2026-06-26 22:47:01,554 INFO: Done! Feed saved to pau.xml
-2026-06-26 22:47:01,554 INFO: Debug log saved to debug.log
+2026-06-27 00:12:16,207 INFO: Fetching section: https://apnews.com/world-news
+2026-06-27 00:12:16,207 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-27 00:12:16,208 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-27 00:14:16,657 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-06-27 00:14:16,657 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1782519136210, "endTimestamp": 1782519256655, "version": "3.5.0"}
+2026-06-27 00:14:16,657 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-06-27 00:14:18,657 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-06-27 00:14:18,658 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-27 00:14:47,410 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1486024
+2026-06-27 00:14:47,423 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-06-27 00:14:47,425 DEBUG: Saved HTML to apnews.html (1411082 bytes)
+2026-06-27 00:14:47,789 INFO: Section https://apnews.com/world-news — card selector matched 91 articles
+2026-06-27 00:14:47,789 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-06-27 00:14:47,789 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-06-27 00:14:47,790 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-06-27 00:14:54,169 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2099577
+2026-06-27 00:14:54,181 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-06-27 00:14:54,184 DEBUG: Saved HTML to apnews.html (2015123 bytes)
+2026-06-27 00:14:54,570 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
+2026-06-27 00:14:54,571 INFO: Total unique articles across all sections: 176
+2026-06-27 00:14:54,574 INFO: Loaded existing XML: pau.xml
+2026-06-27 00:14:54,575 INFO: Existing items in feed: 500
+2026-06-27 00:14:54,575 DEBUG: Added: [74dd75c9] https://apnews.com/video/drone-video-shows-search-through-rubble-of-collapsed-buildings-in-la-guaira-after-venezuela-quakes-aa65e61fb6aa4ff48fd0c263e02b333a
+2026-06-27 00:14:54,575 DEBUG: Added: [da350f63] https://apnews.com/article/saks-neiman-marcus-bergdorf-goodman-bankruptcy-67ba3bf1caa3c2c5a3bf8f16e61c43c7
+2026-06-27 00:14:54,575 DEBUG: Added: [9f136780] https://apnews.com/article/texas-education-board-reading-list-bible-vote-eb6ea9e23e303da0ca2da6132889e020
+2026-06-27 00:14:54,575 DEBUG: Added: [0135c2d9] https://apnews.com/article/wildfires-utah-red-flag-fireworks-9604ee19a108b0a54051b04902f6b0a6
+2026-06-27 00:14:54,575 INFO: Added 4 new articles to feed
+2026-06-27 00:14:54,575 INFO: Trimmed feed to 500 items
+2026-06-27 00:14:54,582 INFO: Done! Feed saved to pau.xml
+2026-06-27 00:14:54,582 INFO: Debug log saved to debug.log
