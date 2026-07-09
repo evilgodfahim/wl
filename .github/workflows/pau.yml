@@ -28,32 +28,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Start Redis
-        run: |
-          docker network create trawl-net
-          docker run -d \
-            --name redis \
-            --network trawl-net \
-            redis:alpine
-
-      - name: Start Trawl
+      - name: Start FlareSolverr
         run: |
           docker run -d \
-            --name trawl \
-            --network trawl-net \
+            --name flaresolverr \
             -p 8191:8191 \
-            -e REDIS_URL=redis://redis:6379 \
-            -e BROWSER_POOL_SIZE=2 \
-            -e RESIDENTIAL_PROXY_URL=${{ secrets.WEBSHARE_PROXY_URL }} \
-            ghcr.io/germondai/trawl:latest
+            ghcr.io/flaresolverr/flaresolverr:latest
 
-      - name: Wait for Trawl
+      - name: Wait for FlareSolverr
         run: |
-          for i in $(seq 1 40); do
-            curl -sf http://localhost:8191/health && echo 'Trawl ready' && exit 0
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8191/health && echo 'Ready' && exit 0
             sleep 2
           done
-          docker logs trawl && exit 1
+          docker logs flaresolverr && exit 1
       - name: Wait for FlareSolverr
         run: |
           for i in {1..30}; do
