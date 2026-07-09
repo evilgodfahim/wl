@@ -23,7 +23,7 @@ jobs:
 
       - name: Run FlareSolverr container
         run: |
-          docker run -d --name byparr -p 8191:8191 ghcr.io/thephaseless/byparr:latest
+          docker run -d --name trawl -p 8191:8191 ghcr.io/germondai/trawl:latest
           sleep 10
 
       - name: Run fetch script
