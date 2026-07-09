@@ -23,7 +23,7 @@ jobs:
 
       - name: Run FlareSolverr container
         run: |
-          docker run -d --name trawl -p 8191:8191 ghcr.io/germondai/trawl:latest
+          docker run -d --name trawl -p 8191:8191 ghcr.io/flaresolverr/flaresolverr:latest
           sleep 10
 
       - name: Run fetch script
