@@ -1,33 +1,34 @@
-2026-07-30 11:10:35,261 INFO: Fetching section: https://apnews.com/world-news
-2026-07-30 11:10:35,261 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-07-30 11:10:35,262 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-07-30 11:10:54,318 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1442427
-2026-07-30 11:10:54,328 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-07-30 11:10:54,331 DEBUG: Saved HTML to apnews.html (1369700 bytes)
-2026-07-30 11:10:54,784 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-07-30 11:10:54,784 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-07-30 11:10:54,784 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-07-30 11:10:54,785 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-07-30 11:11:15,278 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2089265
-2026-07-30 11:11:15,291 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-07-30 11:11:15,295 DEBUG: Saved HTML to apnews.html (2006118 bytes)
-2026-07-30 11:11:15,745 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
-2026-07-30 11:11:15,746 INFO: Total unique articles across all sections: 170
-2026-07-30 11:11:15,749 INFO: Loaded existing XML: pau.xml
-2026-07-30 11:11:15,750 INFO: Existing items in feed: 500
-2026-07-30 11:11:15,750 DEBUG: Added: [b9802129] https://apnews.com/photo-essay/palestinians-west-bank-settlers-photo-essay-fd3c6286e6bd196a50e5dfd0535ceb3d
-2026-07-30 11:11:15,750 DEBUG: Added: [54f053eb] https://apnews.com/article/iran-war-us-hormuz-strait-july-30-2026-8dc77ed6a65f389ea4af84635d2473bd
-2026-07-30 11:11:15,750 DEBUG: Added: [4d3831ec] https://apnews.com/article/russia-ukraine-war-zelenskyy-missile-attack-63ab11e0ebe6a9aefdb547fe442bef3f
-2026-07-30 11:11:15,750 DEBUG: Added: [a146ed83] https://apnews.com/article/trump-approval-iran-war-poll-republicans-election-55e9c80afec521d87f131393a59674c0
-2026-07-30 11:11:15,750 DEBUG: Added: [d4df52d8] https://apnews.com/article/cyclospora-lettuce-taco-bell-restaurants-customers-39083c579b4ba7d3d5d8a23ea3fd5b00
-2026-07-30 11:11:15,750 DEBUG: Added: [e922c601] https://apnews.com/article/eu-ai-gigafactories-china-us-data-center-88b83cd517a4d47c115605e636d0b3e4
-2026-07-30 11:11:15,750 DEBUG: Added: [c7fa32b9] https://apnews.com/article/stock-markets-rates-korea-ai-oil-99b5702d93a2b5c6e513fb952ccdcc92
-2026-07-30 11:11:15,750 DEBUG: Added: [2232b7cf] https://apnews.com/article/congo-ebola-death-toll-bundibugyo-virus-response-treatment-269eac4d8a93be912459486428ef2f94
-2026-07-30 11:11:15,751 DEBUG: Added: [477ddfd1] https://apnews.com/article/britain-economy-interest-rates-4c1858032eb701ae776d286db674d994
-2026-07-30 11:11:15,751 DEBUG: Added: [071390db] https://apnews.com/article/france-britain-channel-migrants-deaths-5a985aee8397fdbfd5434dbb4f576ed2
-2026-07-30 11:11:15,751 DEBUG: Added: [6b34389e] https://apnews.com/article/pakistan-monsoon-rains-roof-collapsed-lahore-fc2c8030cdb1467b3963e7bf0c2eb41e
-2026-07-30 11:11:15,751 DEBUG: Added: [37c1b1e5] https://apnews.com/article/australia-library-book-overdue-kiama-f4dc126f4eecd345f27f24fdb2742800
-2026-07-30 11:11:15,751 INFO: Added 12 new articles to feed
-2026-07-30 11:11:15,751 INFO: Trimmed feed to 500 items
-2026-07-30 11:11:15,758 INFO: Done! Feed saved to pau.xml
-2026-07-30 11:11:15,758 INFO: Debug log saved to debug.log
+2026-07-30 13:07:17,496 INFO: Fetching section: https://apnews.com/world-news
+2026-07-30 13:07:17,496 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-07-30 13:07:17,497 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-07-30 13:08:17,623 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 1060
+2026-07-30 13:08:17,624 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Message: session not created: cannot connect to chrome at 127.0.0.1:58843\\nfrom chrome not reachable; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception\\nStacktrace:\\n#0 0x556d9a65acfe <unknown>\\n#1 0x556d99fead51 <unknown>\\n#2 0x556d99fd6d6c <unknown>\\n#3 0x556d9a029ea3 <unknown>\\n#4 0x556d9a020808 <unknown>\\n#5 0x556d9a07075c <unknown>\\n#6 0x556d9a06ffa9 <unknown>\\n#7 0x556d9a060cd3 <unknown>\\n#8 0x556d9a02db8e <unknown>\\n#9 0x556d9a02e7b1 <unknown>\\n#10 0x556d9a61d4e0 <unknown>\\n#11 0x556d9a6207a5 <unknown>\\n#12 0x556d9a6201da <unknown>\\n#13 0x556d9a620c05 <unknown>\\n#14 0x556d9a60cf29 <unknown>\\n#15 0x556d9a620f67 <unknown>\\n#16 0x556d9a5f5426 <unknown>\\n#17 0x556d9a6475f5 <unknown>\\n#18 0x556d9a6477d3 <unknown>\\n#19 0x556d9a65986a <unknown>\\n#20 0x7fecc48481f5 <unknown>\\n", "startTimestamp": 1785416837499, "endTimestamp": 1785416897621, "version": "3.5.0"}
+2026-07-30 13:08:17,624 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-07-30 13:08:19,625 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-07-30 13:08:19,626 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-07-30 13:08:56,855 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1443751
+2026-07-30 13:08:56,867 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-07-30 13:08:56,871 DEBUG: Saved HTML to apnews.html (1371079 bytes)
+2026-07-30 13:08:57,243 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-07-30 13:08:57,244 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-07-30 13:08:57,244 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-07-30 13:08:57,245 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-07-30 13:09:08,139 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2087572
+2026-07-30 13:09:08,152 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-07-30 13:09:08,155 DEBUG: Saved HTML to apnews.html (2004517 bytes)
+2026-07-30 13:09:08,512 INFO: Section https://apnews.com/climate-and-environment — card selector matched 94 articles
+2026-07-30 13:09:08,513 INFO: Total unique articles across all sections: 168
+2026-07-30 13:09:08,517 INFO: Loaded existing XML: pau.xml
+2026-07-30 13:09:08,517 INFO: Existing items in feed: 500
+2026-07-30 13:09:08,517 DEBUG: Added: [578e5fab] https://apnews.com/article/russia-ukraine-war-zelenskyy-missile-attack-63ab11e0ebe6a9aefdb547fe442bef3f
+2026-07-30 13:09:08,517 DEBUG: Added: [21704082] https://apnews.com/article/france-spain-greece-wildfires-heat-climate-change-de0bfabe2249153afc0e16da2f7e02f3
+2026-07-30 13:09:08,517 DEBUG: Added: [dfc9a114] https://apnews.com/article/economy-inflation-spending-growth-consumers-growth-jobs-caf3b24d92688568f9c4f95725c87e55
+2026-07-30 13:09:08,517 DEBUG: Added: [80f2db25] https://apnews.com/article/france-wildfires-clooney-family-evacuate-f64ee9444fc86248698744f186e33071
+2026-07-30 13:09:08,518 DEBUG: Added: [e48a1bad] https://apnews.com/article/malaysia-myanmar-repatriation-rohingya-c6a16250857248f31eb46dca5cc09d2b
+2026-07-30 13:09:08,518 DEBUG: Added: [0c947c71] https://apnews.com/article/spain-ceuta-tarajal-morocco-migrants-5c864e5f951e2a7cf7a3eac417668e97
+2026-07-30 13:09:08,518 DEBUG: Added: [64428357] https://apnews.com/article/prague-zoo-polar-bears-ice-heat-0f732f163c052118b92d0efb91eeee94
+2026-07-30 13:09:08,518 DEBUG: Added: [3bbb0016] https://apnews.com/article/stock-markets-rates-korea-ai-oil-99b5702d93a2b5c6e513fb952ccdcc92
+2026-07-30 13:09:08,518 INFO: Added 8 new articles to feed
+2026-07-30 13:09:08,518 INFO: Trimmed feed to 500 items
+2026-07-30 13:09:08,525 INFO: Done! Feed saved to pau.xml
+2026-07-30 13:09:08,525 INFO: Debug log saved to debug.log
