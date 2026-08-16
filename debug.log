@@ -1,22 +1,28 @@
-2026-08-16 17:47:11,434 INFO: Fetching section: https://apnews.com/world-news
-2026-08-16 17:47:11,434 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-08-16 17:47:11,435 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-08-16 17:47:30,151 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1458756
-2026-08-16 17:47:30,165 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-08-16 17:47:30,169 DEBUG: Saved HTML to apnews.html (1385728 bytes)
-2026-08-16 17:47:30,663 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
-2026-08-16 17:47:30,663 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-08-16 17:47:30,663 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-08-16 17:47:30,664 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-08-16 17:47:41,674 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2128371
-2026-08-16 17:47:41,687 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-08-16 17:47:41,689 DEBUG: Saved HTML to apnews.html (2044023 bytes)
-2026-08-16 17:47:42,154 INFO: Section https://apnews.com/climate-and-environment — card selector matched 98 articles
-2026-08-16 17:47:42,154 INFO: Total unique articles across all sections: 178
-2026-08-16 17:47:42,195 INFO: Loaded existing XML: pau.xml
-2026-08-16 17:47:42,195 INFO: Existing items in feed: 500
-2026-08-16 17:47:42,195 DEBUG: Added: [04d04e98] https://apnews.com/article/gaza-ceasefire-kushner-netanyahu-hamas-palestinians-israel-321e254af26a0fff1b3ec2b8c00412a2
-2026-08-16 17:47:42,196 INFO: Added 1 new articles to feed
-2026-08-16 17:47:42,196 INFO: Trimmed feed to 500 items
-2026-08-16 17:47:42,203 INFO: Done! Feed saved to pau.xml
-2026-08-16 17:47:42,203 INFO: Debug log saved to debug.log
+2026-08-16 18:33:32,596 INFO: Fetching section: https://apnews.com/world-news
+2026-08-16 18:33:32,596 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-08-16 18:33:32,598 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-08-16 18:34:32,645 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 1060
+2026-08-16 18:34:32,645 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Message: session not created: cannot connect to chrome at 127.0.0.1:50993\\nfrom chrome not reachable; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception\\nStacktrace:\\n#0 0x55f29dfb3cfe <unknown>\\n#1 0x55f29d943d51 <unknown>\\n#2 0x55f29d92fd6c <unknown>\\n#3 0x55f29d982ea3 <unknown>\\n#4 0x55f29d979808 <unknown>\\n#5 0x55f29d9c975c <unknown>\\n#6 0x55f29d9c8fa9 <unknown>\\n#7 0x55f29d9b9cd3 <unknown>\\n#8 0x55f29d986b8e <unknown>\\n#9 0x55f29d9877b1 <unknown>\\n#10 0x55f29df764e0 <unknown>\\n#11 0x55f29df797a5 <unknown>\\n#12 0x55f29df791da <unknown>\\n#13 0x55f29df79c05 <unknown>\\n#14 0x55f29df65f29 <unknown>\\n#15 0x55f29df79f67 <unknown>\\n#16 0x55f29df4e426 <unknown>\\n#17 0x55f29dfa05f5 <unknown>\\n#18 0x55f29dfa07d3 <unknown>\\n#19 0x55f29dfb286a <unknown>\\n#20 0x7f722cc7b1f5 <unknown>\\n", "startTimestamp": 1786905212599, "endTimestamp": 1786905272644, "version": "3.5.0"}
+2026-08-16 18:34:32,645 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-08-16 18:34:34,646 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-08-16 18:34:34,647 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-08-16 18:34:50,247 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1458834
+2026-08-16 18:34:50,266 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-08-16 18:34:50,270 DEBUG: Saved HTML to apnews.html (1386107 bytes)
+2026-08-16 18:34:50,677 INFO: Section https://apnews.com/world-news — card selector matched 87 articles
+2026-08-16 18:34:50,678 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-08-16 18:34:50,678 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-08-16 18:34:50,678 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-08-16 18:35:01,178 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2129959
+2026-08-16 18:35:01,193 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-08-16 18:35:01,197 DEBUG: Saved HTML to apnews.html (2045902 bytes)
+2026-08-16 18:35:01,591 INFO: Section https://apnews.com/climate-and-environment — card selector matched 98 articles
+2026-08-16 18:35:01,592 INFO: Total unique articles across all sections: 178
+2026-08-16 18:35:01,627 INFO: Loaded existing XML: pau.xml
+2026-08-16 18:35:01,627 INFO: Existing items in feed: 500
+2026-08-16 18:35:01,627 DEBUG: Added: [40e36889] https://apnews.com/article/gaza-ceasefire-kushner-netanyahu-hamas-palestinians-israel-321e254af26a0fff1b3ec2b8c00412a2
+2026-08-16 18:35:01,627 DEBUG: Added: [4000d30d] https://apnews.com/article/brazil-lula-flavio-bolsonaro-campaign-opens-8f4ad67b107cb05736f450f67198b190
+2026-08-16 18:35:01,628 INFO: Added 2 new articles to feed
+2026-08-16 18:35:01,628 INFO: Trimmed feed to 500 items
+2026-08-16 18:35:01,634 INFO: Done! Feed saved to pau.xml
+2026-08-16 18:35:01,634 INFO: Debug log saved to debug.log
