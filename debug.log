@@ -1,44 +1,28 @@
-2026-09-12 22:01:42,412 INFO: Fetching section: https://apnews.com/world-news
-2026-09-12 22:01:42,412 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-09-12 22:01:42,413 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-09-12 22:02:33,477 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1510612
-2026-09-12 22:02:33,486 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-09-12 22:02:33,488 DEBUG: Saved HTML to apnews.html (1435747 bytes)
-2026-09-12 22:02:33,736 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
-2026-09-12 22:02:33,736 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-09-12 22:02:33,736 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-09-12 22:02:33,737 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-09-12 22:04:33,820 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-09-12 22:04:33,821 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1789250553738, "endTimestamp": 1789250673819, "version": "3.5.2"}
-2026-09-12 22:04:33,821 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
-2026-09-12 22:04:35,821 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-09-12 22:04:35,822 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-09-12 22:06:35,922 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-09-12 22:06:35,922 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1789250675823, "endTimestamp": 1789250795921, "version": "3.5.2"}
-2026-09-12 22:06:35,922 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/climate-and-environment
-2026-09-12 22:06:39,923 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-09-12 22:06:39,989 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 403 None
-2026-09-12 22:06:39,990 DEBUG: simple_get: HTTP 403 for https://apnews.com/climate-and-environment
-2026-09-12 22:06:39,990 DEBUG: fetch_page: simple_get attempt 1 failed for https://apnews.com/climate-and-environment
-2026-09-12 22:06:41,491 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-09-12 22:06:41,554 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 403 None
-2026-09-12 22:06:41,555 DEBUG: simple_get: HTTP 403 for https://apnews.com/climate-and-environment
-2026-09-12 22:06:41,555 DEBUG: fetch_page: simple_get attempt 2 failed for https://apnews.com/climate-and-environment
-2026-09-12 22:06:44,556 DEBUG: Starting new HTTPS connection (1): apnews.com:443
-2026-09-12 22:06:44,609 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 403 None
-2026-09-12 22:06:44,610 DEBUG: simple_get: HTTP 403 for https://apnews.com/climate-and-environment
-2026-09-12 22:06:44,610 DEBUG: fetch_page: simple_get attempt 3 failed for https://apnews.com/climate-and-environment
-2026-09-12 22:06:49,110 WARNING: fetch_page: all attempts failed for https://apnews.com/climate-and-environment
-2026-09-12 22:06:49,111 WARNING: scrape_section: failed to fetch https://apnews.com/climate-and-environment
-2026-09-12 22:06:49,111 INFO: Total unique articles across all sections: 85
-2026-09-12 22:06:49,113 INFO: Loaded existing XML: pau.xml
-2026-09-12 22:06:49,113 INFO: Existing items in feed: 500
-2026-09-12 22:06:49,113 DEBUG: Added: [b55b8f24] https://apnews.com/article/iraq-iran-yemen-saudi-arabia-c1359273dd970b969e823356e5ead377
-2026-09-12 22:06:49,113 DEBUG: Added: [f87b9cd3] https://apnews.com/article/senegal-olympic-flame-youth-games-5a6f4d02447ea59effe1a6a12049ca98
-2026-09-12 22:06:49,113 DEBUG: Added: [573f2089] https://apnews.com/article/gold-bars-cia-official-virginia-7be1def515c9aa99326eab39cd8ff589
-2026-09-12 22:06:49,113 DEBUG: Added: [5c3fbf11] https://apnews.com/article/alaska-american-samoa-voter-fraud-citizenship-8c93f189cab05cb6f751be53cbf62c7a
-2026-09-12 22:06:49,114 DEBUG: Added: [ca1ab704] https://apnews.com/photo-gallery/daily-life-around-world-photos-1f0864ff0fcd4a568bf80ac912928907
-2026-09-12 22:06:49,114 INFO: Added 5 new articles to feed
-2026-09-12 22:06:49,114 INFO: Trimmed feed to 500 items
-2026-09-12 22:06:49,118 INFO: Done! Feed saved to pau.xml
-2026-09-12 22:06:49,118 INFO: Debug log saved to debug.log
+2026-09-13 00:09:34,937 INFO: Fetching section: https://apnews.com/world-news
+2026-09-13 00:09:34,937 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-09-13 00:09:34,939 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-09-13 00:11:35,612 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-09-13 00:11:35,612 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1789258174940, "endTimestamp": 1789258295610, "version": "3.5.2"}
+2026-09-13 00:11:35,612 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-09-13 00:11:37,613 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-09-13 00:11:37,614 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-09-13 00:12:50,794 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1499887
+2026-09-13 00:12:50,804 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-09-13 00:12:50,807 DEBUG: Saved HTML to apnews.html (1425005 bytes)
+2026-09-13 00:12:51,229 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-09-13 00:12:51,229 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-09-13 00:12:51,230 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-09-13 00:12:51,230 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-09-13 00:13:03,216 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2205457
+2026-09-13 00:13:03,231 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-09-13 00:13:03,234 DEBUG: Saved HTML to apnews.html (2118935 bytes)
+2026-09-13 00:13:03,713 INFO: Section https://apnews.com/climate-and-environment — card selector matched 98 articles
+2026-09-13 00:13:03,714 INFO: Total unique articles across all sections: 181
+2026-09-13 00:13:03,718 INFO: Loaded existing XML: pau.xml
+2026-09-13 00:13:03,718 INFO: Existing items in feed: 500
+2026-09-13 00:13:03,718 DEBUG: Added: [fba122f0] https://apnews.com/photo-gallery/championship-weekend-open-photos-db38e30b6624499284c32634e07989a5
+2026-09-13 00:13:03,718 DEBUG: Added: [d32a2381] https://apnews.com/photo-gallery/photos-show-president-trump-s-two-day-visit-ireland-that-combines-work-pleasure-e37210025aca4a5ab2714702b6e9ca51
+2026-09-13 00:13:03,719 INFO: Added 2 new articles to feed
+2026-09-13 00:13:03,719 INFO: Trimmed feed to 500 items
+2026-09-13 00:13:03,726 INFO: Done! Feed saved to pau.xml
+2026-09-13 00:13:03,726 INFO: Debug log saved to debug.log
