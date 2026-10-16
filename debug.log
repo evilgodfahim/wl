@@ -1,35 +1,41 @@
-2026-10-16 20:42:29,968 INFO: Fetching section: https://apnews.com/world-news
-2026-10-16 20:42:29,968 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-10-16 20:42:29,969 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-16 20:42:52,755 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1535026
-2026-10-16 20:42:52,762 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-10-16 20:42:52,765 DEBUG: Saved HTML to apnews.html (1458431 bytes)
-2026-10-16 20:42:53,064 INFO: Section https://apnews.com/world-news — card selector matched 90 articles
-2026-10-16 20:42:53,065 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-10-16 20:42:53,065 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-10-16 20:42:53,066 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-16 20:43:04,210 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2304664
-2026-10-16 20:43:04,221 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-10-16 20:43:04,225 DEBUG: Saved HTML to apnews.html (2215609 bytes)
-2026-10-16 20:43:04,570 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-10-16 20:43:04,570 INFO: Total unique articles across all sections: 178
-2026-10-16 20:43:04,574 INFO: Loaded existing XML: pau.xml
-2026-10-16 20:43:04,574 INFO: Existing items in feed: 500
-2026-10-16 20:43:04,574 DEBUG: Added: [50e7da29] https://apnews.com/article/starlink-starshield-ukraine-russia-war-shahed-spacex-pentagon-385eb944f6c34990bdf21f624416b820
-2026-10-16 20:43:04,575 DEBUG: Added: [df369ba8] https://apnews.com/article/yemen-houthis-saudi-arabia-aden-attacks-c39ea48032c0e8a76558b0296bb25244
-2026-10-16 20:43:04,575 DEBUG: Added: [b720d4b9] https://apnews.com/article/lebanon-syria-ali-kayali-mihrac-ural-detained-4755ce08b6b1b135b82b77b26b021379
-2026-10-16 20:43:04,575 DEBUG: Added: [7a931be0] https://apnews.com/article/gaza-strength-competition-palestinians-cce83d0b02e78af8c8e50f78a95f8801
-2026-10-16 20:43:04,575 DEBUG: Added: [f1c3f294] https://apnews.com/article/stocks-markets-us-ai-oil-tech-warsh-d2655f64db7ec8ae450525d58f97b628
-2026-10-16 20:43:04,575 DEBUG: Added: [95f46f7c] https://apnews.com/article/brazil-amazon-deforestation-lula-flavio-bolsonaro-c00358ad3db9d53fcdf3a1e65da5d8ec
-2026-10-16 20:43:04,575 DEBUG: Added: [280c1c1d] https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e
-2026-10-16 20:43:04,575 DEBUG: Added: [06bfba2a] https://apnews.com/article/oregon-school-shooting-silver-rail-elementary-989180ae6e9aa2ed6a4239c8e3423085
-2026-10-16 20:43:04,575 DEBUG: Added: [d2191dd1] https://apnews.com/article/trump-katie-zacharia-press-secretary-c40a8c276f5e2a9d71685a5daba94731
-2026-10-16 20:43:04,575 DEBUG: Added: [f58e4a0c] https://apnews.com/article/coast-guard-baja-california-rescue-9bc35cda56e5ea9c4737401830ce7256
-2026-10-16 20:43:04,575 DEBUG: Added: [f1718d9c] https://apnews.com/article/california-santa-ana-winds-fire-risk-9356828fc52bf1f1c76c9b0f7a2fa1a3
-2026-10-16 20:43:04,575 DEBUG: Added: [5ab2f710] https://apnews.com/article/la-bola-negra-movie-review-695c44316d3161676f8346f22c4a5e2c
-2026-10-16 20:43:04,575 DEBUG: Added: [eeb8ca98] https://apnews.com/article/serbia-election-vucic-rally-novi-sad-586aba2642957e57602bff05e8366705
-2026-10-16 20:43:04,575 DEBUG: Added: [a3ae0a82] https://apnews.com/article/hurricane-trudy-mexico-pacific-coast-storm-e0522909a549cb4a43a8ab532f7d3668
-2026-10-16 20:43:04,576 INFO: Added 14 new articles to feed
-2026-10-16 20:43:04,576 INFO: Trimmed feed to 500 items
-2026-10-16 20:43:04,582 INFO: Done! Feed saved to pau.xml
-2026-10-16 20:43:04,582 INFO: Debug log saved to debug.log
+2026-10-16 23:20:35,955 INFO: Fetching section: https://apnews.com/world-news
+2026-10-16 23:20:35,955 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-10-16 23:20:35,956 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-16 23:22:36,718 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-10-16 23:22:36,719 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1792192835957, "endTimestamp": 1792192956717, "version": "3.5.2"}
+2026-10-16 23:22:36,719 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-10-16 23:22:38,719 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-10-16 23:22:38,720 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-16 23:24:38,729 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-10-16 23:24:38,729 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1792192958721, "endTimestamp": 1792193078728, "version": "3.5.2"}
+2026-10-16 23:24:38,729 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-10-16 23:24:42,730 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-10-16 23:24:42,830 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-10-16 23:24:42,831 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-10-16 23:24:42,832 DEBUG: fetch_page: simple_get attempt 1 failed for https://apnews.com/world-news
+2026-10-16 23:24:44,333 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-10-16 23:24:44,395 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-10-16 23:24:44,396 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-10-16 23:24:44,396 DEBUG: fetch_page: simple_get attempt 2 failed for https://apnews.com/world-news
+2026-10-16 23:24:47,397 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-10-16 23:24:47,479 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-10-16 23:24:47,479 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-10-16 23:24:47,480 DEBUG: fetch_page: simple_get attempt 3 failed for https://apnews.com/world-news
+2026-10-16 23:24:51,981 WARNING: fetch_page: all attempts failed for https://apnews.com/world-news
+2026-10-16 23:24:51,981 WARNING: scrape_section: failed to fetch https://apnews.com/world-news
+2026-10-16 23:24:51,981 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-10-16 23:24:51,981 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-10-16 23:24:51,982 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-16 23:26:01,035 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2305723
+2026-10-16 23:26:01,049 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-10-16 23:26:01,054 DEBUG: Saved HTML to apnews.html (2217163 bytes)
+2026-10-16 23:26:01,468 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
+2026-10-16 23:26:01,469 INFO: Total unique articles across all sections: 101
+2026-10-16 23:26:01,473 INFO: Loaded existing XML: pau.xml
+2026-10-16 23:26:01,474 INFO: Existing items in feed: 500
+2026-10-16 23:26:01,474 DEBUG: Added: [fcc3a362] https://apnews.com/article/eisenhower-building-eeob-painting-trump-historic-135de120468dd1c5abb394a38ec3110a
+2026-10-16 23:26:01,474 DEBUG: Added: [a6a3321d] https://apnews.com/article/california-santa-ana-winds-fire-risk-9356828fc52bf1f1c76c9b0f7a2fa1a3
+2026-10-16 23:26:01,474 INFO: Added 2 new articles to feed
+2026-10-16 23:26:01,474 INFO: Trimmed feed to 500 items
+2026-10-16 23:26:01,481 INFO: Done! Feed saved to pau.xml
+2026-10-16 23:26:01,481 INFO: Debug log saved to debug.log
