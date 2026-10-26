@@ -1,42 +1,37 @@
-2026-10-25 23:05:21,557 INFO: Fetching section: https://apnews.com/world-news
-2026-10-25 23:05:21,557 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-10-25 23:05:21,558 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-25 23:07:22,077 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-10-25 23:07:22,078 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1792969521559, "endTimestamp": 1792969642076, "version": "3.5.2"}
-2026-10-25 23:07:22,078 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-10-25 23:07:24,078 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-10-25 23:07:24,079 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-25 23:08:45,571 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1505507
-2026-10-25 23:08:45,577 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-10-25 23:08:45,578 DEBUG: Saved HTML to apnews.html (1430308 bytes)
-2026-10-25 23:08:45,864 INFO: Section https://apnews.com/world-news — card selector matched 89 articles
-2026-10-25 23:08:45,865 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-10-25 23:08:45,865 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-10-25 23:08:45,865 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-25 23:08:54,350 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2296575
-2026-10-25 23:08:54,359 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-10-25 23:08:54,361 DEBUG: Saved HTML to apnews.html (2208444 bytes)
-2026-10-25 23:08:54,640 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-10-25 23:08:54,640 INFO: Total unique articles across all sections: 184
-2026-10-25 23:08:54,642 INFO: Loaded existing XML: pau.xml
-2026-10-25 23:08:54,642 INFO: Existing items in feed: 500
-2026-10-25 23:08:54,643 DEBUG: Added: [3745ea71] https://apnews.com/article/serbia-election-students-vucic-fdf5def8a20aebc8ae139fd719478775
-2026-10-25 23:08:54,643 DEBUG: Added: [2977e6ca] https://apnews.com/article/brazil-election-lula-bolsonaro-runoff-vote-president-e2c9fe8fc4aa3e3675b9a8ec15405d93
-2026-10-25 23:08:54,643 DEBUG: Added: [f9d503bd] https://apnews.com/article/newport-oregon-fire-evacuation-942a1c72ce7be8f36525be215403538a
-2026-10-25 23:08:54,643 DEBUG: Added: [196730d4] https://apnews.com/article/four-corners-flooding-storm-961459bac9d5db8dc9e5260cac61aec3
-2026-10-25 23:08:54,643 DEBUG: Added: [e9ec4824] https://apnews.com/article/spain-bus-crash-injured-barcelona-catalonia-c731feec49bd7feb77ab44c57ba2e57b
-2026-10-25 23:08:54,643 DEBUG: Added: [711462a4] https://apnews.com/photo-gallery/photos-serbia-s-election-celebrations-student-led-opposition-defeats-long-serving-strongman-cf8bf7e86340439ca7cabdccb47a7606
-2026-10-25 23:08:54,643 DEBUG: Added: [b1241e95] https://apnews.com/article/mexico-treason-cesar-jauregui-cia-operation-2a7fd90968c9dee1405496d39dc35e4f
-2026-10-25 23:08:54,643 DEBUG: Added: [bf5661db] https://apnews.com/article/colombia-eln-army-guerrilla-killed-leaders-marcos-7ad9b570a1b6a12ddfd3d50dbcd1cbc4
-2026-10-25 23:08:54,643 DEBUG: Added: [5a1bd295] https://apnews.com/photo-gallery/climate-alaska-hunting-6e7e01d287cd11515edfd0f31bda808e
-2026-10-25 23:08:54,643 DEBUG: Added: [19ba351f] https://apnews.com/article/reusable-bags-recycling-donate-microplastics-declutter-e05dbf5444bebd1ad16db11c170900ed
-2026-10-25 23:08:54,643 DEBUG: Added: [5960751e] https://apnews.com/article/weather-heat-wave-clothing-fabrics-cooling-a15bf647a164d557500c873dab6ee7f0
-2026-10-25 23:08:54,643 DEBUG: Added: [6bb0efc1] https://apnews.com/article/ai-energy-water-climate-change-pollution-environment-77c9de6f9c6326c12d8d18e20dc99c44
-2026-10-25 23:08:54,643 DEBUG: Added: [f0168b8f] https://apnews.com/article/sustainable-denim-dye-environmental-process-find-jeans-2d1d7c360c2df0fbb7d528a26a7e8163
-2026-10-25 23:08:54,643 DEBUG: Added: [ffb48dfb] https://apnews.com/article/colombia-indigenous-children-farc-drugs-recruitment-520cbff5c46a0959d134f5a0b14b0748
-2026-10-25 23:08:54,643 DEBUG: Added: [f135b3e1] https://apnews.com/article/colombia-indigenous-children-farc-drugs-recruitment-50165b4d5fdfef93b71736cc84b7f480
-2026-10-25 23:08:54,643 DEBUG: Added: [e587c1be] https://apnews.com/article/ss-united-states-25c8c8e9329ffb9b21acfc69879c624e
-2026-10-25 23:08:54,643 INFO: Added 16 new articles to feed
-2026-10-25 23:08:54,643 INFO: Trimmed feed to 500 items
-2026-10-25 23:08:54,648 INFO: Done! Feed saved to pau.xml
-2026-10-25 23:08:54,648 INFO: Debug log saved to debug.log
+2026-10-26 01:31:40,307 INFO: Fetching section: https://apnews.com/world-news
+2026-10-26 01:31:40,307 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-10-26 01:31:40,309 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-26 01:33:40,977 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-10-26 01:33:40,977 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1792978300310, "endTimestamp": 1792978420975, "version": "3.5.2"}
+2026-10-26 01:33:40,977 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-10-26 01:33:42,978 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-10-26 01:33:42,979 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-26 01:35:29,182 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1517013
+2026-10-26 01:35:29,191 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-10-26 01:35:29,193 DEBUG: Saved HTML to apnews.html (1441463 bytes)
+2026-10-26 01:35:29,690 INFO: Section https://apnews.com/world-news — card selector matched 91 articles
+2026-10-26 01:35:29,691 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-10-26 01:35:29,691 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-10-26 01:35:29,691 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-26 01:35:39,914 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2297265
+2026-10-26 01:35:39,927 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-10-26 01:35:39,930 DEBUG: Saved HTML to apnews.html (2209113 bytes)
+2026-10-26 01:35:40,374 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
+2026-10-26 01:35:40,374 INFO: Total unique articles across all sections: 183
+2026-10-26 01:35:40,378 INFO: Loaded existing XML: pau.xml
+2026-10-26 01:35:40,378 INFO: Existing items in feed: 500
+2026-10-26 01:35:40,379 DEBUG: Added: [14d6d4f9] https://apnews.com/article/brazil-election-lula-bolsonaro-runoff-vote-president-e2c9fe8fc4aa3e3675b9a8ec15405d93
+2026-10-26 01:35:40,379 DEBUG: Added: [0dc8eda8] https://apnews.com/article/israel-canada-elections-far-right-netanyahu-4f762cfbe1a76a1187c7f7b6ea098331
+2026-10-26 01:35:40,379 DEBUG: Added: [3254d814] https://apnews.com/article/congo-ebola-b739277681b530aef772cf66be7e41f0
+2026-10-26 01:35:40,379 DEBUG: Added: [b95e8e41] https://apnews.com/article/algeria-niger-troops-economic-interests-d44b4d7a17cfc4a355376f2fffab0349
+2026-10-26 01:35:40,379 DEBUG: Added: [40d7f4f5] https://apnews.com/article/newport-oregon-fire-evacuation-942a1c72ce7be8f36525be215403538a
+2026-10-26 01:35:40,379 DEBUG: Added: [0a31ccd1] https://apnews.com/article/midterm-elections-immigration-voter-fraud-trump-15f4270b4c43b088a633c8fcc365d027
+2026-10-26 01:35:40,379 DEBUG: Added: [bd8e702a] https://apnews.com/article/tropical-storm-vance-pacific-e103a6373e1355de07eaa010a26d7996
+2026-10-26 01:35:40,379 DEBUG: Added: [31399e3c] https://apnews.com/photo-gallery/photos-nfl-week-7-steelers-saints-paris-cowboys-eagles-c507364712a5466ca4c1cbad53acdffa
+2026-10-26 01:35:40,379 DEBUG: Added: [8af39b9c] https://apnews.com/photo-gallery/photos-mar-a-corina-machado-s-return-venezuela-supporters-welcome-opposition-leader-80d29aeaef5f476fb774da7ca77c3ba3
+2026-10-26 01:35:40,380 DEBUG: Added: [3a10d4b7] https://apnews.com/article/colombia-indigenous-land-protection-cauca-farc-youth-f4de70775dfdd3986af377d297e26e7c
+2026-10-26 01:35:40,380 DEBUG: Added: [4cb04702] https://apnews.com/article/colombia-indigenous-youth-environmental-defense-violence-84c45de79a0bf6f52e5949e01ddbb3f5
+2026-10-26 01:35:40,380 INFO: Added 11 new articles to feed
+2026-10-26 01:35:40,380 INFO: Trimmed feed to 500 items
+2026-10-26 01:35:40,386 INFO: Done! Feed saved to pau.xml
+2026-10-26 01:35:40,387 INFO: Debug log saved to debug.log
