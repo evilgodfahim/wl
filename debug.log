@@ -1,44 +1,32 @@
-2026-10-28 23:07:35,156 INFO: Fetching section: https://apnews.com/world-news
-2026-10-28 23:07:35,156 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-10-28 23:07:35,157 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-28 23:09:35,895 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-10-28 23:09:35,895 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793228855159, "endTimestamp": 1793228975893, "version": "3.5.2"}
-2026-10-28 23:09:35,895 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-10-28 23:09:37,896 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-10-28 23:09:37,897 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-28 23:11:11,688 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1531660
-2026-10-28 23:11:11,699 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-10-28 23:11:11,701 DEBUG: Saved HTML to apnews.html (1455010 bytes)
-2026-10-28 23:11:12,286 INFO: Section https://apnews.com/world-news — card selector matched 93 articles
-2026-10-28 23:11:12,287 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-10-28 23:11:12,287 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-10-28 23:11:12,288 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-10-28 23:11:34,133 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2287551
-2026-10-28 23:11:34,149 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-10-28 23:11:34,153 DEBUG: Saved HTML to apnews.html (2199168 bytes)
-2026-10-28 23:11:34,662 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-10-28 23:11:34,663 INFO: Total unique articles across all sections: 184
-2026-10-28 23:11:34,668 INFO: Loaded existing XML: pau.xml
-2026-10-28 23:11:34,669 INFO: Existing items in feed: 500
-2026-10-28 23:11:34,669 DEBUG: Added: [8b37e927] https://apnews.com/article/israel-elections-netanyahu-eisenkot-arab-coalition-results-d4680e90210c9a8611853fda9d0deb61
-2026-10-28 23:11:34,669 DEBUG: Added: [138522c5] https://apnews.com/article/trump-iran-strikes-midterm-elections-c7df622f1e87de6035173be8fb8c4add
-2026-10-28 23:11:34,669 DEBUG: Added: [6ecedee9] https://apnews.com/article/chatbots-ai-new-york-legislation-bans-children-03a4e090a7df1532838a5cb6f93a23ba
-2026-10-28 23:11:34,669 DEBUG: Added: [86b2b648] https://apnews.com/article/prices-personal-data-walmart-doordash-delta-uber-19c634a5205557ebe0af99ec5c3a729a
-2026-10-28 23:11:34,669 DEBUG: Added: [2cb0b565] https://apnews.com/article/inflation-warsh-interest-rates-federal-reserve-c06793b0c50641444701d5d098ccc2c8
-2026-10-28 23:11:34,669 DEBUG: Added: [0cf1c39a] https://apnews.com/article/stock-markets-ai-earnings-oil-b07c5abe1fbaacc7618aeb610eaa91e0
-2026-10-28 23:11:34,669 DEBUG: Added: [e6ab7a31] https://apnews.com/article/haiti-hunger-ipc-report-food-crisis-gangs-e7054f6124e386240f10c9ff3ad45331
-2026-10-28 23:11:34,670 DEBUG: Added: [1021a767] https://apnews.com/article/voucher-voting-election-sting-undercover-e32e80590b59ca50adbb6751092e7435
-2026-10-28 23:11:34,670 DEBUG: Added: [ca9105a1] https://apnews.com/article/fraud-minnesota-feeding-our-future-sentencing-a195ef82b798fa66d89cd4a6ba7e23aa
-2026-10-28 23:11:34,670 DEBUG: Added: [47f92f12] https://apnews.com/article/king-tides-florida-california-carolina-flooding-bd3d4258b785f428fdbdb961c4355a67
-2026-10-28 23:11:34,670 DEBUG: Added: [2a5355d0] https://apnews.com/article/china-trump-biotech-forced-labor-bgi-genomics-92531b29092332a680fd7abff55a0f27
-2026-10-28 23:11:34,670 DEBUG: Added: [93720dcc] https://apnews.com/article/india-police-shooting-cow-smuggling-muslims-takeaways-01d24272a39d3f4af1248863c21f6032
-2026-10-28 23:11:34,670 DEBUG: Added: [ff93e3d6] https://apnews.com/article/india-police-shooting-cow-smuggling-muslims-5535bd76395f0362be4366aee4ac76ac
-2026-10-28 23:11:34,670 DEBUG: Added: [0d745a1e] https://apnews.com/photo-gallery/photos-cyclone-arnab-s-impact-eastern-india-09d513049c17425aa964c3f261c4e3fb
-2026-10-28 23:11:34,670 DEBUG: Added: [b87c2a96] https://apnews.com/article/heat-wave-climate-change-causes-blame-4787a8bb1eb3aca0d398f46207f24247
-2026-10-28 23:11:34,671 DEBUG: Added: [43712860] https://apnews.com/article/climate-change-nepal-landslides-earthquakes-extreme-weather-rains-river-fb0ee690e6ec4a110af198865a5fe159
-2026-10-28 23:11:34,671 DEBUG: Added: [d79b7757] https://apnews.com/article/honeybees-climate-change-heat-survive-disease-pollinate-591678b3076b38ff872455eaad319161
-2026-10-28 23:11:34,671 DEBUG: Added: [6b069ec8] https://apnews.com/article/hawaii-contract-invasive-species-unclear-mission-5d1512605d65e6b63bb22f252e5852e7
-2026-10-28 23:11:34,671 INFO: Added 18 new articles to feed
-2026-10-28 23:11:34,671 INFO: Trimmed feed to 500 items
-2026-10-28 23:11:34,679 INFO: Done! Feed saved to pau.xml
-2026-10-28 23:11:34,679 INFO: Debug log saved to debug.log
+2026-10-29 02:42:16,321 INFO: Fetching section: https://apnews.com/world-news
+2026-10-29 02:42:16,321 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-10-29 02:42:16,323 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-29 02:43:40,796 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1520491
+2026-10-29 02:43:40,806 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-10-29 02:43:40,809 DEBUG: Saved HTML to apnews.html (1444939 bytes)
+2026-10-29 02:43:41,362 INFO: Section https://apnews.com/world-news — card selector matched 88 articles
+2026-10-29 02:43:41,362 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-10-29 02:43:41,362 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-10-29 02:43:41,363 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-10-29 02:44:05,833 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2285939
+2026-10-29 02:44:05,848 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-10-29 02:44:05,851 DEBUG: Saved HTML to apnews.html (2197689 bytes)
+2026-10-29 02:44:06,360 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
+2026-10-29 02:44:06,361 INFO: Total unique articles across all sections: 179
+2026-10-29 02:44:06,365 INFO: Loaded existing XML: pau.xml
+2026-10-29 02:44:06,365 INFO: Existing items in feed: 500
+2026-10-29 02:44:06,365 DEBUG: Added: [11dc5ee1] https://apnews.com/video/dozens-dead-in-high-speed-train-crash-in-spain-89d5877c637b45988061d388c94758e6
+2026-10-29 02:44:06,365 DEBUG: Added: [21a52ad7] https://apnews.com/video/trump-floats-venezuela-as-51st-state-while-rallying-to-keep-texas-republican-da7f489dac06404b99011056658daf0e
+2026-10-29 02:44:06,365 DEBUG: Added: [ef58dd6c] https://apnews.com/article/israel-election-eisenkort-da107a1b69b5cf763394bae89ad759bc
+2026-10-29 02:44:06,366 DEBUG: Added: [508fc957] https://apnews.com/article/starlink-ukraine-russia-trump-musk-pentagon-investigation-293f5a4cd7e3e1736058a252e5ec067b
+2026-10-29 02:44:06,366 DEBUG: Added: [8b091d47] https://apnews.com/article/association-of-southeast-asian-nations-defense-ministers-pete-hegseth-shinjiro-koizumi-3351555ce9c46b41a3e31d91b81894eb
+2026-10-29 02:44:06,366 DEBUG: Added: [11824c91] https://apnews.com/article/cyclone-arnab-india-andhra-pradesh-odisha-96277efc4371cf379c24b7694dfa9f62
+2026-10-29 02:44:06,366 DEBUG: Added: [adb20f05] https://apnews.com/article/cyclone-arnab-climate-dhange-india-andhra-pradesh-04ffc941aa559a55d1774795cd63017d
+2026-10-29 02:44:06,366 DEBUG: Added: [ee1af84c] https://apnews.com/article/california-noncitizen-voting-trump-midterm-lawsuit-481bed64919ad193e80e051d28beb2c0
+2026-10-29 02:44:06,366 DEBUG: Added: [8d2172e6] https://apnews.com/article/cornell-university-rape-case-kotlikoff-faculty-vote-04ce3714c997b15a90b738dba6b5abaf
+2026-10-29 02:44:06,366 DEBUG: Added: [a6cf959e] https://apnews.com/photo-gallery/king-tides-flood-coastal-communities-photos-96ffd3a40a8e4082916da01bb49c1f98
+2026-10-29 02:44:06,366 DEBUG: Added: [b34cd87c] https://apnews.com/article/un-nicaragua-crimes-human-rights-dictatorship-ortega-e54852b330be9e37994135f133c66e8a
+2026-10-29 02:44:06,366 INFO: Added 11 new articles to feed
+2026-10-29 02:44:06,367 INFO: Trimmed feed to 500 items
+2026-10-29 02:44:06,373 INFO: Done! Feed saved to pau.xml
+2026-10-29 02:44:06,373 INFO: Debug log saved to debug.log
