@@ -1,56 +1,43 @@
-2026-11-01 21:00:43,252 INFO: Fetching section: https://apnews.com/world-news
-2026-11-01 21:00:43,253 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-01 21:00:43,254 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-01 21:02:43,991 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-11-01 21:02:43,991 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793566843256, "endTimestamp": 1793566963990, "version": "3.5.2"}
-2026-11-01 21:02:43,992 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-11-01 21:02:45,992 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-01 21:02:45,993 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-01 21:04:32,406 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1534324
-2026-11-01 21:04:32,417 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-11-01 21:04:32,419 DEBUG: Saved HTML to apnews.html (1458786 bytes)
-2026-11-01 21:04:33,005 INFO: Section https://apnews.com/world-news — card selector matched 89 articles
-2026-11-01 21:04:33,005 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-11-01 21:04:33,005 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-11-01 21:04:33,006 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-01 21:04:43,610 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2294436
-2026-11-01 21:04:43,627 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-11-01 21:04:43,630 DEBUG: Saved HTML to apnews.html (2206730 bytes)
-2026-11-01 21:04:44,133 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-11-01 21:04:44,134 INFO: Total unique articles across all sections: 182
-2026-11-01 21:04:44,138 INFO: Loaded existing XML: pau.xml
-2026-11-01 21:04:44,138 INFO: Existing items in feed: 500
-2026-11-01 21:04:44,138 DEBUG: Added: [c951f0e8] https://apnews.com/article/russia-ukraine-war-kherson-ceasefire-oleshky-22a9bcde97cf12c96328aacf88486e40
-2026-11-01 21:04:44,138 DEBUG: Added: [299610a2] https://apnews.com/article/mideast-news-november-1-2026-b918f44d8f212d7daf7f2f9a98c91a0b
-2026-11-01 21:04:44,138 DEBUG: Added: [4c4d2466] https://apnews.com/article/france-protests-violence-germany-portugal-547697d5a2604aee0278db33c7306894
-2026-11-01 21:04:44,138 DEBUG: Added: [8d355147] https://apnews.com/article/india-opposition-protests-voters-elections-cockroach-party-cb532b4811eea64c51f61cd4199fb64e
-2026-11-01 21:04:44,139 DEBUG: Added: [806b4ccd] https://apnews.com/article/bulgaria-president-runoff-yotova-gyrov-radev-russia-cc540e5540a7a268da15aa72c5ec033e
-2026-11-01 21:04:44,139 DEBUG: Added: [89112c49] https://apnews.com/video/thousands-rally-in-tel-aviv-for-arab-jewish-coalition-in-new-israeli-government-690bf39108e04c5c8a36316009aea3a1
-2026-11-01 21:04:44,139 DEBUG: Added: [91c3afcc] https://apnews.com/video/tensions-flare-as-320000-people-protest-nationwide-on-saturday-according-to-french-government-66fab025d6d847188c462c5ef7cbaf1a
-2026-11-01 21:04:44,139 DEBUG: Added: [5e75088b] https://apnews.com/article/somalia-pirates-hijacking-iranian-fishing-vessel-dd4d404235781a3b871668c353540e4c
-2026-11-01 21:04:44,139 DEBUG: Added: [869a6b47] https://apnews.com/article/sudan-rapid-support-forces-drone-strikes-power-3d8369aa7479b594a72bc8439d08a0a2
-2026-11-01 21:04:44,139 DEBUG: Added: [f97ff0e7] https://apnews.com/article/canada-us-trump-canada-trade-d0bfffc67ecdf22d9a5abffb2d26d848
-2026-11-01 21:04:44,139 DEBUG: Added: [ceb2ec46] https://apnews.com/article/trump-aca-obamacare-healthcare-insurance-032c364c133c4ff97f3d09c51c209253
-2026-11-01 21:04:44,139 DEBUG: Added: [7ddb3808] https://apnews.com/article/serbia-students-commemoration-canopy-collapse-a88ac0bced2d0dba0f2914be3d0bf2ed
-2026-11-01 21:04:44,139 DEBUG: Added: [df0b64cf] https://apnews.com/article/buddhism-bhutan-stupas-gelephu-mindfulness-city-385a0eadc9a8d391f726b24957f9d394
-2026-11-01 21:04:44,139 DEBUG: Added: [45732fc2] https://apnews.com/article/uruguay-borro-pope-leo-visit-drugs-violence-b5236266377a11ca24fc39804b6f51ed
-2026-11-01 21:04:44,139 DEBUG: Added: [1febd9f9] https://apnews.com/article/uk-caribbean-slavery-reparations-burnham-abb1549db7606eef58be9c2d0c4bce50
-2026-11-01 21:04:44,139 DEBUG: Added: [233360ed] https://apnews.com/article/western-sahara-un-peacekeepers-morocco-algeria-030e303c58207060265d8748c1db3778
-2026-11-01 21:04:44,140 DEBUG: Added: [991953e2] https://apnews.com/article/sedona-arizona-pagosa-springs-colorado-southwest-flooding-bb4bb89daf78484fb97496dfd88c4a10
-2026-11-01 21:04:44,140 DEBUG: Added: [cfc6879e] https://apnews.com/article/alabama-shooting-birmingham-22eb299b80705cae19e2e5b425459c63
-2026-11-01 21:04:44,140 DEBUG: Added: [5986d95b] https://apnews.com/article/trump-iowa-kansas-republicans-midterms-d66c92d2c171cf4dc434078c64cf2cd1
-2026-11-01 21:04:44,140 DEBUG: Added: [aa01a914] https://apnews.com/article/alaska-senate-dan-sullivan-peltola-investigation-b35acffc8b55ef58679d9b8395760f98
-2026-11-01 21:04:44,140 DEBUG: Added: [34ef6426] https://apnews.com/article/cricket-new-zealand-india-fifth-t20-025cd457ad47adfcabdc2f24bf7a77f5
-2026-11-01 21:04:44,140 DEBUG: Added: [93a08236] https://apnews.com/photo-gallery/photos-show-buddhist-stupas-taking-shape-bhutan-s-planned-mindfulness-city-14616ff0eca24d3e8fdd2edcdf408893
-2026-11-01 21:04:44,140 DEBUG: Added: [64210c29] https://apnews.com/article/israel-election-arab-parties-qatar-netanyahu-a3df86ebfbe5c64306f21f33e69208e0
-2026-11-01 21:04:44,140 DEBUG: Added: [f404bbff] https://apnews.com/photo-gallery/major-global-news-moments-october-ap-photos-fc4d1a99fe25453ea1881d5ba54fbf71
-2026-11-01 21:04:44,140 DEBUG: Added: [145b472b] https://apnews.com/article/china-taiwan-coast-guard-pratas-islands-dfc441591994cb435e55eb8f3dc6aeda
-2026-11-01 21:04:44,140 DEBUG: Added: [217efc69] https://apnews.com/article/brazil-elections-amazon-rainforest-indigenous-peoples-648b48cc64152bec65d687824522e51f
-2026-11-01 21:04:44,140 DEBUG: Added: [52252b8f] https://apnews.com/article/mobile-home-parks-water-drinking-safety-epa-84625b372b8d883d0a5d6f6d302263fc
-2026-11-01 21:04:44,141 DEBUG: Added: [f676eab5] https://apnews.com/photo-essay/mobile-homes-water-california-photo-essay-980f80305579542fbf76ba00fdc715e6
-2026-11-01 21:04:44,141 DEBUG: Added: [d5696e8d] https://apnews.com/article/tap-water-quality-mobile-home-parks-michigan-eae9334b4b90406f96a5049c3c9f3336
-2026-11-01 21:04:44,141 DEBUG: Added: [f11cf493] https://apnews.com/article/kelp-seaweed-biofuel-energy-iran-oil-0115c7653ed259bc80c045bdae833fdc
-2026-11-01 21:04:44,141 INFO: Added 30 new articles to feed
-2026-11-01 21:04:44,141 INFO: Trimmed feed to 500 items
-2026-11-01 21:04:44,149 INFO: Done! Feed saved to pau.xml
-2026-11-01 21:04:44,149 INFO: Debug log saved to debug.log
+2026-11-02 00:35:58,100 INFO: Fetching section: https://apnews.com/world-news
+2026-11-02 00:35:58,101 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-02 00:35:58,102 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-02 00:37:58,898 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-02 00:37:58,899 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793579758104, "endTimestamp": 1793579878895, "version": "3.5.2"}
+2026-11-02 00:37:58,899 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-11-02 00:38:00,900 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-02 00:38:00,901 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-02 00:40:01,007 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-02 00:40:01,008 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793579880902, "endTimestamp": 1793580001006, "version": "3.5.2"}
+2026-11-02 00:40:01,008 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-11-02 00:40:05,010 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-02 00:40:05,133 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-11-02 00:40:05,134 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-11-02 00:40:05,136 DEBUG: fetch_page: simple_get attempt 1 failed for https://apnews.com/world-news
+2026-11-02 00:40:06,637 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-02 00:40:06,693 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-11-02 00:40:06,694 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-11-02 00:40:06,694 DEBUG: fetch_page: simple_get attempt 2 failed for https://apnews.com/world-news
+2026-11-02 00:40:09,696 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-02 00:40:09,732 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-11-02 00:40:09,733 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-11-02 00:40:09,733 DEBUG: fetch_page: simple_get attempt 3 failed for https://apnews.com/world-news
+2026-11-02 00:40:14,234 WARNING: fetch_page: all attempts failed for https://apnews.com/world-news
+2026-11-02 00:40:14,234 WARNING: scrape_section: failed to fetch https://apnews.com/world-news
+2026-11-02 00:40:14,234 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-11-02 00:40:14,234 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-11-02 00:40:14,235 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-02 00:40:25,631 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2294884
+2026-11-02 00:40:25,645 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-11-02 00:40:25,649 DEBUG: Saved HTML to apnews.html (2206717 bytes)
+2026-11-02 00:40:26,307 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
+2026-11-02 00:40:26,307 INFO: Total unique articles across all sections: 101
+2026-11-02 00:40:26,311 INFO: Loaded existing XML: pau.xml
+2026-11-02 00:40:26,312 INFO: Existing items in feed: 500
+2026-11-02 00:40:26,312 DEBUG: Added: [5030d49e] https://apnews.com/article/mezcal-mexico-environment-deforestation-agave-oaxaca-erosion-a53aa9d26d3c3bb3cbd65177c1a91c01
+2026-11-02 00:40:26,312 DEBUG: Added: [e09ef134] https://apnews.com/article/climate-running-cups-reusable-sustainability-a515a39584db7ad461a877240cd66c8f
+2026-11-02 00:40:26,312 DEBUG: Added: [5ddd2539] https://apnews.com/article/india-women-farmers-climate-change-indigenous-fe099e6b33589330f7aa1bb27da75005
+2026-11-02 00:40:26,313 DEBUG: Added: [13c4e30b] https://apnews.com/article/sedona-arizona-pagosa-springs-colorado-southwest-flooding-bb4bb89daf78484fb97496dfd88c4a10
+2026-11-02 00:40:26,313 INFO: Added 4 new articles to feed
+2026-11-02 00:40:26,313 INFO: Trimmed feed to 500 items
+2026-11-02 00:40:26,320 INFO: Done! Feed saved to pau.xml
+2026-11-02 00:40:26,320 INFO: Debug log saved to debug.log
