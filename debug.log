@@ -1,71 +1,56 @@
-2026-11-05 02:41:41,618 INFO: Fetching section: https://apnews.com/world-news
-2026-11-05 02:41:41,618 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-05 02:41:41,620 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-05 02:42:00,249 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1570293
-2026-11-05 02:42:00,258 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-11-05 02:42:00,260 DEBUG: Saved HTML to apnews.html (1493685 bytes)
-2026-11-05 02:42:00,656 INFO: Section https://apnews.com/world-news — card selector matched 93 articles
-2026-11-05 02:42:00,656 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-11-05 02:42:00,656 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-11-05 02:42:00,657 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-05 02:44:00,757 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-11-05 02:44:00,757 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793846520658, "endTimestamp": 1793846640756, "version": "3.5.2"}
-2026-11-05 02:44:00,757 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
-2026-11-05 02:44:02,758 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-11-05 02:44:02,758 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-05 02:45:41,922 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2297493
-2026-11-05 02:45:41,934 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-11-05 02:45:41,937 DEBUG: Saved HTML to apnews.html (2209675 bytes)
-2026-11-05 02:45:42,264 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-11-05 02:45:42,264 INFO: Total unique articles across all sections: 183
-2026-11-05 02:45:42,267 INFO: Loaded existing XML: pau.xml
-2026-11-05 02:45:42,267 INFO: Existing items in feed: 500
-2026-11-05 02:45:42,268 DEBUG: Added: [f7aa333c] https://apnews.com/article/ukraine-russia-war-kyiv-airstrike-water-37dc5e85a5c8c135996bc2720e0674d9
-2026-11-05 02:45:42,268 DEBUG: Added: [50dcce4c] https://apnews.com/article/israel-election-netanyahu-57aefc6424da937ad2842f6d762631ae
-2026-11-05 02:45:42,268 DEBUG: Added: [2da75211] https://apnews.com/article/mideast-iran-war-yemen-houthis-lebanon-israel-ada824e7387edec2cd8d1f97045dff2b
-2026-11-05 02:45:42,268 DEBUG: Added: [eb8e356b] https://apnews.com/article/us-midterms-trump-global-reaction-7b404b759381379067a52f42e5be578d
-2026-11-05 02:45:42,268 DEBUG: Added: [85dcea71] https://apnews.com/article/indonesia-security-forces-deployment-wiretapping-8e598661a904d8af89b35ea04d420506
-2026-11-05 02:45:42,268 DEBUG: Added: [21b82609] https://apnews.com/article/stock-markets-ai-earnings-oil-4d12764c0b3ce38ffde3077712811182
-2026-11-05 02:45:42,268 DEBUG: Added: [9dbb06fd] https://apnews.com/article/mcdonalds-inflation-fast-food-earnings-7fee4f873c6230e20f9e366e35094444
-2026-11-05 02:45:42,268 DEBUG: Added: [c3ba059f] https://apnews.com/article/lockheed-martin-dei-lawsuit-5c6f6fa12858a9c586d6bf57eb571c68
-2026-11-05 02:45:42,268 DEBUG: Added: [fb4a102a] https://apnews.com/article/jetblue-baggage-fees-75bafdfceadcbdc8525dd4db1c099efa
-2026-11-05 02:45:42,268 DEBUG: Added: [74e058d5] https://apnews.com/article/uk-supreme-court-palestine-action-arrests-appeal-08096d601f7e2d5beb36c117282fa4e2
-2026-11-05 02:45:42,268 DEBUG: Added: [3e4113ce] https://apnews.com/article/baillie-gifford-book-prize-nonfiction-6ac87a87b081b1b52aaa919df1552fc5
-2026-11-05 02:45:42,268 DEBUG: Added: [555d7104] https://apnews.com/article/hong-kong-joshua-wong-sentencing-national-security-f4b08dd23bab9912569e5cabd990c1ef
-2026-11-05 02:45:42,268 DEBUG: Added: [589a6e45] https://apnews.com/article/carbon-capture-ccs-japan-australia-co2-4ff9200393569d445601aed900cb2640
-2026-11-05 02:45:42,268 DEBUG: Added: [8a0ab15c] https://apnews.com/article/bangladesh-garment-wage-protest-eca550eb2285e98040778d280600c900
-2026-11-05 02:45:42,268 DEBUG: Added: [9cc4fe9a] https://apnews.com/article/haiti-el-salvador-gangs-bukele-0302160e058789506d72c9e2a6c1bfc9
-2026-11-05 02:45:42,268 DEBUG: Added: [5a67a1b1] https://apnews.com/article/ethiopia-sudan-egypt-eritrea-diplomats-expulsions-drone-attacks-5e963c304cde91158a39218209a477cb
-2026-11-05 02:45:42,268 DEBUG: Added: [0b9b8be3] https://apnews.com/article/south-africa-elections-ramaphosa-anc-zille-10402aa5d707d4bd0bb53f959e0ddf88
-2026-11-05 02:45:42,268 DEBUG: Added: [f140e52d] https://apnews.com/article/ethiopia-espionage-contractor-intelligence-us-topsecret-2665bd9c0ffb8a50ad406e2b55ea85dd
-2026-11-05 02:45:42,268 DEBUG: Added: [f95290e9] https://apnews.com/article/florida-active-threat-tampa-business-complex-citibank-6243ee93c43ff9c56d15268c12643507
-2026-11-05 02:45:42,268 DEBUG: Added: [0acc4ece] https://apnews.com/article/jacob-morley-tennessee-fugitive-apprehension-39b3486932c158640aee8c6e815cd604
-2026-11-05 02:45:42,268 DEBUG: Added: [aeed43f6] https://apnews.com/article/executions-alabama-florida-indiana-1957e1bcef3d2fd18e6518c84cdb588c
-2026-11-05 02:45:42,268 DEBUG: Added: [3591f721] https://apnews.com/article/florida-helicopter-crash-20e69ae05ae23d8d66acc2f3d43d89de
-2026-11-05 02:45:42,268 DEBUG: Added: [94cb20e9] https://apnews.com/article/election-takeaways-midterms-trump-democrats-takeover-republicans-1cb09c8674598632ec3e4307eda5fbb8
-2026-11-05 02:45:42,268 DEBUG: Added: [5fc1c7be] https://apnews.com/article/thailand-china-uyghurs-facing-deportation-aa4edcf633b9834a7ef654bffde8edb1
-2026-11-05 02:45:42,268 DEBUG: Added: [0d8bec72] https://apnews.com/article/india-pakistan-soccer-south-asia-cup-8c9d344c695f1557e7775cde6b56af6a
-2026-11-05 02:45:42,268 DEBUG: Added: [ff571b66] https://apnews.com/article/cricket-india-newzealand-odi-eb0bf014b3f56fc7fa824415dcb41fdd
-2026-11-05 02:45:42,268 DEBUG: Added: [3a7deeae] https://apnews.com/article/climate-cop31-turkey-solar-coal-43b7c2bce43ddd4fba6224d2a0524417
-2026-11-05 02:45:42,268 DEBUG: Added: [e049fe76] https://apnews.com/article/kenya-rare-earth-minerals-mining-mrima-hill-sacred-forest-ancestral-graves-bff1808954d85249f2df92265e6df194
-2026-11-05 02:45:42,268 DEBUG: Added: [4261c8b5] https://apnews.com/article/liv-golf-bankruptcy-bc-partners-rahm-e4f47e7b8a0075d00e1cdefac824d88f
-2026-11-05 02:45:42,268 DEBUG: Added: [b92707b2] https://apnews.com/article/herbert-blomsted-dies-be12ffe6e176272e0fc8181cf2e6d986
-2026-11-05 02:45:42,269 DEBUG: Added: [ef53450b] https://apnews.com/photo-gallery/photos-show-trump-touring-white-house-ballroom-construction-after-crushing-republican-election-loss-8fa1fa6eeeba48afb565204aa6138c7a
-2026-11-05 02:45:42,269 DEBUG: Added: [3f1b196b] https://apnews.com/article/pope-bob-dylan-patti-smith-0cd13339b413d9fa01c9f1f05c721027
-2026-11-05 02:45:42,269 DEBUG: Added: [cd140e87] https://apnews.com/article/vance-iran-war-trump-midterm-elections-a1a0f2a2373f80442dde2b04b9d4d2b3
-2026-11-05 02:45:42,269 DEBUG: Added: [f5a7559d] https://apnews.com/photo-gallery/bulgaria-drone-attacks-russia-border-police-97dc296411d2e34bf566d6e07c0e885b
-2026-11-05 02:45:42,269 DEBUG: Added: [72b60631] https://apnews.com/article/exprince-andrew-testify-turkish-businessman-af5d93100bd877e2fb4aad21969207c9
-2026-11-05 02:45:42,269 DEBUG: Added: [44cc2fb3] https://apnews.com/article/sky-itv-deal-uk-government-investigation-85dfbcdda48d5f14ee6e94ab2eaf6e06
-2026-11-05 02:45:42,269 DEBUG: Added: [712834c1] https://apnews.com/article/europe-enlargement-serbia-moldova-ukraine-albania-montenegro-acd61b3edcb7b5da8a21b4558f32831b
-2026-11-05 02:45:42,269 DEBUG: Added: [4ab1ab7c] https://apnews.com/article/john-malkovich-wild-horse-nine-interview-0a359f8884caeebad5204eae42f91629
-2026-11-05 02:45:42,269 DEBUG: Added: [ef729209] https://apnews.com/article/cambodia-odyssey-travel-residential-cruise-sihanoukville-cff8a432f3dcfb05269f7c21f021cc97
-2026-11-05 02:45:42,269 DEBUG: Added: [430fe643] https://apnews.com/article/france-plasma-blood-bank-cyberattack-temperature-fridge-12b80bcf93b8404264209e519c204919
-2026-11-05 02:45:42,269 DEBUG: Added: [a0cc8d7e] https://apnews.com/article/rory-mcilroy-abu-dhabi-golf-security-3113b6955fe30cab2714275776ad4669
-2026-11-05 02:45:42,269 DEBUG: Added: [38ded2b5] https://apnews.com/article/russia-iihf-hockey-worlds-boycott-476a1f33e59506345726f2abf16c32a5
-2026-11-05 02:45:42,269 DEBUG: Added: [94139009] https://apnews.com/article/us-iran-midterm-election-f3c48a92df2bd8a658d3e704a7291d11
-2026-11-05 02:45:42,269 DEBUG: Added: [a9f19525] https://apnews.com/photo-essay/photo-essay-hail-chasers-storms-31544b1ae47e8ccacb27d42f9dd45ed8
-2026-11-05 02:45:42,269 DEBUG: Added: [82bdb08c] https://apnews.com/article/hailstorm-chaser-damage-severe-weather-tornado-4f9b0cf8dd088508ca2ddf40d01b6519
-2026-11-05 02:45:42,269 INFO: Added 45 new articles to feed
-2026-11-05 02:45:42,269 INFO: Trimmed feed to 500 items
-2026-11-05 02:45:42,275 INFO: Done! Feed saved to pau.xml
-2026-11-05 02:45:42,275 INFO: Debug log saved to debug.log
+2026-11-05 10:31:45,032 INFO: Fetching section: https://apnews.com/world-news
+2026-11-05 10:31:45,032 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-05 10:31:45,034 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-05 10:33:45,797 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-05 10:33:45,798 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793874705035, "endTimestamp": 1793874825796, "version": "3.5.2"}
+2026-11-05 10:33:45,798 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-11-05 10:33:47,798 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-05 10:33:47,799 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-05 10:35:47,901 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-05 10:35:47,901 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793874827800, "endTimestamp": 1793874947900, "version": "3.5.2"}
+2026-11-05 10:35:47,901 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/world-news
+2026-11-05 10:35:51,902 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-05 10:35:52,035 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-11-05 10:35:52,036 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-11-05 10:35:52,036 DEBUG: fetch_page: simple_get attempt 1 failed for https://apnews.com/world-news
+2026-11-05 10:35:53,537 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-05 10:35:53,568 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-11-05 10:35:53,568 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-11-05 10:35:53,569 DEBUG: fetch_page: simple_get attempt 2 failed for https://apnews.com/world-news
+2026-11-05 10:35:56,570 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-05 10:35:56,602 DEBUG: https://apnews.com:443 "GET /world-news HTTP/1.1" 403 None
+2026-11-05 10:35:56,602 DEBUG: simple_get: HTTP 403 for https://apnews.com/world-news
+2026-11-05 10:35:56,603 DEBUG: fetch_page: simple_get attempt 3 failed for https://apnews.com/world-news
+2026-11-05 10:36:01,103 WARNING: fetch_page: all attempts failed for https://apnews.com/world-news
+2026-11-05 10:36:01,104 WARNING: scrape_section: failed to fetch https://apnews.com/world-news
+2026-11-05 10:36:01,104 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-11-05 10:36:01,104 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-11-05 10:36:01,105 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-05 10:38:01,208 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-05 10:38:01,209 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793874961106, "endTimestamp": 1793875081207, "version": "3.5.2"}
+2026-11-05 10:38:01,209 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/climate-and-environment
+2026-11-05 10:38:03,209 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-11-05 10:38:03,210 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-05 10:40:03,314 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-05 10:40:03,314 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/climate-and-environment | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1793875083211, "endTimestamp": 1793875203313, "version": "3.5.2"}
+2026-11-05 10:40:03,315 DEBUG: fetch_page: FlareSolverr attempt 2 failed for https://apnews.com/climate-and-environment
+2026-11-05 10:40:07,316 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-05 10:40:07,346 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 403 None
+2026-11-05 10:40:07,347 DEBUG: simple_get: HTTP 403 for https://apnews.com/climate-and-environment
+2026-11-05 10:40:07,348 DEBUG: fetch_page: simple_get attempt 1 failed for https://apnews.com/climate-and-environment
+2026-11-05 10:40:08,849 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-05 10:40:08,881 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 403 None
+2026-11-05 10:40:08,882 DEBUG: simple_get: HTTP 403 for https://apnews.com/climate-and-environment
+2026-11-05 10:40:08,882 DEBUG: fetch_page: simple_get attempt 2 failed for https://apnews.com/climate-and-environment
+2026-11-05 10:40:11,884 DEBUG: Starting new HTTPS connection (1): apnews.com:443
+2026-11-05 10:40:11,916 DEBUG: https://apnews.com:443 "GET /climate-and-environment HTTP/1.1" 403 None
+2026-11-05 10:40:11,916 DEBUG: simple_get: HTTP 403 for https://apnews.com/climate-and-environment
+2026-11-05 10:40:11,917 DEBUG: fetch_page: simple_get attempt 3 failed for https://apnews.com/climate-and-environment
+2026-11-05 10:40:16,417 WARNING: fetch_page: all attempts failed for https://apnews.com/climate-and-environment
+2026-11-05 10:40:16,418 WARNING: scrape_section: failed to fetch https://apnews.com/climate-and-environment
+2026-11-05 10:40:16,418 INFO: Total unique articles across all sections: 0
+2026-11-05 10:40:16,422 INFO: Loaded existing XML: pau.xml
+2026-11-05 10:40:16,422 INFO: Existing items in feed: 500
+2026-11-05 10:40:16,423 INFO: Added 0 new articles to feed
+2026-11-05 10:40:16,429 INFO: Done! Feed saved to pau.xml
+2026-11-05 10:40:16,429 INFO: Debug log saved to debug.log
