@@ -13,8 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import feedparser
-import requests
-from googlenewsdecoder import new_decoderv1 as gnewsdecoder
+from googlenewsdecoder import gnewsdecoder  # >=0.2.2 (lexbor backend)
 
 # ── Config ────────────────────────────────────────────────────────────────────
 FEED_URL     = "https://news.google.com/rss/search?q=site%3Areuters.com&hl=en-US&gl=US&ceid=US%3Aen"
@@ -22,18 +21,11 @@ STATE_FILE   = "state/seen_guids.json"
 OUTPUT_FILE  = "feed/reuters_direct.xml"
 MAX_ITEMS    = 500
 MAX_SEEN     = 2000          # trim seen list beyond this to avoid unbounded growth
-DECODE_DELAY = 0.3           # seconds between decode attempts (fallback-path courtesy)
+DECODE_DELAY = 0.3           # seconds between decode attempts
 
 FEED_TITLE = "Reuters (Direct)"
 FEED_DESC  = "Reuters news with direct article URLs, decoded from Google News"
 FEED_LINK  = "https://www.reuters.com"
-
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-    )
-}
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -58,34 +50,23 @@ def save_seen(path: str, seen: list):
 
 
 # ── URL Decoding ──────────────────────────────────────────────────────────────
-def decode_url(google_url: str) -> str:
+def decode_url(google_url: str) -> str | None:
     """
-    1. Try googlenewsdecoder (pure computation, no network).
-    2. Fall back to following HTTP redirects.
-    3. Return original URL if both fail.
+    Decode a Google News article URL to the publisher URL.
+    Returns None on failure (caller skips the item and retries next run).
+    Note: the decoder makes network calls (article page fetch + batchexecute POST).
     """
     try:
-        # interval=0 disables the library's own sleep; we control timing ourselves
-        try:
-            result = gnewsdecoder(google_url, interval=0)
-        except TypeError:
-            result = gnewsdecoder(google_url)
-
-        url = (result or {}).get("decoded_url", "")
-        if url and url.startswith("http"):
-            return url
+        result = gnewsdecoder(google_url, interval=0, timeout=15)
+        if isinstance(result, dict) and result.get("success"):
+            url = result.get("decoded_url", "")
+            if url.startswith("http") and "google.com" not in url:
+                return url
+        else:
+            print(f"    [decoder: {(result or {}).get('message', 'no result')}]")
     except Exception as e:
-        print(f"    [decoder failed: {e}] trying redirect…")
-
-    # Fallback: HTTP redirect
-    try:
-        r = requests.get(google_url, allow_redirects=True, headers=HEADERS, timeout=15)
-        if r.url and r.url.startswith("http") and "google.com" not in r.url:
-            return r.url
-    except Exception as e:
-        print(f"    [redirect failed: {e}]")
-
-    return google_url
+        print(f"    [decoder failed: {type(e).__name__}: {e}]")
+    return None
 
 
 # ── XML I/O ───────────────────────────────────────────────────────────────────
@@ -157,6 +138,7 @@ def main():
     print(f"Feed entries: {len(entries)}")
 
     new_items = []
+    skipped = 0
     for entry in entries:
         guid = entry.get("id", "")
         if not guid or guid in seen_set:
@@ -169,13 +151,16 @@ def main():
 
         print(f"  → {title[:75]}")
         direct_url = decode_url(raw_url)
+        time.sleep(DECODE_DELAY)
+        if not direct_url:
+            skipped += 1      # not marked seen → retried next run
+            continue
 
         new_items.append({"title": title, "link": direct_url, "desc": desc, "pubDate": pub})
         seen_list.append(guid)
         seen_set.add(guid)
-        time.sleep(DECODE_DELAY)
 
-    print(f"New items   : {len(new_items)}")
+    print(f"New items   : {len(new_items)} (skipped undecodable: {skipped})")
 
     all_items = (new_items + existing)[:MAX_ITEMS]
     write_rss(all_items, OUTPUT_FILE)
