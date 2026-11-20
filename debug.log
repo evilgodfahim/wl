@@ -1,48 +1,55 @@
-2026-11-20 01:24:22,339 INFO: Fetching section: https://apnews.com/world-news
-2026-11-20 01:24:22,339 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-20 01:24:22,340 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-20 01:26:22,861 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-11-20 01:26:22,861 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1795137862341, "endTimestamp": 1795137982860, "version": "3.5.2"}
-2026-11-20 01:26:22,862 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-11-20 01:26:24,862 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-20 01:26:24,863 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-20 01:28:07,200 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1609912
-2026-11-20 01:28:07,212 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-11-20 01:28:07,214 DEBUG: Saved HTML to apnews.html (1532249 bytes)
-2026-11-20 01:28:07,621 INFO: Section https://apnews.com/world-news — card selector matched 94 articles
-2026-11-20 01:28:07,621 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-11-20 01:28:07,621 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-11-20 01:28:07,622 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-20 01:28:17,845 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2378803
-2026-11-20 01:28:17,857 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-11-20 01:28:17,860 DEBUG: Saved HTML to apnews.html (2290611 bytes)
-2026-11-20 01:28:18,160 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-11-20 01:28:18,161 INFO: Total unique articles across all sections: 179
-2026-11-20 01:28:18,164 INFO: Loaded existing XML: pau.xml
-2026-11-20 01:28:18,164 INFO: Existing items in feed: 500
-2026-11-20 01:28:18,164 DEBUG: Added: [6236dda0] https://apnews.com/article/trump-xi-putin-china-apec-25e17ec8d9c55fbff960d5631eaba71d
-2026-11-20 01:28:18,164 DEBUG: Added: [0210e92f] https://apnews.com/article/russia-ukraine-war-kerch-bridge-putin-crimea-7b4a86809dcd466bba97d374045a1a78
-2026-11-20 01:28:18,164 DEBUG: Added: [913d2fee] https://apnews.com/video/us-president-donald-trump-appears-to-reach-for-xis-hand-on-escalator-9009de93d349428ab1b5f0f5565e7e0d
-2026-11-20 01:28:18,164 DEBUG: Added: [462d0a10] https://apnews.com/article/anthropic-ipo-nasdaq-ai-b6a74b8949021207dc162fcc876c4649
-2026-11-20 01:28:18,164 DEBUG: Added: [be6966f5] https://apnews.com/article/anthropic-ipo-by-numbers-fdca56f1cda70c9908899057e7e591e6
-2026-11-20 01:28:18,164 DEBUG: Added: [72f15eed] https://apnews.com/article/stocks-markets-ai-us-anthropic-206c84045137824feabe052a29ff6140
-2026-11-20 01:28:18,165 DEBUG: Added: [95d632f8] https://apnews.com/article/amazon-marco-rubio-colombia-aerial-spraying-coca-state-department-health-concerns-6f8f95a1e5e87c655cd1b0c7227e7f40
-2026-11-20 01:28:18,165 DEBUG: Added: [e9ab1512] https://apnews.com/article/madison-police-shooting-corey-ruiz-06a036f1073ae8bb51c459636f1db684
-2026-11-20 01:28:18,165 DEBUG: Added: [51f4c58e] https://apnews.com/article/meghan-thomas-markle-charges-e02a684853914ae2581aa26b06fdc8d6
-2026-11-20 01:28:18,165 DEBUG: Added: [0079d722] https://apnews.com/article/extreme-weather-flooding-florida-california-storms-11c05b72dad87373b5632c0f4bb322f5
-2026-11-20 01:28:18,165 DEBUG: Added: [88807ea0] https://apnews.com/article/iowa-army-ammunition-lead-detonation-2d2d7bfaf8ceacddcbea10ed97b097ce
-2026-11-20 01:28:18,165 DEBUG: Added: [33e56c27] https://apnews.com/article/trump-xi-putin-quad-asia-meetings-c679cf7a85872a0ebc202540f6fedaf7
-2026-11-20 01:28:18,165 DEBUG: Added: [32783863] https://apnews.com/article/media-reporter-china-trump-xi-b0bf8c5fb6366f3e546d9f94d0e0c824
-2026-11-20 01:28:18,165 DEBUG: Added: [9581eeb8] https://apnews.com/article/cricket-new-zealand-india-1st-test-f81df4378452cf7b12066bc243369bdb
-2026-11-20 01:28:18,165 DEBUG: Added: [5fa2affc] https://apnews.com/article/frida-kahlo-auction-christies-new-york-57528e6301a067db5bd6306b0f0efedd
-2026-11-20 01:28:18,165 DEBUG: Added: [028e7032] https://apnews.com/article/brazil-amazon-rainforest-president-lula-raoni-indigenous-b57fe434e70796eb2213808082261bfe
-2026-11-20 01:28:18,165 DEBUG: Added: [faac7bee] https://apnews.com/article/deepsea-mining-american-samoa-oceans-trump-auction-1dad5cc71cd5b683c5d418edc3b78563
-2026-11-20 01:28:18,165 DEBUG: Added: [baff947f] https://apnews.com/photo-gallery/cuba-s-charity-kitchens-pope-peru-other-top-photos-latin-america-caribbean-10d8eee4dc0b4e3d8d758fa6cd588aac
-2026-11-20 01:28:18,165 DEBUG: Added: [2d4e1bc9] https://apnews.com/article/iran-war-trump-senate-war-powers-bcbb331cd6c847bf5d0bcb7446344714
-2026-11-20 01:28:18,165 DEBUG: Added: [f4ea3939] https://apnews.com/article/rome-ruins-library-ulpia-be5efcda2ab1f3a7f3e6189bf8c1a15b
-2026-11-20 01:28:18,165 DEBUG: Added: [2ed6ee84] https://apnews.com/article/michigan-rivers-dangerous-fecal-levels-c2bd19b5ead4524862f787a3bedda690
-2026-11-20 01:28:18,165 DEBUG: Added: [fa3a0022] https://apnews.com/article/fiona-hippo-cincinnati-zoo-hat-3d90d10c57698af06e5a7a67bed05608
-2026-11-20 01:28:18,165 INFO: Added 22 new articles to feed
-2026-11-20 01:28:18,165 INFO: Trimmed feed to 500 items
-2026-11-20 01:28:18,171 INFO: Done! Feed saved to pau.xml
-2026-11-20 01:28:18,171 INFO: Debug log saved to debug.log
+2026-11-20 08:58:11,874 INFO: Fetching section: https://apnews.com/world-news
+2026-11-20 08:58:11,874 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-20 08:58:11,876 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-20 09:00:12,635 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-20 09:00:12,636 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1795165091877, "endTimestamp": 1795165212634, "version": "3.5.2"}
+2026-11-20 09:00:12,636 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-11-20 09:00:14,636 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-20 09:00:14,637 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-20 09:02:02,646 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1605316
+2026-11-20 09:02:02,657 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-11-20 09:02:02,660 DEBUG: Saved HTML to apnews.html (1527698 bytes)
+2026-11-20 09:02:03,214 INFO: Section https://apnews.com/world-news — card selector matched 95 articles
+2026-11-20 09:02:03,214 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-11-20 09:02:03,214 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-11-20 09:02:03,215 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-20 09:02:15,744 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2372647
+2026-11-20 09:02:15,760 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-11-20 09:02:15,763 DEBUG: Saved HTML to apnews.html (2284689 bytes)
+2026-11-20 09:02:16,249 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
+2026-11-20 09:02:16,250 INFO: Total unique articles across all sections: 179
+2026-11-20 09:02:16,253 INFO: Loaded existing XML: pau.xml
+2026-11-20 09:02:16,254 INFO: Existing items in feed: 500
+2026-11-20 09:02:16,254 DEBUG: Added: [f7ca93a0] https://apnews.com/article/china-apec-summit-trump-xi-putin-influence-1537a3c561e41a1f8545490a3d29d376
+2026-11-20 09:02:16,254 DEBUG: Added: [7b25b386] https://apnews.com/article/ukraine-russia-war-kyiv-attacks-putin-crimea-433e18f00cbd37a2a9da94e60fce0e07
+2026-11-20 09:02:16,254 DEBUG: Added: [e730572f] https://apnews.com/article/south-sudan-us-deportees-trump-deportations-70a39f4b1ddd2e9197df9dee0f02c080
+2026-11-20 09:02:16,254 DEBUG: Added: [9ad73128] https://apnews.com/article/eu-britain-uk-brexit-summit-brussels-burnham-f265e5e01b5076b9489f7a6c89f831f4
+2026-11-20 09:02:16,254 DEBUG: Added: [2bad312e] https://apnews.com/article/poland-ukraine-military-exercise-peace-france-britain-a28d60d1b37093199dd017472028d7ac
+2026-11-20 09:02:16,254 DEBUG: Added: [a306601c] https://apnews.com/article/anthropic-history-openai-dario-amodei-ipo-53fb21bd250b936d93c5c8885af8d393
+2026-11-20 09:02:16,254 DEBUG: Added: [d384a638] https://apnews.com/article/stock-markets-anthropic-ai-chips-boom-c4c3f4878b12989347f8a930ed813dad
+2026-11-20 09:02:16,255 DEBUG: Added: [abbb432e] https://apnews.com/article/americans-air-travel-disruptions-holiday-43fd1d097a7ebcb8c1c583952bb9efef
+2026-11-20 09:02:16,255 DEBUG: Added: [7eeb9861] https://apnews.com/article/climate-change-warming-turkey-a683c5c87a7ee64caf4e9257948b6e40
+2026-11-20 09:02:16,255 DEBUG: Added: [c717c0ca] https://apnews.com/article/bangladesh-rohingya-myanmar-995389b9d83d9c7813dcfd269f054e39
+2026-11-20 09:02:16,255 DEBUG: Added: [436acec4] https://apnews.com/article/bangladesh-rohingya-myanmar-un-world-court-ruling-c76dcb3f97c1077262f87e0cba01bb78
+2026-11-20 09:02:16,255 DEBUG: Added: [71a0c032] https://apnews.com/article/el-salvador-president-nayib-bukele-reelection-gangs-fbbf0ec3bba7966fa1a5d71d04e04e29
+2026-11-20 09:02:16,255 DEBUG: Added: [b732192f] https://apnews.com/article/execution-florida-texas-68c0916f95f514c293fd557a47406787
+2026-11-20 09:02:16,255 DEBUG: Added: [f3e76cd3] https://apnews.com/article/execution-problems-texas-dennes-97fa4efb70b3a0b0a47935cd79a5a6af
+2026-11-20 09:02:16,255 DEBUG: Added: [72045b39] https://apnews.com/article/nvidia-jensen-alice-huang-asian-american-women-5b1cbd2cd6883d6c0aebb739f6646284
+2026-11-20 09:02:16,255 DEBUG: Added: [749ff7d4] https://apnews.com/article/cricket-new-zealand-india-1st-test-f81df4378452cf7b12066bc243369bdb
+2026-11-20 09:02:16,255 DEBUG: Added: [091d33db] https://apnews.com/article/japan-mountain-fuji-missing-search-chinese-e106504646bc4616921d62819585ac54
+2026-11-20 09:02:16,255 DEBUG: Added: [0ac3150e] https://apnews.com/article/south-korea-cholera-contaminated-seafood-165b77a63c5cc3c48fc7c7b87186a7a6
+2026-11-20 09:02:16,255 DEBUG: Added: [8ed22ad1] https://apnews.com/photo-gallery/romanian-prison-inmates-take-stage-drama-festival-photos-7c45193a8cde4e1696713b8c2c58fc0e
+2026-11-20 09:02:16,256 DEBUG: Added: [317e9565] https://apnews.com/article/australia-sydney-car-bomb-arrest-islamic-state-02f9088f02b09d5e0783b862ad64c0fa
+2026-11-20 09:02:16,256 DEBUG: Added: [8ea00383] https://apnews.com/article/italy-hedgehog-rescue-center-c18121482335b2edd06befef05485a56
+2026-11-20 09:02:16,256 DEBUG: Added: [5ef8f29f] https://apnews.com/article/romania-prison-theatre-bucharest-europe-social-976c91f5ba9011f7aad5b91bcdc1c096
+2026-11-20 09:02:16,256 DEBUG: Added: [2de7485d] https://apnews.com/article/climate-change-carbon-removal-warming-43a5aa99d97cf290a77a14b09ed025b6
+2026-11-20 09:02:16,256 DEBUG: Added: [389f34c9] https://apnews.com/photo-gallery/top-photos-week-ap-photojournalists-5ff79df96de5496cb5b0064df8d39e30
+2026-11-20 09:02:16,256 DEBUG: Added: [5a1bd295] https://apnews.com/photo-gallery/climate-alaska-hunting-6e7e01d287cd11515edfd0f31bda808e
+2026-11-20 09:02:16,256 DEBUG: Added: [c24328d0] https://apnews.com/article/diwali-india-air-pollution-health-climate-0e05558e5c306397850df463c6a025e7
+2026-11-20 09:02:16,256 DEBUG: Added: [19ba351f] https://apnews.com/article/reusable-bags-recycling-donate-microplastics-declutter-e05dbf5444bebd1ad16db11c170900ed
+2026-11-20 09:02:16,256 DEBUG: Added: [5960751e] https://apnews.com/article/weather-heat-wave-clothing-fabrics-cooling-a15bf647a164d557500c873dab6ee7f0
+2026-11-20 09:02:16,256 DEBUG: Added: [372b351e] https://apnews.com/article/energy-permitting-data-center-power-grid-trump-b41c2017e4a9fe2e6de92ec77a4cdd0a
+2026-11-20 09:02:16,256 INFO: Added 29 new articles to feed
+2026-11-20 09:02:16,257 INFO: Trimmed feed to 500 items
+2026-11-20 09:02:16,263 INFO: Done! Feed saved to pau.xml
+2026-11-20 09:02:16,263 INFO: Debug log saved to debug.log
