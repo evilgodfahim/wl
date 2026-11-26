@@ -1,69 +1,51 @@
-2026-11-26 05:19:39,557 INFO: Fetching section: https://apnews.com/world-news
-2026-11-26 05:19:39,558 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-26 05:19:39,559 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-26 05:21:40,212 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-11-26 05:21:40,212 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1795670379560, "endTimestamp": 1795670500211, "version": "3.5.2"}
-2026-11-26 05:21:40,213 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-11-26 05:21:42,213 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-26 05:21:42,214 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-26 05:23:34,996 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1750591
-2026-11-26 05:23:35,007 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-11-26 05:23:35,010 DEBUG: Saved HTML to apnews.html (1671596 bytes)
-2026-11-26 05:23:35,468 INFO: Section https://apnews.com/world-news — card selector matched 95 articles
-2026-11-26 05:23:35,468 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-11-26 05:23:35,468 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-11-26 05:23:35,469 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-26 05:23:45,497 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2382247
-2026-11-26 05:23:45,511 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-11-26 05:23:45,515 DEBUG: Saved HTML to apnews.html (2294292 bytes)
-2026-11-26 05:23:45,903 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-11-26 05:23:45,903 INFO: Total unique articles across all sections: 184
-2026-11-26 05:23:45,906 INFO: Loaded existing XML: pau.xml
-2026-11-26 05:23:45,907 INFO: Existing items in feed: 500
-2026-11-26 05:23:45,907 DEBUG: Added: [d62040c6] https://apnews.com/article/sierra-leone-maternal-mortality-8b0dc69e28bd8221701dee11e7c7b4d2
-2026-11-26 05:23:45,907 DEBUG: Added: [65f0676c] https://apnews.com/article/china-consumer-activist-wang-hai-south-korea-bbb712001f613da3b23edf383d390ae1
-2026-11-26 05:23:45,907 DEBUG: Added: [e881c144] https://apnews.com/article/greece-religion-saint-catherine-mykonos-women-f84928087b2df6f0519a0d8f5a147996
-2026-11-26 05:23:45,907 DEBUG: Added: [022c6d59] https://apnews.com/video/huge-flames-rise-as-fuel-tanker-crash-ignites-deadly-highway-fire-near-cairo-001f3b202f9f46ff92c4fa379b8ad7a8
-2026-11-26 05:23:45,907 DEBUG: Added: [54ab10c9] https://apnews.com/video/return-of-the-wolf-divides-the-densely-populated-netherlands-674fdc25068e4b58bf77edffa3602915
-2026-11-26 05:23:45,907 DEBUG: Added: [5917828d] https://apnews.com/article/black-friday-shopping-ai-essentials-5e542ffd1f94f24e4ffb79d412223544
-2026-11-26 05:23:45,907 DEBUG: Added: [e1706d66] https://apnews.com/article/fcc-abc-ruling-editorial-content-f04f6b2b1a17fc10f2da11e4fd83a9df
-2026-11-26 05:23:45,907 DEBUG: Added: [1005d09f] https://apnews.com/article/dnc-trump-ads-propaganda-lawsuit-fcc1b61e8e7134c01ca3e6dec7728442
-2026-11-26 05:23:45,907 DEBUG: Added: [0e860dd7] https://apnews.com/article/russia-ukraine-war-us-sanctions-oil-lukoil-8d5df1befb2ebb2a0ce4f6b259fcdf14
-2026-11-26 05:23:45,908 DEBUG: Added: [2d9df1d8] https://apnews.com/article/north-korea-kim-nuclear-uranium-trump-78d6642ea055e8257518c3d695a58cd4
-2026-11-26 05:23:45,908 DEBUG: Added: [09211922] https://apnews.com/article/taiwan-local-elections-dpp-kmt-china-cbfaf36781893dc1a7830b702889f829
-2026-11-26 05:23:45,908 DEBUG: Added: [4e38c0ae] https://apnews.com/article/indonesia-illegal-gold-miners-flood-beb990b9d2e82b0732ec97bf27434d6d
-2026-11-26 05:23:45,908 DEBUG: Added: [3641db42] https://apnews.com/article/south-korea-bank-interest-rate-exports-inflation-b9cef57c80c2ceb5e273b71b9a32c9d9
-2026-11-26 05:23:45,908 DEBUG: Added: [8ffc5a12] https://apnews.com/article/angelina-jolie-brad-pitt-winery-fight-75fa59db8ea75c943d6f2376731d031a
-2026-11-26 05:23:45,908 DEBUG: Added: [93cd9d9c] https://apnews.com/article/britain-nuclear-test-veterans-cold-war-pacific-2b54ada9198745cc2e7900222bdee8ef
-2026-11-26 05:23:45,908 DEBUG: Added: [5ab26b4f] https://apnews.com/article/alaska-pollock-fish-sticks-trawling-salmon-a1392b0985230cb764416b1e2bd6046d
-2026-11-26 05:23:45,908 DEBUG: Added: [ec3bc4e4] https://apnews.com/photo-gallery/climate-mezcal-mexico-deforestation-agave-b22bd5f1c32c280f8194e1909616c907
-2026-11-26 05:23:45,908 DEBUG: Added: [aeecb856] https://apnews.com/article/illegal-mining-peru-military-operation-amazon-gold-mercury-navy-728d312a5687ecc6a1e6c6d6798965fe
-2026-11-26 05:23:45,908 DEBUG: Added: [7dfe6963] https://apnews.com/article/creative-reuse-center-secondhand-art-supplies-3888b74ae179b22af1349a0bc6052afb
-2026-11-26 05:23:45,908 DEBUG: Added: [9d1fccb7] https://apnews.com/article/clothing-rental-sustainable-fast-fashion-emissions-f519e67fafe329236e74d37bb20591d4
-2026-11-26 05:23:45,908 DEBUG: Added: [0acd8ccd] https://apnews.com/article/organic-farming-environment-food-sustainability-usda-cda198ffbfa8a067a4b68612e44766dd
-2026-11-26 05:23:45,908 DEBUG: Added: [7c9d3d67] https://apnews.com/article/wine-climate-change-new-york-finger-lakes-76f6423dfed0fb2f41dc489073ef202c
-2026-11-26 05:23:45,908 DEBUG: Added: [1fe1bbc4] https://apnews.com/article/tariffs-coffee-beans-price-brazil-mexico-ny-f69dcf5e8b3ea3cdb1e36921b972dc4f
-2026-11-26 05:23:45,908 DEBUG: Added: [51ee23a6] https://apnews.com/article/climate-havens-rochester-buffalo-new-york-duluth-fc653fcbf39cf4aaa6bc15481e574628
-2026-11-26 05:23:45,908 DEBUG: Added: [1fd0f4af] https://apnews.com/article/new-york-amphibians-salamanders-habitat-extinction-8870e384b8f047413480428cf193a320
-2026-11-26 05:23:45,908 DEBUG: Added: [0c500b81] https://apnews.com/article/indonesia-papua-women-forest-mangrove-5b754d80dca3b420b821fe4040999dd6
-2026-11-26 05:23:45,908 DEBUG: Added: [4fe1d837] https://apnews.com/article/brazil-indigenous-amazon-reforestation-ashaninka-climate-8f1311d0f1febc1125511b3c1662aaea
-2026-11-26 05:23:45,909 DEBUG: Added: [357738cc] https://apnews.com/article/spearfishing-ojibwe-tribe-climate-change-6c93f72c06db0086bc361271ec402681
-2026-11-26 05:23:45,909 DEBUG: Added: [59684f96] https://apnews.com/article/wayuu-colombia-venezuela-indigenous-portraits-climate-563cea849b1fd360121d655534e0e467
-2026-11-26 05:23:45,909 DEBUG: Added: [2d39fce5] https://apnews.com/article/navajo-nation-electricity-tribal-lands-reservation-infrastructure-poverty-76f4515d3211a31cdff503c6082e3590
-2026-11-26 05:23:45,909 DEBUG: Added: [50a9e447] https://apnews.com/article/climate-change-permafrost-melting-alaska-newtok-relocation-moving-292694f057b75f75a9438c794853ee25
-2026-11-26 05:23:45,909 DEBUG: Added: [b9e561f6] https://apnews.com/article/everglades-restoration-miccosukee-water-climate-change-b87825ad937bfa017e5f948797784b36
-2026-11-26 05:23:45,909 DEBUG: Added: [471323b2] https://apnews.com/article/indonesia-nickel-stainless-steel-energy-transition-evs-c7f9e28b3a59f0113e1f96cd9b154067
-2026-11-26 05:23:45,909 DEBUG: Added: [c509dd07] https://apnews.com/article/storm-chasers-hailstorms-severe-weather-climate-change-da4a31e572da571afdd57fea8a6a62ba
-2026-11-26 05:23:45,909 DEBUG: Added: [89483ff3] https://apnews.com/article/hail-storms-climate-change-science-tornadoes-805cc4a9cd4735ad757685afa69ca1c4
-2026-11-26 05:23:45,909 DEBUG: Added: [a9f19525] https://apnews.com/photo-essay/photo-essay-hail-chasers-storms-31544b1ae47e8ccacb27d42f9dd45ed8
-2026-11-26 05:23:45,909 DEBUG: Added: [82bdb08c] https://apnews.com/article/hailstorm-chaser-damage-severe-weather-tornado-4f9b0cf8dd088508ca2ddf40d01b6519
-2026-11-26 05:23:45,909 DEBUG: Added: [93beeda4] https://apnews.com/article/heat-textile-climate-change-factories-eab8494242ecfdc108e12685535a4df3
-2026-11-26 05:23:45,909 DEBUG: Added: [10163b49] https://apnews.com/article/heat-death-valley-ultramarathon-bb343589c766b091667a22ca064761e2
-2026-11-26 05:23:45,909 DEBUG: Added: [bcd0d96f] https://apnews.com/article/summer-camps-extreme-heat-pools-safety-children-74273830855a244d1460e63110623049
-2026-11-26 05:23:45,909 DEBUG: Added: [b87c2a96] https://apnews.com/article/heat-wave-climate-change-causes-blame-4787a8bb1eb3aca0d398f46207f24247
-2026-11-26 05:23:45,909 DEBUG: Added: [43712860] https://apnews.com/article/climate-change-nepal-landslides-earthquakes-extreme-weather-rains-river-fb0ee690e6ec4a110af198865a5fe159
-2026-11-26 05:23:45,909 DEBUG: Added: [d79b7757] https://apnews.com/article/honeybees-climate-change-heat-survive-disease-pollinate-591678b3076b38ff872455eaad319161
-2026-11-26 05:23:45,909 INFO: Added 43 new articles to feed
-2026-11-26 05:23:45,909 INFO: Trimmed feed to 500 items
-2026-11-26 05:23:45,916 INFO: Done! Feed saved to pau.xml
-2026-11-26 05:23:45,916 INFO: Debug log saved to debug.log
+2026-11-26 15:37:43,072 INFO: Fetching section: https://apnews.com/world-news
+2026-11-26 15:37:43,072 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-26 15:37:43,073 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-26 15:39:43,592 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
+2026-11-26 15:39:43,592 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1795707463074, "endTimestamp": 1795707583591, "version": "3.5.2"}
+2026-11-26 15:39:43,593 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
+2026-11-26 15:39:45,593 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-26 15:39:45,594 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-26 15:41:20,361 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1596975
+2026-11-26 15:41:20,369 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
+2026-11-26 15:41:20,372 DEBUG: Saved HTML to apnews.html (1519426 bytes)
+2026-11-26 15:41:20,670 INFO: Section https://apnews.com/world-news — card selector matched 95 articles
+2026-11-26 15:41:20,671 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-11-26 15:41:20,671 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-11-26 15:41:20,671 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-26 15:41:33,408 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2383945
+2026-11-26 15:41:33,419 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-11-26 15:41:33,421 DEBUG: Saved HTML to apnews.html (2295896 bytes)
+2026-11-26 15:41:33,680 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
+2026-11-26 15:41:33,680 INFO: Total unique articles across all sections: 183
+2026-11-26 15:41:33,683 INFO: Loaded existing XML: pau.xml
+2026-11-26 15:41:33,683 INFO: Existing items in feed: 500
+2026-11-26 15:41:33,683 DEBUG: Added: [04deeb0b] https://apnews.com/article/gaza-iran-israel-uae-hormuz-november-26-2026-522676f17532b878878ff7a4347d0e31
+2026-11-26 15:41:33,683 DEBUG: Added: [97dab297] https://apnews.com/article/congo-ebola-outbreak-violence-0a0bc05d76d3278319472178a16be14b
+2026-11-26 15:41:33,683 DEBUG: Added: [369f3ec9] https://apnews.com/article/france-depardieu-rape-allegations-trial-68a9679a92161ef5b77027aee3fd988a
+2026-11-26 15:41:33,683 DEBUG: Added: [7ae50def] https://apnews.com/article/europe-ukraine-budget-summit-loan-debt-f073925a2ed77232e0d7db404600985e
+2026-11-26 15:41:33,683 DEBUG: Added: [c0c649dc] https://apnews.com/article/thailand-bangkok-explosion-oil-facility-e8098146bfb994dffc14448b1027c5d1
+2026-11-26 15:41:33,683 DEBUG: Added: [b5fa3d06] https://apnews.com/article/iraq-krg-baghdad-oil-borders-kurds-protest-irbil-erbil-1b0e8cb02a09ce16b8885c60f4733a44
+2026-11-26 15:41:33,683 DEBUG: Added: [f441168b] https://apnews.com/article/gaza-rory-peck-israel-palestinians-mariam-dagga-cd6723eb7f6f416cac87266805526b3c
+2026-11-26 15:41:33,683 DEBUG: Added: [87ffd591] https://apnews.com/article/italy-venice-art-biennale-art-curator-arab-4c5329d8fb4513ac10291406054f8215
+2026-11-26 15:41:33,683 DEBUG: Added: [e58a74e1] https://apnews.com/article/russia-ukraine-war-zelenskyy-power-122f7f187eea20d4d2b659692b4c4f1e
+2026-11-26 15:41:33,684 DEBUG: Added: [1d9d4eda] https://apnews.com/article/far-right-spain-vox-election-migration-cb1d921d60bbcdb5b11ec2056f9050a7
+2026-11-26 15:41:33,684 DEBUG: Added: [c256b28e] https://apnews.com/article/hong-kong-fire-anniversary-wang-fuk-court-98fa6c7d0db5ea7089f6dce02142b509
+2026-11-26 15:41:33,684 DEBUG: Added: [3e36e012] https://apnews.com/article/min-aung-hlaing-rohingya-genocide-icj-myanmar-2722adf3c380f04c4ff627340f04d45d
+2026-11-26 15:41:33,684 DEBUG: Added: [26dde9f8] https://apnews.com/article/kenya-us-ebola-quarantine-center-9faf3d71819a9708b42c57e1a55aaa16
+2026-11-26 15:41:33,684 DEBUG: Added: [6e2a48dd] https://apnews.com/article/thanksgiving-weather-storm-macys-king-tides-e8bc9bc454c933dacffe89b1139c4d3c
+2026-11-26 15:41:33,684 DEBUG: Added: [f23e3427] https://apnews.com/article/macys-thanksgiving-parade-postponed-weather-cdc870899c8dc2d32a0ac3d86119b3ba
+2026-11-26 15:41:33,684 DEBUG: Added: [5ef978f5] https://apnews.com/article/pakistan-china-space-tiangong-shenzhou-4b2a7ae067edc9a1a0b7cd6402bb1f46
+2026-11-26 15:41:33,684 DEBUG: Added: [1a3d0676] https://apnews.com/article/us-tariffs-china-japan-singapore-b94a693004ad8f9b5e78f7aafb196a71
+2026-11-26 15:41:33,684 DEBUG: Added: [a8aa76b8] https://apnews.com/article/stocks-markets-ai-oil-bonds-320cd8c9c286a7773797bf2f478ef314
+2026-11-26 15:41:33,684 DEBUG: Added: [27a7a866] https://apnews.com/article/iran-arrest-death-penalty-mahmoudian-7ea2fb068ddaf13e4ab34501efcac74e
+2026-11-26 15:41:33,684 DEBUG: Added: [5ecc27ab] https://apnews.com/article/copa-libertadores-palmeiras-estudiantes-final-veron-soccer-argentina-6972312dcdf8a6de368b39db33912ac2
+2026-11-26 15:41:33,684 DEBUG: Added: [e9a27740] https://apnews.com/article/serbia-presidential-election-students-vucic-b069d30d098006f9d4ed21e6b82731c4
+2026-11-26 15:41:33,684 DEBUG: Added: [efb6d329] https://apnews.com/photo-gallery/lanterns-light-night-sky-thailand-photos-9eddd43049674dd4b14035bcc1771b39
+2026-11-26 15:41:33,684 DEBUG: Added: [a9b72d2b] https://apnews.com/article/pakistan-construction-building-collapse-karachi-3b1555a055cfee2e3299edde37c821b9
+2026-11-26 15:41:33,684 DEBUG: Added: [869be4bf] https://apnews.com/article/sandpapergate-cheating-scandal-australia-cricket-7b14a4d232a8b24859bd26a81b711677
+2026-11-26 15:41:33,684 DEBUG: Added: [b2aa3e1e] https://apnews.com/article/indonesia-illegal-gold-miners-flood-beb990b9d2e82b0732ec97bf27434d6d
+2026-11-26 15:41:33,684 INFO: Added 25 new articles to feed
+2026-11-26 15:41:33,684 INFO: Trimmed feed to 500 items
+2026-11-26 15:41:33,688 INFO: Done! Feed saved to pau.xml
+2026-11-26 15:41:33,688 INFO: Debug log saved to debug.log
