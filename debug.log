@@ -1,44 +1,31 @@
-2026-11-28 01:48:53,591 INFO: Fetching section: https://apnews.com/world-news
-2026-11-28 01:48:53,591 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-28 01:48:53,592 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-28 01:50:54,319 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 500 182
-2026-11-28 01:50:54,320 WARNING: FlareSolverr returned HTTP 500 for https://apnews.com/world-news | body (truncated): {"status": "error", "message": "Error: Error solving the challenge. Timeout after 120.0 seconds.", "startTimestamp": 1795830533593, "endTimestamp": 1795830654319, "version": "3.5.2"}
-2026-11-28 01:50:54,320 DEBUG: fetch_page: FlareSolverr attempt 1 failed for https://apnews.com/world-news
-2026-11-28 01:50:56,320 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
-2026-11-28 01:50:56,321 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-28 01:52:41,495 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1577292
-2026-11-28 01:52:41,504 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 2)
-2026-11-28 01:52:41,506 DEBUG: Saved HTML to apnews.html (1500911 bytes)
-2026-11-28 01:52:41,894 INFO: Section https://apnews.com/world-news — card selector matched 94 articles
-2026-11-28 01:52:41,894 INFO: Fetching section: https://apnews.com/climate-and-environment
-2026-11-28 01:52:41,894 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
-2026-11-28 01:52:41,895 DEBUG: Starting new HTTP connection (1): localhost:8191
-2026-11-28 01:53:01,522 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2381050
-2026-11-28 01:53:01,535 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
-2026-11-28 01:53:01,538 DEBUG: Saved HTML to apnews.html (2293265 bytes)
-2026-11-28 01:53:01,835 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
-2026-11-28 01:53:01,836 INFO: Total unique articles across all sections: 183
-2026-11-28 01:53:01,838 INFO: Loaded existing XML: pau.xml
-2026-11-28 01:53:01,839 INFO: Existing items in feed: 500
-2026-11-28 01:53:01,839 DEBUG: Added: [2d80f6c7] https://apnews.com/article/kenya-cult-paul-mackenzie-manslaughter-conviction-6f37fe64e35fc34ed5117809a4dea4d3
-2026-11-28 01:53:01,839 DEBUG: Added: [4c0aede5] https://apnews.com/article/canada-quebec-religious-symbols-supreme-court-8fa520067e80483a7e0c5d1c01fb4189
-2026-11-28 01:53:01,839 DEBUG: Added: [d8c97b02] https://apnews.com/article/black-friday-deals-shopping-stores-online-21e10113de5d5941024b3220bec29433
-2026-11-28 01:53:01,839 DEBUG: Added: [45db37b1] https://apnews.com/article/google-artificial-intelligence-schools-search-engine-lausd-762a613b11bd316384430112cc223ed1
-2026-11-28 01:53:01,839 DEBUG: Added: [915b67aa] https://apnews.com/article/britain-princess-catherine-kate-cancer-royal-film-3707f243e752a02b4f30c152cea08146
-2026-11-28 01:53:01,839 DEBUG: Added: [d1eb4c1d] https://apnews.com/article/taiwan-local-elections-a7e3622548f69a41da3e1ec6ce9c9f19
-2026-11-28 01:53:01,839 DEBUG: Added: [8e16ff2f] https://apnews.com/article/puerto-rico-protest-water-power-luma-san-juan-282de19fa396ef0c8bcf276499486578
-2026-11-28 01:53:01,839 DEBUG: Added: [a4d0318c] https://apnews.com/article/mexico-dea-us-tip-line-sheinbaum-cartel-sinaloa-5c00a0448b600fae2e4ae4e2f08f0425
-2026-11-28 01:53:01,839 DEBUG: Added: [8e8ae188] https://apnews.com/article/weather-storm-macys-flooding-thanksgiving-bbf9dad3076a69b9bd18b7c0c80490ad
-2026-11-28 01:53:01,839 DEBUG: Added: [a69b3048] https://apnews.com/article/macys-thanksgiving-day-parade-rescheduled-ba6b05f16873b2b8966de38d5be8444d
-2026-11-28 01:53:01,839 DEBUG: Added: [c74dac0e] https://apnews.com/article/iowa-lead-detonation-cde35b4969d6f4f68187fa21aa2243a6
-2026-11-28 01:53:01,839 DEBUG: Added: [d25cea36] https://apnews.com/article/cricket-new-zealand-india-second-test-day-two-8a9efdc22bac6ded52330c5617add3b2
-2026-11-28 01:53:01,839 DEBUG: Added: [54a3598a] https://apnews.com/article/canada-kenneth-law-suicide-lethal-substances-2b0e0f401017421016470a450366c749
-2026-11-28 01:53:01,839 DEBUG: Added: [389f34c9] https://apnews.com/photo-gallery/top-photos-week-ap-photojournalists-45812f31126c4eb78ff0996b7c905747
-2026-11-28 01:53:01,839 DEBUG: Added: [5a1bd295] https://apnews.com/photo-gallery/climate-alaska-hunting-6e7e01d287cd11515edfd0f31bda808e
-2026-11-28 01:53:01,839 DEBUG: Added: [c24328d0] https://apnews.com/article/diwali-india-air-pollution-health-climate-0e05558e5c306397850df463c6a025e7
-2026-11-28 01:53:01,840 DEBUG: Added: [19ba351f] https://apnews.com/article/reusable-bags-recycling-donate-microplastics-declutter-e05dbf5444bebd1ad16db11c170900ed
-2026-11-28 01:53:01,840 DEBUG: Added: [5960751e] https://apnews.com/article/weather-heat-wave-clothing-fabrics-cooling-a15bf647a164d557500c873dab6ee7f0
-2026-11-28 01:53:01,840 INFO: Added 18 new articles to feed
-2026-11-28 01:53:01,840 INFO: Trimmed feed to 500 items
-2026-11-28 01:53:01,845 INFO: Done! Feed saved to pau.xml
-2026-11-28 01:53:01,845 INFO: Debug log saved to debug.log
+2026-11-28 09:57:41,408 INFO: Fetching section: https://apnews.com/world-news
+2026-11-28 09:57:41,408 DEBUG: FlareSolverr GET -> https://apnews.com/world-news
+2026-11-28 09:57:41,409 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-28 09:58:13,273 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 1628573
+2026-11-28 09:58:13,280 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-11-28 09:58:13,283 DEBUG: Saved HTML to apnews.html (1550570 bytes)
+2026-11-28 09:58:13,632 INFO: Section https://apnews.com/world-news — card selector matched 94 articles
+2026-11-28 09:58:13,632 INFO: Fetching section: https://apnews.com/climate-and-environment
+2026-11-28 09:58:13,632 DEBUG: FlareSolverr GET -> https://apnews.com/climate-and-environment
+2026-11-28 09:58:13,633 DEBUG: Starting new HTTP connection (1): localhost:8191
+2026-11-28 09:58:21,336 DEBUG: http://localhost:8191 "POST /v1 HTTP/1.1" 200 2386260
+2026-11-28 09:58:21,347 DEBUG: fetch_page: got HTML from FlareSolverr (attempt 1)
+2026-11-28 09:58:21,352 DEBUG: Saved HTML to apnews.html (2298262 bytes)
+2026-11-28 09:58:21,646 INFO: Section https://apnews.com/climate-and-environment — card selector matched 101 articles
+2026-11-28 09:58:21,646 INFO: Total unique articles across all sections: 182
+2026-11-28 09:58:21,649 INFO: Loaded existing XML: pau.xml
+2026-11-28 09:58:21,649 INFO: Existing items in feed: 500
+2026-11-28 09:58:21,649 DEBUG: Added: [1081fa1f] https://apnews.com/article/afghanistan-school-explosion-843fe51fe82d739eab076b2fbd4d8eb0
+2026-11-28 09:58:21,649 DEBUG: Added: [64b047ca] https://apnews.com/article/taiwan-local-elections-a7e3622548f69a41da3e1ec6ce9c9f19
+2026-11-28 09:58:21,649 DEBUG: Added: [fb34c3e3] https://apnews.com/article/zapatistas-families-disappeared-tour-chiapas-mexico-city-4344300b57c9dea85af1c983ba1b8a48
+2026-11-28 09:58:21,649 DEBUG: Added: [2641c824] https://apnews.com/article/mideast-israel-gaza-ukraine-libya-israel-houthis-november-28-2026-088cd858cd7def5c2c2296882e6e5be4
+2026-11-28 09:58:21,649 DEBUG: Added: [4acd6315] https://apnews.com/article/mexico-dea-us-tip-line-sheinbaum-cartel-sinaloa-5c00a0448b600fae2e4ae4e2f08f0425
+2026-11-28 09:58:21,649 DEBUG: Added: [6b00af42] https://apnews.com/article/south-africa-citizen-scientist-solitary-bee-hotel-38f522b7aa40c16aea3269ccef1178a0
+2026-11-28 09:58:21,649 DEBUG: Added: [fc4813cf] https://apnews.com/article/cricket-new-zealand-india-second-test-day-two-8a9efdc22bac6ded52330c5617add3b2
+2026-11-28 09:58:21,649 DEBUG: Added: [28126126] https://apnews.com/article/don-toliver-manchester-gig-substance-release-16bbdb1e49dfe5aaf5e8b892531fb55f
+2026-11-28 09:58:21,649 DEBUG: Added: [6bb0efc1] https://apnews.com/article/ai-energy-water-climate-change-pollution-environment-77c9de6f9c6326c12d8d18e20dc99c44
+2026-11-28 09:58:21,649 DEBUG: Added: [f0168b8f] https://apnews.com/article/sustainable-denim-dye-environmental-process-find-jeans-2d1d7c360c2df0fbb7d528a26a7e8163
+2026-11-28 09:58:21,649 INFO: Added 10 new articles to feed
+2026-11-28 09:58:21,649 INFO: Trimmed feed to 500 items
+2026-11-28 09:58:21,654 INFO: Done! Feed saved to pau.xml
+2026-11-28 09:58:21,654 INFO: Debug log saved to debug.log
